@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="members" namespace="/members" extends="default">
+  		
+  		<action name="join_ok" class="action.MembersAction" method="join">
+  			<result type="redirect">../index</result>
+  		</action>
+  		
+  		<action name="idCheck">
+  			<result>../members/idCheck.jsp</result>
+  		</action>
+  	
+  		<action name="goIdCheck" class="action.MembersAction" method="goIdCheck">
+  			<result>../idCheck.jsp</result>
+  		</action>
+  		
+  		 <action name="login" class="action.MembersAction" method="login">
+  			<result name="success" type="redirect">../index</result>
+  		</action>
+	
+		<action name="logout" class="action.MembersAction" method="logout">
+			<result name="success" type="redirect">../index</result>
+		</action>
+		
+	
+	</package>	
+	</struts>
