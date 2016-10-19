@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.naming.ldap.Rdn;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
@@ -17,7 +19,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelMain {
  
     public static void main(String[] args) {
-         
+    	ReadExcelDemo rd=new ReadExcelDemo();
+    	System.out.println(rd.number("20161020.xlsx"));
+    	
         // Workbook ����
         Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 ���� ����
         Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 �̻�

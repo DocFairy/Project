@@ -29,7 +29,7 @@
 		<div class="row">
 			<aside class="col-md-3 sidebar">
 				<div class="block">
-					<h3><span>문서 메뉴;;</span></h3>
+					<h3><span>문서 메뉴</span></h3>
 					<nav>
 						<ul class="nav">
 							<li><a href="docintegrate">통합문서</a>

@@ -9,6 +9,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.DocumentDAO;
+import excel.ReadExcelDemo;
 import vo.Files;
 import vo.Members;
 
@@ -57,10 +58,13 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 
 	public String makefile()throws Exception{
 		String[]array=uploadFileName.split(",");
+		ReadExcelDemo ex=new ReadExcelDemo();
+		DocumentDAO dd=new DocumentDAO();
+		System.out.println(dd.searchfile(array[0]));
+		System.out.println(ex.number(dd.searchfile(array[0])));
 		for(int i=0;i<array.length;i++){
-			
+			System.out.println(ex.number(dd.searchfile(array[i])));
 		}
-		
 		return "success";
 	}
 	public Files getFiles() {

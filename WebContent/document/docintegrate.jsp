@@ -125,6 +125,9 @@
 				
 				<div id="buttons">
 				<form action="insertfile" method="post" enctype="multipart/form-data">
+				<select>
+				<option>
+				</select>
 				<input type="radio" name="files.isaccountfile" value="r">거래내역서
 				<input type="radio" name="files.isaccountfile" value="t">세금계산서		
 				<input id="buttons2" type="file" name="upload">
