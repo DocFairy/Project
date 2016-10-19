@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-	<title>DocFairy-통합 문서 관리 시스템</title>
+	<title>DocFairy</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!--[if lt IE 9]>
