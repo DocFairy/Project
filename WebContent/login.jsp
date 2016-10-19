@@ -4,7 +4,7 @@
 <html>
 
 <head>
-	<title>ZUPA - Responsive Website Template / Login</title>
+	<title>DocFairy - Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<!--[if lt IE 9]>
@@ -12,121 +12,23 @@
 		<![endif]-->
 	<link rel="shortcut icon" href="images/favicon.ico" />
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css" />
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script src="javascript/pace.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	<script type="text/javascript">
+		function login(){
+			
+		}	
+	</script>
 </head>
 
 <body>
 	<header>
-		<div class="container hidden-xs logo">
-			<a href="index.html"><img class="img-responsive" src="images/logos/logo.png" alt="Logo" />
-			</a>
-		</div>
-		<div class="navbar-wrapper">
-			<div class="container">
-				<nav class="navbar navbar-static-top">
-					<div class="navbar-header">
-						<a class="navbar-brand visible-xs" href="index.html"><img class="img-responsive" src="images/logos/logo-xs.png" alt="" />
-						</a>
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-
-					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-center navbar-nav">
-							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="dropdown-submenu">
-										<a href="index.html">Home</a>
-									</li>
-									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" class="trigger dropdown-toggle" href="#">Pages <span class="pull-right"><i class="fa fa-angle-right"></i></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="page-simple.html">Simple Page</a>
-											</li>
-											<li><a href="page-sidebar.html">Right Sidebar</a>
-											</li>
-											<li><a href="about-us.html">About Us</a>
-											</li>
-											<li><a href="services.html">Services</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" class="trigger dropdown-toggle" href="#">Blog <span class="pull-right"><i class="fa fa-angle-right"></i></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="blog-index.html">Blog no sidebars</a>
-											</li>
-											<li><a href="blog-left-sidebar.html">Blog left sidebar</a>
-											</li>
-											<li><a href="blog-right-sidebar.html">Blog right sidebar</a>
-											</li>
-											<li><a href="blog-post.html">Blog post</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" class="trigger dropdown-toggle" href="#">Portfolio / Gallery <span class="pull-right"><i class="fa fa-angle-right"></i></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="portfolio-2-columns.html">2 columns</a>
-											</li>
-											<li><a href="portfolio-3-columns.html">3 columns</a>
-											</li>
-											<li><a href="portfolio-4-columns.html">4 columns</a>
-											</li>
-											<li><a href="portfolio.html">Portfolio with filter</a>
-											</li>
-											<li><a href="portfolio-item.html">Portfolio item</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown-submenu">
-										<a data-toggle="dropdown" class="trigger dropdown-toggle" href="#">Special <span class="pull-right"><i class="fa fa-angle-right"></i></span></a>
-										<ul class="dropdown-menu">
-											<li><a href="404.html">404</a>
-											</li>
-											<li><a href="empty.html">Empty</a>
-											</li>
-											<li><a href="login.html">Sign in</a>
-											</li>
-										</ul>
-									</li>
-
-								</ul>
-							</li>
-
-							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">Features</a>
-								<ul class="dropdown-menu">
-									<li><a href="typography.html">Typography</a>
-									</li>
-									<li><a href="forms.html">Forms</a>
-									</li>
-									<li><a href="buttons.html">Buttons</a>
-									</li>
-								</ul>
-							</li>
-
-							<li><a href="card.html">Menu</a>
-							</li>
-
-							<li><a href="contact.html">Contact</a>
-							</li>
-
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
-	</header>
-
+	<jsp:include page="header.jsp"></jsp:include>
+   </header>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 col-md-12">
@@ -135,13 +37,13 @@
 					<h1>Login</h1>
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-							<form class="form">
+							<form class="${pageContext.request.contextPath}/members/login" >
 								<div class="form-group">
 									<div class="input-group">
 										<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
 										</div>
 										<div class="animated-form-control">
-											<input placeholder="Login" type="text" name="name" class="text form-control" required="required" aria-required="true" />
+											<input placeholder="Id" type="text" name="id" class="text form-control" required="required" aria-required="true" />
 										</div>
 									</div>
 								</div>
@@ -150,12 +52,12 @@
 										<div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
 										</div>
 										<div class="animated-form-control">
-											<input placeholder="Password" type="password" name="name" class="text form-control" required="required" aria-required="true" />
+											<input placeholder="Password" type="password" name="password" class="text form-control" required="required" aria-required="true" />
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-primary pull-right">sign in</button>
+									<input type="submit" class="btn btn-primary pull-right" value="sign in">
 								</div>
 							</form>
 						</div>
@@ -167,32 +69,7 @@
 	</div>
 
 	<footer class="page-footer">
-		<div class="container">
-			<div class="row">
-				<div class="row-xs-12">
-					<div class="divider"></div>
-					<div class="text-center">
-						<a href="index.html"><img src="images/logos/logo.png" alt="" class="logo">
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-9">
-					<ul class="footer-links">
-						<li><a href="#">Privacy Policy</a>
-						</li>
-						<li><a href="blog-index.html">Blog</a>
-						</li>
-						<li><a href="contact.html">Contact</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-sm-3">
-					<p>© ZUPA 2016</p>
-				</div>
-			</div>
-		</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 	</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>

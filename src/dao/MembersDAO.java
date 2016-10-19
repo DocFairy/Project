@@ -20,4 +20,11 @@ public class MembersDAO {
 		return result;
 	}
 	
+	public int updateMember(Members members){
+		int result = 0;
+			sqlsession.update("Members.updateMember",members);
+			sqlsession.commit();
+		return result;
+	}
+	
 }

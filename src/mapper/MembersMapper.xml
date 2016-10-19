@@ -12,4 +12,9 @@
 		select * from members where id = #{id}
 	</select>
 
+	<update id="updateMember" parameterType="Members">
+		update members set password = #{password} , address = #{address} , phonenum = #{phonenum}, 
+		 division = #{division} where id = #{id}
+	</update>
+
 </mapper>

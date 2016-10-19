@@ -44,7 +44,7 @@
 				
 					<s:if test="#session.members == null">
 					<form action="${pageContext.request.contextPath}/members/login" method="post">
-					아이디<input type="text" name="id">&nbsp;비밀번호<input type="text" name="password"><input type="submit" value="로그인"><br>
+					<input type="text" placeholder="Id" name="id" class="text form-control"  required="required" aria-required="true"><input type="text" name="password" placeholder="Password" class="text form-control" required="required" aria-required="true"><input type="submit" value="로그인" class="btn btn-primary btn-sm"><br>
 					</form>
 						<a id="join" href="${pageContext.request.contextPath}/join">회원가입</a>&nbsp;<a id="find" href="${pageContext.request.contextPath}/find">아이디/비밀번호 찾기</a>
 					</s:if>

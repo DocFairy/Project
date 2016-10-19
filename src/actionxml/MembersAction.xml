@@ -26,6 +26,13 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
+				<action name="updateForm" class="action.MembersAction" method="updateForm">
+			<result>../members/updateForm.jsp</result>
+		</action>
+		
+		<action name="update" class="action.MembersAction" method="update">
+			<result name="success" type="redirect">../index</result>
+		</action>
 	
 	</package>	
 	</struts>

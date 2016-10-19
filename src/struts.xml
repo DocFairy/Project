@@ -10,6 +10,15 @@
 
     <package name="default" namespace="/" extends="struts-default,json-default">
 
+       <interceptors>
+	<interceptor name="LoginInterceptor" class="interceptor.LoginInterceptor"/>
+	<interceptor-stack name="LoginIntercepterStack">
+		<interceptor-ref name="defaultStack"/>
+		<interceptor-ref name="LoginInterceptor"/>
+	</interceptor-stack>
+	</interceptors>
+      
+      
         <default-action-ref name="index"/>
         
         <global-exception-mappings>
