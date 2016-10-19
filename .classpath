@@ -8,5 +8,13 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-examples-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-excelant-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/poi-scratchpad-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="D:/w2/excel(update)/poi라이브러리/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
