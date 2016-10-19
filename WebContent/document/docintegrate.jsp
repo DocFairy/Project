@@ -24,11 +24,29 @@
 	$(function(){
 		$("#entire").on('click','.checked',function(){
 			var filename=$(this).parent().next().text();
-			var division=$(this).parent().next().next().text();
-			alert($(this).val());
-			if($(this).val()=='on'){
-			$("#check").append('<tr><td>'+filename+'</td><td>'+division+'</td><tr>');
-			}
+			
+			$("#check").append('<tr class="add"><td>'+filename+'</td><tr>');
+			
+		});
+		$(".del").on('click',function(){
+			$(this).parent().parent().remove();
+			var save_filename=$(this).parent().parent().children().first().next().children().text();
+			alert(save_filename);
+			$.ajax({
+				url:'delfile',
+				data:{'uploadFileName':save_filename}
+			});
+		});
+		$("#inter").on('click',function(){
+			var alist="";
+			$("#check .add").each(function(index,item){
+				alist+=$("#check .add").eq(index).children().first().text()+",";
+			});
+			alert(alist);
+			$.ajax({
+				url:'makefile',
+				data:{'uploadFileName':alist}
+			});
 		});
 	});
 	</script>
@@ -62,23 +80,21 @@
 				
 				<table border="1" id="entire">
 				<tr>
-				<th>선택</th>
+				<th>옮기기</th>
 				<th class="filename" width="200">파일명</th>
-				<th class="filename" width="70">분류</th>
+				<th class="filename" width="70">삭제</th>
 				</tr>
 				<s:iterator value="list">
 				<tr>
-				<td class="filename"><input type="checkbox" class="checked"></td>
-				<td class="filename"><a href="fileDownload?save_fileno=${save_fileno}">
-				<s:property value="save_filename"/></a></td>
-				<td class="filename"><s:property value="isaccountfile"/></td>
+				<td class="filename"><input type="button" class="checked" value="선택"></td>
+				<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property value="save_filename"/></a></td>
+				<td class="filename"><input type="button" class="del" value="삭제"></td>
 				</tr>
 				</s:iterator>
 				</table>
 				<table id="check" border="1">
 				<tr>
-				<th class="filename" width="200">파일명</th>
-				<th class="filename" width="70">분류</th>
+				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
 				</table>
 				
@@ -116,7 +132,7 @@
 				<input type="submit" value="올리기">
 				</form>
 				<input type="button" value="삭제">
-				<input type="button" value="통합문서 받기">
+				<input id="inter" type="button" value="통합문서 받기">
 				</div>
 			</div>
 		</div>
