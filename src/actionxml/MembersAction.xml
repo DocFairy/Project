@@ -20,6 +20,7 @@
   		
   		 <action name="login" class="action.MembersAction" method="login">
   			<result name="success" >/index.jsp</result>
+  			<result name="error">../login.jsp</result>
   		</action>
 	
 		<action name="logout" class="action.MembersAction" method="logout">

@@ -35,7 +35,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	public String insertfile()throws Exception{
 		if (upload != null) { 
 			FileService fs = new FileService();
-			String basePath = "D:/upload";		//user.properties에 지정된 파일 저장 경로
+			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
 			String savedfile = fs.saveFile(upload, basePath, uploadFileName);	//서버에 임시 업로드된 파일객체, 저장경로, 업로드당시의 파일명 전달하고 실제 저장된 파일명 리턴받음
 			files.setSave_file(savedfile);
 			files.setSave_filename(uploadFileName);
