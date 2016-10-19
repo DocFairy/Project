@@ -26,7 +26,7 @@ public class FileDownloadAction extends ActionSupport {
 			Files files=new DocumentDAO().selectfileone(save_fileno);//해당 번호의 Board객체
 			savedfile = files.getSave_file();					//서버에 저장된 파일명
 			originalfile = files.getSave_filename();				//원래 파일명
-			basePath = "D:/upload";				//user.properties에 정의된 파일 저장 경로
+			basePath = "C:/upload";				//user.properties에 정의된 파일 저장 경로
 			
 			String serverFullPath = basePath + "/" + savedfile;	//서버에 저장된 파일의 전체 경로
 			

@@ -47,8 +47,11 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	public String delfile()throws Exception{
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
-		String fullpath="D:/upload/"+dd.searchfile(uploadFileName);
+		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);
+		System.out.println(fullpath);
+		dd.delfile(uploadFileName);
 		fs.fileDelete(fullpath);
+		
 		return "success";
 	}
 
