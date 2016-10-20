@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -18,6 +19,14 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
+	<script>
+	$(function(){
+		$("#create").on("click",function(){
+			$("#add").append('<br><form action="creategroup">그룹명<input type="text" name="groupname"><input type="hidden" name="leaderno"><input type="submit" value="만들기">')
+		});
+	});
+	</script>
 </head>
 
 <body>
@@ -38,7 +47,32 @@
 						</ul>
 					</nav>
 				</div>
-				</aside>그룹핑-그룹관리</div></div>
+				</aside>
+			<h1 id="stitle">그룹관리</h1>
+			<s:if test="#session.members.leaderno==null">
+			나만의 그룹을 만들어보세요!
+			<input type="button" value="그룹 만들기" id="create">
+			<div id="add"></div>
+			</s:if>
+			<s:else>
+			<center><s:property value="groupname"/></center>
+			그룹 멤버 목록
+			<table border="1">
+			<tr>
+			<th>그룹 멤버 아이디</th>
+			<th>비고</th>
+			</tr>
+			<s:iterator value="mlist">
+			<tr>
+			<td><s:property value="id"/></td>
+			<td><s:if test="leaderno==memberno">그룹 리더</s:if></td>
+			</tr>
+			</s:iterator>
+			</table>
+			<input type="button" value="그룹에서 탈퇴">
+			<input type="button" value="다른 멤버 초대">
+			</s:else>
+			</div></div>
 				
 				
 <jsp:include page="../footer.jsp"></jsp:include>

@@ -4,17 +4,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
 
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadExcelDemo 
-{
+public class ReadExcelDemo {
+	String a="1";
 	public String number(String save_file){
 		try
         {
-            FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
+            FileInputStream file = new FileInputStream(new File("D:/해적단.xls"));
  
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
@@ -53,9 +56,56 @@ public class ReadExcelDemo
         {
             e.printStackTrace();
         }
-		return "";
+		return a;
+    }
+//		try
+//        {
+//            FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
+//            System.out.println("cc");
+//            //Create Workbook instance holding reference to .xlsx file
+//            XSSFWorkbook workbook = new XSSFWorkbook(file);
+//            System.out.println("dd");
+//            //Get first/desired sheet from the workbook
+//            XSSFSheet sheet = workbook.getSheetAt(0);
+//            System.out.println("ee");
+//            XSSFRow row = sheet.getRow(0);
+//            XSSFCell cell=row.getCell(0);
+//            System.out.println("aa");
+//            System.out.println(cell.getStringCellValue());
+//           System.out.println("bb");
+//            file.close();
+//        } 
+//        catch (Exception e) 
+//        {
+//            e.printStackTrace();
+//        }
+//		return "a";
 	}
-    public static void main(String[] args) 
+	
+/*	public static void main(String[] args) {
+		try
+        {
+            FileInputStream file = new FileInputStream(new File("C:/upload/201610201476893636053.xls"));
+            System.out.println("cc");
+            //Create Workbook instance holding reference to .xlsx file
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            System.out.println("dd");
+            //Get first/desired sheet from the workbook
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            System.out.println("ee");
+            XSSFRow row = sheet.getRow(0);
+            XSSFCell cell=row.getCell(0);
+            System.out.println("aa");
+            System.out.println(cell.getStringCellValue());
+           System.out.println("bb");
+            file.close();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+	}*/
+ /*   public static void main(String[] args) 
     {
         try
         {
@@ -98,5 +148,4 @@ public class ReadExcelDemo
         {
             e.printStackTrace();
         }
-    }
-}
+    }*/
