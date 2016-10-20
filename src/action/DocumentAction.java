@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -53,10 +55,10 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);
-		System.out.println(fullpath);
+		
 		dd.delfile(uploadFileName);
 		fs.fileDelete(fullpath);
-		
+		System.out.println("1");
 		return "success";
 	}
 

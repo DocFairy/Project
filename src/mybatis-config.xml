@@ -7,6 +7,7 @@
 	<typeAliases> 
 		<typeAlias type="vo.Files" alias="Files" />
 		<typeAlias type="vo.Members" alias="Members" />
+		<typeAlias type="vo.MemberGroup" alias="MemberGroup" />
 	</typeAliases>
 	<!-- DB접속 정보 셋팅 -->
 	<environments default="development">

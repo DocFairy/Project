@@ -12,7 +12,7 @@ public class Members {
 	private int phonenum;
 	private int division;
 	private File accountant;
-	private int groupno;
+	private String groupno;
 	private String leaderno;
 	
 	public Members() {
@@ -20,7 +20,7 @@ public class Members {
 	}
 
 	public Members(String memberno, String id, String password, String name, String address, int phonenum, int division,
-			File accountant, int groupno, String leaderno) {
+			File accountant, String groupno, String leaderno) {
 		super();
 		this.memberno = memberno;
 		this.id = id;
@@ -98,11 +98,11 @@ public class Members {
 		this.accountant = accountant;
 	}
 
-	public int getGroupno() {
+	public String getGroupno() {
 		return groupno;
 	}
 
-	public void setGroupno(int groupno) {
+	public void setGroupno(String groupno) {
 		this.groupno = groupno;
 	}
 

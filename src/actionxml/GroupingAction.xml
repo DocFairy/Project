@@ -19,6 +19,10 @@
 		<action name="groupdocdownload" class="action.GroupingAction" method="groupDocDownload">
 			<result>/grouping/groupdocdownload.jsp</result>
 		</action>
+		
+		<action name="creategroup" class="action.GroupingAction" method="creategroup">
+			<result type="chain">groupmanage</result>
+		</action>
          
     </package>
 	</struts>

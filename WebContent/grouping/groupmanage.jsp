@@ -23,7 +23,7 @@
 	<script>
 	$(function(){
 		$("#create").on("click",function(){
-			$("#add").append('<br><form action="creategroup">그룹명<input type="text" name="groupname"><input type="hidden" name="leaderno"><input type="submit" value="만들기">')
+			$("#add").append('<br><form action="creategroup" method="post">그룹명<input type="text" name="membergroup.groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="만들기">')
 		});
 	});
 	</script>
@@ -49,7 +49,7 @@
 				</div>
 				</aside>
 			<h1 id="stitle">그룹관리</h1>
-			<s:if test="#session.members.leaderno==null">
+			<s:if test="#session.members.groupno==null">
 			나만의 그룹을 만들어보세요!
 			<input type="button" value="그룹 만들기" id="create">
 			<div id="add"></div>
