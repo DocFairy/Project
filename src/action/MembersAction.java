@@ -31,6 +31,7 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	public String login() throws Exception {
 		members = dao.searchMember(id);
 		if (members != null) {
+			System.out.println(members);
 			if (id.equals(members.getId()) && password.equals(members.getPassword())) {
 				session.put("members", members);
 				return SUCCESS;

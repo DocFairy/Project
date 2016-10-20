@@ -7,7 +7,6 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import dao.GroupingDAO;
 import vo.MemberGroup;
 import vo.Members;
 

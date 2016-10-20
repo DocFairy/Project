@@ -19,7 +19,18 @@
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<script src="javascript/pace.min.js"></script>
-	
+	<script type="text/javascript">
+	function formcheck(){
+		var password = document.getElementById('password').value;
+		var passwordre = document.getElementById('passwordre').value;
+		
+		if(password != passwordre){
+			alert("비번과 비번확인 일치시켜라");
+			return false;
+		}
+		return true;
+	}
+	</script>
 </head>
 
 <body>

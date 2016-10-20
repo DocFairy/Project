@@ -18,7 +18,45 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#picker").datepicker({
+				dateFormat : "yy-mm-dd",
+				showAnim : "slide"
+				
+			});
+		
+		
+		$("#getdata").on("click",function(){
+			var date = $("#picker").val();
+			var date2 = {
+				"date" : date	
+			};
+			
+			$.ajax({
+				url : "account/accountlist" ,
+				method : "post" ,
+				data : date2 ,
+				dataType : "json" ,
+				success : function(response){
+					alert(response);
+				}
+			});
+			
+			alert(date);
+		});
+		
+		
+		});
+		
+	</script>
+	
 </head>
 
 <body>
@@ -44,8 +82,32 @@
 				
 			</aside>
 			<h1 id="stitle">가계부 달력</h1><br><br>
+	
+	
+		<input type="text" id="picker" placeholder="클릭하세용~♡" />
+		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 				
-
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<nav class="text-center">
 					<ul class="pagination">
 						<li>
@@ -75,10 +137,6 @@
 	</div>
 
 	<jsp:include page="../footer.jsp"></jsp:include>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
-</body>
+
 
 </html>

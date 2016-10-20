@@ -15,7 +15,7 @@
   		</action>
   	
   		<action name="goIdCheck" class="action.MembersAction" method="goIdCheck">
-  			<result>../idCheck.jsp</result>
+  			<result>../members/idCheck.jsp</result>
   		</action>
   		
   		 <action name="login" class="action.MembersAction" method="login">
