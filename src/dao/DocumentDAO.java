@@ -3,11 +3,13 @@ package dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import vo.Files;
 
 public class DocumentDAO {
 	SqlSession sqlSession=MybatisConfig.getSqlSessionFactory().openSession();
+	SqlSessionFactory sessionFactory = MybatisConfig.getSqlSessionFactory();
 	
 	public int insertfile(Files files){
 		int result=sqlSession.insert("mapper.DocumentMapper.insertfile",files);
@@ -28,4 +30,17 @@ public class DocumentDAO {
 	public String searchfile(String save_filename){
 		return sqlSession.selectOne("mapper.DocumentMapper.searchfile", save_filename);
 	}
+	
+	public List<Files> primaryFormList(){ //문서양식의 기본문서양식파일리스트를 불러온다.
+		 SqlSession session = sessionFactory.openSession();
+		 List<Files> returner = session.selectList("mapper.DocumentMapper.primaryDocList",null);
+		 return returner;
+	 }
+
+	 public Files fileshow(String save_fileno) { //fileshow.jsp로 페이지이동하면서, 해당파일정보를 가져옴
+		SqlSession session = sessionFactory.openSession();
+		 Files returner = session.selectOne("mapper.DocumentMapper.selectfileone",save_fileno);
+		 System.out.println("DocumentDAO:getfileshow()returner:"+returner);
+		 return returner;
+	 }
 }

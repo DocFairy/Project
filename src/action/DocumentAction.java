@@ -20,19 +20,23 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	private List<Files>list;
 	private Map<String, Object> session;
 	private Members members;
-	
-	public String docTransform()throws Exception{
+	private List<Files> docFormList;
+	private String save_fileno;
+	private String save_file;
+	public String docTransform() throws Exception{
 		return "success";
 	}
-	public String docIntegrate()throws Exception{
+	public String docIntegrate() throws Exception{
 		DocumentDAO dd=new DocumentDAO();
 		list=dd.selectfile(((Members)session.get("members")).getMemberno());
 		return "success";
 	}
-	public String docForm()throws Exception{
+	public String docForm() throws Exception{
+		DocumentDAO dao = new DocumentDAO();
+		docFormList = dao.primaryFormList();
 		return "success";
 	}
-	public String insertfile()throws Exception{
+	public String insertfile() throws Exception{
 		if (upload != null) { 
 			FileService fs = new FileService();
 			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
@@ -44,7 +48,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		dd.insertfile(files);
 		return "success";
 	}
-	public String delfile()throws Exception{
+	public String delfile() throws Exception{
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);
@@ -55,7 +59,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 
-	public String makefile()throws Exception{
+	public String makefile() throws Exception{
 		String[]array=uploadFileName.split(",");
 		for(int i=0;i<array.length;i++){
 			
@@ -103,6 +107,24 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	}
 	public void setMembers(Members members) {
 		this.members = members;
+	}
+	public List<Files> getDocFormList() {
+		return docFormList;
+	}
+	public void setDocFormList(List<Files> docFormList) {
+		this.docFormList = docFormList;
+	}
+	public String getSave_fileno() {
+		return save_fileno;
+	}
+	public void setSave_fileno(String save_fileno) {
+		this.save_fileno = save_fileno;
+	}
+	public String getSave_file() {
+		return save_file;
+	}
+	public void setSave_file(String save_file) {
+		this.save_file = save_file;
 	}
 	
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,7 +30,7 @@
 		<div class="row">
 			<aside class="col-md-3 sidebar">
 				<div class="block">
-					<h3><span>문서 메뉴;;</span></h3>
+					<h3><span>문서 메뉴</span></h3>
 					<nav>
 						<ul class="nav">
 							<li><a href="docintegrate">통합문서</a>
@@ -45,7 +46,7 @@
 				<div class="block">
 					<h3>Tags</h3>
 					<div class="tags">
-						<a href="#" class="btn btn-default btn-xs">Vegetables</a>
+					<a href="#" class="btn btn-default btn-xs">Vegetables</a>
 						<a href="#" class="btn btn-default btn-xs">Food</a>
 						<a href="#" class="btn btn-default btn-xs">Lunch</a>
 						<a href="#" class="btn btn-default btn-xs">Carot</a>
@@ -55,14 +56,30 @@
 				<div class="block">
 					<h3>Keep in touch</h3>
 					<p class="social">
-						<a href="#"><i class="fa fa-facebook social-icon-small" aria-hidden="true"></i></a>
+						<!-- <a href="#"><i class="fa fa-facebook social-icon-small" aria-hidden="true"></i></a>
 						<a href="#"><i class="fa fa-twitter social-icon-small" aria-hidden="true"></i></a>
 						<a href="#"><i class="fa fa-instagram social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-youtube social-icon-small" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-youtube social-icon-small" aria-hidden="true"></i></a> -->
 					</p>
 				</div>
 			</aside>
-			docform.jsp
+			문서양식
+			<table>
+			<tr>
+				<th>번호</th><th>제목</th><th>글쓴이</th>
+				<s:iterator value="docFormList">
+					<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
+				</s:iterator>
+			</tr>
+			<tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr>
+			</table>
+				
+			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="files.isaccountfile" value="f">문서타입: f(문서양식)
+				<input id="buttons2" type="file" name="upload">
+				<input type="hidden" name="files.memberno" value="2">
+				<input type="submit" value="올리기">
+			</form>
 				
 
 				<nav class="text-center">

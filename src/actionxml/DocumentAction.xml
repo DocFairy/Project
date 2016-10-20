@@ -19,11 +19,20 @@
         <action name="docform" class="action.DocumentAction" method="docForm">
         	<result>/document/docform.jsp</result>
         </action>
-		
+		<action name="fileshow" class="action.DocumentAction" method="fileShow"> <!-- fileshow페이지로이동열-->
+        	<result>/document/fileshow.jsp</result>
+        </action>
+	  	<action name="makeNewForm"> <!-- makeNewForm팝업생성 -->
+        	<result>/document/makeNewForm.jsp</result>
+        </action>
 		<action name="insertfile" class="action.DocumentAction" method="insertfile">
 			<result type="chain">docintegrate</result>
 		</action>
-	
+		
+		<action name="insertfile_docform" class="action.DocumentAction" method="insertfile">
+			<result type="chain">docform</result>
+		</action>
+		
 		<action name="fileDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentType">${contentType}</param>

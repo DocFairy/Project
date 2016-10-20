@@ -18,13 +18,18 @@
 	</interceptor-stack>
 	</interceptors>
       
-      
+      <!-- 
         <default-action-ref name="index"/>
-        
+         -->
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
         <action name="index" class="action.DefaultAction" method="index">
+            <result>
+                /index.jsp
+            </result>
+        </action>
+        <action name="" class="action.DefaultAction" method="index">
             <result>
                 /index.jsp
             </result>
