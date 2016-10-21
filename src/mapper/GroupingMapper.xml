@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"     
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="mapper.GroupingMapper">
+<insert id="creategroup" parameterType="MemberGroup">
+insert into membergroup values ('group'||membergroup_seq.nextval,#{groupname},null,#{leaderno})
+</insert>
+<select id="selectgroup" resultType="Members" parameterType="String">
+select * from members where groupno=#{groupno}
+</select>
+<update id="updategroup" parameterType="Map">
+update members set groupno=#{groupno} where memberno=#{memberno} 
+</update>
+<select id="selectgroupone" resultType="MemberGroup" parameterType="String">
+select * from membergroup where leaderno=#{leaderno}
+</select>
+<select id="searchgroupone" resultType="MemberGroup" parameterType="String">
+select * from membergroup where groupno=#{groupno}
+</select>
+<delete id="deletegroup" parameterType="String">
+delete from membergroup where groupno=#{groupno}
+</delete>
+<update id="expiremember" parameterType="String">
+update members set groupno=null where groupno=#{groupno}
+</update>
+<select id="findgroupone" parameterType="String" resultType="String">
+select groupno from membergroup where groupname=#{groupname}
+</select>
+<update id="leave" parameterType="String">
+update members set groupno=null where memberno=#{memberno}
+</update>
+</mapper>
