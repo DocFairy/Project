@@ -11,16 +11,14 @@
 	<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-	<link rel="shortcut icon" href="../images/favicon.ico" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
@@ -28,11 +26,9 @@
 	$(document).ready(function(){
 			$("#picker").datepicker({
 				dateFormat : "yymmdd",
-				showAnim : "slide"
-				
+				showAnim : "slide"	
 			});
-		
-		
+
 		$("#getdata").on("click",function(){
 			var date = $("#picker").val();
 			var date2 = {
@@ -51,7 +47,7 @@
 						$("#entire").append('<tr><td>'
 								+ '<input type="button" value="옮기기" class="trans">'
 								+ '</td><td>' + item.save_filename 
-								+ '</td><td>' + '<input type="button" value="삭제" class="del">'
+								+ '</td><td>' + '<input type="button" value="삭제" class="delt">'
 								+'</td></tr>'
 							);
 					});
@@ -61,9 +57,8 @@
 				}
 			});
 			alert(date);
-		});
-		
-		$("#entire").on('click','.del',function(){
+		});	
+		$("#entire").on('click','.delt',function(){
 			$(this).parent().parent().remove();
 			var save_filename=$(this).parent().parent().children().first().next().text();
 			
@@ -81,16 +76,9 @@
 				});
 			
 		});
-		
-		
-		
-		
-		
-		
-	});
-		
+
+	});	
 	</script>
-	
 </head>
 
 <body>
@@ -119,23 +107,7 @@
 	
 	
 		<input type="text" id="picker" placeholder="클릭하세용~♡" />
-		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
-				
-				
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />	
 		
 			<table border="1" id="entire">
 				<tr>
@@ -156,25 +128,6 @@
 				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
 				</table>	
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 

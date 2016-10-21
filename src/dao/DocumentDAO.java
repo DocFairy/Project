@@ -14,6 +14,7 @@ public class DocumentDAO {
 	public int insertfile(Files files){
 		int result=sqlSession.insert("mapper.DocumentMapper.insertfile",files);
 		sqlSession.commit();
+		
 		return result;
 	}
 	public List<Files> selectfile(String memberno){
