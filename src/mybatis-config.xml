@@ -27,7 +27,7 @@
 		<mapper resource="mapper/DocumentMapper.xml" />
 		<mapper resource="mapper/MembersMapper.xml" />
 		<mapper resource="mapper/GroupingMapper.xml" />
-		
+		<mapper resource="mapper/AccountMapper.xml" />		
 	</mappers>
 	
 </configuration>

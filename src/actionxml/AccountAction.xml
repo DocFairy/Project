@@ -19,5 +19,13 @@
 			/account/accountboard.jsp
 			</result>
 		</action>
+		
+		<action name="accountlist" class="action.AccountAction" method="accountList">
+			<result type="json"></result>
+		</action>
+		
+		<action name="accountDel" class="action.AccountAction" method="accountDel">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts>

@@ -18,7 +18,79 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+			$("#picker").datepicker({
+				dateFormat : "yymmdd",
+				showAnim : "slide"
+				
+			});
+		
+		
+		$("#getdata").on("click",function(){
+			var date = $("#picker").val();
+			var date2 = {
+				"date" : date	
+			};
+			
+			$.ajax({
+				url : "account/accountlist" ,
+				method : "post" ,
+				data : date2 ,
+				dataType : "json" ,
+				success : function(response){
+					if(response.list!=""){
+					$.each(response.list,function(index,item){
+				
+						$("#entire").append('<tr><td>'
+								+ '<input type="button" value="옮기기" class="trans">'
+								+ '</td><td>' + item.save_filename 
+								+ '</td><td>' + '<input type="button" value="삭제" class="del">'
+								+'</td></tr>'
+							);
+					});
+					}else{
+						$("#entire tr:not(:first)").remove();
+					}
+				}
+			});
+			alert(date);
+		});
+		
+		$("#entire").on('click','.del',function(){
+			$(this).parent().parent().remove();
+			var save_filename=$(this).parent().parent().children().first().next().text();
+			
+			alert(save_filename);
+				$.ajax({
+					url : 'accountDel',
+					method : 'post',
+					dataType : 'json',
+					data : {
+						"del" : save_filename
+					} ,
+					success : function(){
+						alert('success');
+					}
+				});
+			
+		});
+		
+		
+		
+		
+		
+		
+	});
+		
+	</script>
+	
 </head>
 
 <body>
@@ -44,41 +116,67 @@
 				
 			</aside>
 			<h1 id="stitle">가계부 달력</h1><br><br>
+	
+	
+		<input type="text" id="picker" placeholder="클릭하세용~♡" />
+		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 				
+				
+		
+		
 
-				<nav class="text-center">
-					<ul class="pagination">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1</a>
-						</li>
-						<li><a href="#">2</a>
-						</li>
-						<li><a href="#">3</a>
-						</li>
-						<li class="disabled"><a href="#">4</a>
-						</li>
-						<li><a href="#">5</a>
-						</li>
-						<li>
-							<a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<table border="1" id="entire">
+				<tr>
+				<th>옮기기</th>
+				<th class="filename" width="200">파일명</th>
+				<th class="filename" width="70">삭제</th>
+				</tr>
+				<s:iterator value="list">
+				<tr>
+				<td class="filename"><input type="button" class="checked" value="선택"></td>
+				<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property value="save_filename"/></a></td>
+				<td class="filename"><input type="button" class="del" value="삭제"></td>
+				</tr>
+				</s:iterator>
+				</table>
+				<table id="check" border="1">
+				<tr>
+				<th class="filename" width="200">선택된 파일명</th>
+				</tr>
+				</table>	
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
 
 	<jsp:include page="../footer.jsp"></jsp:include>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
-</body>
+
 
 </html>
