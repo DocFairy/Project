@@ -75,8 +75,10 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 	public String leave()throws Exception{
+		MembersDAO md=new MembersDAO();
 		GroupingDAO gd=new GroupingDAO();
 		gd.leave(((Members)session.get("members")).getMemberno());
+		session.put("members", md.searchMember(((Members)session.get("members")).getId()));
 		return "success";
 	}
 	public MemberGroup getMembergroup() {

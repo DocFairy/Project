@@ -75,17 +75,19 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	}
 
 	public String confirm()throws Exception{
-		System.out.println(groupname);
+		MembersDAO md=new MembersDAO();
 		GroupingDAO gd=new GroupingDAO();
-		String groupno=gd.findgroupone(groupname);
-		System.out.println(groupno);
+		String groupno=gd.findgroupone(groupname);		
 		dao.confirm(((Members)session.get("members")).getMemberno(), groupno);
 		dao.reject(((Members)session.get("members")).getMemberno());
+		session.put("members", md.searchMember(((Members)session.get("members")).getId()));
 		return "success";
 	}
 	
 	public String reject()throws Exception{
+		MembersDAO md=new MembersDAO();
 		dao.reject(((Members)session.get("members")).getMemberno());
+		session.put("members", md.searchMember(((Members)session.get("members")).getId()));
 		return "success";
 	}
 	// getter & setter

@@ -19,8 +19,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
+  <script src="${pageContext.request.contextPath}/javascript/jquery-ui.js"></script>
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -73,10 +73,8 @@
 					success : function(){
 						alert('success');
 					}
-				});
-			
+				});	
 		});
-
 	});	
 	</script>
 </head>
