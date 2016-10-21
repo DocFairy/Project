@@ -47,6 +47,7 @@ CREATE TABLE MEMBERS /*회원목록 Table*/
 	DIVISION number(20) NOT NULL, /*회원의 종류. 0:관리자, 1:일반회원*/
 	ACCOUNTANT varchar2(1000), /*회원이 가지고 있는 가계부파일*/
 	GROUPNO varchar2(20), /*회원이 소속된 그룹의 번호. 한 회원당 한 그룹만 가입 가능*/
+	invite varchar2(2),
 	CONSTRAINT SYS_C0010340 PRIMARY KEY (MEMBERNO)
 );
 

@@ -11,27 +11,12 @@ public class Members {
 	private String address;
 	private int phonenum;
 	private int division;
-	private File accountant;
+	private String accountant;
 	private String groupno;
-	private String leaderno;
+	private String invite;
 	
 	public Members() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Members(String memberno, String id, String password, String name, String address, int phonenum, int division,
-			File accountant, String groupno, String leaderno) {
-		super();
-		this.memberno = memberno;
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.address = address;
-		this.phonenum = phonenum;
-		this.division = division;
-		this.accountant = accountant;
-		this.groupno = groupno;
-		this.leaderno = leaderno;
 	}
 
 	public String getMemberno() {
@@ -90,12 +75,22 @@ public class Members {
 		this.division = division;
 	}
 
-	public File getAccountant() {
+
+
+	public String getAccountant() {
 		return accountant;
 	}
 
-	public void setAccountant(File accountant) {
+	public void setAccountant(String accountant) {
 		this.accountant = accountant;
+	}
+
+	public String getInvite() {
+		return invite;
+	}
+
+	public void setInvite(String invite) {
+		this.invite = invite;
 	}
 
 	public String getGroupno() {
@@ -106,20 +101,11 @@ public class Members {
 		this.groupno = groupno;
 	}
 
-	public String getLeaderno() {
-		return leaderno;
-	}
-
-	public void setLeaderno(String leaderno) {
-		this.leaderno = leaderno;
-	}
-
 	@Override
 	public String toString() {
 		return "Members [memberno=" + memberno + ", id=" + id + ", password=" + password + ", name=" + name
 				+ ", address=" + address + ", phonenum=" + phonenum + ", division=" + division + ", accountant="
-				+ accountant + ", groupno=" + groupno + ", leaderno=" + leaderno + "]";
+				+ accountant + ", groupno=" + groupno + ", invite=" + invite + "]";
 	}
 
-	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -24,6 +24,22 @@
 	$(function(){
 		$("#create").on("click",function(){
 			$("#add").append('<br><form action="creategroup" method="post">그룹명<input type="text" name="membergroup.groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="만들기">')
+			$("#create").off();
+		});	
+		$("#dest").on("click",function(){
+			var c=confirm('정말로 이 그룹을 해체하시겠습니까?');
+			if(c){
+			location.href='dest';
+			}
+		});
+		$("#leave").on("click",function(){
+			var c=confirm('정말로 이 그룹에서 나가시겠습니까?');
+			if(c){
+				location.href='leave';
+			}
+		});
+		$("#invite").on("click",function(){
+			window.open("invite", "pop", 'resizable=no scrollbars=yes top=300 left=500 width=500 height=300');
 		});
 	});
 	</script>
@@ -56,6 +72,7 @@
 			</s:if>
 			<s:else>
 			<center><s:property value="groupname"/></center>
+			<h2><b>그룹명:<s:property value="membergroup.groupname"/></b></h2><br>
 			그룹 멤버 목록
 			<table border="1">
 			<tr>
@@ -65,12 +82,17 @@
 			<s:iterator value="mlist">
 			<tr>
 			<td><s:property value="id"/></td>
-			<td><s:if test="leaderno==memberno">그룹 리더</s:if></td>
+			<td><s:if test="membergroup.leaderno==memberno">그룹 리더</s:if></td>
 			</tr>
 			</s:iterator>
 			</table>
-			<input type="button" value="그룹에서 탈퇴">
-			<input type="button" value="다른 멤버 초대">
+			<s:if test="membergroup.leaderno!=#session.members.memberno">
+			<input id="leave" type="button" value="그룹에서 탈퇴">
+			</s:if>
+			<s:else>
+			<input id="dest" type="button" value="그룹 해체">
+			</s:else>
+			<input id="invite" type="button" value="다른 멤버 초대">	
 			</s:else>
 			</div></div>
 				

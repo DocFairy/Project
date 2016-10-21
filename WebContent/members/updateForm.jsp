@@ -24,15 +24,12 @@
 			var password = document.getElementById('password').value;
 			var passwordre = document.getElementById('passwordre').value;
 			
-			if(password != passwordre){
-				alert("비번과 비번확인 일치시켜라");
-				return false;
-			}
-			
 			if(password == "" || password.length == 0){
 				document.getElementById('password').value = ${members.password};
-			} 
-			return true;		
+			}
+			
+			
+			
 		}
 	
 	</script>
@@ -44,7 +41,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	<h1 id="stitle2">회원정보 수정</h1>
 	<div class="login_area">
-				<s:form action="members/update" onsubmit="return goHancok()" method="post"  theme="simple">
+				<s:form action="members/update" onsubmit="goHancok()" method="post"  theme="simple">
 					<ul><!-- 회원가입 -->
 						<li class="grp_area"><s:label for="">회원구분</s:label><s:radio name="members.division"
 						list="#{1:'관리자',2:'일반회원'}" value="#{2}"></s:radio> </li>

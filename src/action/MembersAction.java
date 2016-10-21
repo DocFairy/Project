@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.GroupingDAO;
 import dao.MembersDAO;
 import vo.Members;
 
@@ -17,12 +18,12 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	private boolean duplicated;
 	private Map<String, Object> session;
 	MembersDAO dao = new MembersDAO();
+	private String friendid;
+	private String groupname;
+	
+
 
 	public String join() throws Exception {
-
-		System.out.println(members.getName());
-		System.out.println(members.getPassword());
-		System.out.println(members.getDivision());
 		dao.insertMember(members);
 
 		return SUCCESS;
@@ -31,9 +32,13 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	public String login() throws Exception {
 		members = dao.searchMember(id);
 		if (members != null) {
-			System.out.println(members);
 			if (id.equals(members.getId()) && password.equals(members.getPassword())) {
 				session.put("members", members);
+				if(((Members)session.get("members")).getInvite()!=null){
+				String[]ivt=((Members)session.get("members")).getInvite().split(",");
+				friendid=ivt[0];
+				groupname=ivt[1];
+				}
 				return SUCCESS;
 			} else {
 				return ERROR;
@@ -51,7 +56,6 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	public String goIdCheck() throws Exception {
 		System.out.println(id);
 		members = dao.searchMember(id);
-
 		if (members != null) {
 			duplicated = true;
 		}
@@ -70,6 +74,20 @@ public class MembersAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 
+	public String confirm()throws Exception{
+		System.out.println(groupname);
+		GroupingDAO gd=new GroupingDAO();
+		String groupno=gd.findgroupone(groupname);
+		System.out.println(groupno);
+		dao.confirm(((Members)session.get("members")).getMemberno(), groupno);
+		dao.reject(((Members)session.get("members")).getMemberno());
+		return "success";
+	}
+	
+	public String reject()throws Exception{
+		dao.reject(((Members)session.get("members")).getMemberno());
+		return "success";
+	}
 	// getter & setter
 
 	public Members getMembers() {
@@ -106,6 +124,22 @@ public class MembersAction extends ActionSupport implements SessionAware {
 
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+	public String getFriendid() {
+		return friendid;
+	}
+
+	public void setFriendid(String friendid) {
+		this.friendid = friendid;
+	}
+
+	public String getGroupname() {
+		return groupname;
+	}
+
+	public void setGroupname(String groupname) {
+		this.groupname = groupname;
 	}
 
 }

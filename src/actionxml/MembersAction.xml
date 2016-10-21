@@ -11,11 +11,11 @@
   		</action>
   		
   		<action name="idCheck">
-  			<result>../members/idCheck.jsp</result>
+  			<result>/members/idCheck.jsp</result>
   		</action>
   	
   		<action name="goIdCheck" class="action.MembersAction" method="goIdCheck">
-  			<result>../members/idCheck.jsp</result>
+  			<result>/members/idCheck.jsp</result>
   		</action>
   		
   		 <action name="login" class="action.MembersAction" method="login">
@@ -35,5 +35,12 @@
 			<result name="success" type="redirect">../index</result>
 		</action>
 	
+		<action name="confirm" class="action.MembersAction" method="confirm">
+			<result type="json"></result>
+		</action>
+		
+		<action name="reject" class="action.MembersAction" method="reject">
+			<result type="json"></result>
+		</action>
 	</package>	
 	</struts>

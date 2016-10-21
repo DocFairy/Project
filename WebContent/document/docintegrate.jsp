@@ -128,8 +128,8 @@
 				<select>
 				<option>
 				</select>
-				<input type="radio" name="files.isaccountfile" value="r">거래내역서
-				<input type="radio" name="files.isaccountfile" value="t">세금계산서		
+				<input type="radio" name="files.filetype" value="r">거래내역서
+				<input type="radio" name="files.filetype" value="t">세금계산서		
 				<input id="buttons2" type="file" name="upload">
 				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
 				<input type="submit" value="올리기">

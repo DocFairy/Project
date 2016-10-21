@@ -11,10 +11,20 @@
 	<select id="searchMember" parameterType="String" resultType="Members">
 		select * from members where id = #{id}
 	</select>
-
 	<update id="updateMember" parameterType="Members">
 		update members set password = #{password} , address = #{address} , phonenum = #{phonenum}, 
 		 division = #{division} where id = #{id}
 	</update>
-
+	<select id="searchid" resultType="String" parameterType="String">
+		select id from members where id like '%' || #{id} || '%' and groupno is null
+	</select>
+	<update id="inviteid" parameterType="Map">
+	update members set invite=#{msg} where memberno=#{memberno}
+	</update>
+	<update id="confirm" parameterType="Map">
+	update members set groupno=#{groupno} where memberno=#{memberno}
+	</update>
+	<update id="reject" parameterType="String">
+	update members set invite=null where memberno=#{memberno}
+	</update>
 </mapper>

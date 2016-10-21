@@ -19,6 +19,27 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js">
+	</script>
+	<script>
+	$(function(){
+		if("#session.members.invite"!=null){
+			var groupname="${groupname}";
+			var c=confirm('"${friendid}"님이 "${groupname}"에 당신을 초대하셨습니다. 수락하시겠습니까?');	
+			if(c){
+				$.ajax({
+					url:"members/confirm",
+					data:{"groupname":groupname}
+				});
+			}
+			else{
+				$.ajax({
+					url:"members/reject"
+				});
+			}
+		}
+	});
+	</script>
 </head>
 
 <body class="home-page">

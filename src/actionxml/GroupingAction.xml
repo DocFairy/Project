@@ -23,6 +23,25 @@
 		<action name="creategroup" class="action.GroupingAction" method="creategroup">
 			<result type="chain">groupmanage</result>
 		</action>
+		
+		<action name="dest" class="action.GroupingAction" method="dest">
+			<result type="chain">groupmanage</result>
+		</action>
+		
+		<action name="invite" class="action.GroupingAction" method="invite">
+			<result>/grouping/invite.jsp</result>
+		</action>
+		
+		<action name="searchid" class="action.GroupingAction" method="searchid">
+			<result type="json"></result>
+		</action>
          
+         <action name="msg" class="action.GroupingAction" method="msg">
+         	<result type="json"></result>
+         </action>
+         
+         <action name="leave" class="action.GroupingAction" method="leave">
+         	<result type="chain">groupmanage</result>
+         </action>
     </package>
 	</struts>

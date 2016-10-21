@@ -7,19 +7,10 @@ public class Files {
 	private String save_file;
 	private String save_filename;
 	private String memberno;
-	private String isaccountfile;
+	private String filetype;
 
 	public Files() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Files(String save_fileno, String save_file, String save_filename, String memberno, String isaccountfile) {
-		super();
-		this.save_fileno = save_fileno;
-		this.save_file = save_file;
-		this.save_filename = save_filename;
-		this.memberno = memberno;
-		this.isaccountfile = isaccountfile;
 	}
 
 	public String getSave_fileno() {
@@ -54,19 +45,19 @@ public class Files {
 		this.memberno = memberno;
 	}
 
-	public String getIsaccountfile() {
-		return isaccountfile;
+
+	public String getFiletype() {
+		return filetype;
 	}
 
-	public void setIsaccountfile(String isaccountfile) {
-		this.isaccountfile = isaccountfile;
+	public void setFiletype(String filetype) {
+		this.filetype = filetype;
 	}
 
 	@Override
 	public String toString() {
 		return "Files [save_fileno=" + save_fileno + ", save_file=" + save_file + ", save_filename=" + save_filename
-				+ ", memberno=" + memberno + ", isaccountfile=" + isaccountfile + "]";
-	}
-
+				+ ", memberno=" + memberno + ", filetype=" + filetype + "]";
+	}	
 	
 }
