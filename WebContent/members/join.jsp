@@ -29,7 +29,7 @@
 				<s:form action="/members/join_ok" method="post" onsubmit="return formcheck();" theme="simple">
 					<ul><!-- 회원가입 -->
 						<li class="grp_area"><s:label for="">회원구분</s:label><s:radio name="members.division"
-						list="#{1:'관리자',2:'일반회원'}" value="#{2}"></s:radio> </li>
+						list="#{1:'개인',2:'기업'}" value="#{1}"></s:radio> </li>
 						<li><s:textfield placeholder="아이디" class="join_write" name="members.id" readonly="true" id="id" />
 						<s:a href="#" class="id_check" onclick="window.open('members/idCheck','pop','resizable=no scrollbars=yes top=300 left=500 width=500 height=300');return false">중복체크</s:a></li>
 						<li><s:password placeholder="비밀번호" class="login_write" name="members.password" id="password"/></li>

@@ -129,5 +129,8 @@
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
+	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 
 </html>
