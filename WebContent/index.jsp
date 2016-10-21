@@ -23,7 +23,8 @@
 	</script>
 	<script>
 	$(function(){
-		if("#session.members.invite"!=null){
+		var invite=$("#hidden").val();
+		if(invite!=""){
 			var groupname="${groupname}";
 			var c=confirm('"${friendid}"님이 "${groupname}"에 당신을 초대하셨습니다. 수락하시겠습니까?');	
 			if(c){
@@ -43,6 +44,7 @@
 </head>
 
 <body class="home-page">
+	<input type="hidden" id="hidden" value="${session.members.invite}">
 	<jsp:include page="header.jsp"></jsp:include>
 	<section>
 		<div class="swiper-container">
