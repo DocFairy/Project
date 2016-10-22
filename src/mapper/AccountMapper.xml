@@ -10,4 +10,7 @@
 		delete from files where save_filename = #{file}
 	</delete>
 
+	<select id="fileFind" parameterType="String" resultType="String">
+		select save_file from files where save_filename = #{del}
+	</select>
 </mapper>
