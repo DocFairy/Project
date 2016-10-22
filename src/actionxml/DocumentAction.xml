@@ -29,6 +29,7 @@
         </action>
 		<action name="insertfile" class="action.DocumentAction" method="insertfile">
 			<result type="chain">docintegrate</result>
+			<result name="error" type="chain">docintegrate</result>
 		</action>
 		
 		<action name="insertfile_docform" class="action.DocumentAction" method="insertfile">

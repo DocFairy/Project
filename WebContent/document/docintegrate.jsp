@@ -21,7 +21,18 @@
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 	<script>
+	function formcheck(){
+		if($("#upfile").val()==null){
+			alert($(".sel").val());
+			alert('파일 유형이나 파일을 선택하지 않았습니다!');
+			return false;
+		}
+	}
 	$(function(){
+		var msg=$("#msg").val();
+		if(msg!=""){
+			alert(msg);	
+		}
 		$("#entire").on('click','.checked',function(){
 			var filename=$(this).parent().next().text();
 			$("#check").append('<tr class="add"><td>'+filename+'</td><tr>');
@@ -37,6 +48,10 @@
 		});
 		$("#inter").on('click',function(){
 			var alist="";
+			if($("#check .add").eq(0).children().first().text()==""){
+				alert('먼저 파일을 선택하세요!')
+				return false;
+			}
 			$("#check .add").each(function(index,item){
 				alist+=$("#check .add").eq(index).children().first().text()+",";
 			});
@@ -45,9 +60,11 @@
 				data:{'uploadFileName':alist},
 				success:function(response){
 					$("#buttons").append('<a href="fileDownload?integrate='+response.integrate+'">다운로드</a>');
+					$("#inter").off();
 				}
 			});
 		});
+		
 	});
 	</script>
 </head>
@@ -121,20 +138,18 @@
 							</a>
 						</li>
 					</ul>
-					
-				
 				<div id="buttons">
-				<form action="insertfile" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="msg" value="${msg}" id="msg">
+				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()">
 				<select>
 				<option>
 				</select>
-				<input type="radio" name="files.filetype" value="r">거래내역서
-				<input type="radio" name="files.filetype" value="t">세금계산서		
-				<input id="buttons2" type="file" name="upload">
+				<input type="radio" name="files.filetype" value="r" class="sel">거래내역서
+				<input type="radio" name="files.filetype" value="t" class="sel">세금계산서		
+				<input id="buttons2" type="file" name="upload" id="upfile">
 				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
 				<input type="submit" value="올리기">
 				</form>
-				<input type="button" value="삭제">
 				<input id="inter" type="button" value="통합문서 만들기">
 				</div>
 			</div>

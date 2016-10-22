@@ -13,25 +13,42 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
 	
-	public String makeinter(String word,double value){
-		 
+	public String paste(XSSFWorkbook xw,String st,int r,int c){
+		 try {
+	            File xlsxFile = new File("C:/upload/integrate.xlsx");
+	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
+	            XSSFSheet sheet1=xw.getSheetAt(2);
+	            XSSFRow row = sheet1.getRow(r);
+	            XSSFCell cell=row.getCell(c);
+	            cell.setCellValue("");
+	            cell.setCellValue(st);
+	            xw.write(fileOut);
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		 return "integrate.xlsx";
+	}
+	
+	public String makeinter(String word,double value){	 
         // Workbook 생성
         Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 이전 버전
         Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 이상
- 
         // *** Sheet-------------------------------------------------
         // Sheet 생성
         Sheet sheet1 = xlsxWb.createSheet("firstSheet");
- 
         // 컬럼 너비 설정
         sheet1.setColumnWidth(0, 10000);
         sheet1.setColumnWidth(9, 10000);
-        // ----------------------------------------------------------
-         
+        // ----------------------------------------------------------        
         // *** Style--------------------------------------------------
         // Cell 스타일 생성
         CellStyle cellStyle = xlsxWb.createCellStyle();
@@ -101,7 +118,6 @@ public class ExcelMain {
         
         // excel 파일 저장
         try {
-        
             File xlsxFile = new File("C:/upload/integrate.xlsx");
             FileOutputStream fileOut = new FileOutputStream(xlsxFile);
             xlsxWb.write(fileOut);

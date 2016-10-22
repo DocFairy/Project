@@ -28,6 +28,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	private String save_fileno;
 	private String save_file;
 	private String integrate;
+	private String msg;
 	public String docTransform() throws Exception{
 		return "success";
 	}
@@ -42,6 +43,10 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 	public String insertfile() throws Exception{
+		if(uploadFileName.contains(".xlsx")==false){
+			msg="2007버전 이상의 엑셀 파일을 올려야 합니다!";
+			return "error";
+		}
 		if (upload != null) { 
 			FileService fs = new FileService();
 			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
@@ -54,7 +59,6 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 	public String delfile() throws Exception{
-		System.out.println(uploadFileName);
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);	
@@ -68,13 +72,15 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		ReadExcelDemo ex=new ReadExcelDemo();
 		ExcelMain em=new ExcelMain();
 		DocumentDAO dd=new DocumentDAO();
-		String p="";
+		String p="!";
 		double k=0;
+		System.out.println(ex.word(dd.searchfile(array[0]), 0, 0));
 		for(int i=0;i<array.length;i++){
-			p=ex.word(dd.searchfile(array[i]), 0, 0);
-			k+=ex.number(dd.searchfile(array[i]), 0, 1);
+			//p=ex.word(dd.searchfile(array[i]), 0, 0);
+			p+=ex.word(dd.searchfile(array[i]), 10, 6);
 		}
-		integrate=em.makeinter(p, k);
+		System.out.println(p);
+		integrate=em.paste(ex.copy(dd.searchfile(array[0])),p,9,4);
 		return "success";
 	}
 	public Files getFiles() {
@@ -141,6 +147,12 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	}
 	public void setIntegrate(String integrate) {
 		this.integrate = integrate;
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	
 	

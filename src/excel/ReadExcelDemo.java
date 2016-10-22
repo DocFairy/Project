@@ -2,6 +2,7 @@ package excel;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -15,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelDemo {
 	double a;
 	String b;
+	XSSFWorkbook c;
 	public double number(String save_file,int r, int c){
 		try
       {
@@ -41,7 +43,7 @@ public class ReadExcelDemo {
           //Create Workbook instance holding reference to .xlsx file
           XSSFWorkbook workbook = new XSSFWorkbook(file);
           //Get first/desired sheet from the workbook
-          XSSFSheet sheet = workbook.getSheetAt(0);
+          XSSFSheet sheet = workbook.getSheetAt(2);
           XSSFRow row = sheet.getRow(r);
           XSSFCell cell=row.getCell(c);
           b=cell.getStringCellValue();
@@ -53,6 +55,18 @@ public class ReadExcelDemo {
       }
 		return b;
     }
+	public XSSFWorkbook copy(String save_file){
+		FileInputStream file;
+		try {
+			file = new FileInputStream(new File("C:/upload/"+save_file));
+			c = new XSSFWorkbook(file);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //Create Workbook instance holding reference to .xlsx file
+        return c;
+	}
 //		try
 //        {
 //            FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
