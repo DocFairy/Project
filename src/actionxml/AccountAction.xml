@@ -27,5 +27,14 @@
 		<action name="accountDel" class="action.AccountAction" method="accountDel">
 			<result type="json"></result>
 		</action>
+		
+		<action name="goMakeAccount" class="action.AccountAction" method="goMakeAccount">
+			<result name="success">/account/makeAccount.jsp</result>
+		</action>
+		
+		<action name="saveAccount" class="action.AccountAction" method="saveAccount">
+			<result name="success">/account/calendar.jsp</result>
+		</action>
+		
 	</package>
 </struts>

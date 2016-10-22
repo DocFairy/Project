@@ -60,11 +60,25 @@
 					});
 					}else{
 						$("#entire tr:not(:first)").remove();
+						
+						$("#entire").append(
+							'<tr> <td> </td> <td> <input type="button" class="goMakeAccount" value="가계부만들기"> </td> ' 
+						+ ' <td> </td> </tr>'	
+						);
 					}
 				}
 			});
 			alert(date);
 		});	
+		
+		$("#entire").on('click','.goMakeAccount',function(){
+			var data = $("#picker").val();
+			var date = {"date" : data}
+			alert('date');
+			
+			location.href='account/goMakeAccount?date=${date}'
+		});
+		
 		$("#entire").on('click','.delt',function(){
 			$(this).parent().parent().remove();
 			var save_filename=$(this).parent().parent().children().first().next().text();
@@ -82,6 +96,16 @@
 					}
 				});	
 		});
+		
+		$("#entire").on('click','.checked',function(){
+			var filename=$(this).parent().next().text();
+			$("#check").append('<tr class="add"><td>'+filename+'</td><tr>');
+			
+		});
+		
+		
+		
+		
 	});	
 	</script>
 </head>
@@ -133,6 +157,9 @@
 				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
 				</table>	
+				
+				
+		
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 
