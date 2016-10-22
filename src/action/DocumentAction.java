@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.DocumentDAO;
+import excel.ExcelMain;
 import excel.ReadExcelDemo;
 import vo.Files;
 import vo.Members;
@@ -26,6 +27,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	private List<Files> docFormList;
 	private String save_fileno;
 	private String save_file;
+	private String integrate;
 	public String docTransform() throws Exception{
 		return "success";
 	}
@@ -57,20 +59,21 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);	
 		dd.delfile(uploadFileName);
 		fs.fileDelete(fullpath);
-		System.out.println("1");
 		return "success";
 	}
 
 	public String makefile() throws Exception{
 		String[]array=uploadFileName.split(",");
 		ReadExcelDemo ex=new ReadExcelDemo();
+		ExcelMain em=new ExcelMain();
 		DocumentDAO dd=new DocumentDAO();
-		ex.number(dd.searchfile(array[0]),0,1);
+		String p="";
 		double k=0;
 		for(int i=0;i<array.length;i++){
+			p=ex.word(dd.searchfile(array[i]), 0, 0);
 			k+=ex.number(dd.searchfile(array[i]), 0, 1);
 		}
-		System.out.println(k);
+		integrate=em.makeinter(p, k);
 		return "success";
 	}
 	public Files getFiles() {
@@ -131,6 +134,12 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	}
 	public void setSave_file(String save_file) {
 		this.save_file = save_file;
+	}
+	public String getIntegrate() {
+		return integrate;
+	}
+	public void setIntegrate(String integrate) {
+		this.integrate = integrate;
 	}
 	
 	

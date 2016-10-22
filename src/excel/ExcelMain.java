@@ -4,8 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import javax.naming.ldap.Rdn;
+import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -17,32 +16,30 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
- 
-    public static void main(String[] args) {
-    	ReadExcelDemo rd=new ReadExcelDemo();
-
-    	
-        // Workbook ����
-        Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 ���� ����
-        Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 �̻�
+	
+	public String makeinter(String word,double value){
+		 
+        // Workbook 생성
+        Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 이전 버전
+        Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 이상
  
         // *** Sheet-------------------------------------------------
-        // Sheet ����
-        Sheet sheet1 = xlsWb.createSheet("firstSheet");
+        // Sheet 생성
+        Sheet sheet1 = xlsxWb.createSheet("firstSheet");
  
-        // �÷� �ʺ� ����
+        // 컬럼 너비 설정
         sheet1.setColumnWidth(0, 10000);
         sheet1.setColumnWidth(9, 10000);
         // ----------------------------------------------------------
          
         // *** Style--------------------------------------------------
-        // Cell ��Ÿ�� ����
-        CellStyle cellStyle = xlsWb.createCellStyle();
+        // Cell 스타일 생성
+        CellStyle cellStyle = xlsxWb.createCellStyle();
          
-        // �� �ٲ�
+        // 줄 바꿈
         cellStyle.setWrapText(true);
          
-        // Cell ����, ���� ä���
+        // Cell 색깔, 무늬 채우기
 //        cellStyle.setFillForegroundColor(HSSFColor.LIME.index);
 //        cellStyle.setFillPattern(CellStyle.BIG_SPOTS);
          
@@ -50,69 +47,165 @@ public class ExcelMain {
         Cell cell = null;
         //----------------------------------------------------------
          
-        // ù ��° ��
+        // 첫 번째 줄
         row = sheet1.createRow(0);
          
         // 0-0 = A1
         // 0-1 = B1
         // 0-2 = C1
         
-        // ù ��° �ٿ� Cell �����ϱ�-------------
+        // 첫 번째 줄에 Cell 설정하기-------------
         cell = row.createCell(0);
-        cell.setCellValue("근민이");
-        cell.setCellStyle(cellStyle); // �� ��Ÿ�� ����
+        cell.setCellValue(word);
+        cell.setCellStyle(cellStyle); // 셀 스타일 적용
          
         cell = row.createCell(1);
-        cell.setCellValue("22");
+        cell.setCellValue(value);
          
-        cell = row.createCell(2);
-        cell.setCellValue("33");
-        cell.setCellStyle(cellStyle); // �� ��Ÿ�� ����
+//        cell = row.createCell(2);
+//        cell.setCellValue("쵸파");
+//        cell.setCellStyle(cellStyle); // 셀 스타일 적용
         //---------------------------------
          
-        // �� ��° ��
-        row = sheet1.createRow(1);
-        
-        // 1-0 = A2
-        // 1-1 = B2
-        // 1-2 = C2
-         
-        // �� ��° �ٿ� Cell �����ϱ�-------------
-        cell = row.createCell(0);
-        cell.setCellValue("44");
-         
-        cell = row.createCell(1);
-        cell.setCellValue("55");
-         
-        cell = row.createCell(2);
-        cell.setCellValue("66");
-        cell.setCellStyle(cellStyle); // �� ��Ÿ�� ����
+        // 두 번째 줄
+//        row = sheet1.createRow(1);
+//        
+//        // 1-0 = A2
+//        // 1-1 = B2
+//        // 1-2 = C2
+//         
+//        // 두 번째 줄에 Cell 설정하기-------------
+//        cell = row.createCell(0);
+//        cell.setCellValue("조로");
+//         
+//        cell = row.createCell(1);
+//        cell.setCellValue("브룩");
+//         
+//        cell = row.createCell(2);
+//        cell.setCellValue("상디");
+//        cell.setCellStyle(cellStyle); // 셀 스타일 적용
         //---------------------------------
         
-        row = sheet1.createRow(2);
+//        row = sheet1.createRow(2);
+//        
+//        cell = row.createCell(0);
+//        cell.setCellValue("나미");
+//        
+//        cell = row.createCell(1);
+//        cell.setCellValue("로빈");
+//        
+//        cell = row.createCell(2);
+//        cell.setCellValue("프랑키");
         
-        cell = row.createCell(0);
-        cell.setCellValue("77");
-        
-        cell = row.createCell(1);
-        cell.setCellValue("88");
-        
-        cell = row.createCell(2);
-        cell.setCellValue("99");
         
         
-        
-        // excel ���� ����
+        // excel 파일 저장
         try {
-            File xlsFile = new File("D:/확인2.xls");
-            FileOutputStream fileOut = new FileOutputStream(xlsFile);
-            xlsWb.write(fileOut);
+        
+            File xlsxFile = new File("C:/upload/integrate.xlsx");
+            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
+            xlsxWb.write(fileOut);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
-         
+         return "integrate.xlsx";
     }
- 
 }
+ 
+//    public static void main(String[] args) {
+//         
+//        // Workbook 생성
+//        Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 이전 버전
+//        Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 이상
+// 
+//        // *** Sheet-------------------------------------------------
+//        // Sheet 생성
+//        Sheet sheet1 = xlsxWb.createSheet("firstSheet");
+// 
+//        // 컬럼 너비 설정
+//        sheet1.setColumnWidth(0, 10000);
+//        sheet1.setColumnWidth(9, 10000);
+//        // ----------------------------------------------------------
+//         
+//        // *** Style--------------------------------------------------
+//        // Cell 스타일 생성
+//        CellStyle cellStyle = xlsxWb.createCellStyle();
+//         
+//        // 줄 바꿈
+//        cellStyle.setWrapText(true);
+//         
+//        // Cell 색깔, 무늬 채우기
+////        cellStyle.setFillForegroundColor(HSSFColor.LIME.index);
+////        cellStyle.setFillPattern(CellStyle.BIG_SPOTS);
+//         
+//        Row row = null;
+//        Cell cell = null;
+//        //----------------------------------------------------------
+//         
+//        // 첫 번째 줄
+//        row = sheet1.createRow(0);
+//         
+//        // 0-0 = A1
+//        // 0-1 = B1
+//        // 0-2 = C1
+//        
+//        // 첫 번째 줄에 Cell 설정하기-------------
+//        cell = row.createCell(0);
+//        cell.setCellValue("핸콕");
+//        cell.setCellStyle(cellStyle); // 셀 스타일 적용
+//         
+//        cell = row.createCell(1);
+//        cell.setCellValue("루피");
+//         
+//        cell = row.createCell(2);
+//        cell.setCellValue("쵸파");
+//        cell.setCellStyle(cellStyle); // 셀 스타일 적용
+//        //---------------------------------
+//         
+//        // 두 번째 줄
+//        row = sheet1.createRow(1);
+//        
+//        // 1-0 = A2
+//        // 1-1 = B2
+//        // 1-2 = C2
+//         
+//        // 두 번째 줄에 Cell 설정하기-------------
+//        cell = row.createCell(0);
+//        cell.setCellValue("조로");
+//         
+//        cell = row.createCell(1);
+//        cell.setCellValue("브룩");
+//         
+//        cell = row.createCell(2);
+//        cell.setCellValue("상디");
+//        cell.setCellStyle(cellStyle); // 셀 스타일 적용
+//        //---------------------------------
+//        
+//        row = sheet1.createRow(2);
+//        
+//        cell = row.createCell(0);
+//        cell.setCellValue("나미");
+//        
+//        cell = row.createCell(1);
+//        cell.setCellValue("로빈");
+//        
+//        cell = row.createCell(2);
+//        cell.setCellValue("프랑키");
+//        
+//        
+//        
+//        // excel 파일 저장
+//        try {
+//            File xlsxFile = new File("D:/해적단.xls");
+//            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
+//            xlsxWb.write(fileOut);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//         
+//    }
+//}

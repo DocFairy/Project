@@ -14,6 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcelDemo {
 	double a;
+	String b;
 	public double number(String save_file,int r, int c){
 		try
       {
@@ -32,6 +33,25 @@ public class ReadExcelDemo {
           e.printStackTrace();
       }
 		return a;
+    }
+	public String word(String save_file,int r, int c){
+		try
+      {
+          FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
+          //Create Workbook instance holding reference to .xlsx file
+          XSSFWorkbook workbook = new XSSFWorkbook(file);
+          //Get first/desired sheet from the workbook
+          XSSFSheet sheet = workbook.getSheetAt(0);
+          XSSFRow row = sheet.getRow(r);
+          XSSFCell cell=row.getCell(c);
+          b=cell.getStringCellValue();
+          file.close();
+      } 
+      catch (Exception e) 
+      {
+          e.printStackTrace();
+      }
+		return b;
     }
 //		try
 //        {

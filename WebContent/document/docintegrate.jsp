@@ -24,14 +24,12 @@
 	$(function(){
 		$("#entire").on('click','.checked',function(){
 			var filename=$(this).parent().next().text();
-			
 			$("#check").append('<tr class="add"><td>'+filename+'</td><tr>');
 			
 		});
 		$(".del").on('click',function(){
 			$(this).parent().parent().remove();
 			var save_filename=$(this).parent().parent().children().first().next().children().text();
-			alert(save_filename);
 			$.ajax({
 				url:'delfile',
 				data:{'uploadFileName':save_filename}
@@ -42,10 +40,12 @@
 			$("#check .add").each(function(index,item){
 				alist+=$("#check .add").eq(index).children().first().text()+",";
 			});
-			alert(alist);
 			$.ajax({
 				url:'makefile',
-				data:{'uploadFileName':alist}
+				data:{'uploadFileName':alist},
+				success:function(response){
+					$("#buttons").append('<a href="fileDownload?integrate='+response.integrate+'">다운로드</a>');
+				}
 			});
 		});
 	});
@@ -135,7 +135,7 @@
 				<input type="submit" value="올리기">
 				</form>
 				<input type="button" value="삭제">
-				<input id="inter" type="button" value="통합문서 받기">
+				<input id="inter" type="button" value="통합문서 만들기">
 				</div>
 			</div>
 		</div>

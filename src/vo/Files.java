@@ -8,6 +8,7 @@ public class Files {
 	private String save_filename;
 	private String memberno;
 	private String filetype;
+	private String groupno;
 
 	public Files() {
 		// TODO Auto-generated constructor stub
@@ -52,6 +53,14 @@ public class Files {
 
 	public void setFiletype(String filetype) {
 		this.filetype = filetype;
+	}
+
+	public String getGroupno() {
+		return groupno;
+	}
+
+	public void setGroupno(String groupno) {
+		this.groupno = groupno;
 	}
 
 	@Override

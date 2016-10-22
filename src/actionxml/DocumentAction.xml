@@ -14,7 +14,8 @@
         
         <action name="docintegrate" class="action.DocumentAction" method="docIntegrate">
         <interceptor-ref name="LoginIntercepterStack"/>
-        	<result>/document/docintegrate.jsp</result>
+        	<result name="success">/document/docintegrate.jsp</result>
+        	<result name="login">/login.jsp</result>
         </action>
         
         <action name="docform" class="action.DocumentAction" method="docForm">

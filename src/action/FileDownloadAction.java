@@ -17,19 +17,23 @@ public class FileDownloadAction extends ActionSupport {
 	private String contentDisposition;
 	private InputStream inputStream;
 	private long contentLength;
+	private String integrate;
 	
 	public String execute() {
 		try {
 			String savedfile = null;
 			String originalfile = null;
 			String basePath = null;
+			if(save_fileno!=null){
 			Files files=new DocumentDAO().selectfileone(save_fileno);//해당 번호의 Board객체
-			savedfile = files.getSave_file();					//서버에 저장된 파일명
-			originalfile = files.getSave_filename();				//원래 파일명
-			basePath = "C:/upload";				//user.properties에 정의된 파일 저장 경로
-			
+		    savedfile = files.getSave_file();					//서버에 저장된 파일명
+			originalfile = files.getSave_filename();
+			}else{
+				savedfile=integrate;//원래 파일명
+				originalfile="integrate.xlsx";
+			}
+			basePath = "C:/upload";				//user.properties에 정의된 파일 저장 경로		
 			String serverFullPath = basePath + "/" + savedfile;	//서버에 저장된 파일의 전체 경로
-			
 			File file = new File(serverFullPath);
 			setContentLength(file.length());					//파일크기
 			setContentDisposition("attachment;filename=" + URLEncoder.encode(originalfile, "UTF-8")); 	//파일의 원래 이름
@@ -42,6 +46,7 @@ public class FileDownloadAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+
 
 
 	public String getSave_fileno() {
@@ -83,4 +88,15 @@ public class FileDownloadAction extends ActionSupport {
 	public void setContentLength(long contentLength) {
 		this.contentLength = contentLength;
 	}
+
+
+	public String getIntegrate() {
+		return integrate;
+	}
+
+
+	public void setIntegrate(String integrate) {
+		this.integrate = integrate;
+	}
+	
 }

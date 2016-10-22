@@ -7,9 +7,11 @@
 	<package name="grouping" namespace="/grouping" extends="default">
   
         <action name="groupmanage" class="action.GroupingAction" method="groupManage">
+        <interceptor-ref name="LoginIntercepterStack"/>
             <result>
                /grouping/groupmanage.jsp 
             </result>
+            <result name="login">/login.jsp</result>
         </action>
       
         <action name="docmanage" class="action.GroupingAction" method="docManage">
