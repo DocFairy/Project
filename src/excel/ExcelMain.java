@@ -20,7 +20,7 @@ public class ExcelMain {
  
     public static void main(String[] args) {
     	ReadExcelDemo rd=new ReadExcelDemo();
-    	System.out.println(rd.number("20161020.xlsx"));
+
     	
         // Workbook ����
         Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 ���� ����

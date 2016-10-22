@@ -13,24 +13,18 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ReadExcelDemo {
-	String a="1";
-	public String number(String save_file){
+	double a;
+	public double number(String save_file,int r, int c){
 		try
       {
           FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
-          System.out.println("cc");
           //Create Workbook instance holding reference to .xlsx file
           XSSFWorkbook workbook = new XSSFWorkbook(file);
-          System.out.println("dd");
           //Get first/desired sheet from the workbook
           XSSFSheet sheet = workbook.getSheetAt(0);
-          System.out.println("ee");
-          XSSFRow row = sheet.getRow(0);
-          XSSFCell cell=row.getCell(0);
-          System.out.println("aa");
-          System.out.println(cell.getStringCellValue());
-          a=cell.getStringCellValue();
-         System.out.println("bb");
+          XSSFRow row = sheet.getRow(r);
+          XSSFCell cell=row.getCell(c);
+          a=cell.getNumericCellValue();
           file.close();
       } 
       catch (Exception e) 

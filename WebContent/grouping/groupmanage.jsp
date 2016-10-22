@@ -23,7 +23,7 @@
 	<script>
 	$(function(){
 		$("#create").on("click",function(){
-			$("#add").append('<br><form action="creategroup" method="post">그룹명<input type="text" name="membergroup.groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="만들기">')
+			$("#add").append('<br><form action="creategroup" method="post">그룹명<input type="text" name="membergroup.groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="그룹 생성">')
 			$("#create").off();
 		});	
 		$("#dest").on("click",function(){

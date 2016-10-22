@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="mapper.DocumentMapper">
 <insert id="insertfile" parameterType="Files">
-insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename},#{memberno},#{filetype})
+insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename},#{memberno},#{filetype},null)
 </insert>
 <select id="selectfile" resultType="Files" parameterType="String">
 select * from files where memberno=#{memberno} order by save_fileno

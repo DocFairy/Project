@@ -54,8 +54,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	public String delfile() throws Exception{
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
-		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);
-		
+		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);	
 		dd.delfile(uploadFileName);
 		fs.fileDelete(fullpath);
 		System.out.println("1");
@@ -66,11 +65,12 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		String[]array=uploadFileName.split(",");
 		ReadExcelDemo ex=new ReadExcelDemo();
 		DocumentDAO dd=new DocumentDAO();
-		System.out.println(dd.searchfile(array[0]));
-		System.out.println(ex.number(dd.searchfile(array[0])));
+		ex.number(dd.searchfile(array[0]),0,1);
+		double k=0;
 		for(int i=0;i<array.length;i++){
-			System.out.println(ex.number(dd.searchfile(array[i])));
+			k+=ex.number(dd.searchfile(array[i]), 0, 1);
 		}
+		System.out.println(k);
 		return "success";
 	}
 	public Files getFiles() {
