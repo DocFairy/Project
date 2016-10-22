@@ -72,15 +72,15 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		ReadExcelDemo ex=new ReadExcelDemo();
 		ExcelMain em=new ExcelMain();
 		DocumentDAO dd=new DocumentDAO();
-		String p="!";
+		String p="";
 		double k=0;
 		System.out.println(ex.word(dd.searchfile(array[0]), 0, 0));
 		for(int i=0;i<array.length;i++){
-			//p=ex.word(dd.searchfile(array[i]), 0, 0);
-			p+=ex.word(dd.searchfile(array[i]), 10, 6);
+			p=ex.word(dd.searchfile(array[i]), 0, 0);
+//			p+=ex.word(dd.searchfile(array[i]), 10, 6);
+			k+=ex.number((dd.searchfile(array[i])), 0, 1);
 		}
-		System.out.println(p);
-		integrate=em.paste(ex.copy(dd.searchfile(array[0])),p,9,4);
+		integrate=em.makeinter(p, k);
 		return "success";
 	}
 	public Files getFiles() {

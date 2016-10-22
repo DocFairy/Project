@@ -22,11 +22,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 	<script>
 	function formcheck(){
-		if($("#upfile").val()==null){
-			alert($(".sel").val());
+	/* 	if($("#upfile").val()==null){
 			alert('파일 유형이나 파일을 선택하지 않았습니다!');
 			return false;
-		}
+		} */
 	}
 	$(function(){
 		var msg=$("#msg").val();
