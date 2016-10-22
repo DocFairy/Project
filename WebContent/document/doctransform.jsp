@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
 	<title>DocFairy-통합 문서 관리 시스템</title>
 	<meta charset="utf-8">
@@ -21,36 +20,28 @@
 </head>
 
 <body>
-<jsp:include page="../header.jsp"></jsp:include> 	
+<jsp:include page="../header.jsp"/>
 	<div class="container">
 		<div class="row">
 			<aside class="col-md-3 sidebar">
 				<div class="block">
-					<h3><span>가계부 메뉴</span></h3>
+					<h3><span>문서 메뉴</span></h3>
 					<nav>
 						<ul class="nav">
-							<li><a href="calendar">달력</a>
+							<li><a href="docintegrate">통합문서</a>
 							</li>
-							<li><a href="accountmanage">가계부 관리</a>
+							<li><a href="docform">문서양식</a>
 							</li>
-							<li class="active"><a href="accountboard">게시판</a>
+							<li class="active"><a href="doctransform">문서변환</a>
 							</li>
 						</ul>
 					</nav>
 				</div>
+				</aside>doctransform</div></div>
 				
-			</aside>
-			
-			<h1 id="stitle">가계부게시판</h1><br><br>
-			
-			
-		
-				
-			
-			</table>
 				
 <jsp:include page="../footer.jsp"></jsp:include>
-
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>

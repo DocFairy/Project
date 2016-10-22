@@ -25,4 +25,10 @@ public class AccountDAO {
 		return result;
 	}
 	
+	public String fileFind(String del){
+		String result = null;
+			result = session.selectOne("mapper.AccountMapper.fileFind",del);
+		return result;
+	}
+	
 }
