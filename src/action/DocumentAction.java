@@ -54,10 +54,10 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 	public String delfile() throws Exception{
+		System.out.println(uploadFileName);
 		DocumentDAO dd=new DocumentDAO();
 		FileService fs = new FileService();
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);	
-		dd.delfile(uploadFileName);
 		fs.fileDelete(fullpath);
 		return "success";
 	}

@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
+	
 	
 </head>
 <body class="home-page">
