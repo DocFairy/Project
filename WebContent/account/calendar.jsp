@@ -18,13 +18,20 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
-  <script src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
-  <script src="${pageContext.request.contextPath}/javascript/jquery-ui.js"></script>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+   <script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
+   <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
+
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-			$("#picker").datepicker({
+		$("#picker").datepicker({
 				dateFormat : "yymmdd",
 				showAnim : "slide"	
 			});
@@ -128,9 +135,7 @@
 				</table>	
 
 	<jsp:include page="../footer.jsp"></jsp:include>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 
+
+	
 </html>
