@@ -59,6 +59,7 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		FileService fs = new FileService();
 		String fullpath="C:/upload/"+dd.searchfile(uploadFileName);	
 		fs.fileDelete(fullpath);
+		dd.delfile(uploadFileName);
 		return "success";
 	}
 
