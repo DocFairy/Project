@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
 	
-	public String paste(XSSFWorkbook xw,String st,int r,int c){
+	public String paste(XSSFWorkbook xw,double st,int r,int c){
 		 try {
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);

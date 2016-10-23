@@ -43,7 +43,7 @@ public class ReadExcelDemo {
           //Create Workbook instance holding reference to .xlsx file
           XSSFWorkbook workbook = new XSSFWorkbook(file);
           //Get first/desired sheet from the workbook
-          XSSFSheet sheet = workbook.getSheetAt(0);
+          XSSFSheet sheet = workbook.getSheetAt(2);
           XSSFRow row = sheet.getRow(r);
           XSSFCell cell=row.getCell(c);
           b=cell.getStringCellValue();
@@ -89,7 +89,7 @@ public class ReadExcelDemo {
 //            e.printStackTrace();
 //        }
 //		return "a";
-	}
+	
 	
 /*	public static void main(String[] args) {
 		try
@@ -114,17 +114,17 @@ public class ReadExcelDemo {
             e.printStackTrace();
         }
 	}*/
- /*   public static void main(String[] args) 
+   public static void main(String[] args) 
     {
         try
         {
-            FileInputStream file = new FileInputStream(new File("D:/해적단.xls"));
+            FileInputStream file = new FileInputStream(new File("C:/upload/20161023.xlsx"));
  
             //Create Workbook instance holding reference to .xlsx file
             XSSFWorkbook workbook = new XSSFWorkbook(file);
  
             //Get first/desired sheet from the workbook
-            XSSFSheet sheet = workbook.getSheetAt(0);
+            XSSFSheet sheet = workbook.getSheetAt(2);
  
             //Iterate through each rows one by one
             Iterator<Row> rowIterator = sheet.iterator();
@@ -157,4 +157,5 @@ public class ReadExcelDemo {
         {
             e.printStackTrace();
         }
-    }*/
+    }
+   }
