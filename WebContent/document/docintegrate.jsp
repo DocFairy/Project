@@ -22,10 +22,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 	<script>
 	function formcheck(){
-	/* 	if($("#upfile").val()==null){
-			alert('파일 유형이나 파일을 선택하지 않았습니다!');
+		if($("#upfile").val()==""){
+			alert('파일을 선택하지 않았습니다!');
 			return false;
-		} */
+		}
 	}
 	$(function(){
 		var msg=$("#msg").val();
@@ -140,12 +140,12 @@
 				<div id="buttons">
 				<input type="hidden" name="msg" value="${msg}" id="msg">
 				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()">
-				<select>
-				<option>
+				<select name="files.filetype" id="sel">
+				<option value="">세금계산서</option>
 				</select>
 				<input type="radio" name="files.filetype" value="r" class="sel">거래내역서
 				<input type="radio" name="files.filetype" value="t" class="sel">세금계산서		
-				<input id="buttons2" type="file" name="upload" id="upfile">
+				<input type="file" id="upfile" name="upload">
 				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
 				<input type="submit" value="올리기">
 				</form>

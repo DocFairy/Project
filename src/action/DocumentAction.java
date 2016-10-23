@@ -74,13 +74,17 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		DocumentDAO dd=new DocumentDAO();
 		String p="";
 		double k=0;
-		System.out.println(ex.word(dd.searchfile(array[0]), 0, 0));
+		System.out.println("!");
+		System.out.println(ex.word((dd.searchfile(array[0])), 0, 0));
+		System.out.println(ex.word((dd.searchfile(array[0])), 0, 6));
+		System.out.println(ex.number((dd.searchfile(array[0])), 8, 4));
+		System.out.println("!");
 		for(int i=0;i<array.length;i++){
-			p=ex.word(dd.searchfile(array[i]), 0, 0);
+//			p=ex.word(dd.searchfile(array[i]), 0, 0);
 //			p+=ex.word(dd.searchfile(array[i]), 10, 6);
-			k+=ex.number((dd.searchfile(array[i])), 0, 1);
+			k+=ex.number((dd.searchfile(array[i])), 8, 4);
 		}
-		integrate=em.makeinter(p, k);
+		integrate=em.paste(ex.copy(dd.searchfile(array[0])), k, 8, 4);
 		return "success";
 	}
 	public Files getFiles() {
