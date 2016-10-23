@@ -32,8 +32,9 @@
 			<result name="error" type="chain">docintegrate</result>
 		</action>
 		
-		<action name="insertfile_docform" class="action.DocumentAction" method="insertfile">
+		<action name="insertfile_docform" class="action.DocumentAction" method="insertfile_docform">
 			<result type="chain">docform</result>
+			<result name="error" type="chain">docform</result>
 		</action>
 		
 		<action name="fileDownload" class="action.FileDownloadAction">
@@ -50,6 +51,10 @@
 		</action>
 		
 		<action name="makefile" class="action.DocumentAction" method="makefile">
+		<result type="json"></result>
+		</action>
+		
+		<action name="pdfcreate" class="action.DocumentAction" method="pdfcreate">
 		<result type="json"></result>
 		</action>
 	</package>	

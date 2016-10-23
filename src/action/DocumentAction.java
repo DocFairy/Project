@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.DocumentDAO;
+import excel.Converter2;
 import excel.ExcelMain;
 import excel.ReadExcelDemo;
 import vo.Files;
@@ -27,8 +28,10 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	private List<Files> docFormList;
 	private String save_fileno;
 	private String save_file;
+	private String save_filename;
 	private String integrate;
 	private String msg;
+	private String filename_pdf;
 	public String docTransform() throws Exception{
 		return "success";
 	}
@@ -42,11 +45,52 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		docFormList = dao.primaryFormList();
 		return "success";
 	}
+	public String fileShow() throws Exception{
+		System.out.println("DocumentAction:fileShow():save_fileno="+save_fileno);
+		DocumentDAO dao = new DocumentDAO();
+		files = dao.fileshow(save_fileno);
+		//excel.Converter.createPDF();
+		//this.convert();
+		
+		return SUCCESS;
+	}
+	
+	public String pdfcreate() throws Exception{
+		System.out.println("DocumentAction:pdfcreate() in");
+		System.out.println("save_file:"+save_file+", save_filename:"+save_filename);
+		//DocumentDAO dao = new DocumentDAO();
+		//files = dao.selectfileone(save_fileno);
+		Converter2 con = new Converter2(); //pdf파일생성2줄
+		con.convert2(save_file, save_filename);
+		
+		
+ 		int lastIndex = save_file.lastIndexOf('.');
+ 		if (lastIndex == -1){
+ 			filename_pdf = "";
+ 		}else{ 
+ 			filename_pdf = save_file.substring(0, lastIndex)+".pdf";
+ 		}
+ 		System.out.println("DocumentAction:pdfcreate() filename_pdf:"+filename_pdf);
+		return SUCCESS;
+	}
 	public String insertfile() throws Exception{
 		if(uploadFileName.contains(".xlsx")==false){
 			msg="2007버전 이상의 엑셀 파일을 올려야 합니다!";
 			return "error";
 		}
+		if (upload != null) { 
+			FileService fs = new FileService();
+			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
+			String savedfile = fs.saveFile(upload, basePath, uploadFileName);	//서버에 임시 업로드된 파일객체, 저장경로, 업로드당시의 파일명 전달하고 실제 저장된 파일명 리턴받음
+			files.setSave_file(savedfile);
+			files.setSave_filename(uploadFileName);
+		}
+		DocumentDAO dd=new DocumentDAO();
+		dd.insertfile(files);
+		return "success";
+	}
+	
+	public String insertfile_docform() throws Exception{
 		if (upload != null) { 
 			FileService fs = new FileService();
 			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
@@ -153,6 +197,18 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 	}
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+	public String getSave_filename() {
+		return save_filename;
+	}
+	public void setSave_filename(String save_filename) {
+		this.save_filename = save_filename;
+	}
+	public String getFilename_pdf() {
+		return filename_pdf;
+	}
+	public void setFilename_pdf(String filename_pdf) {
+		this.filename_pdf = filename_pdf;
 	}
 	
 	

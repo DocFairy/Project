@@ -75,12 +75,11 @@
 			</table>
 				
 			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="files.isaccountfile" value="f">문서타입: f(문서양식)
-				<input id="buttons2" type="file" name="upload">
-				<input type="hidden" name="files.memberno" value="2">
+				<input type="hidden" name="files.filetype" value="f">문서타입: f(문서양식)
+				<input id="buttons2" type="file" name="upload" id="upfile">
+				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
 				<input type="submit" value="올리기">
 			</form>
-				
 
 				<nav class="text-center">
 					<ul class="pagination">
