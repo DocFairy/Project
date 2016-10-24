@@ -20,17 +20,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
 	
-	public String paste(XSSFWorkbook xw,double st,int r,int c){
+	public String paste(XSSFWorkbook xw,double st,int r,int c) throws InterruptedException{
 		 try {
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
-	            XSSFSheet sheet1=xw.getSheetAt(0);
+	            XSSFSheet sheet1=xw.getSheetAt(2);
 	            XSSFRow row = sheet1.getRow(r);
 	            XSSFCell cell=row.getCell(c);
+	            
 	            cell.setCellValue(st);
 	            cell=row.getCell(c-1);
-	            cell.setCellValue(3);
+	            cell.setCellValue(2);
 	            xw.write(fileOut);
+	            fileOut.close();
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {

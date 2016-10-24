@@ -34,7 +34,7 @@
 		}
 		$("#entire").on('click','.checked',function(){
 			var filename=$(this).parent().next().text();
-			$("#check").append('<tr class="add"><td>'+filename+'</td><tr>');
+			$("#checktable").append('<tr class="add"><td>'+filename+'</td><tr>');
 			
 		});
 		$(".del").on('click',function(){
@@ -47,12 +47,12 @@
 		});
 		$("#inter").on('click',function(){
 			var alist="";
-			if($("#check .add").eq(0).children().first().text()==""){
+			if($("#checktable .add").eq(0).children().first().text()==""){
 				alert('먼저 파일을 선택하세요!')
 				return false;
 			}
-			$("#check .add").each(function(index,item){
-				alist+=$("#check .add").eq(index).children().first().text()+",";
+			$("#checktable .add").each(function(index,item){
+				alist+=$("#checktable .add").eq(index).children().first().text()+",";
 			});
 			$.ajax({
 				url:'makefile',
@@ -73,8 +73,8 @@
 	<header>
 <jsp:include page="../header.jsp"></jsp:include>	
 	</header>
-	<div class="container">
-		<div class="row">
+	
+		
 			<aside class="col-md-3 sidebar">
 				<div class="block">
 					<h3><span>문서 메뉴</span></h3>
@@ -91,7 +91,7 @@
 				</div>
 				</aside>
 				
-			
+			<div class="row">
 			<h1 id="stitle">통합문서</h1>
 				
 				<table border="1" id="entire">
@@ -108,12 +108,13 @@
 				</tr>
 				</s:iterator>
 				</table>
-				<table id="check" border="1">
+				<div id="move">
+				<table id="checktable" border="1">
 				<tr>
 				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
 				</table>
-				
+				</div>
 					<ul class="pagination">
 					
 						<li>
@@ -139,7 +140,7 @@
 					</ul>
 				<div id="buttons">
 				<input type="hidden" name="msg" value="${msg}" id="msg">
-				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()">
+				 <form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()">
 				<select name="files.filetype" id="sel">
 				<option value="tax">세금계산서</option>
 				<option value="cost">거래명세표</option>
@@ -153,7 +154,7 @@
 				<input id="inter" type="button" value="통합문서 만들기">
 				</div>
 			</div>
-		</div>
+	
 		<jsp:include page="../footer.jsp"></jsp:include>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>

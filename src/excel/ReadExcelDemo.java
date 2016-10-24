@@ -46,7 +46,7 @@ public class ReadExcelDemo {
           XSSFSheet sheet = workbook.getSheetAt(2);
           XSSFRow row = sheet.getRow(r);
           XSSFCell cell=row.getCell(c);
-          b=cell.getStringCellValue();
+          b=cell.getCellFormula();
           file.close();
       } 
       catch (Exception e) 
