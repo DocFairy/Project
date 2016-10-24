@@ -141,10 +141,11 @@
 				<input type="hidden" name="msg" value="${msg}" id="msg">
 				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()">
 				<select name="files.filetype" id="sel">
-				<option value="">세금계산서</option>
+				<option value="tax">세금계산서</option>
+				<option value="cost">거래명세표</option>
+				<option value="mada">거래처별 미수현황표</option>
+				<option value="card">법인카드 사용내역서</option>
 				</select>
-				<input type="radio" name="files.filetype" value="r" class="sel">거래내역서
-				<input type="radio" name="files.filetype" value="t" class="sel">세금계산서		
 				<input type="file" id="upfile" name="upload">
 				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
 				<input type="submit" value="올리기">
