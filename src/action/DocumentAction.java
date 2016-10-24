@@ -126,6 +126,9 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		integrate=em.paste(ex.copy(dd.searchfile(array[0])), 20000, 16, 7);
 		return "success";
 	}
+	public String doctransform()throws Exception{
+		return "success";
+	}
 	public Files getFiles() {
 		return files;
 	}
