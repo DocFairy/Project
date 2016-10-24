@@ -24,11 +24,12 @@ public class ExcelMain {
 		 try {
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
-	            XSSFSheet sheet1=xw.getSheetAt(2);
+	            XSSFSheet sheet1=xw.getSheetAt(0);
 	            XSSFRow row = sheet1.getRow(r);
 	            XSSFCell cell=row.getCell(c);
-	            cell.setCellValue("");
 	            cell.setCellValue(st);
+	            cell=row.getCell(c-1);
+	            cell.setCellValue(3);
 	            xw.write(fileOut);
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();

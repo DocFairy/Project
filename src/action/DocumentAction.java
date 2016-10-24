@@ -122,7 +122,6 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 //			p=ex.word(dd.searchfile(array[i]), 0, 0);
 //			p+=ex.word(dd.searchfile(array[i]), 10, 6);
 			k=ex.number((dd.searchfile(array[i])), 16, 7);
-			
 		}
 		integrate=em.paste(ex.copy(dd.searchfile(array[0])), 20000, 16, 7);
 		return "success";
