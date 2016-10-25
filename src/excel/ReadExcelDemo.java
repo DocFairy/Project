@@ -66,7 +66,7 @@ public class ReadExcelDemo {
           //Create Workbook instance holding reference to .xlsx file
           XSSFWorkbook workbook = new XSSFWorkbook(file);
           //Get first/desired sheet from the workbook
-          XSSFSheet sheet = workbook.getSheetAt(2);
+          XSSFSheet sheet = workbook.getSheetAt(0);
           XSSFRow row = sheet.getRow(r);
           XSSFCell cell=row.getCell(c);
           b=cell.getStringCellValue();

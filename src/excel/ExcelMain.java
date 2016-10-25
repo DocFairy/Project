@@ -54,7 +54,7 @@ public class ExcelMain {
 	            	input(xw,i,19).setCellValue((double)db.get(4).get(i-h));//단가
 	            	input(xw,i,25).setCellValue((double)db.get(5).get(i-h));//수량*단가(금액)
 	            }
-	            System.out.println("5");
+	
 	            xw.write(fileOut);
 	            fileOut.close();
 	        } catch (FileNotFoundException e) {
