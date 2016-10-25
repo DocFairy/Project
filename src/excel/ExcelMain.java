@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -20,17 +21,42 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
 	
-	public String paste(XSSFWorkbook xw,double st,int r,int c){
+	public String paste(XSSFWorkbook xw,ArrayList<ArrayList>db,ArrayList<ArrayList> st){
 		 try {
+			 	ReadExcelDemo re=new ReadExcelDemo();
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
-	            XSSFSheet sheet1=xw.getSheetAt(0);
-	            XSSFRow row = sheet1.getRow(r);
-	            XSSFCell cell=row.getCell(c);
-	            cell.setCellValue(st);
-	            cell=row.getCell(c-1);
-	            cell.setCellValue(3);
+	            System.out.println("1");     
+	            input(xw,8,4).setCellValue((double)db.get(0).get(0));
+	            input(xw,35,25).setCellValue((double)db.get(0).get(0));
+	            input(xw,36,24).setCellValue((double)db.get(0).get(0));
+	            input(xw,1,0).setCellValue((String)st.get(0).get(0));
+	            XSSFSheet sheet = xw.getSheetAt(0);
+	            int h=0;
+	            System.out.println("3");
+	            for(int i=11;i<34;i++){
+	            	 XSSFRow row = sheet.getRow(i);
+	            	 XSSFCell cell=row.getCell(2);
+	            	 if(cell.getStringCellValue().equals("")){
+	            		 h=i;
+	            		 System.out.println(h);
+	            		 break;
+	            	 }
+	            }
+	            System.out.println((String)st.get(2).get(0));
+	           
+	            for(int i=h;i<db.get(1).size()+h;i++){
+	            	input(xw,i,0).setCellValue((double)db.get(1).get(i-h));//월
+	            	input(xw,i,1).setCellValue((double)db.get(2).get(i-h));//일
+	            	input(xw,i,2).setCellValue((String)st.get(1).get(i-h));//품목명
+	            	input(xw,i,13).setCellValue((String)st.get(2).get(i-h));//규격
+	            	input(xw,i,16).setCellValue((double)db.get(3).get(i-h));//수량
+	            	input(xw,i,19).setCellValue((double)db.get(4).get(i-h));//단가
+	            	input(xw,i,25).setCellValue((double)db.get(5).get(i-h));//수량*단가(금액)
+	            }
+	            System.out.println("5");
 	            xw.write(fileOut);
+	            fileOut.close();
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
@@ -38,7 +64,13 @@ public class ExcelMain {
 	        }
 		 return "integrate.xlsx";
 	}
-	
+	public XSSFCell input(XSSFWorkbook xw,int r,int c){
+		 XSSFSheet sheet1=xw.getSheetAt(0);
+		 XSSFRow row=sheet1.getRow(r);
+		 XSSFCell cell=row.getCell(c);
+		 cell.setCellValue("");
+		 return cell;
+	}
 	public String pasteAccount(XSSFWorkbook xw,String date, String[] content, String[] in, String[] out, String[] note){
 		 try {
 	            File xlsxFile = new File("C:/upload/" + date + "의 가계부.xlsx");

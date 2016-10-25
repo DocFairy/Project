@@ -1,6 +1,7 @@
 package action;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -134,12 +135,52 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		DocumentDAO dd=new DocumentDAO();
 		String p="";
 		double j,k=0;
-
+		ArrayList<String>goods=new ArrayList<String>();
+		ArrayList<String>size=new ArrayList<String>();
+		ArrayList<Double>hob=new ArrayList<Double>();
+		ArrayList<Double>month=new ArrayList<Double>();
+		ArrayList<Double>day=new ArrayList<Double>();
+		ArrayList<Double>kazu=new ArrayList<Double>();
+		ArrayList<Double>cost=new ArrayList<Double>();
+		ArrayList<Double>all=new ArrayList<Double>();
+		
 		for(int i=0;i<array.length;i++){
-//			p=ex.word(dd.searchfile(array[i]), 0, 0);
-//			p+=ex.word(dd.searchfile(array[i]), 10, 6);
+			k+=ex.number(dd.searchfile(array[i]), 8, 4);
 		}
-		integrate=em.paste(ex.copy(dd.searchfile(array[0])), 20000, 13, 15);
+		hob.add(k);
+			
+		for(int i=1;i<array.length;i++){
+			for(int q=0;q<23;q++){
+				if(ex.word(dd.searchfile(array[i]), 11+q, 2).equals("")){
+					break;
+				}
+					goods.add(ex.word(dd.searchfile(array[i]), 11+q, 2));
+					size.add(ex.word(dd.searchfile(array[i]), 11+q, 13));
+					month.add(ex.number(dd.searchfile(array[i]), 11+q,0));
+					day.add(ex.number(dd.searchfile(array[i]), 11+q,1));
+					kazu.add(ex.number(dd.searchfile(array[i]), 11+q,16));
+					cost.add(ex.number(dd.searchfile(array[i]), 11+q,19));
+					all.add(ex.number(dd.searchfile(array[i]), 11+q,25));
+				
+			}
+
+		}
+		
+		ArrayList<String>date=new ArrayList<String>();
+		date.add(ex.word(dd.searchfile(array[0]), 1, 0)+"~"+ex.word(dd.searchfile(array[array.length-1]), 1, 0));
+		
+		ArrayList<ArrayList>result=new ArrayList<ArrayList>();
+		ArrayList<ArrayList>receive=new ArrayList<ArrayList>();
+		receive.add(date);
+		receive.add(goods);
+		receive.add(size);
+		result.add(hob);
+		result.add(month);
+		result.add(day);
+		result.add(kazu);
+		result.add(cost);
+		result.add(all);
+		integrate=em.paste(ex.copy(dd.searchfile(array[0])),result,receive);
 		return "success";
 	}
 	public String doctransform()throws Exception{
