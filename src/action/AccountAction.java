@@ -1,26 +1,34 @@
 package action;
 
+import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.AccountDAO;
+import dao.DocumentDAO;
 import excel.ExcelMain;
 import excel.ReadExcelDemo;
 import vo.Files;
+import vo.Members;
 
-public class AccountAction extends ActionSupport{
+public class AccountAction extends ActionSupport implements SessionAware{
 
 	private Files files;
+	private File upload;
 	private List<Files> list;
+	private String uploadFileName;
 	private String del;
 	private String date;
 	private String content;
 	private String input;
 	private String out;
 	private String note;
+	private Map<String, Object> session;
 	
 	AccountDAO dao = new AccountDAO();
 	
@@ -75,7 +83,29 @@ public class AccountAction extends ActionSupport{
 		ExcelMain em = new ExcelMain();
 		em.pasteAccount(xw, date, content1, input1, out1, note1);
 		
+		/*FileService fs = new FileService();
+		String basePath = "c:/upload";
+		upload=new File(em.pasteAccount(xw, date, content1, input1, out1, note1));
+		uploadFileName=date+"가계부.xlsx";
+		String savedfile = fs.saveFile(upload, basePath, uploadFileName);
+		files.setSave_file(savedfile);
+		files.setSave_filename(uploadFileName);*/
 		
+		DocumentDAO dd=new DocumentDAO();
+		files=new Files();
+		files.setSave_filename(date);
+		files.setFiletype("y");
+		
+		files.setMemberno(((Members)session.get("members")).getMemberno());
+		
+		files.setSave_file(date + "의 가계부");
+		System.out.println(((Members)session.get("members")).getMemberno());
+		dd.insertfile(files);
+		
+		return SUCCESS;
+	}
+	public String getGraph()throws Exception{
+		System.out.println("getGraph");
 		
 		return SUCCESS;
 	}
@@ -112,10 +142,12 @@ public class AccountAction extends ActionSupport{
 		this.content = content;
 	}
 
-
-
-
-
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
 	public String getInput() {
 		return input;
 	}
@@ -134,7 +166,17 @@ public class AccountAction extends ActionSupport{
 	public void setNote(String note) {
 		this.note = note;
 	}
-
+	public File getUpload() {
+		return upload;
+	}
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	
+	
 	
 
 	

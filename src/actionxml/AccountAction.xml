@@ -40,5 +40,9 @@
 			<result name="success">/account/makeAccount.jsp</result>
 		</action>
 		
+		<action name="getGraph" class="action.AccountAction" method="getGraph">
+			<result type="json"></result>
+		</action>
+		
 	</package>
 </struts>
