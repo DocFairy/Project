@@ -49,7 +49,8 @@
 				dataType : "json" ,
 				success : function(response){
 					if(response.list!=""){
-					$.each(response.list,function(index,item){
+						$("#entire tr:not(:first)").remove();
+						$.each(response.list,function(index,item){
 				
 						$("#entire").append('<tr><td>'
 								+ '<input type="button" value="옮기기" class="trans">'
@@ -62,8 +63,8 @@
 						$("#entire tr:not(:first)").remove();
 						
 						$("#entire").append(
-							'<tr> <td> </td> <td> <input type="button" class="goMakeAccount" value="가계부만들기"> </td> ' 
-						+ ' <td> </td> </tr>'	
+							' <tr> <td> </td> <td> <input type="button" class="goMakeAccount" value="가계부만들기"> </td> ' 
+						+ ' <td> </td> </tr></form>'	
 						);
 					}
 				}
@@ -74,9 +75,18 @@
 		$("#entire").on('click','.goMakeAccount',function(){
 			var data = $("#picker").val();
 			var date = {"date" : data}
-			alert('date');
-			
-			location.href='account/goMakeAccount?date=${date}'
+	
+			$("#date").val(data);
+			document.getElementById('gogoAccount').submit();
+		/* 	$.ajax({
+				url : 'account/goMakeAccount',
+				data : date,
+				success : function(){
+					location.href='account/goMakeAccountPage'
+				}
+			});
+ */			
+			//location.href='account/goMakeAccount?date=${date}'
 		});
 		
 		$("#entire").on('click','.delt',function(){
@@ -138,6 +148,8 @@
 		<input type="text" id="picker" placeholder="클릭하세용~♡" />
 		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />	
 		
+<form action="goMakeAccount" method="post" id="gogoAccount" >
+<input type="hidden" name="date" id="date">
 			<table border="1" id="entire">
 				<tr>
 				<th>옮기기</th>
@@ -157,7 +169,7 @@
 				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
 				</table>	
-				
+</form>				
 				
 		
 

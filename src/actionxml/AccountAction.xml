@@ -36,5 +36,9 @@
 			<result name="success">/account/calendar.jsp</result>
 		</action>
 		
+		<action name="goMakeAccountPage" class="action.AccountAction" method="accountPage">
+			<result name="success">/account/makeAccount.jsp</result>
+		</action>
+		
 	</package>
 </struts>

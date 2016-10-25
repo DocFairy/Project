@@ -39,6 +39,59 @@ public class ExcelMain {
 		 return "integrate.xlsx";
 	}
 	
+	public String pasteAccount(XSSFWorkbook xw,String date, String[] content, String[] in, String[] out, String[] note){
+		 try {
+	            File xlsxFile = new File("C:/upload/" + date + "의 가계부.xlsx");
+	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
+	            XSSFSheet sheet1=xw.getSheetAt(0);
+	            
+	          
+	            /*for(int i = 0 ; i < content.length; i++){
+	        	    row = sheet1.createRow(i+4);
+	        	    
+	        	    cell = row.createCell(2);
+	        	    cell.setCellValue(date);
+	        	    
+	        	    cell = row.createCell(3);
+	        	    cell.setCellValue(content[i]);
+	        	    
+	        	    cell = row.createCell(4);
+	        	    cell.setCellValue(in[i]);
+
+	        	    cell = row.createCell(5);
+	        	    cell.setCellValue(out[i]);
+	        	    
+	        	    cell = row.createCell(6);
+	        	    cell.setCellValue(note[i]);
+	        	    
+	        	    }*/
+	            for(int i = 0; i < content.length ; i++){
+	            XSSFRow row = sheet1.getRow(i+5);
+	           
+	            XSSFCell cell=row.getCell(2);
+	            cell.setCellValue(date);
+
+	            cell = row.getCell(3);
+	            cell.setCellValue(content[i]);
+	            
+	            cell = row.getCell(4);
+	            cell.setCellValue(in[i]);
+	            
+	            cell = row.getCell(5);
+	            cell.setCellValue(out[i]);
+	            
+	            cell = row.getCell(6);
+	            cell.setCellValue(note[i]);
+	            }
+	            xw.write(fileOut);
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		 return date + "의 가계부.xlsx";
+	}
+	
 	public String makeinter(String word,double value){	 
         // Workbook 생성
         Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 이전 버전
@@ -129,6 +182,98 @@ public class ExcelMain {
         }
          return "integrate.xlsx";
     }
+	
+	public String makeArray(String date, String[] content, String[] in, String[] out, String[] note){	 
+	    // Workbook 생성
+	    Workbook xlsWb = new HSSFWorkbook(); // Excel 2007 이전 버전
+	    Workbook xlsxWb = new XSSFWorkbook(); // Excel 2007 이상
+	    // *** Sheet-------------------------------------------------
+	    // Sheet 생성
+	    Sheet sheet1 = xlsxWb.createSheet("firstSheet");
+	  
+	    // 컬럼 너비 설정
+	  //  sheet1.setColumnWidth(0, 10000);
+	  //  sheet1.setColumnWidth(9, 10000);
+	    // ----------------------------------------------------------        
+	    // *** Style--------------------------------------------------
+	    // Cell 스타일 생성
+	    CellStyle cellStyle = xlsxWb.createCellStyle();
+	     
+	    // 줄 바꿈
+	    cellStyle.setWrapText(true);
+	     
+	    // Cell 색깔, 무늬 채우기
+	   cellStyle.setFillForegroundColor(HSSFColor.LIGHT_BLUE.index);
+	   // cellStyle.setFillPattern(CellStyle.ALIGN_CENTER);
+	     
+	    Row row = null;
+	    Cell cell = null;
+	    //----------------------------------------------------------
+	     
+	    // 첫 번째 줄
+	    row = sheet1.createRow(0);
+	     
+	    // 0-0 = A1
+	    // 0-1 = B1
+	    // 0-2 = C1
+	    
+	   
+	    
+	    
+	    for(int i = 0 ; i < content.length; i++){
+	    row = sheet1.createRow(i+4);
+	    
+	    cell = row.createCell(2);
+	    cell.setCellValue(date);
+	    
+	    cell = row.createCell(3);
+	    cell.setCellValue(content[i]);
+	    
+	    cell = row.createCell(4);
+	    cell.setCellValue(in[i]);
+
+	    cell = row.createCell(5);
+	    cell.setCellValue(out[i]);
+	    
+	    cell = row.createCell(6);
+	    cell.setCellValue(note[i]);
+	    
+	    }
+	    
+	/*  
+	    //세번째 줄
+	    row = sheet1.createRow(2);
+	    
+	    //세번째 줄에 Cell 설정하기 --------------------
+	    cell = row.createCell(0);
+	    cell.setCellValue(date);
+	    
+	    cell = row.createCell(1);
+	    cell.setCellValue(content[1]);
+	    
+	    cell = row.createCell(2);
+	    cell.setCellValue(in[1]);
+	    
+	    cell = row.createCell(3);
+	    cell.setCellValue(out[1]);
+	    
+	    cell = row.createCell(4);
+	    cell.setCellValue(note[1]);;
+	 */   
+	    
+	    // excel 파일 저장
+	    try {
+	        File xlsxFile = new File("C:/upload/" + date + "의 가계부.xlsx");
+	        FileOutputStream fileOut = new FileOutputStream(xlsxFile);
+	        xlsxWb.write(fileOut);
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	     return "integrate.xlsx";
+	}
+	
 }
  
 //    public static void main(String[] args) {
