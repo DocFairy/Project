@@ -51,7 +51,14 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		files = dao.fileshow(save_fileno);
 		//excel.Converter.createPDF();
 		//this.convert();
-		
+		save_file = files.getSave_file();
+		int lastIndex = save_file.lastIndexOf('.');
+ 		if (lastIndex == -1){
+ 			filename_pdf = "";
+ 		}else{ 
+ 			filename_pdf = save_file.substring(0, lastIndex);
+ 		}
+ 		System.out.println("DocumentAction:pdfcreate() filename_pdf:"+filename_pdf);
 		return SUCCESS;
 	}
 	
@@ -100,6 +107,15 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		}
 		DocumentDAO dd=new DocumentDAO();
 		dd.insertfile(files);
+		save_file = files.getSave_file();
+		save_filename = files.getSave_filename();
+		
+		Converter2 con = new Converter2(); //pdf파일생성2줄
+		con.convert2(save_file, save_filename);
+		
+ 		int lastIndex = save_file.lastIndexOf('.');
+		filename_pdf = save_file.substring(0, lastIndex);
+ 		System.out.println("DocumentAction:insert_docform() filename_pdf:"+filename_pdf);
 		return "success";
 	}
 	public String delfile() throws Exception{

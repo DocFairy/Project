@@ -25,39 +25,12 @@
 $(function(){
 		var save_filename = $("#save_filename").val(); // 제목의 파일명을 가져온다
 		var save_file = $("#save_file").val();
-	$("#pdfshow").on('click', function(){
-		alert("#pdfshow clicked");
-		$.ajax({
-			url:"pdfcreate"
-			, data:{"save_file":save_file, "save_filename":save_filename}
-			, success:function(response){
-				var pdfaddress = "${pageContext.request.contextPath}/pdf/"+response.filename_pdf;
-				alert(pdfaddress);
-				//location.href=pdfaddress;
-				$("#pdfshow2").attr("href", pdfaddress);
-				document.getElementById("pdfshow2").click();
-				
-			
-			   
-			}
 		
-		//href:"${pageContext.request.contextPath}"\pdf\$("#filename").text().pdf */
-		});
-	});//pdfshow click
+		
+
 });//function 
 
-function openPdf(e, path, redirect) {
-    // stop the browser from going to the href
-    e = e || window.event; // for IE
-	    e.preventDefault(); 
 
-    // launch a new window with your PDF
-    
-    window.open(path, '미리보기' /* options */);
-
-    // redirect current page to new location
-    window.location = redirect;
-}
 
 function fileDownload(save_filenum){
 	
@@ -107,7 +80,8 @@ function fileDownload(save_filenum){
 					</p>
 				</div>
 			</aside>
-			파일미리보기
+			파일미리보기: 	${filename_pdf }
+			
 			<table>
 			<tr><th>제목</th><td><span id="filename"><s:property value="files.save_filename"/></span></td></tr>
 			<tr>
@@ -120,16 +94,19 @@ function fileDownload(save_filenum){
 				
 					</td>
 			</table>
-			<input type="button" value="만들기" onclick="window.open('makeNewForm','pop','resizable=no scrollbars=yes top=300 left=500 width=500 height=300');"/> 
-		<!-- 	<form action="fileDownload"> -->
-		<%-- 	<input type="submit" id="fileDownload" value="다운"/>
-			<input type="hidden" name="save_file" value="${files.save_file}"/> --%>
-			<a href="fileDownload?save_fileno=${save_fileno}">
-				<%-- <s:property value="save_filename"/> --%>download</a>
-			<input type="hidden" id="save_file" value="${files.save_file}"/>
-			<input type="hidden" id="save_filename" value="${files.save_filename}"/>
-			<a id="pdfshow" href="#">pdf</a>
-			<a id="pdfshow2" href=""></a>
+			<s:if test="#session.members != null">
+				<s:if test="#session.members.id.equals('admin')">
+					<input type="button" value="만들기" onclick="window.open('makeNewForm','pop','resizable=no scrollbars=yes top=300 left=500 width=500 height=300');"/> 
+					<!-- 	<form action="fileDownload"> -->
+					<%-- 	<input type="submit" id="fileDownload" value="다운"/>
+						<input type="hidden" name="save_file" value="${files.save_file}"/> --%>
+						<a href="fileDownload?save_fileno=${save_fileno}">
+							<%-- <s:property value="save_filename"/> --%>download</a>
+					<input type="hidden" id="save_file" value="${files.save_file}"/>
+					<input type="hidden" id="save_filename" value="${files.save_filename}"/>
+				</s:if>
+			</s:if>
+			<a id="pdfshow" href="../pdf/<s:property value="filename_pdf"/>.pdf"<s:property value="filename_pdf"/>>pdf</a>
 			</div>
 		</div>
 	
