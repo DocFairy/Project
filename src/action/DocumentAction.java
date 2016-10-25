@@ -118,13 +118,15 @@ public class DocumentAction extends ActionSupport implements SessionAware{
 		DocumentDAO dd=new DocumentDAO();
 		String p="";
 		double j,k=0;
-		System.out.println(dd.searchfile(array[0]));
+
 		for(int i=0;i<array.length;i++){
 //			p=ex.word(dd.searchfile(array[i]), 0, 0);
 //			p+=ex.word(dd.searchfile(array[i]), 10, 6);
-			k=ex.number((dd.searchfile(array[i])), 16, 7);
 		}
-		integrate=em.paste(ex.copy(dd.searchfile(array[0])), 20000, 16, 7);
+		integrate=em.paste(ex.copy(dd.searchfile(array[0])), 20000, 13, 15);
+		return "success";
+	}
+	public String doctransform()throws Exception{
 		return "success";
 	}
 	public Files getFiles() {

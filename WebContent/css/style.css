@@ -1079,7 +1079,8 @@ fieldset[disabled] .btn-link.focus {
 }
 .pagination {
   display: inline-block;
-  margin-left:300px;
+  
+  float:left;
 }
 .pagination .active a {
   background-color: #333333;
@@ -1541,6 +1542,8 @@ option {
 }
 #buttons{
 	float:right;
+	display: inline-block;
+	
 }
 
 .login_area {position:relative; width:400px; margin:20px auto; padding:20px; text-align:left; border:1px solid blue; border-radius:20px;}
@@ -1553,10 +1556,14 @@ option {
 .filename{
 	text-align:center;
 }
-#check{
+#checktable{
 	clear:none;
 	float:right;
-	margin-right:100px;
+	margin-right:350px;
+	display: inline-block;
+#move{
+	
+}
 
 }
 #fileboard{

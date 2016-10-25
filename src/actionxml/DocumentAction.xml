@@ -17,7 +17,11 @@
         	<result name="success">/document/docintegrate.jsp</result>
         	<result name="login">/login.jsp</result>
         </action>
+         <action name="doctransform" class="action.DocumentAction" method="doctransform">
+        	<result>/document/doctransform.jsp</result>
+        </action>
         
+    
         <action name="docform" class="action.DocumentAction" method="docForm">
         	<result>/document/docform.jsp</result>
         </action>

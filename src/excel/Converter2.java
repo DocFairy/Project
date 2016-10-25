@@ -15,7 +15,7 @@ public class Converter2 {
         OfficeManager officeManager = null;
         try {
             officeManager = new DefaultOfficeManagerConfiguration()
-                    .setOfficeHome(new File("C:/Program Files (x86)/LibreOffice 5"))
+                    .setOfficeHome(new File("C:/Program Files/LibreOffice 5"))
                     .buildOfficeManager();
             officeManager.start();
  
