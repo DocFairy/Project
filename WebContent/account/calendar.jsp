@@ -90,11 +90,11 @@
 		});
 		
 		$("#entire").on('click','.delt',function(){
-			$(this).parent().parent().remove();
-			var save_filename=$(this).parent().parent().children().first().next().text();
+			$(this).parent().parent().parent().remove();
+			var save_filename = $(this).parent().parent().parent().children().first().next().text();
 			
 			alert(save_filename);
-				$.ajax({
+			 	$.ajax({
 					url : 'accountDel',
 					method : 'post',
 					dataType : 'json',
@@ -104,7 +104,7 @@
 					success : function(){
 						alert('success');
 					}
-				});	
+				});	 
 		});
 		
 		$("#entire").on('click','.checked',function(){

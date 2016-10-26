@@ -47,13 +47,13 @@ public class Converter2 {
     			filename_pdf = save_file.substring(0, lastIndex)+".pdf";
     		}
     		System.out.println(filename_pdf);
-            File existFile = new File("D:/w2/Project/WebContent/pdf/"+filename_pdf);
+            File existFile = new File("C:/Users/Administrator/git/Project/WebContent/pdf/"+filename_pdf);
 	            if(existFile.isFile()){
 	            	existFile.delete();
 	            	System.out.println("Converter2:existing pdf deleted");
 	            }
             converter.convert(new File("C:/upload/"+save_file), new File(
-                    "D:/w2/Project/WebContent/pdf/"+filename_pdf)); //주의!!! 자신의 프로젝트 webcontent 안의 폴더로 해야 합니다
+                    "C:/Users/Administrator/git/Project/WebContent/pdf/"+filename_pdf)); //주의!!! 자신의 프로젝트 webcontent 안의 폴더로 해야 합니다
             System.err.println("Generate pdf with "
                     + (System.currentTimeMillis() - start) + "ms");//sdfg
         } catch (Throwable e) {

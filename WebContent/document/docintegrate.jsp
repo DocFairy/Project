@@ -31,7 +31,7 @@
 	href="${pageContext.request.contextPath}/css/style.css" />
 <style>
 	div#buttons {
-		width:850px;
+		width:500px;
 	}
 	.arang {
 		float:left;
@@ -39,7 +39,7 @@
 	}
 	.arang input {
 		display : inline-block;
-		height:40px;
+		height:50px;
 	}
 	 	.row .row{
 		/* background-image: url('${pageContext.request.contextPath}/images/images.png');
@@ -97,6 +97,19 @@
 		
 	});
 	</script>
+<style type="text/css">
+th{
+	background-color: skyblue;
+	border: 1px solid black;
+
+}
+#inter{
+	float: right;
+	margin-right: 34px;
+}
+
+</style>	
+	
 </head>
 
 <body>
@@ -127,15 +140,15 @@
 		<div class="col-md-6">
 			<h1>현재 파일 목록</h1>
 			<p>
-			<table border="1" id="entire" class="table">
+			<table border="1" id="entire" >
 				<tr>
-					<th width="150">옮기기</th>
-					<th class="filename" width="5000">파일명</th>
+					<th class="filename" width="100">옮기기</th>
+					<th class="filename" width="330">파일명</th>
 					<th class="filename" width="70">삭제</th>
 				</tr>
 				<s:iterator value="list">
 					<tr>
-						<td class="filename"><input type="button" class="checked btn btn-default" 
+						<td class="filename"><input type="button" class="checked btn btn-success" 
 							value="선택"></td>
 						<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
 									value="save_filename" /></a></td>
@@ -145,7 +158,7 @@
 				</s:iterator>
 			</table>
 			<p>
-			<ul class="pagination">
+			<%-- <ul class="pagination">
 
 				<li><a href="#" aria-label="Previous"> <span
 						aria-hidden="true">&laquo;</span>
@@ -157,14 +170,14 @@
 				<li><a href="#">5</a></li>
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
-			</ul>
+			</ul> --%>
 		</div>
 		<div class="col-md-6">
 			<h1>선택된 파일 목록</h1>
 			<p>
 			<table id="checktable" border="1">
 				<tr>
-					<th class="filename" width="200">선택된 파일명</th>
+					<th class="filename" width="500">선택된 파일명</th>
 				</tr>
 			</table>
 			<p>

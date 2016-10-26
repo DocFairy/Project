@@ -134,14 +134,14 @@ th{
 				</div>
 				
 			</aside>
-			<div>
+			
 			<h1>가계부 관리</h1><br><br>
 			
 			<input type="text" readonly="readonly" id="datepicker">
 			<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 			
 			
-			</div>
+		
 		
 	<div id="chart_d">
 	<br><br><br>
@@ -149,7 +149,7 @@ th{
 
 		</div>
 	
-	
+	</div>
 	
 
 

@@ -61,5 +61,14 @@
 		<action name="pdfcreate" class="action.DocumentAction" method="pdfcreate">
 		<result type="json"></result>
 		</action>
+		
+<!-- 		<action name="customizingDoc" class="action.DocumentAction" method="customizingList">
+			<result type="json"></result>
+		</action>
+		
+		<action name="docCreate" class="action.DocumentAction" method="docCreate">
+			<result type="json"></result>
+		</action> -->
+		
 	</package>	
 	</struts>

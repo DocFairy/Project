@@ -60,25 +60,7 @@ function fileDownload(save_filenum){
 					</nav>
 				</div>
 				
-				<div class="block">
-					<h3>Tags</h3>
-					<div class="tags">
-					<a href="#" class="btn btn-default btn-xs">Vegetables</a>
-						<a href="#" class="btn btn-default btn-xs">Food</a>
-						<a href="#" class="btn btn-default btn-xs">Lunch</a>
-						<a href="#" class="btn btn-default btn-xs">Carot</a>
-						<a href="#" class="btn btn-default btn-xs">Gluten free</a>
-					</div>
-				</div>
-				<div class="block">
-					<h3>Keep in touch</h3>
-					<p class="social">
-						<!-- <a href="#"><i class="fa fa-facebook social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-twitter social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-instagram social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-youtube social-icon-small" aria-hidden="true"></i></a> -->
-					</p>
-				</div>
+			
 			</aside>
 			파일미리보기: 	${filename_pdf }
 			

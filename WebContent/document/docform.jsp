@@ -18,7 +18,30 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}css/style.css" />
+	
+	<style type="text/css">
+#doctable{
+	border : 1px solid black;
+	
+}	
+#doctable th{
+	background-color: orange;
+	border: 1px solid black;
+	width : 212px;
+	height : 20px;
+}
+.update{
+	display : inline-block;
+	height : 47px;
+}
+
+	
+	</style>
+	
+	
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+	
+	
 </head>
 
 <body>
@@ -43,45 +66,65 @@
 					</nav>
 				</div>
 				
-				<div class="block">
-					<h3>Tags</h3>
-					<div class="tags">
-					<a href="#" class="btn btn-default btn-xs">Vegetables</a>
-						<a href="#" class="btn btn-default btn-xs">Food</a>
-						<a href="#" class="btn btn-default btn-xs">Lunch</a>
-						<a href="#" class="btn btn-default btn-xs">Carot</a>
-						<a href="#" class="btn btn-default btn-xs">Gluten free</a>
-					</div>
-				</div>
-				<div class="block">
-					<h3>Keep in touch</h3>
-					<p class="social">
-						<!-- <a href="#"><i class="fa fa-facebook social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-twitter social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-instagram social-icon-small" aria-hidden="true"></i></a>
-						<a href="#"><i class="fa fa-youtube social-icon-small" aria-hidden="true"></i></a> -->
-					</p>
-				</div>
+			
 			</aside>
 			문서양식
-			<table>
+			<div class="col-md-9 " style="padding: 5px;">
+			<ul class="nav nav-tabs">
+				<li class="active"> <a data-toggle="tab" id="docSearch" href="#searchPage"> 서식 검색 </a>  </li>
+				<li> <a data-toggle="tab" id="docCreate" href="#createPage"> 서식 만들기 </a> </li>
+			</ul>
+			<div class="tab-content" style="padding: 5px;">
+					<div id="searchPage" class="tab-pane in active">
+						<div class='col-md-9 text-center'> 
+						<table>
+							<tr>
+							<td style='padding: 5px'>
+								<input type='text' placeholder='찾으시는 서식의 이름' id='searchKeyword' size='50' style='font-size:1.2em;'/>
+							</td>
+							<td>
+								<button class='searchBtn btn btn-primary btn-sm' id='searchBtn'> search </button>
+							</td></tr>
+						</table>
+						</div>
+					</div>
+					<div id="createPage" class="tab-pane">
+					</div>
+			</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			문서양식
+			<div class="col-md-6">
+			<table id="doctable">
 			<tr>
 				<th>번호</th><th>제목</th><th>글쓴이</th>
 				<s:iterator value="docFormList">
 					<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
 				</s:iterator>
 			</tr>
-			<tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr>
+			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
 			</table>
-				
+				<br><br>
 			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="files.filetype" value="f">문서타입: f(문서양식)
-				<input id="buttons2" type="file" name="upload" id="upfile">
-				<input type="hidden" name="files.memberno" value="${session.members.memberno}">
-				<input type="submit" value="올리기">
+				 <input type="hidden" name="files.filetype" value="f"><!-- 문서타입: f(문서양식) --> 
+			<input type="hidden" name="files.memberno" value="${session.members.memberno}"> 
+				<label><input id="buttons2" type="file"  class="btn btn-custom" name="upload" id="upfile"></label>
+				<input type="submit" class="update btn btn-custom" value="올리기">
 			</form>
-
-				<nav class="text-center">
+</div>
+				<%-- <nav class="text-center">
 					<ul class="pagination">
 						<li>
 							<a href="#" aria-label="Previous">
@@ -104,7 +147,7 @@
 							</a>
 						</li>
 					</ul>
-				</nav>
+				</nav> --%>
 			</div>
 		</div>
 	</div>
