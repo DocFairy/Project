@@ -23,6 +23,30 @@
 </head>
 <body class="home-page">
 	<header>
+		<div class="login">
+			<s:if test="#session.members == null">
+				<form action="${pageContext.request.contextPath}/members/login" method="post">
+				<ul style="list-style: none;padding: 5px;">
+					<li style="float: left;"><input type="text" placeholder="Id" name="id" class="text form-control"  required="required" aria-required="true"></li>
+					<li style="float: left;"><input type="password" name="password" placeholder="Password" class="text form-control" required="required" aria-required="true"></li>
+					<li style="float: left;"><input type="submit" value="로그인" class="btn btn-primary btn-sm"></li>
+				</ul>
+				</form>
+				<ul style="list-style: none;padding: 5px;">
+					<li><a id="join" href="${pageContext.request.contextPath}/join">회원가입</a></li>
+					<li><a id="find" href="${pageContext.request.contextPath}/find">아이디/비밀번호 찾기</a></li>
+				</ul>
+			</s:if>
+				
+				<s:if test="#session.members != null">
+					<ul style="list-style: none;">
+					<li style="font-size: 1.0em; float: left; padding: 5px 0 0 5px;"><s:property value="#session.members.id"/> 님 </li>
+					<li style="float: left;"><a href="${pageContext.request.contextPath}/members/logout"  class="btn btn-default btn-xs">로그아웃</a></li>
+					<li style="float: left;"><a href="${pageContext.request.contextPath}/members/updateForm" class="btn btn-default btn-xs">회원정보 수정</a><br></li>
+					</ul>
+				</s:if>
+				
+		</div>
 		<div class="container hidden-xs logo">
 			<a href="${pageContext.request.contextPath}/index"><img class="img-responsive" src="${pageContext.request.contextPath}/images/docfairy2.png" alt="Logo" />
 			</a>
@@ -41,24 +65,6 @@
 						</button>
 
 					</div>
-					<div class="login">
-				
-				
-					<s:if test="#session.members == null">
-					<form action="${pageContext.request.contextPath}/members/login" method="post">
-					<input type="text" placeholder="Id" name="id" class="text form-control"  required="required" aria-required="true"><input type="password" name="password" placeholder="Password" class="text form-control" required="required" aria-required="true"><input type="submit" value="로그인" class="btn btn-primary btn-sm"><br>
-					</form>
-						<a id="join" href="${pageContext.request.contextPath}/join">회원가입</a>&nbsp;<a id="find" href="${pageContext.request.contextPath}/find">아이디/비밀번호 찾기</a>
-					</s:if>
-					
-					<s:if test="#session.members != null">
-						<s:property value="#session.members.id"/> 님 환영합니다!!!
-						<li><a href="${pageContext.request.contextPath}/members/logout">로그아웃</a></li>
-						<li><a href="${pageContext.request.contextPath}/members/updateForm">회원정보 수정</a><br></li>
-					</s:if>
-					
-					</div>
-				
 				
 					<br>
 					<div id="navbar" class="navbar-collapse collapse">
@@ -66,7 +72,7 @@
 							<li><a href="${pageContext.request.contextPath}/index">홈</a></li>
 
 							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">문서</a>
-								<ul class="dropdown-menu">
+								<ul class="dropdown-menu text-center">
 									<li><a href="${pageContext.request.contextPath}/document/docintegrate">통합문서</a>
 									</li>
 									<li><a href="${pageContext.request.contextPath}/document/docform">문서양식</a>
@@ -75,17 +81,13 @@
                                     </li>
 								</ul>
 							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">그룹핑</a>
-								<ul class="dropdown-menu">
-									<li><a href="${pageContext.request.contextPath}/grouping/groupmanage.action">그룹관리</a>
-                                  </li>
-									<li><a href="${pageContext.request.contextPath}/grouping/docmanage">서식문서관리</a>
-                           </li>
-                           <li><a href="${pageContext.request.contextPath}/grouping/groupdocdownload">서식문서다운</a>
-                           </li>
-                        </ul>
+								<ul class="dropdown-menu text-center">
+									<li><a href="${pageContext.request.contextPath}/grouping/groupmanage.action">그룹 관리</a></li>
+									<li><a href="${pageContext.request.contextPath}/grouping/groupdocdownload">서식 관리</a></li>
+                       			 </ul>
 								
 								<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">가계부</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu text-center">
                            <li><a href="${pageContext.request.contextPath}/account/calendar">달력</a>
                            </li>
 									<li><a href="${pageContext.request.contextPath}/account/accountmanage">가계부관리</a>

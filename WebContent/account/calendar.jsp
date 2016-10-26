@@ -50,26 +50,26 @@
 				success : function(response){
 					if(response.list!=""){
 						$("#entire tr:not(:first)").remove();
+					alert('가계부 파일이 있습니다');
 						$.each(response.list,function(index,item){
 				
 						$("#entire").append('<tr><td>'
-								+ '<input type="button" value="옮기기" class="trans">'
-								+ '</td><td>' + item.save_filename 
-								+ '</td><td>' + '<input type="button" value="삭제" class="delt">'
+								+ '<center><input type="button" value="옮기기" class="trans btn btn-custom"></center>'
+								+ '</td><td><center>' + item.save_filename +'</center>' 
+								+ '</td><td>' + '<center><input type="button" value="삭제" class="delt btn btn-custom"></center>'
 								+'</td></tr>'
 							);
 					});
 					}else{
 						$("#entire tr:not(:first)").remove();
-						
+						alert('가계부 파일이 없습니다');
 						$("#entire").append(
-							' <tr> <td> </td> <td> <input type="button" class="goMakeAccount" value="가계부만들기"> </td> ' 
+							' <tr> <td> </td> <td> <center><input type="button" class="goMakeAccount btn btn-success" value="가계부만들기"></center> </td> ' 
 						+ ' <td> </td> </tr></form>'	
 						);
 					}
 				}
 			});
-			alert(date);
 		});	
 		
 		$("#entire").on('click','.goMakeAccount',function(){
@@ -118,6 +118,27 @@
 		
 	});	
 	</script>
+	
+	<style type="text/css">
+h1{
+	padding : 5px;
+	magin-right : 20px;
+	color:#fff ;
+}		
+th{
+	border : 1px solid black;
+	magin-right : 0;
+	padding : 5px;
+	width : 500px;
+	background-color : violet;
+	color : "red";
+	text-align: center;
+}
+goMakeAccount{
+	margin-right : 0;
+	padding : 5px
+}
+	</style>
 </head>
 
 <body>
@@ -142,17 +163,18 @@
 				</div>
 				
 			</aside>
-			<h1 id="stitle">가계부 달력</h1><br><br>
+			<div id="centerMain">
+			<h1>가계부 달력</h1><br><br>
 	
 	
 		<input type="text" id="picker" placeholder="클릭하세용~♡" />
 		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />	
-		
+			</div>	
 <form action="goMakeAccount" method="post" id="gogoAccount" >
 <input type="hidden" name="date" id="date">
 			<table border="1" id="entire">
 				<tr>
-				<th>옮기기</th>
+				<th class="filename">옮기기</th>
 				<th class="filename" width="200">파일명</th>
 				<th class="filename" width="70">삭제</th>
 				</tr>
@@ -164,11 +186,12 @@
 				</tr>
 				</s:iterator>
 				</table>
-				<table id="check" border="1">
+				
+				<!-- <table id="check" border="1">
 				<tr>
 				<th class="filename" width="200">선택된 파일명</th>
 				</tr>
-				</table>	
+				</table>	 -->
 </form>				
 				
 		

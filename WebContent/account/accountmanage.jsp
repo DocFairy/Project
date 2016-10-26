@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 
 <head>
@@ -29,24 +30,88 @@
 	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
 	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 	
+	<link rel='stylesheet' href='${pageContext.request.contextPath}/Nwagon.css' type='text/css'>
+	<script src='${pageContext.request.contextPath}/Nwagon.js'></script>
+	
+		<style>
+		*{margin:0;padding:0;}
+		div{padding:0px; overflow: hidden; height: auto;}
+		.hgroup{padding:20px;background-color:#e9e9e9;}
+		.hgroup h1{font-family:Tahoma;}
+		.hgroup p{margin:10px 0;font-size:10px}
+		h2{margin:0;padding:20px;border:1px solid #000;background-color:#f9f9f9;border-width:1px 0;font-family:Tahoma;}
+	</style>
+
+	
 <script type="text/javascript">
 				
 	$(document).ready(function(){
-
+		
+	
 		$("#datepicker").datepicker({
 			dateFormat : "yymmdd"
 		});
 	
+		$("#datepicker").on('click',function(){
+		Nwagon.chart().remove();
+		});
 		
 		$("#getdata").on('click',function(){
+			var date = $("#datepicker").val();
 			$.ajax({
-				url : 'getGraph'
+				
+				url : 'gogoGraph' ,
+				data : {
+					"date" : date
+				},
+				success:function(response){	
+
+					
+				if(response.cloth != null){
+					
+					$("#chart_d").append('<h2>'+response.date+'의 가계부</h2>');
+					var options = {
+							'dataset': {
+								title: 'Web accessibility status',
+								values:[response.cloth, response.food, response.health, response.cost, response.save, response.house, response.ex],
+								colorset: ['#2BC8C9', '#FF8C00', '#DC143C','#2EB400', '#666666', 'red', 'violet'],
+								fields: ['의류비', '식비',  '건강/문화', '경조사/회비', '저축/보험', '주거/통신','기타'] 
+							},
+							'donut_width' : 60, 
+							'core_circle_radius':100,
+							'chartDiv': 'chart_d',
+							'chartType': 'donut',
+							'chartSize': {width:800, height:500}
+						};
+
+						Nwagon.chart(options);
+					} else {
+						alert('가계부 파일이 없습니다!!');
+					}
+				}
 			});
 		});
 	
 	});
 	
 </script>
+
+<style type="text/css">
+h1{
+	padding : 5px;
+	magin-right : 20px;
+	color:#fff ;
+}
+th{
+	border : 1px solid black;
+	magin-right : 0;
+	padding : 5px;
+	width : 500px;
+	background-color : violet;
+	color : "red";
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -69,14 +134,24 @@
 				</div>
 				
 			</aside>
-			<h1 id="stitle">가계부 관리</h1><br><br>
+			<div>
+			<h1>가계부 관리</h1><br><br>
 			
 			<input type="text" readonly="readonly" id="datepicker">
 			<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 			
 			
 			</div>
-			
+		
+	<div id="chart_d">
+	<br><br><br>
+	
+
+		</div>
+	
+	
+	
+
 
 	
 	

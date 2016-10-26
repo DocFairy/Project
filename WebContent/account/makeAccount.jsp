@@ -43,10 +43,14 @@
 			   +'<td><select name="note">'
 			   +'<option value="의류비">의류비</option>'
 			   +'<option value="식비">식비</option>'
+			   +'<option value="건강/문화">건강/문화</option>'
+				+'<option value="경조사/회비">경조사/회비</option>'
+				+'<option value="저축/보험">저축/보험</option>'
+				+'<option value="주거/통신">주거/통신</option>'
 			   +'<option value="기타">기타</option>'
 			   +'</select></td>'
-			   +'<td><input type="button" id="add" class="add" value="  +  "></td>'
-			   +'<td class="delt"><input type="button" class="del" value="  -  "></td>'
+			   +'<td><input type="button" id="add" class="add btn btn-info" value="  +  "></td>'
+			   +'<td class="delt"><input type="button" class="del btn btn-info" value="  -  "></td>'
 			);
 		});
 	
@@ -74,6 +78,37 @@
 		
 	}
 </script>
+<style type="text/css">
+th{
+	border : 1px solid black;
+	text-align: center;
+	magin-right : 5px;
+	padding : 5px;
+	width : 10px;
+	height : 40px;
+	background-color : violet;
+	color : "red";
+	
+}
+h1{
+	padding : 5px;
+	magin-right : 20px;
+	color:#fff ;
+}
+.table{
+	border : 1px solid black;
+	margin-right : 5px;
+	padding : 5px;
+	width : 50px;
+	text-align: center;
+	text-align: center;
+}
+input[type=text]{
+	height : 40px;
+	width : 160px;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	
@@ -95,21 +130,19 @@
 						</ul>
 					</nav>
 					</nav>
-				</div>
 				
+			
 			</aside>
-			<h1 id="stitle">가계부 달력</h1><br><br>
+	<div class="centerMain">
+			
+			<h1>가계부 달력</h1><br><br>
+	</div>
 
-
-
-
-	<div>
-	
-
+	<div class="col-md-9">
 	
 	<s:form action="account/saveAccount" method="post">
 	
-	<table border="1" id="table" class="table">
+	<table border="1"  id="table">
 		<tr>
 			<th>날짜</th><th>내용</th><th>수입</th>
 			<th>지출</th><th>비고</th><th>추가</th><th>삭제</th>
@@ -122,18 +155,27 @@
 			<td><select name="note">
 					<option value="의류비">의류비</option>
 					<option value="식비">식비</option>
+					<option value="건강/문화">건강/문화</option>
+					<option value="경조사/회비">경조사/회비</option>
+					<option value="저축/보험">저축/보험</option>
+					<option value="주거/통신">주거/통신</option>
 					<option value="기타">기타</option>
 				</select></td>
-			<td><input type="button" id="add" class="add" value="  +  "></td>
-			<td><input type="button" id="del" class="del" value="  -  "></td>
+			<td><input type="button" id="add" class="add btn btn-info" value="  +  "></td>
+			<td><input type="button" id="del" class="del btn btn-info" value="  -  "></td>
 	</table>
-	<s:submit class="btn btn-danger" value="저장" onclick="check()" /><s:reset class="btn btn-primary" value="취소"/>
+	<label><s:submit class="btn btn-danger" value="저장" onclick="check()" /></label>
+	<label><s:reset class="btn btn-primary" value="취소"/></label>
 	</s:form>
-</div>
-				
-				
-		
 
+				
+	</div>		
+	
+	
+	
+	</div>	
+	
+	</div>	
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 

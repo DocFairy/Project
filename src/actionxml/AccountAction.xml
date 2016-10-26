@@ -40,7 +40,7 @@
 			<result name="success">/account/makeAccount.jsp</result>
 		</action>
 		
-		<action name="getGraph" class="action.AccountAction" method="getGraph">
+		<action name="gogoGraph" class="action.AccountAction" method="gogoGraph">
 			<result type="json"></result>
 		</action>
 		
