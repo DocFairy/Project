@@ -38,6 +38,10 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	public String creategroup()throws Exception{
 		GroupingDAO gd=new GroupingDAO();
 		MembersDAO md=new MembersDAO();
+		if(membergroup.getGroupname().equals("")){
+			fri="그룹 이름을 입력하세요.";
+			return "error";
+		}
 		gd.creategroup(membergroup);
 		String mno=((Members)session.get("members")).getMemberno();
 		membergroup=gd.selectgroupone(mno);

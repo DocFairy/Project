@@ -1079,7 +1079,7 @@ fieldset[disabled] .btn-link.focus {
 }
 .pagination {
   display: inline-block;
-  
+  margin-left:250px;
   float:left;
 }
 .pagination .active a {
@@ -1531,6 +1531,7 @@ option {
 	color:blue; 
 	text-align:left; 
 	padding-bottom:20px;
+  
 }
 #stitle2 {
 	font-size:35px; 
@@ -1545,7 +1546,9 @@ option {
 	display: inline-block;
 	
 }
-
+#entire{
+	margin-left:170px;
+}
 .login_area {position:relative; width:400px; margin:20px auto; padding:20px; text-align:left; border:1px solid blue; border-radius:20px;}
 .login_area .login_icon {position:absolute; top:-25px; left:145px; width:50px;}
 .login_area span {font-size:20px; font-weight:700;}
@@ -1557,16 +1560,15 @@ option {
 	text-align:center;
 }
 #checktable{
-	clear:none;
-	float:right;
-	margin-right:350px;
-	display: inline-block;
-#move{
+	margin-left:200px;
 	
-}
-
 }
 #fileboard{
 	float:left;
 }
-
+.itr{
+	clear:none;
+}
+.arang{
+	clear:none;
+}

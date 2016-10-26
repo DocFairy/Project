@@ -13,17 +13,31 @@
 		<![endif]-->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<style>
+	#add{
+	width:600px;
+	margin-left:600px;
+	}
+	
+	
+	</style>
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 	<script>
+	
 	$(function(){
+		if("${fri}"!=""){
+			alert("${fri}");
+		}
 		$("#create").on("click",function(){
-			$("#add").append('<br><form action="creategroup" method="post">그룹명<input type="text" name="membergroup.groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="그룹 생성">')
+			$("#add").append('<br><form action="creategroup" method="post" onsubmit="formcheck();">그룹명<input type="text" name="membergroup.groupname" id="groupname"><input type="hidden" name="membergroup.leaderno" value="${session.members.memberno}"}><input type="submit" value="그룹 생성">')
 			$("#create").off();
 		});	
 		$("#dest").on("click",function(){
@@ -66,18 +80,20 @@
 				</aside>
 			<h1 id="stitle">그룹관리</h1>
 			<s:if test="#session.members.groupno==null">
-			나만의 그룹을 만들어보세요!
-			<input type="button" value="그룹 만들기" id="create">
+			<center>나만의 그룹을 만들어보세요!<br><br>
+			<input type="button" value="그룹 만들기" id="create" class="btn btn-success">
+			</center>
 			<div id="add"></div>
 			</s:if>
 			<s:else>
-			<center><s:property value="groupname"/></center>
+			<center>
+			<s:property value="groupname"/>
 			<h2><b>그룹명:<s:property value="membergroup.groupname"/></b></h2><br>
 			그룹 멤버 목록
-			<table border="1">
+			<table border="1"> 
 			<tr>
-			<th>그룹 멤버 아이디</th>
-			<th>비고</th>
+			<th width="150">그룹 멤버 아이디</th>
+			<th width="100">비고</th>
 			</tr>
 			<s:iterator value="mlist">
 			<tr>
@@ -86,13 +102,15 @@
 			</tr>
 			</s:iterator>
 			</table>
+			<br>
 			<s:if test="membergroup.leaderno!=#session.members.memberno">
-			<input id="leave" type="button" value="그룹에서 탈퇴">
+			<input id="leave" type="button" value="그룹에서 탈퇴" class="btn btn-warning">
 			</s:if>
 			<s:else>
-			<input id="dest" type="button" value="그룹 해체">
+			<input id="dest" type="button" value="그룹 해체" class="btn btn-danger">
 			</s:else>
-			<input id="invite" type="button" value="다른 멤버 초대">	
+			<input id="invite" type="button" value="다른 멤버 초대" class="btn btn-info">	
+			</center>
 			</s:else>
 			</div></div>
 				

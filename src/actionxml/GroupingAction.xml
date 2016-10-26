@@ -23,6 +23,7 @@
 		</action>
 		
 		<action name="creategroup" class="action.GroupingAction" method="creategroup">
+			<result type="chain" name="error">groupmanage</result>
 			<result type="chain">groupmanage</result>
 		</action>
 		
