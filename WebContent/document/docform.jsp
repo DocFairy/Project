@@ -158,6 +158,7 @@
 	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
 	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
+	<script src="${pageContext.request.contextPath}/javascript/docFormFunc.js"></script>
 </body>
 
 </html>

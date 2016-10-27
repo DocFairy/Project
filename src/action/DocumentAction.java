@@ -15,8 +15,10 @@ import dao.DocumentDAO;
 import excel.Converter2;
 import excel.ExcelMain;
 import excel.ExcelReadWrite;
+import excel.OpenExcelFile;
 import excel.ReadExcelDemo;
 import excel.ReadWord;
+import vo.DocCustomizing;
 import vo.Files;
 import vo.Members;
 
@@ -38,20 +40,24 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private String integrate;
 	private String msg;
 	private String filename_pdf;
-	// private DocCustomizing aNewCreate;
+	private DocCustomizing aNewCreate;
 	private List<Files> createFiles;
 	private String arr;
 	private String[] createList;
 	// 파일 만들기만.
-	/*
-	 * public String docCreate(){ System.out.println("length : " + arr);
-	 * System.out.println(aNewCreate.toString()); new
-	 * OpenExcelFile().createExcelDoc(aNewCreate, arr); // createFiles = new
-	 * DocumentDAO().customizingDocCreate( // new
-	 * OpenExcelFile().createExcelDoc(aNewCreate)); return SUCCESS; } //공유시
-	 * 데이터베이스에 업로드. public String docShare(){ return SUCCESS; } public String
-	 * customizingList(){ createList = DocCustomizing.list; return SUCCESS; }
-	 */
+
+	public String docCreate() throws Exception {
+		System.out.println("length : " + arr);
+		System.out.println(aNewCreate.toString());
+		
+		new OpenExcelFile().createExcelDoc(aNewCreate, arr); //
+		return SUCCESS;
+	} // 공유시 데이터베이스에 업로드. public String docShare(){ return SUCCESS; }
+
+	public String customizingList() {
+		createList = DocCustomizing.list;
+		return SUCCESS;
+	}
 
 	public String docTransform() throws Exception {
 		return "success";
@@ -180,7 +186,9 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 																				// 전달하고
 																				// 실제
 																				// 저장된
-																				// 파일명																				// 리턴받음
+																				// 파일명
+																				// //
+																				// 리턴받음
 			files.setSave_file(savedfile);
 			files.setSave_filename(uploadFileName);
 		}
@@ -398,11 +406,11 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		this.filename_pdf = filename_pdf;
 	}
 
-	/*
-	 * public DocCustomizing getaNewCreate() { return aNewCreate; } public void
-	 * setaNewCreate(DocCustomizing aNewCreate) { this.aNewCreate = aNewCreate;
-	 * }
-	 */
+	
+	public DocCustomizing getaNewCreate() { return aNewCreate; } 
+	public void setaNewCreate(DocCustomizing aNewCreate) { this.aNewCreate = aNewCreate;
+	  }
+	 
 	public List<Files> getCreateFiles() {
 		return createFiles;
 	}

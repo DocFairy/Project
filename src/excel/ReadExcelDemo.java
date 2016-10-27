@@ -17,6 +17,7 @@ public class ReadExcelDemo {
 	double a;
 	String b;
 	XSSFWorkbook c;
+	XSSFCell cell2;
 	public double number(String save_file,int r, int c){
 		try
       {
@@ -74,7 +75,8 @@ public class ReadExcelDemo {
       } 
       catch (Exception e) 
       {
-          e.printStackTrace();
+    	  e.printStackTrace();
+
       }
 		return b;
     }
