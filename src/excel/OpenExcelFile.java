@@ -24,22 +24,15 @@ import vo.DocCustomizing;
 public class OpenExcelFile {
    public File createExcelDoc(DocCustomizing object, String arr) throws Exception{
       File xlsxFile = new File("C:/FinalProject/거래명세표 (자동입력).xlsx");
-     System.out.println("1");
       FileInputStream fis = new FileInputStream(xlsxFile);
-      System.out.println("2"); 
       Workbook workbook1 = new XSSFWorkbook(fis);
-      System.out.println("3"); 
 //      ArrayList<Sheet> sheet = new ArrayList<>(workbook1.getNumberOfSheets());
       ArrayList<Sheet> sheet= null;
-      System.out.println("4"); 
       String[] access = new String[arr.split(",").length];
-      System.out.println("5"); 
       File file = null;
-      System.out.println("6");
       for(int i=0; i<access.length; i++){
          access[i] = arr.split(",")[i];
       }
-      System.out.println("7");
       for (int i=0; i<access.length; i++) {
          int number = Integer.parseInt(access[i]);
          if(DocCustomizing.STATEMENT_OF_ACCOUNT == number){
@@ -49,7 +42,6 @@ public class OpenExcelFile {
             for (int j = 0; j < 3; j++) {
                sheet.add(workbook1.getSheetAt(j));
             }
-            System.out.println("8");     
             for (int j = 0; j < sheet.size(); j++) {
                if(j==0){
                   sheet.get(j).getRow(3).getCell(2).setCellValue(object.getCompanyName());
