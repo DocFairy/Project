@@ -52,8 +52,10 @@
 			dateFormat : "yymmdd"
 		});
 	
-		$("#datepicker").on('click',function(){
-		Nwagon.chart().remove();
+		
+		$(".row").on('click','.delGraph',function(){
+			$(this).parent().remove();
+			$(".row").append('<div id="chart_d"></div>');
 		});
 		
 		$("#getdata").on('click',function(){
@@ -69,7 +71,10 @@
 					
 				if(response.cloth != null){
 					
-					$("#chart_d").append('<h2>'+response.date+'의 가계부</h2>');
+					$("#chart_d").append('<h3>'+response.date+'의 가계부</h3>');
+					$("#chart_d").append(
+						'<input type="button" value="그래프지우기" class="delGraph btn btn-custom">'
+						);
 					var options = {
 							'dataset': {
 								title: 'Web accessibility status',
@@ -77,11 +82,11 @@
 								colorset: ['#2BC8C9', '#FF8C00', '#DC143C','#2EB400', '#666666', 'red', 'violet'],
 								fields: ['의류비', '식비',  '건강/문화', '경조사/회비', '저축/보험', '주거/통신','기타'] 
 							},
-							'donut_width' : 60, 
-							'core_circle_radius':100,
+							'donut_width' : 50, 
+							'core_circle_radius':50,
 							'chartDiv': 'chart_d',
 							'chartType': 'donut',
-							'chartSize': {width:800, height:500}
+							'chartSize': {width:500, height:300}
 						};
 
 						Nwagon.chart(options);
@@ -91,6 +96,10 @@
 				}
 			});
 		});
+		
+		
+		
+		
 	
 	});
 	
@@ -110,6 +119,22 @@ th{
 	background-color : violet;
 	color : "red";
 	text-align: center;
+}
+#chart_d{
+	padding : 5px;
+	width : 50%;
+	float: right;
+} 
+h3{
+	border-top-style: double;
+	border-top-color: purple;
+	border-bottom-style: double;
+	border-bottom-color : purple;
+}
+#dateP{
+	padding : 5px;
+	width : 30%;
+	
 }
 </style>
 </head>
@@ -134,23 +159,21 @@ th{
 			</aside>
 			
 			<h1>가계부 관리</h1><br><br>
-			
+		<div id="dateP">	
 			<input type="text" readonly="readonly" id="datepicker">
 			<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
-			
+		</div>	
 			
 		
 		
 	<div id="chart_d">
-	<br><br><br>
-	
 
 		</div>
 	
 	</div>
 	
 
-
+</div>
 	
 	
 			

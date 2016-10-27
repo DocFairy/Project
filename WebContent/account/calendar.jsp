@@ -54,7 +54,7 @@
 						$.each(response.list,function(index,item){
 				
 						$("#entire").append('<tr><td>'
-								+ '<center><input type="button" value="옮기기" class="trans btn btn-custom"></center>'
+								+ '<center><a href="accountDownload?save_fileno=' +item.save_fileno+ '">다운로드</a></center>'
 								+ '</td><td><center>' + item.save_filename +'</center>' 
 								+ '</td><td>' + '<center><input type="button" value="삭제" class="delt btn btn-custom"></center>'
 								+'</td></tr>'

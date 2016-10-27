@@ -7,18 +7,19 @@
 	<package name="account" namespace="/account" extends="default">
 		<action name="accountmanage" class="action.AccountAction"
 			method="accountManage">
+			<interceptor-ref name="LoginIntercepterStack" />
 			<result>
 				/account/accountmanage.jsp
 			</result>
+			<result name="login">/login.jsp</result>
 		</action>
+		
 		<action name="calendar" class="action.AccountAction" method="calendar">
+			<interceptor-ref name="LoginIntercepterStack" />
 			<result name="success">/account/calendar.jsp</result>
+			<result name="login">/login.jsp</result>
 		</action>
-		<action name="accountboard" class="action.AccountAction" method="accountBoard">
-			<result>
-			/account/accountboard.jsp
-			</result>
-		</action>
+	
 		
 		<action name="accountlist" class="action.AccountAction" method="accountList">
 			<result type="json"></result>
@@ -42,6 +43,16 @@
 		
 		<action name="gogoGraph" class="action.AccountAction" method="gogoGraph">
 			<result type="json"></result>
+		</action>
+		
+		<action name="accountDownload" class="action.FileDownloadAction">
+			<result name="success" type="stream">
+			<param name="contentType">${contentType}</param>
+			<param name="contentLength">${contentLength}</param>
+			<param name="contentDisposition">${contentDisposition}</param>
+			<param name="inputName">inputStream</param>
+			<param name="bufferSize">4096</param>
+			</result>
 		</action>
 		
 	</package>

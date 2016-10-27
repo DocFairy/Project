@@ -105,14 +105,15 @@ public class AccountAction extends ActionSupport implements SessionAware{
 		
 		DocumentDAO dd=new DocumentDAO();
 		files=new Files();
-		files.setSave_filename(date + "의 가계부");
+		files.setSave_filename(date + ".xlsx");
 		files.setFiletype("y");
 		
 		files.setMemberno(((Members)session.get("members")).getMemberno());
 		
-		files.setSave_file(date);
+		files.setSave_file(date+"의 가계부.xlsx");
 		System.out.println(((Members)session.get("members")).getMemberno());
 		dd.insertfile(files);
+
 		
 		return SUCCESS;
 	}
