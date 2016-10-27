@@ -105,6 +105,12 @@
 				<input type="submit" class="update btn btn-custom" value="올리기">
 			</form>
 </div>
+			<div id="imagelistdiv">
+			<s:iterator var="temp" value="imageList">
+				<a class="panel imagelistlink" href="#">
+					<img src="../pdf/<s:property value="#temp"/>" class="imagePreview"/>
+				</a>
+			</s:iterator>
 					</div>
 					<div id="createPage" class="tab-pane">
 					</div>
