@@ -155,8 +155,6 @@ goMakeAccount{
 							</li>
 							<li><a href="accountmanage">가계부 관리</a>
 							</li>
-							<li><a href="accountboard">게시판</a>
-							</li>
 						</ul>
 					</nav>
 					</nav>

@@ -127,8 +127,6 @@ th{
 							</li>
 							<li class="active"><a href="accountmanage">가계부 관리</a>
 							</li>
-							<li><a href="accountboard">게시판</a>
-							</li>
 						</ul>
 					</nav>
 				</div>
