@@ -22,6 +22,18 @@ import vo.DocCustomizing;
 import vo.Files;
 import vo.Members;
 
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+
+import com.sun.pdfview.PDFFile;
+import com.sun.pdfview.PDFPage;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+
 public class DocumentAction extends ActionSupport implements SessionAware {
 	Files files;
 	private File upload;
@@ -34,6 +46,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Members members;
 	private List<Files> docFormList;
+	private List<String> imageList; // 이미지 리스트
 	private String save_fileno;
 	private String save_file;
 	private String save_filename;
@@ -72,6 +85,18 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
 		docFormList = dao.primaryFormList();
+		imageList = new ArrayList<String>();
+		for(int i = 0; i<docFormList.size();i++){
+			String imageName = "";
+			imageName= docFormList.get(i).getSave_file();
+			int lastIndex = imageName.lastIndexOf('.');
+	 		if (lastIndex == -1){
+	 			imageName = "";
+	 		}else{ 
+	 			imageName = imageName.substring(0, lastIndex)+".png";
+	 		}
+	 		imageList.add(imageName);
+		}//for
 		return "success";
 	}
 
@@ -138,36 +163,63 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		return "success";
 	}
 
-	public String insertfile_docform() throws Exception {
-		if (upload != null) {
+	public String insertfile_docform() throws Exception{
+		if (upload != null) { 
 			FileService fs = new FileService();
-			String basePath = "C:/upload"; // user.properties에 지정된 파일 저장 경로
-			String savedfile = fs.saveFile(upload, basePath, uploadFileName); // 서버에
-																				// 임시
-																				// 업로드된
-																				// 파일객체,
-																				// 저장경로,
-																				// 업로드당시의
-																				// 파일명
-																				// 전달하고
-																				// 실제
-																				// 저장된
-																				// 파일명
-																				// 리턴받음
+			String basePath = "C:/upload";		//user.properties에 지정된 파일 저장 경로
+			String savedfile = fs.saveFile(upload, basePath, uploadFileName);	//서버에 임시 업로드된 파일객체, 저장경로, 업로드당시의 파일명 전달하고 실제 저장된 파일명 리턴받음
 			files.setSave_file(savedfile);
 			files.setSave_filename(uploadFileName);
 		}
-		DocumentDAO dd = new DocumentDAO();
+		DocumentDAO dd=new DocumentDAO();
 		dd.insertfile(files);
 		save_file = files.getSave_file();
 		save_filename = files.getSave_filename();
-
-		Converter2 con = new Converter2(); // pdf파일생성2줄
+		
+		Converter2 con = new Converter2(); //pdf파일생성2줄
 		con.convert2(save_file, save_filename);
-
-		int lastIndex = save_file.lastIndexOf('.');
+		System.out.println("convert2() done: png creating");
+ 		int lastIndex = save_file.lastIndexOf('.');
 		filename_pdf = save_file.substring(0, lastIndex);
-		System.out.println("DocumentAction:insert_docform() filename_pdf:" + filename_pdf);
+ 		System.out.println("DocumentAction:insert_docform() filename_pdf:"+filename_pdf);
+ 		
+ 		File file = new File("C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf+".pdf");
+        RandomAccessFile raf = new RandomAccessFile(file, "r");
+        FileChannel channel = raf.getChannel();
+        ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size());
+        PDFFile pdffile = new PDFFile(buf);
+     // draw the first page to an image
+        PDFPage page = pdffile.getPage(0);
+        
+        //get the width and height for the doc at the default zoom 
+        Rectangle rect = new Rectangle(0,0,
+                (int)page.getBBox().getWidth(),
+                (int)page.getBBox().getHeight());
+        
+        //generate the image
+        Image img = page.getImage(
+                200, 332, //width & height
+                rect, // clip rect
+                null, // null for the ImageObserver
+                true, // fill background with white
+                true  // block until drawing is done
+                );
+        try {
+            BufferedImage bi = (BufferedImage)img;
+            File outputfile = new File("C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf+".png");
+            ImageIO.write(bi, "png", outputfile);
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+        
+        //show the image in a frame
+    /*    JFrame frame = new JFrame("PDF Test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new JLabel(new ImageIcon(img)));
+        frame.pack();
+        frame.setVisible(true);*/
+ 		
+        
 		return "success";
 	}
 
@@ -436,3 +488,4 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 }
+

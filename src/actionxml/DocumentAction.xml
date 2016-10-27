@@ -24,10 +24,10 @@
 		<action name="docform" class="action.DocumentAction" method="docForm">
 			<result>/document/docform.jsp</result>
 		</action>
-		<action name="fileshow" class="action.DocumentAction" method="fileShow"> <!-- fileshow페이지로이동열 -->
+		<action name="fileshow" class="action.DocumentAction" method="fileShow"> <!-- fileshow?섏씠吏濡쒖씠?숈뿴 -->
 			<result>/document/fileshow.jsp</result>
 		</action>
-		<action name="makeNewForm"> <!-- makeNewForm팝업생성 -->
+		<action name="makeNewForm"> <!-- makeNewForm?앹뾽?앹꽦 -->
 			<result>/document/makeNewForm.jsp</result>
 		</action>
 		<action name="insertfile" class="action.DocumentAction" method="insertfile">
