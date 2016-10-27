@@ -58,25 +58,34 @@
 			$(this).parent().parent().remove();
 		});
 		
+		function check(){
+			var date=$("#date").val();
+			if(date==""||date.length==0){
+				alert('날짜 입력');
+				xhr.abort;
+			}
+		}
+		
+		
+		$("#form-data").on('submit', function(){
+		var date = $("#date").val();
+		var content = $("#content").val();
+		var input = $("#in").val();
+		var out = $("#out").val();
+		var note = $("#note").val();
+		
+		if(content == "" || content.length==0){alert('내용 입력하세요'); return false;}
+		if(input == "" || input.length==0){alert('수입을 입력하세요'); return false;}
+		if(isNaN(input)){alert('수입에는 숫자만 입력하세요'); return false;}
+		if(out == "" || out.length==0){alert('지출을 입력하세요'); return false;}
+		if(isNaN(out)){alert('지출에는 숫자만 입력하세요'); return false;}
+		});
+		
 		
 		
 		
 		
 	});
-	
-	function check(){
-		var date = getElementById('date').value();
-		var content = getElementById('content').value();
-		var input = getElementById('input').value();
-		var out = getElemetById('output').value();
-		var note = getElementById('note').value();
-		
-		if(date == ""){alert('날짜 입력하세요'); return false;} 
-		if(content == ""){alert('내용 입력하세요'); return false;}
-		if(input == ""){alert('수입을 입력하세요'); return false;}
-		if(out == ""){alert('지출을 입력하세요'); return false;}
-		
-	}
 </script>
 <style type="text/css">
 th{
@@ -138,7 +147,7 @@ input[type=text]{
 
 	<div class="col-md-9">
 	
-	<s:form action="account/saveAccount" method="post">
+	<s:form id="form-data" action="account/saveAccount" method="post">
 	
 	<table border="1"  id="table">
 		<tr>
@@ -162,7 +171,7 @@ input[type=text]{
 			<td><input type="button" id="add" class="add btn btn-info" value="  +  "></td>
 			<td><input type="button" id="del" class="del btn btn-info" value="  -  "></td>
 	</table>
-	<label><s:submit class="btn btn-danger" value="저장" onclick="check()" /></label>
+	<label><s:submit class="btn btn-danger" value="저장" /></label>
 	<label><s:reset class="btn btn-primary" value="취소"/></label>
 	</s:form>
 

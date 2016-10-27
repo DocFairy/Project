@@ -29,6 +29,13 @@
 	href="${pageContext.request.contextPath}/css/swiper.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/style.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
+	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 <style>
 	div#buttons {
 		width:500px;
@@ -107,6 +114,14 @@ th{
 	float: right;
 	margin-right: 34px;
 }
+#integratedList1{
+	padding : 5px;
+	margin-left : auto;
+	width : 40%;
+	float : left;
+	background-color: violet;
+	
+}
 
 </style>	
 	
@@ -114,11 +129,13 @@ th{
 
 <body>
 
-	<header>
+	
 		<jsp:include page="../header.jsp"></jsp:include>
-	</header>
+
+<div class="container">	
+	<div class="row">
 	<aside class="col-md-3 sidebar">
-		<div class="block">
+			<div class="block">
 			<h3>
 				<span>문서 메뉴</span>
 			</h3>
@@ -132,14 +149,11 @@ th{
 		</div>
 	</aside>
 
-
 	<h1 id="stitle">통합문서</h1>
-<div class="row">
-			<div class="col-md-12 col-lg-10 col-lg-offset-1 page-indent content">
-	<div class="row">
-		<div class="col-md-6">
-			<h1>현재 파일 목록</h1>
-			<p>
+		
+		
+		<div id="integratedList1">
+			<h3>현재 파일 목록</h3>
 			<table border="1" id="entire" >
 				<tr>
 					<th class="filename" width="100">옮기기</th>
@@ -157,7 +171,6 @@ th{
 					</tr>
 				</s:iterator>
 			</table>
-			<p>
 			<%-- <ul class="pagination">
 
 				<li><a href="#" aria-label="Previous"> <span
@@ -171,60 +184,44 @@ th{
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul> --%>
-		</div>
-		<div class="col-md-6">
-			<h1>선택된 파일 목록</h1>
-			<p>
+			</div>
+			
+			
+			
+			<h3>선택된 파일 목록</h3>
 			<table id="checktable" border="1">
 				<tr>
 					<th class="filename" width="500">선택된 파일명</th>
 				</tr>
 			</table>
-			<p>
 			
-			</div>
-		</div>		
-		<p>
 		
-		<div id="buttons" class="col-md-12">
 			<input type="hidden" name="msg" value="${msg}" id="msg" />
 			<form action="insertfile" method="post" enctype="multipart/form-data"
 				onsubmit="return formcheck()">
-				<div class="arang">
+				
+				
 					분류 :<select name="files.filetype" id="sel">
 						<option value="tax">세금계산서</option>
 						<option value="cost">거래명세표</option>
 						<option value="mada">거래처별 미수현황표</option>
 						<option value="card">법인카드 사용내역서</option>
 					</select>
-				</div> 
-				<div class="arang">
 					<input class="btn btn-default" type="file" id="upfile" name="upload">
-				</div>
-				<div class="arang"> 
 					<input
 						type="hidden" name="files.memberno"
 						value="${session.members.memberno}" />
-				</div>
-				<div class="arang">
 					<input type="submit" class="btn btn-default"
 					value="올리기">
-				</div>
 			</form>
 			<input id="inter" type="button" value="통합문서 만들기" class="btn btn-default">
-
-	</div>
-	</div>
-	</div>
-
+		
+	
+	
+	
+	</div>	
+</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
-	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 </body>
 
 </html>
