@@ -15,7 +15,7 @@ public class Converter2 {
         OfficeManager officeManager = null;
         try {
             officeManager = new DefaultOfficeManagerConfiguration()
-                    .setOfficeHome(new File("C:/Program Files (x86)/LibreOffice 5")) //주의!!  Program Files (x86) 과 Program Files 중 자신의 폴더에 맞는 경로를 골라야 합니다
+                    .setOfficeHome(new File(PathSaver.librePath())) //주의!!  Program Files (x86) 과 Program Files 중 자신의 폴더에 맞는 경로를 골라야 합니다
                     .buildOfficeManager();
             officeManager.start();
  
@@ -47,13 +47,13 @@ public class Converter2 {
     			filename_pdf = save_file.substring(0, lastIndex)+".pdf";
     		}
     		System.out.println(filename_pdf);
-            File existFile = new File("C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf);
+            File existFile = new File(PathSaver.filePath()+"/pdf/"+filename_pdf);
 	            if(existFile.isFile()){
 	            	existFile.delete();
 	            	System.out.println("Converter2:existing pdf deleted");
 	            }
             converter.convert(new File("C:/upload/"+save_file), new File(
-                    "C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf)); //주의!!! 자신의 프로젝트 webcontent 안의 폴더로 해야 합니다
+            		PathSaver.filePath()+"/pdf/"+filename_pdf));
             System.err.println("Generate pdf with "
                     + (System.currentTimeMillis() - start) + "ms");//sdfg
         } catch (Throwable e) {

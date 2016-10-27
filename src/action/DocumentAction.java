@@ -16,6 +16,7 @@ import excel.Converter2;
 import excel.ExcelMain;
 import excel.ExcelReadWrite;
 import excel.OpenExcelFile;
+import excel.PathSaver;
 import excel.ReadExcelDemo;
 import excel.ReadWord;
 import vo.DocCustomizing;
@@ -33,7 +34,6 @@ import java.awt.Rectangle;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-
 public class DocumentAction extends ActionSupport implements SessionAware {
 	Files files;
 	private File upload;
@@ -184,7 +184,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		filename_pdf = save_file.substring(0, lastIndex);
  		System.out.println("DocumentAction:insert_docform() filename_pdf:"+filename_pdf);
  		
- 		File file = new File("C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf+".pdf");
+ 		File file = new File(PathSaver.filePath()+"/pdf/"+filename_pdf+".pdf");
         RandomAccessFile raf = new RandomAccessFile(file, "r");
         FileChannel channel = raf.getChannel();
         ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY, 0, channel.size());
@@ -207,7 +207,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
                 );
         try {
             BufferedImage bi = (BufferedImage)img;
-            File outputfile = new File("C:/ServerUtils/workspace_projectDocFairy/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/Project/pdf/"+filename_pdf+".png");
+            File outputfile = new File(PathSaver.filePath()+"/pdf/"+filename_pdf+".png");
             ImageIO.write(bi, "png", outputfile);
         } catch (IOException e) {
         	e.printStackTrace();
