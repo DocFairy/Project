@@ -2,45 +2,53 @@
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
-	<struts>
+<struts>
 	<constant name="struts.devMode" value="true" />
 	<package name="document" namespace="/document" extends="default">
-  
-      <!--   <action name="doctransform" class="action.DocumentAction" method="docTransform">
-            <result>
-               /document/doctransform.jsp 
-            </result>
-        </action> -->
-        
-        <action name="docintegrate" class="action.DocumentAction" method="docIntegrate">
-        <interceptor-ref name="LoginIntercepterStack"/>
-        	<result name="success">/document/docintegrate.jsp</result>
-        	<result name="login">/login.jsp</result>
-        </action>
-         <action name="doctransform" class="action.DocumentAction" method="doctransform">
-        	<result>/document/doctransform.jsp</result>
-        </action>
-        
-    
-        <action name="docform" class="action.DocumentAction" method="docForm">
-        	<result>/document/docform.jsp</result>
-        </action>
-		<action name="fileshow" class="action.DocumentAction" method="fileShow"> <!-- fileshow페이지로이동열-->
-        	<result>/document/fileshow.jsp</result>
-        </action>
-	  	<action name="makeNewForm"> <!-- makeNewForm팝업생성 -->
-        	<result>/document/makeNewForm.jsp</result>
-        </action>
+
+		<!-- <action name="doctransform" class="action.DocumentAction" method="docTransform"> 
+			<result> /document/doctransform.jsp </result> </action> -->
+
+		<action name="docintegrate" class="action.DocumentAction"
+			method="docIntegrate">
+			<interceptor-ref name="LoginIntercepterStack" />
+			<result name="success">/document/docintegrate.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="doctransform" class="action.DocumentAction"
+			method="doctransform">
+			<result>/document/doctransform.jsp</result>
+		</action>
+
+
+		<action name="docform" class="action.DocumentAction" method="docForm">
+			<result>/document/docform.jsp</result>
+		</action>
+		<action name="fileshow" class="action.DocumentAction" method="fileShow"> <!-- fileshow페이지로이동열 -->
+			<result>/document/fileshow.jsp</result>
+		</action>
+		<action name="makeNewForm"> <!-- makeNewForm팝업생성 -->
+			<result>/document/makeNewForm.jsp</result>
+		</action>
 		<action name="insertfile" class="action.DocumentAction" method="insertfile">
 			<result type="chain">docintegrate</result>
 			<result name="error" type="chain">docintegrate</result>
 		</action>
-		
-		<action name="insertfile_docform" class="action.DocumentAction" method="insertfile_docform">
+
+		<action name="insertword" method="insertword" class="action.DocumentAction">
+
+			<result type="chain">doctransform</result>
+
+			<result name="error" type="chain">doctransform</result>
+
+		</action>
+
+		<action name="insertfile_docform" class="action.DocumentAction"
+			method="insertfile_docform">
 			<result type="chain">docform</result>
 			<result name="error" type="chain">docform</result>
 		</action>
-		
+
 		<action name="fileDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 				<param name="contentType">${contentType}</param>
@@ -53,22 +61,24 @@
 		<action name="delfile" class="action.DocumentAction" method="delfile">
 			<result type="json"></result>
 		</action>
-		
+
 		<action name="makefile" class="action.DocumentAction" method="makefile">
-		<result type="json"></result>
+			<result type="json"></result>
 		</action>
-		
+
 		<action name="pdfcreate" class="action.DocumentAction" method="pdfcreate">
-		<result type="json"></result>
-		</action>
-		
-<!-- 		<action name="customizingDoc" class="action.DocumentAction" method="customizingList">
 			<result type="json"></result>
 		</action>
-		
-		<action name="docCreate" class="action.DocumentAction" method="docCreate">
-			<result type="json"></result>
-		</action> -->
-		
-	</package>	
-	</struts>
+
+		<action name="changefile" method="changefile" class="action.DocumentAction">
+
+			<result type="json" />
+
+		</action>
+
+		<!-- <action name="customizingDoc" class="action.DocumentAction" method="customizingList"> 
+			<result type="json"></result> </action> <action name="docCreate" class="action.DocumentAction" 
+			method="docCreate"> <result type="json"></result> </action> -->
+
+	</package>
+</struts>
