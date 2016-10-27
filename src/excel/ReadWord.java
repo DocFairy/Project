@@ -78,9 +78,6 @@ public class ReadWord {
 				String[] data15 = new String[11];
 				String[] data16 = new String[11];
 				String[] data17 = new String[11];
-				String[] data18 = new String[11];
-				String[] data19 = new String[11];
-				String[] data20 = new String[11];
 				
 				
 				for (int i = 0; i < data1.length; i++) {
@@ -175,20 +172,7 @@ public class ReadWord {
 					System.out.print(data17[i]);
 				}
 				
-				for (int i = 0; i < data18.length; i++) {
-					data15[i] = row.get(17).getTableCells().get(i).getText()+" ";
-					System.out.print(data18[i]);
-				}
 				
-				for (int i = 0; i < data19.length; i++) {
-					data16[i] = row.get(18).getTableCells().get(i).getText()+" ";
-					System.out.print(data19[i]);
-				}
-				
-				for (int i = 0; i < data20.length; i++) {
-					data17[i] = row.get(19).getTableCells().get(i).getText()+" ";
-					System.out.print(data20[i]);
-				}
 				
 				
 				
@@ -209,9 +193,7 @@ public class ReadWord {
 				room.add(data15);
 				room.add(data16);
 				room.add(data17);
-				room.add(data18);
-				room.add(data19);
-				room.add(data20);
+				
 				
 				System.out.println();
 				

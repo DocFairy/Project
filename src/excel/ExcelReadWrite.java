@@ -315,30 +315,30 @@ public class ExcelReadWrite {
 			
 			
 			System.out.println("last !");
-			
-			row = sheet1.getRow(38);
-			cell = row.getCell(1);
-
-			for (int i = 0; i < 11; i++) {
-				cell = row.getCell(i + 1);
-				cell.setCellValue(room.get(17)[i]);
-			}
-			
-			row = sheet1.getRow(40);
-			cell = row.getCell(1);
-
-			for (int i = 0; i < 11; i++) {
-				cell = row.getCell(i + 1);
-				cell.setCellValue(room.get(18)[i]);
-			}
-			
-			row = sheet1.getRow(42);
-			cell = row.getCell(1);
-
-			for (int i = 0; i < 11; i++) {
-				cell = row.getCell(i + 1);
-				cell.setCellValue(room.get(19)[i]);
-			}
+//			
+//			row = sheet1.getRow(38);
+//			cell = row.getCell(1);
+//
+//			for (int i = 0; i < 11; i++) {
+//				cell = row.getCell(i + 1);
+//				cell.setCellValue(room.get(17)[i]);
+//			}
+//			
+//			row = sheet1.getRow(40);
+//			cell = row.getCell(1);
+//
+//			for (int i = 0; i < 11; i++) {
+//				cell = row.getCell(i + 1);
+//				cell.setCellValue(room.get(18)[i]);
+//			}
+//			
+//			row = sheet1.getRow(42);
+//			cell = row.getCell(1);
+//
+//			for (int i = 0; i < 11; i++) {
+//				cell = row.getCell(i + 1);
+//				cell.setCellValue(room.get(19)[i]);
+//			}
 			
 			
 			System.out.println("변환");
