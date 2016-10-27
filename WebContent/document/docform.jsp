@@ -69,7 +69,7 @@
 			
 			</aside>
 			문서양식
-			<div class="col-md-9 " style="padding: 5px;">
+		<div class="col-md-9 " style="padding: 5px;">
 			<ul class="nav nav-tabs">
 				<li class="active"> <a data-toggle="tab" id="docSearch" href="#searchPage"> 서식 검색 </a>  </li>
 				<li> <a data-toggle="tab" id="docCreate" href="#createPage"> 서식 만들기 </a> </li>
@@ -87,8 +87,23 @@
 							</td></tr>
 						</table>
 						</div>
+					</div>
+			</div>
+			<br>			
+			<div id="imagelistdiv">
+				<s:iterator var="ImageFilenameConnector" value="imageList">
+					<div style="float:left; width: 33%; padding:5px;">
+						<a class="panel imagelistlink" href="#">
+							<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>" class="imagePreview"/><br>
+					<s:property value="#ImageFilenameConnector.save_filename"/>
+						</a>
+					</div>
+				</s:iterator>
+			</div>
+						
+						
 						<div class="col-md-6">
-			<table id="doctable">
+	<%-- 		<table id="doctable">
 			<tr>
 				<th>번호</th><th>제목</th><th>글쓴이</th>
 				<s:iterator value="docFormList">
@@ -96,26 +111,20 @@
 				</s:iterator>
 			</tr>
 			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
-			</table>
-				<br><br>
+			</table> --%>
+			<div>
 			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
 				 <input type="hidden" name="files.filetype" value="f"><!-- 문서타입: f(문서양식) --> 
 			<input type="hidden" name="files.memberno" value="${session.members.memberno}"> 
 				<label><input id="buttons2" type="file"  class="btn btn-custom" name="upload" id="upfile"></label>
 				<input type="submit" class="update btn btn-custom" value="올리기">
 			</form>
-</div>
-			<div id="imagelistdiv">
-			<s:iterator var="temp" value="imageList">
-				<a class="panel imagelistlink" href="#">
-					<img src="../pdf/<s:property value="#temp"/>" class="imagePreview"/>
-				</a>
-			</s:iterator>
-					</div>
-					<div id="createPage" class="tab-pane">
-					</div>
 			</div>
+		
+			
+			<div id="createPage" class="tab-pane">
 			</div>
+	</div>
 			
 			
 			

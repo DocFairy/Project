@@ -20,5 +20,7 @@ select save_file from files where save_filename=#{save_filename}
 <select id="primaryDocList" resultType="Files">
 	select * from files where filetype='f'
 </select>
-
+<select id="selectfile_primaryDoc" parameterType="String" resultType="Files">
+	select * from files where filetype='f' and save_filename like '%' || #{save_filename} || '%'
+</select>
 </mapper>

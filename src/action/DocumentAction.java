@@ -21,6 +21,7 @@ import excel.ReadExcelDemo;
 import excel.ReadWord;
 import vo.DocCustomizing;
 import vo.Files;
+import vo.ImageFilenameConnector;
 import vo.Members;
 
 import java.awt.image.BufferedImage;
@@ -46,7 +47,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Members members;
 	private List<Files> docFormList;
-	private List<String> imageList; // 이미지 리스트
+	private ArrayList<ImageFilenameConnector> imageList; // 이미지 리스트
 	private String save_fileno;
 	private String save_file;
 	private String save_filename;
@@ -85,7 +86,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
 		docFormList = dao.primaryFormList();
-		imageList = new ArrayList<String>();
+		imageList = new ArrayList<ImageFilenameConnector>();
 		for(int i = 0; i<docFormList.size();i++){
 			String imageName = "";
 			imageName= docFormList.get(i).getSave_file();
@@ -95,7 +96,8 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	 		}else{ 
 	 			imageName = imageName.substring(0, lastIndex)+".png";
 	 		}
-	 		imageList.add(imageName);
+	 		ImageFilenameConnector temp = new ImageFilenameConnector(imageName, docFormList.get(i).getSave_filename());
+	 		imageList.add(temp);
 		}//for
 
 		return "success";
@@ -488,12 +490,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		this.createList = createList;
 	}
 
-	public List<String> getImageList() {
+	public ArrayList<ImageFilenameConnector> getImageList() {
 		return imageList;
 	}
 
-	public void setImageList(List<String> imageList) {
+	public void setImageList(ArrayList<ImageFilenameConnector> imageList) {
 		this.imageList = imageList;
 	}
+
+	
 
 }
