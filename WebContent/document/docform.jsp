@@ -87,6 +87,24 @@
 							</td></tr>
 						</table>
 						</div>
+						<div class="col-md-6">
+			<table id="doctable">
+			<tr>
+				<th>번호</th><th>제목</th><th>글쓴이</th>
+				<s:iterator value="docFormList">
+					<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
+				</s:iterator>
+			</tr>
+			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
+			</table>
+				<br><br>
+			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
+				 <input type="hidden" name="files.filetype" value="f"><!-- 문서타입: f(문서양식) --> 
+			<input type="hidden" name="files.memberno" value="${session.members.memberno}"> 
+				<label><input id="buttons2" type="file"  class="btn btn-custom" name="upload" id="upfile"></label>
+				<input type="submit" class="update btn btn-custom" value="올리기">
+			</form>
+</div>
 					</div>
 					<div id="createPage" class="tab-pane">
 					</div>
@@ -105,25 +123,6 @@
 			
 			
 			
-			문서양식
-			<div class="col-md-6">
-			<table id="doctable">
-			<tr>
-				<th>번호</th><th>제목</th><th>글쓴이</th>
-				<s:iterator value="docFormList">
-					<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
-				</s:iterator>
-			</tr>
-			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
-			</table>
-				<br><br>
-			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
-				 <input type="hidden" name="files.filetype" value="f"><!-- 문서타입: f(문서양식) --> 
-			<input type="hidden" name="files.memberno" value="${session.members.memberno}"> 
-				<label><input id="buttons2" type="file"  class="btn btn-custom" name="upload" id="upfile"></label>
-				<input type="submit" class="update btn btn-custom" value="올리기">
-			</form>
-</div>
 				<%-- <nav class="text-center">
 					<ul class="pagination">
 						<li>
