@@ -92,8 +92,7 @@
                            </li>
 									<li><a href="${pageContext.request.contextPath}/account/accountmanage">가계부관리</a>
 									</li>
-									<li><a href="${pageContext.request.contextPath}/account/accountboard">게시판</a>
-									</li>
+								
 								</ul>
 							</li>
 							<li><a href="${pageContext.request.contextPath}/card">소개</a>
