@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="mapper.AccountMapper">
 	<select id="fileList" parameterType="String" resultType="Files">
-		select * from Files where save_file like #{date} || '%'
+		select * from (select * from Files where FILETYPE = 'y') where save_file like #{date} || '%'
 	</select>
 	
 	<delete id="fileDelete" parameterType="String">
