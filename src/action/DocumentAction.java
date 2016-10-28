@@ -1,15 +1,24 @@
 package action;
 
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
+import javax.imageio.ImageIO;
 
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.sun.pdfview.PDFFile;
+import com.sun.pdfview.PDFPage;
 
 import dao.DocumentDAO;
 import excel.Converter2;
@@ -21,19 +30,8 @@ import excel.ReadExcelDemo;
 import excel.ReadWord;
 import vo.DocCustomizing;
 import vo.Files;
+import vo.ImageFilenameConnector;
 import vo.Members;
-
-import java.awt.image.BufferedImage;
-
-import javax.imageio.ImageIO;
-
-import com.sun.pdfview.PDFFile;
-import com.sun.pdfview.PDFPage;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 public class DocumentAction extends ActionSupport implements SessionAware {
 	Files files;
 	private File upload;
@@ -46,7 +44,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Members members;
 	private List<Files> docFormList;
-	private List<String> imageList; // 이미지 리스트
+	private ArrayList<ImageFilenameConnector> imageList; // 이미지 리스트
 	private String save_fileno;
 	private String save_file;
 	private String save_filename;
@@ -84,21 +82,22 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
-		docFormList = dao.primaryFormList();
-		imageList = new ArrayList<String>();
-		for(int i = 0; i<docFormList.size();i++){
-			String imageName = "";
-			imageName= docFormList.get(i).getSave_file();
-			int lastIndex = imageName.lastIndexOf('.');
-	 		if (lastIndex == -1){
-	 			imageName = "";
-	 		}else{ 
-	 			imageName = imageName.substring(0, lastIndex)+".png";
-	 		}
-	 		imageList.add(imageName);
-		}//for
+	      docFormList = dao.primaryFormList();
+	      imageList = new ArrayList<ImageFilenameConnector>();
+	      for(int i = 0; i<docFormList.size();i++){
+	         String imageName = "";
+	         imageName= docFormList.get(i).getSave_file();
+	         int lastIndex = imageName.lastIndexOf('.');
+	          if (lastIndex == -1){
+	             imageName = "";
+	          }else{ 
+	             imageName = imageName.substring(0, lastIndex)+".png";
+	          }
+	          ImageFilenameConnector temp = new ImageFilenameConnector(imageName, docFormList.get(i).getSave_filename());
+	          imageList.add(temp);
+	      }//for
 
-		return "success";
+	      return "success";
 	}
 
 	public String fileShow() throws Exception {
@@ -523,12 +522,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		this.createList = createList;
 	}
 
-	public List<String> getImageList() {
+	public ArrayList<ImageFilenameConnector> getImageList() {
 		return imageList;
 	}
 
-	public void setImageList(List<String> imageList) {
+	public void setImageList(ArrayList<ImageFilenameConnector> imageList) {
 		this.imageList = imageList;
 	}
+
+	
 
 }

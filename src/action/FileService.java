@@ -31,7 +31,7 @@ public class FileService {
 		
 		//저장할 파일명을 년월일로 생성
 		String savedFilename;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		savedFilename = sdf.format(new Date());
 		
 		//원본 파일의 확장자
