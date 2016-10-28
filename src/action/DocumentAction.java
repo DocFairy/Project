@@ -21,7 +21,6 @@ import excel.ReadExcelDemo;
 import excel.ReadWord;
 import vo.DocCustomizing;
 import vo.Files;
-import vo.ImageFilenameConnector;
 import vo.Members;
 
 import java.awt.image.BufferedImage;
@@ -47,7 +46,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Members members;
 	private List<Files> docFormList;
-	private ArrayList<ImageFilenameConnector> imageList; // 이미지 리스트
+	private List<String> imageList; // 이미지 리스트
 	private String save_fileno;
 	private String save_file;
 	private String save_filename;
@@ -86,7 +85,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
 		docFormList = dao.primaryFormList();
-		imageList = new ArrayList<ImageFilenameConnector>();
+		imageList = new ArrayList<String>();
 		for(int i = 0; i<docFormList.size();i++){
 			String imageName = "";
 			imageName= docFormList.get(i).getSave_file();
@@ -96,8 +95,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	 		}else{ 
 	 			imageName = imageName.substring(0, lastIndex)+".png";
 	 		}
-	 		ImageFilenameConnector temp = new ImageFilenameConnector(imageName, docFormList.get(i).getSave_filename());
-	 		imageList.add(temp);
+	 		imageList.add(imageName);
 		}//for
 
 		return "success";
@@ -268,8 +266,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ReadExcelDemo ex = new ReadExcelDemo();
 		ExcelMain em = new ExcelMain();
 		DocumentDAO dd = new DocumentDAO();
-		String p = "";
-		double j, k = 0;
+		double k = 0;
 		ArrayList<String> goods = new ArrayList<String>();
 		ArrayList<String> size = new ArrayList<String>();
 		ArrayList<Double> hob = new ArrayList<Double>();
@@ -278,7 +275,10 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ArrayList<Double> kazu = new ArrayList<Double>();
 		ArrayList<Double> cost = new ArrayList<Double>();
 		ArrayList<Double> all = new ArrayList<Double>();
-
+		ArrayList<String> date = new ArrayList<String>();
+		ArrayList<ArrayList> result= new ArrayList<ArrayList>();
+		ArrayList<ArrayList> receive = new ArrayList<ArrayList>();
+		if(arr.equals("문서")){
 		for (int i = 0; i < array.length; i++) {
 			k += ex.number(dd.searchfile(array[i]), 8, 4);
 		}
@@ -301,11 +301,10 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 		}
 
-		ArrayList<String> date = new ArrayList<String>();
+		
 		date.add(ex.word(dd.searchfile(array[0]), 1, 0) + "~" + ex.word(dd.searchfile(array[array.length - 1]), 1, 0));
 
-		ArrayList<ArrayList> result = new ArrayList<ArrayList>();
-		ArrayList<ArrayList> receive = new ArrayList<ArrayList>();
+		
 		receive.add(date);
 		receive.add(goods);
 		receive.add(size);
@@ -315,8 +314,31 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		result.add(kazu);
 		result.add(cost);
 		result.add(all);
-		integrate = em.paste(ex.copy(dd.searchfile(array[0])), result, receive);
+		integrate = em.paste(ex.copy(dd.searchfile(array[0])), result, receive,"문서");
 		return "success";
+		}else{
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 23; q++) {
+					if (ex.word(dd.searchfile(array[i]), 5 + q, 2).equals("")) {
+						break;
+					}
+					date.add(ex.word(dd.searchfile(array[i]), 5+q, 2));
+					goods.add(ex.word(dd.searchfile(array[i]), 5 + q, 3));
+					kazu.add(ex.number(dd.searchfile(array[i]), 5 + q, 4));
+					cost.add(ex.number(dd.searchfile(array[i]), 5 + q, 5));
+					size.add(ex.word(dd.searchfile(array[i]), 5+q, 6));
+				}
+			}
+			System.out.println(date.get(0));
+			receive.add(date);
+			receive.add(goods);
+			receive.add(size);
+			result.add(kazu);
+			result.add(cost);
+			integrate = em.paste(ex.copy(dd.searchfile(array[0])), result, receive,"가계부");
+			return "success";
+		}
+	
 	}
 
 	public String changefile() throws Exception {
@@ -349,6 +371,17 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		list = dd.selectfile(((Members) session.get("members")).getMemberno());
 		return "success";
 
+	}
+	public String move()throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		if(dd.calltype(save_filename).equals("y")){
+			msg="가계부";
+			return "success";
+		}else{
+			msg="문서";
+			
+		}
+		return "success";
 	}
 
 	public Files getFiles() {
@@ -490,14 +523,12 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		this.createList = createList;
 	}
 
-	public ArrayList<ImageFilenameConnector> getImageList() {
+	public List<String> getImageList() {
 		return imageList;
 	}
 
-	public void setImageList(ArrayList<ImageFilenameConnector> imageList) {
+	public void setImageList(List<String> imageList) {
 		this.imageList = imageList;
 	}
-
-	
 
 }

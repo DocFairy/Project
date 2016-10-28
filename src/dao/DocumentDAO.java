@@ -44,4 +44,7 @@ public class DocumentDAO {
 		 System.out.println("DocumentDAO:getfileshow()returner:"+returner);
 		 return returner;
 	 }
+	 public String calltype(String save_filename){
+		return sqlSession.selectOne("mapper.DocumentMapper.calltype", save_filename); 
+	 }
 }
