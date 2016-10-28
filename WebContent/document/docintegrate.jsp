@@ -59,50 +59,58 @@
 	src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 
 <script>
-	function formcheck(){
-		if($("#upfile").val()==""){
-			alert('파일을 선택하지 않았습니다!');
-			return false;
-		}
+function formcheck(){
+	if($("#upfile").val()==""){
+		alert('파일을 선택하지 않았습니다!');
+		return false;
 	}
-	$(function(){
-		var msg=$("#msg").val();
-		if(msg!=""){
-			alert(msg);	
-		}
-		$("#entire").on('click','.checked',function(){
-			var filename=$(this).parent().next().text();
-			$("#checktable").append('<tr class="add"><td>'+filename+'</td><tr>');
-			
-		});
-		$(".del").on('click',function(){
-			$(this).parent().parent().remove();
-			var save_filename=$(this).parent().parent().children().first().next().children().text();
-			$.ajax({
-				url:'delfile',
-				data:{'uploadFileName':save_filename}
-			});
-		});
-		$("#inter").on('click',function(){
-			var alist="";
-			if($("#checktable .add").eq(0).children().first().text()==""){
-				alert('먼저 파일을 선택하세요!')
-				return false;
+}
+$(function(){
+	var msg=$("#msg").val();
+	if(msg!=""){
+		alert(msg);	
+	}
+	$("#entire").on('click','.checked',function(){
+		var filename=$(this).parent().next().text();
+		$.ajax({
+			url:'move',
+			data:{'save_filename':filename},
+			success:function(response){
+				$("#checktable").append('<tr class="add"><td>'+filename+'</td><td>'+response.msg+'</td></tr>');
 			}
-			$("#checktable .add").each(function(index,item){
-				alist+=$("#checktable .add").eq(index).children().first().text()+",";
-			});
-			$.ajax({
-				url:'makefile',
-				data:{'uploadFileName':alist},
-				success:function(response){
-					$("#buttons").append('<a href="fileDownload?integrate='+response.integrate+'">다운로드</a>');
-					$("#inter").off();
-				}
-			});
 		});
 		
+		
 	});
+	$(".del").on('click',function(){
+		$(this).parent().parent().remove();
+		var save_filename=$(this).parent().parent().children().first().next().children().text();
+		$.ajax({
+			url:'delfile',
+			data:{'uploadFileName':save_filename}
+		});
+	});
+	$("#inter").on('click',function(){
+		var alist="";
+		var type=$("#checktable .add").eq(0).children().first().next().text();
+		if($("#checktable .add").eq(0).children().first().text()==""){
+			alert('먼저 파일을 선택하세요!')
+			return false;
+		}
+		$("#checktable .add").each(function(index,item){
+			alist+=$("#checktable .add").eq(index).children().first().text()+",";
+		});
+		$.ajax({
+			url:'makefile',
+			data:{'uploadFileName':alist,'arr':type},
+			success:function(response){
+				$("#buttons").append('<a href="fileDownload?integrate='+response.integrate+'">다운로드</a>');
+				$("#inter").off();
+			}
+		});
+	});
+	
+});
 	</script>
 <style type="text/css">
 
@@ -167,7 +175,7 @@
 						<div class="form-group">
 						
 						<select class="form-control" name="files.filetype" id="sel">
-						<option value="tax">세금계산서</option>
+						<option value="y">가계부</option>
 						<option value="cost">거래명세표</option>
 						<option value="mada">거래처별 미수현황표</option>
 						<option value="card">법인카드 사용내역서</option>
@@ -209,9 +217,10 @@
 					</tr>
 				</s:iterator>
 			</table>
-			<table id="checktable" border="1" height="30">
+			<table id="checktable" border="1">
 				<tr>
-					<th class="filename" width="85">선택된 파일</th>
+					<th class="filename" width="500">선택된 파일명</th>
+					<th class="filename" width="100">파일 유형</th>
 				</tr>
 			</table>
 			

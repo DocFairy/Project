@@ -81,6 +81,8 @@
 			<result type="json"></result> </action>
 		 <action name="docCreate" class="action.DocumentAction" 
 			method="docCreate"> <result type="json"></result> </action>
-
+		<action name="move" class="action.DocumentAction" method="move">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts>
