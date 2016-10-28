@@ -189,8 +189,10 @@
 					
 				</form>
 			</div>
-			<h1 id="stitle1">문서리스트</h1>
+			<br>
+			<br><br>
 			<table border="1" id="entire">
+			<h1 id="stitle1" align="center">문서리스트</h1>
 				<tr>
 					<th>옮기기</th>
 					<th class="filename" width="200">파일명</th>

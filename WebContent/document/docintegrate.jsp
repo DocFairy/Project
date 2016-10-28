@@ -105,23 +105,30 @@
 	});
 	</script>
 <style type="text/css">
-th{
-	background-color: skyblue;
-	border: 1px solid black;
 
-}
-#inter{
-	float: right;
-	margin-right: 34px;
-}
-#integratedList1{
-	padding : 5px;
-	margin-left : auto;
-	width : 40%;
-	float : left;
-	background-color: violet;
+#container{
+	  width:500px;
+	  margin:auto;
+	}
+
+
+/* th{ */
+/* 	background-color: skyblue; */
+/* 	border: 1px solid black; */
+
+/* } */
+/* #inter{ */
+/* 	float: right; */
+/* 	margin-right: 34px; */
+/* } */
+/* #integratedList1{ */
+/* 	padding : 5px; */
+/* 	margin-left : auto; */
+/* 	width : 40%; */
+/* 	float : left; */
+/* 	background-color: violet; */
 	
-}
+/* } */
 
 </style>	
 	
@@ -148,29 +155,82 @@ th{
 			</nav>
 		</div>
 	</aside>
-
-	<h1 id="stitle">통합문서</h1>
-		
-		
-		<div id="integratedList1">
-			<h3>현재 파일 목록</h3>
+	
+	<div id="buttons">
+			
+			<input type="hidden" name="msg" value="${msg}" id="msg" />
+			<form action="insertfile" method="post" enctype="multipart/form-data"
+				onsubmit="return formcheck()">
+				<section>
+						<div id="container">
+						<h1 id="stitle3">통합문서 만들기</h1>
+						<div class="form-group">
+						
+						<select class="form-control" name="files.filetype" id="sel">
+						<option value="tax">세금계산서</option>
+						<option value="cost">거래명세표</option>
+						<option value="mada">거래처별 미수현황표</option>
+						<option value="card">법인카드 사용내역서</option>
+					</select>
+					</div>
+					<input type="file" id="upfile" name="upload">
+					<input
+						type="hidden" name="files.memberno"
+						value="${session.members.memberno}" />
+					<input type="submit" class="btn btn-primary"
+					value="올리기">
+			<input id="inter" type="button" value="통합문서 만들기" class="btn btn-primary">		
+			</div>
+			</section>
+			
+			
+			</form>
+			</div>
+			<br>
+			
+<!-- 		<div id="integratedList1"> -->
 			<table border="1" id="entire" >
+			<h1 id="stitle1" align="center">문서 리스트</h1>
 				<tr>
-					<th class="filename" width="100">옮기기</th>
-					<th class="filename" width="330">파일명</th>
+				　　　　　　　　　　　　
+					<th>옮기기</th>
+					<th class="filename" width="200">파일명</th>
 					<th class="filename" width="70">삭제</th>
 				</tr>
+				
 				<s:iterator value="list">
 					<tr>
-						<td class="filename"><input type="button" class="checked btn btn-success" 
+						<td class="filename"><input type="button" class="checked btn btn-primary" 
 							value="선택"></td>
 						<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
 									value="save_filename" /></a></td>
-						<td class="filename"><input type="button" class="del btn btn-warning"
+						<td class="filename"><input type="button" class="del btn btn-primary"
 							value="삭제"></td>
 					</tr>
 				</s:iterator>
 			</table>
+			<table id="checktable" border="1" height="30">
+				<tr>
+					<th class="filename" width="85">선택된 파일</th>
+				</tr>
+			</table>
+			
+			
+			<div class="row">
+				<div class="col-sm-12 col-md-6 section-content animatedParent animateOnce">
+					<img src="${pageContext.request.contextPath}/images/fairy.jpg" class="img-responsive  animated fadeIn" alt="">
+				</div>
+				<div class="col-sm-12 col-md-6 section-content">
+					<h3><strong>문서통합을 제공합니다 !</strong> </h3>
+					<p><strong>DocFairy</strong>는 <strong>Excel</strong>을 <strong>Excel</strong>로 통합해주는 기능을 가지고 있습니다</p>
+					<p><strong>DocFairy</strong>가 제공하는 <strong>Excel</strong> 양식에 데이터를 입력해주시면</p>
+					<p><strong>Excel</strong>를 <strong>Excel</strong>로 통합해드립니다</p>
+					<p><strong>DocFairy</strong>와 함께 문서통합의 정수를 느껴보십시오 ! </p>
+					<p>&nbsp;</p>
+					<button type="button" class="btn btn-primary btn-lg btn-block">더 읽기</button>
+				</div>
+			</div>
+			
 			<%-- <ul class="pagination">
 
 				<li><a href="#" aria-label="Previous"> <span
@@ -184,38 +244,12 @@ th{
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul> --%>
-			</div>
+<!-- 			</div> -->
 			
 			
 			
-			<h3>선택된 파일 목록</h3>
-			<table id="checktable" border="1">
-				<tr>
-					<th class="filename" width="500">선택된 파일명</th>
-				</tr>
-			</table>
 			
-		
-			<input type="hidden" name="msg" value="${msg}" id="msg" />
-			<form action="insertfile" method="post" enctype="multipart/form-data"
-				onsubmit="return formcheck()">
-				
-				
-					분류 :<select name="files.filetype" id="sel">
-						<option value="tax">세금계산서</option>
-						<option value="cost">거래명세표</option>
-						<option value="mada">거래처별 미수현황표</option>
-						<option value="card">법인카드 사용내역서</option>
-					</select>
-					<input class="btn btn-default" type="file" id="upfile" name="upload">
-					<input
-						type="hidden" name="files.memberno"
-						value="${session.members.memberno}" />
-					<input type="submit" class="btn btn-default"
-					value="올리기">
-			</form>
-			<input id="inter" type="button" value="통합문서 만들기" class="btn btn-default">
-		
+			
 	
 	
 	
