@@ -21,12 +21,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelMain {
 	
-	public String paste(XSSFWorkbook xw,ArrayList<ArrayList>db,ArrayList<ArrayList> st){
+	public String paste(XSSFWorkbook xw,ArrayList<ArrayList>db,ArrayList<ArrayList> st,String type){
 		 try {
 			 	ReadExcelDemo re=new ReadExcelDemo();
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
-	            System.out.println("1");     
+	            System.out.println("1");
+	            if(type.equals("문서")){
 	            input(xw,8,4).setCellValue((double)db.get(0).get(0));
 	            input(xw,35,25).setCellValue((double)db.get(0).get(0));
 	            input(xw,36,24).setCellValue((double)db.get(0).get(0));
@@ -57,6 +58,31 @@ public class ExcelMain {
 	
 	            xw.write(fileOut);
 	            fileOut.close();
+	            }else{
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            System.out.println("3");
+		            for(int i=5;i<29;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(2);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            System.out.println((String)st.get(0).get(0));
+		            for(int i=h;i<db.get(1).size()+h;i++){
+		            	input(xw,i,2).setCellValue((String)st.get(0).get(i-h));//월
+		            	input(xw,i,3).setCellValue((String)st.get(1).get(i-h));//품목
+		            	input(xw,i,4).setCellValue((double)db.get(0).get(i-h));//수량
+		            	input(xw,i,5).setCellValue((double)db.get(1).get(i-h));//단가
+		            	input(xw,i,6).setCellValue((String)st.get(2).get(i-h));//규격
+		            }
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
 	        } catch (IOException e) {
@@ -107,15 +133,14 @@ public class ExcelMain {
 	            cell.setCellValue(content[i]);
 	            
 	            cell = row.getCell(4);
-	            cell.setCellValue(Integer.parseInt(in[i]));
+	            cell.setCellValue(in[i]);
 	            
 	            cell = row.getCell(5);
-	            cell.setCellValue(Integer.parseInt(out[i]));
+	            cell.setCellValue(out[i]);
 	            
 	            cell = row.getCell(6);
 	            cell.setCellValue(note[i]);
 	            }
-	            xw.setForceFormulaRecalculation(true);
 	            xw.write(fileOut);
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
