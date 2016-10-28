@@ -159,6 +159,10 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			files.setSave_filename(uploadFileName);
 		}
 		DocumentDAO dd = new DocumentDAO();
+		if(dd.searchfile(files.getSave_filename())!=null){
+			msg="이미 같은 이름의 파일이 존재합니다!";
+			return "error";
+		}
 		dd.insertfile(files);
 		return "success";
 	}
