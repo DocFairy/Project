@@ -89,18 +89,21 @@
 						</div>
 					</div>
 			</div>
-			<br>			
-			<div id="imagelistdiv">
+			<br>
+			<span id="imagelistspan">			
+			<div id="imagelistdiv" class="panel row">
 				<s:iterator var="ImageFilenameConnector" value="imageList">
-					<div style="float:left; width: 33%; padding:5px;">
-						<a class="panel imagelistlink" href="#">
+					<div style="float:left; width: 33%; padding:5px;" class="row">
+						<a href="#" class="preview">
 							<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>" class="imagePreview"/><br>
-					<s:property value="#ImageFilenameConnector.save_filename"/>
+						</a>
+						<a href="#" class="preview">
+							<s:property value="#ImageFilenameConnector.save_filename"/>
 						</a>
 					</div>
 				</s:iterator>
 			</div>
-						
+			</span>	
 						
 						<div class="col-md-6">
 	<%-- 		<table id="doctable">
@@ -112,7 +115,8 @@
 			</tr>
 			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
 			</table> --%>
-			<div>
+			<br>
+			<div class="row">
 			<form action="insertfile_docform" method="post" enctype="multipart/form-data">
 				 <input type="hidden" name="files.filetype" value="f"><!-- 문서타입: f(문서양식) --> 
 			<input type="hidden" name="files.memberno" value="${session.members.memberno}"> 
