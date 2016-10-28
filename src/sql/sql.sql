@@ -53,16 +53,5 @@ create sequence memberno_seq;
 create sequence membergroup_seq;
 create sequence board_seq;
 
-
-
-
-
 /* Create Foreign Keys */
 
-
-
-select * from files;
-
- ALTER TABLE files RENAME COLUMN isaccountfile to filetype;
-
-ALTER TABLE files MODIFY(filetype VARCHAR2(20)); 
