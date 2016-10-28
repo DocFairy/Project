@@ -24,6 +24,7 @@ public class MembersAction extends ActionSupport implements SessionAware {
 
 
 	public String join() throws Exception {
+				
 		dao.insertMember(members);
 
 		return SUCCESS;
