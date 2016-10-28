@@ -1700,9 +1700,7 @@ option {
 	display: inline-block;
 	
 }
-#entire{
-	margin-left:170px;
-}
+
 .login_area {position:relative; width:400px; margin:20px auto; padding:20px; text-align:left; border:1px solid blue; border-radius:20px;}
 .login_area .login_icon {position:absolute; top:-25px; left:145px; width:50px;}
 .login_area span {font-size:20px; font-weight:700;}
@@ -1713,10 +1711,7 @@ option {
 .filename{
 	text-align:center;
 }
-#checktable{
-	margin-left:200px;
-	
-}
+
 #fileboard{
 	float:left;
 }
@@ -1725,4 +1720,8 @@ option {
 }
 .arang{
 	clear:none;
+}
+body {
+  background-color: #EEEEEE;
+  color: #3C4858;
 }
