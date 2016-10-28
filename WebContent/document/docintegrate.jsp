@@ -195,7 +195,7 @@ $(function(){
 				<table id="checktable" border="1" class="table">
 					<tr>
 						<th class="filename" width="500">선택된 파일명</th>
-						<th class="filename" width="100">파일 유형</th>
+						<th class="filename" width="200">파일 유형</th>
 					</tr>
 				</table>
 
