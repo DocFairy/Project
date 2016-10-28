@@ -38,7 +38,8 @@
 <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 <style>
 div#buttons {
-	width: 500px;
+	
+	margin-top:200px;
 }
 
 .arang {
@@ -116,9 +117,11 @@ $(function(){
 	</script>
 <style type="text/css">
 #container {
-	width: 500px;
+	width: 300px;
 	margin: auto;
+	margin-right:100px;
 }
+
 
 /* th{ */
 /* 	background-color: skyblue; */
@@ -200,6 +203,7 @@ $(function(){
 				</table>
 
 			</div>
+			<div class="row">
 			<div id="buttons">
 
 				<input type="hidden" name="msg" value="${msg}" id="msg" />
@@ -235,33 +239,10 @@ $(function(){
 
 
 
-			<div class="row">
-				<div
-					class="col-sm-12 col-md-6 section-content animatedParent animateOnce">
-					<img src="${pageContext.request.contextPath}/images/fairy.jpg"
-						class="img-responsive  animated fadeIn" alt="">
-				</div>
-				<div class="col-sm-12 col-md-6 section-content">
-					<h3>
-						<strong>문서통합을 제공합니다 !</strong>
-					</h3>
-					<p>
-						<strong>DocFairy</strong>는 <strong>Excel</strong>을 <strong>Excel</strong>로
-						통합해주는 기능을 가지고 있습니다
-					</p>
-					<p>
-						<strong>DocFairy</strong>가 제공하는 <strong>Excel</strong> 양식에 데이터를
-						입력해주시면
-					</p>
-					<p>
-						<strong>Excel</strong>를 <strong>Excel</strong>로 통합해드립니다
-					</p>
-					<p>
-						<strong>DocFairy</strong>와 함께 문서통합의 정수를 느껴보십시오 !
-					</p>
-					<p>&nbsp;</p>
-					<button type="button" class="btn btn-primary btn-lg btn-block">더
-						읽기</button>
+			
+				
+				<div class="col-md-4 section-content">
+					
 				</div>
 			</div>
 
