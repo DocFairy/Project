@@ -95,6 +95,8 @@ $(function(){
 		
 		$("#docSearch").on("click",function(){
 			$("#createPage table").remove();
+			$("#imagelistdiv").show();
+			$("#regularFormUpload").show();
 			var str = "";
 			str += "<div class='col-md-9 text-center'> <table><tr>";
 			str += "<td style='padding: 5px'><input type='text' id='searchKeyword' placeholder='찾으시는 서식의 이름' size='50' style='font-size:1.2em;'/></td><td><button class='searchBtn btn btn-primary btn-sm'> search </button></td>";
@@ -104,6 +106,8 @@ $(function(){
 		$("#docCreate").on("click",function(){
 			
 			$("#searchPage > div").remove();
+			$("#imagelistdiv").hide();
+			$("#regularFormUpload").hide();
 			var str = "";
 			$.ajax({
 				url : 'customizingDoc'
