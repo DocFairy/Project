@@ -76,8 +76,6 @@ function fileDownload(save_filenum){
 				
 					</td>
 			</table>
-			<s:if test="#session.members != null">
-				<s:if test="#session.members.id.equals('admin')">
 					<input type="button" value="만들기" onclick="window.open('makeNewForm','pop','resizable=no scrollbars=yes top=300 left=500 width=500 height=300');"/> 
 					<!-- 	<form action="fileDownload"> -->
 					<%-- 	<input type="submit" id="fileDownload" value="다운"/>
@@ -86,8 +84,6 @@ function fileDownload(save_filenum){
 							<%-- <s:property value="save_filename"/> --%>download</a>
 					<input type="hidden" id="save_file" value="${files.save_file}"/>
 					<input type="hidden" id="save_filename" value="${files.save_filename}"/>
-				</s:if>
-			</s:if>
 			<a id="pdfshow" href="../pdf/<s:property value="filename_pdf"/>.pdf"<s:property value="filename_pdf"/>>pdf</a>
 			</div>
 		</div>

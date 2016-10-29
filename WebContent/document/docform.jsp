@@ -102,12 +102,13 @@
 					<div id="imagelistdiv" class="panel row">
 						<s:iterator var="ImageFilenameConnector" value="imageList">
 							<div style="float: left; width: 33%; padding: 5px;" class="row">
-								<a href="#" class="preview"> <img
-									src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
-									class="imagePreview" /><br>
-								</a> <a href="#" class="preview"> <s:property
+								<a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
+									<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
+										class="imagePreview" /><br>
+								</a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
 										value="#ImageFilenameConnector.save_filename" />
 								</a>
+								<a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
 							</div>
 						</s:iterator>
 					</div>
