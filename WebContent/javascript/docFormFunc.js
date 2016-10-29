@@ -103,9 +103,10 @@ $(function(){
 			str += "<td style='padding: 5px'><input type='text' id='searchKeyword' placeholder='찾으시는 서식의 이름' size='50' style='font-size:1.2em;'/></td><td><button class='searchBtn btn btn-primary btn-sm'> search </button></td>";
 			str += "</tr></table><div>";
 			$("#searchPage").append(str);
+			$("#docSearch").off();
 		});
 		$("#docCreate").on("click",function(){
-			
+			$("#docSearch").on();
 			$("#searchPage > div").remove();
 			$("#imagelistdiv").hide();
 			$("#regularFormUpload").hide();
