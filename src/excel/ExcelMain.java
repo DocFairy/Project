@@ -187,14 +187,15 @@ public class ExcelMain {
 	            cell.setCellValue(content[i]);
 	            
 	            cell = row.getCell(4);
-	            cell.setCellValue(in[i]);
+	            cell.setCellValue(Integer.parseInt(in[i]));
 	            
 	            cell = row.getCell(5);
-	            cell.setCellValue(out[i]);
+	            cell.setCellValue(Integer.parseInt(out[i]));
 	            
 	            cell = row.getCell(6);
 	            cell.setCellValue(note[i]);
 	            }
+	            xw.setForceFormulaRecalculation(true);
 	            xw.write(fileOut);
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();
