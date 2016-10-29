@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -10,9 +12,22 @@ public class AccountDAO {
 
 	SqlSession session = MybatisConfig.getSqlSessionFactory().openSession();
 	
-	public List<Files> fileList(String date){
+	public List<Files> fileList(String date, String memberno){
 		List<Files> result = null; 
-		result = session.selectList("mapper.AccountMapper.fileList", date);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		map.put("memberno", memberno);
+		result = session.selectList("mapper.AccountMapper.fileList", map );
+		return result;
+	}
+	
+	public List<Files> fileListTerm(String dateFrom, String dateTo, String memberno){
+		List<Files> result = null;
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("dateFrom", dateFrom);
+			map.put("dateTo", dateTo);
+			map.put("memberno", memberno);
+			result = session.selectList("mapper.AccountMapper.fileListTerm",map);
 		return result;
 	}
 	
@@ -32,3 +47,4 @@ public class AccountDAO {
 	}
 	
 }
+

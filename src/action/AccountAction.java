@@ -33,6 +33,8 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	private String out;
 	private String note;
 	private Map<String, Object> session;
+	private String dateFrom;
+	private String dateTo;
 	
 	 int cloth = 0;
 	 int food = 0;
@@ -54,10 +56,11 @@ public class AccountAction extends ActionSupport implements SessionAware{
 		return "success";
 	}
 	public String accountList()throws Exception{
-		System.out.println(date);
-		
-		list = dao.fileList(date);
-		System.out.println(list);
+		System.out.println("in action : " + date);
+		String memberno = ((Members)session.get("members")).getMemberno();
+		System.out.println("in action : " + memberno);
+		list = dao.fileList(date, memberno);
+		System.out.println("in action : " + list);
 		
 		return "success";
 	}
@@ -93,7 +96,8 @@ public class AccountAction extends ActionSupport implements SessionAware{
 		
 		//복사한 가계부 파일에 값 구겨넣기
 		ExcelMain em = new ExcelMain();
-		em.pasteAccount(xw, date, content1, input1, out1, note1);
+		String id = ((Members)session.get("members")).getId();
+		em.pasteAccount(xw, date, content1, input1, out1, note1 ,id);
 		
 		/*FileService fs = new FileService();
 		String basePath = "c:/upload";
@@ -105,22 +109,25 @@ public class AccountAction extends ActionSupport implements SessionAware{
 		
 		DocumentDAO dd=new DocumentDAO();
 		files=new Files();
-		files.setSave_filename(date + ".xlsx");
+		files.setSave_filename(((Members)session.get("members")).getId() + "님의 " +date+".xlsx");
 		files.setFiletype("y");
 		
 		files.setMemberno(((Members)session.get("members")).getMemberno());
 		
-		files.setSave_file(date+"의 가계부.xlsx");
-		System.out.println(((Members)session.get("members")).getMemberno());
+		files.setSave_file(((Members)session.get("members")).getId() + "님의 " + date+"의 가계부.xlsx");
 		dd.insertfile(files);
 
 		
 		return SUCCESS;
 	}
 	public String gogoGraph()throws Exception{
-		System.out.println(date);
+		System.out.println("gogoGraph : " +date);
+		String memberno = (((Members)session.get("members")).getMemberno());
+		list = dao.fileList(date, memberno);
+		System.out.println("gogoGraph : " + list);
+			
 		ReadExcelDemo re = new ReadExcelDemo();
-		XSSFWorkbook workbook = re.copyGraph(date);
+		XSSFWorkbook workbook = re.copyGraph(((Members)session.get("members")).getId(),date);
 		 XSSFSheet sheet = workbook.getSheetAt(0);
          ArrayList<String> note = new ArrayList<>();
         /* ArrayList<String> input = new ArrayList<>();
@@ -183,10 +190,11 @@ public class AccountAction extends ActionSupport implements SessionAware{
 		
 		return SUCCESS;
 	}
+	
 	public String receiveData() throws Exception{
 		System.out.println(date);
 		ReadExcelDemo re = new ReadExcelDemo();
-		XSSFWorkbook workbook = re.copyGraph(date);
+		XSSFWorkbook workbook = re.copyGraph(((Members)session.get("members")).getId(),date);
 		 XSSFSheet sheet = workbook.getSheetAt(0);
          ArrayList<String> note = new ArrayList<>();
         /* ArrayList<String> input = new ArrayList<>();
@@ -226,6 +234,16 @@ public class AccountAction extends ActionSupport implements SessionAware{
 			System.out.println("기타의 개수 " + ex);
 			
 		 
+		return SUCCESS;
+	}
+	
+	public String gogoChart() throws Exception{
+			System.out.println("gogoChart : " + dateFrom);
+			System.out.println("gogoChart : " + dateTo);
+			String memberno = (((Members)session.get("members")).getMemberno());
+
+			list = dao.fileListTerm(dateFrom, dateTo, memberno);
+			list = dao.fileList(date, memberno);
 		return SUCCESS;
 	}
 	
@@ -337,8 +355,21 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	public void setEx(int ex) {
 		this.ex = ex;
 	}
+	public String getDateFrom() {
+		return dateFrom;
+	}
+	public void setDateFrom(String dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+	public String getDateTo() {
+		return dateTo;
+	}
+	public void setDateTo(String dateTo) {
+		this.dateTo = dateTo;
+	}
 	
 	
 	
 }
+
 

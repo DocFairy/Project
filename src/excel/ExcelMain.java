@@ -151,9 +151,9 @@ public class ExcelMain {
 		 cell.setCellValue("");
 		 return cell;
 	}
-	public String pasteAccount(XSSFWorkbook xw,String date, String[] content, String[] in, String[] out, String[] note){
+	public String pasteAccount(XSSFWorkbook xw,String date, String[] content, String[] in, String[] out, String[] note,String id){
 		 try {
-	            File xlsxFile = new File("C:/upload/" + date + "의 가계부.xlsx");
+	            File xlsxFile = new File("C:/upload/"+id+"님의 " + date + "의 가계부.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 	            XSSFSheet sheet1=xw.getSheetAt(0);
 	            
@@ -203,6 +203,7 @@ public class ExcelMain {
 	        }
 		 return date + "의 가계부.xlsx";
 	}
+
 	
 	public String makeinter(String word,double value){	 
         // Workbook 생성

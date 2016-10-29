@@ -116,10 +116,10 @@ public class ReadExcelDemo {
         return c;
 	}
 	
-	public XSSFWorkbook copyGraph(String save_file){
+	public XSSFWorkbook copyGraph(String id , String save_file){
 		FileInputStream file;
 		try {
-			file = new FileInputStream(new File("C:/upload/"+save_file+"의 가계부.xlsx"));
+			file = new FileInputStream(new File("C:/upload/"+id+"님의 "+save_file+"의 가계부.xlsx"));
 			c = new XSSFWorkbook(file);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -128,6 +128,7 @@ public class ReadExcelDemo {
         //Create Workbook instance holding reference to .xlsx file
         return c;
 	}
+
 //		try
 //        {
 //            FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));

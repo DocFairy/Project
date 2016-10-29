@@ -45,6 +45,10 @@
 			<result type="json"></result>
 		</action>
 		
+		<action name="gogoChart" method="gogoChart" class="action.AccountAction">
+			<result type="json"/>
+		</action>
+		
 		<action name="accountDownload" class="action.FileDownloadAction">
 			<result name="success" type="stream">
 			<param name="contentType">${contentType}</param>

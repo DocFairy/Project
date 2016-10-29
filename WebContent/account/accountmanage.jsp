@@ -48,14 +48,56 @@
 	$(document).ready(function(){
 		
 	
-		$("#datepicker").datepicker({
+		$("#datepicker, #datepickerFrom, #datepickerTo").datepicker({
 			dateFormat : "yymmdd"
 		});
 	
+		$("#dateFromTo").on('click',function(){
+			var dateFrom = $("#datepickerFrom").val();
+			var dateTo = $("#datepickerTo").val();
+		 	 if(dateFrom.length == 0){alert("시작날짜 입력하세요"); return false;}
+			 if(dateTo.length == 0){alert("마지막 날짜 입력하세요"); return false;}
+			 if(dateFrom > dateTo){alert("시작날짜를 더 빠르게 설정하세요"); return false;}
+			
+			$.ajax({
+				url : 'gogoChart',
+				data : {
+					"dateFrom" : dateFrom ,
+					"dateTo"   : dateTo
+				},
+				success : function(response){
+					alert("success");
+					
+					var options = {
+							'legend':{
+								names: ['08-12', '08-19', '08-26', '09-02', '09-09', '09-16'],
+								hrefs: []
+							},
+							'dataset':{
+								title:'Playing time per day',
+								values: [[61,7, 66], [76,33, 66], [49,22, 45], [58,26, 76],
+										[48, 15, 76], [56, 18,83]],
+								colorset: ['#DC143C','#FF8C00', '#30a1ce'],
+								fields:['Error', 'Warning', 'Pass']
+							},
+							'chartDiv' : 'chart_d',
+							'chartType' : 'line',
+							'chartSize' : {width:700, height:300},
+							'minValue' : 40,
+							'maxValue' : 100,
+							'increment' : 10,
+							'isGuideLineNeeded' : true  //default set to false
+						};
+						Nwagon.chart(options);
+					
+				}
+				
+			});
+		});
 		
-		$(".row").on('click','.delGraph',function(){
+		$(".chart_d").on('click','.delGraph',function(){
 			$(this).parent().remove();
-			$(".row").append('<div id="chart_d"></div>');
+			$(".row").append('<div id="chart_d" class="chart_d"></div>');
 		});
 		
 		$("#getdata").on('click',function(){
@@ -122,8 +164,8 @@ th{
 }
 #chart_d{
 	padding : 5px;
-	width : 50%;
-	float: right;
+	float : left;
+	width : 40%;
 } 
 h3{
 	border-top-style: double;
@@ -136,6 +178,14 @@ h3{
 	width : 30%;
 	float : left;
 	
+}
+#dateC{
+	padding : 5px;
+	widht : 50%;
+	float : left;
+}
+.block{
+	height : 100%;
 }
 </style>
 </head>
@@ -156,20 +206,41 @@ h3{
 						</ul>
 					</nav>
 				</div>
-				
+				<div class="col-md-3 sidebar">
+					<div class="block">
+					</div>
+				</div>
 			</aside>
 			
 			<h1>가계부 관리</h1><br><br>
+	
+	<div class="col-md-9">
 		<div id="dateP">	
+				<p>그래프 </p>
 			<input type="text" readonly="readonly" id="datepicker">
 			<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 		</div>	
+	<div id="chart_d" class="chart_d"></div>
 			
-		
-		
-	<div id="chart_d">
-
+			
+		<div id="dateC">
+				<p>차트</p>
+			<input type="text" readonly="readonly" id="datepickerFrom">~
+			<input type="text" readonly="readonly" id="datepickerTo">
+			<input type="button" id="dateFromTo" value="확인" class="btn btn-primary btn-xs" />
 		</div>
+		
+		
+		
+	<div id="chart_c"></div>	
+	</div>	
+
+		
+	
+	
+	
+	
+	
 	
 	</div>
 	
