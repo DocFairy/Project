@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,8 +30,11 @@ public class DocumentDAO {
 		sqlSession.commit();
 		return result;
 	}
-	public String searchfile(String save_filename){
-		return sqlSession.selectOne("mapper.DocumentMapper.searchfile", save_filename);
+	public String searchfile(String save_filename, String memberno){
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("save_filename", save_filename);
+		map.put("memberno", memberno);
+		return sqlSession.selectOne("mapper.DocumentMapper.searchfile", map);
 	}
 	
 	public List<Files> primaryFormList(){ //문서양식의 기본문서양식파일리스트를 불러온다.

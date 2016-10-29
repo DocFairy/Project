@@ -14,8 +14,8 @@ select * from files where save_fileno=#{save_fileno}
 <delete id="delfile" parameterType="String">
 delete from files where save_filename=#{save_filename}
 </delete>
-<select id="searchfile" resultType="String" parameterType="String">
-select save_file from files where save_filename=#{save_filename}
+<select id="searchfile" resultType="String" parameterType="Map">
+select save_file from files where save_filename=#{save_filename} and memberno=#{memberno}
 </select>
 <select id="primaryDocList" resultType="Files">
 	select * from files where filetype='f'

@@ -159,7 +159,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			files.setSave_filename(uploadFileName);
 		}
 		DocumentDAO dd = new DocumentDAO();
-		if(dd.searchfile(files.getSave_filename())!=null){
+		if(dd.searchfile(files.getSave_filename(),((Members)session.get("members")).getMemberno())!=null){
 			msg="이미 같은 이름의 파일이 존재합니다!";
 			return "error";
 		}
@@ -258,7 +258,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public String delfile() throws Exception {
 		DocumentDAO dd = new DocumentDAO();
 		FileService fs = new FileService();
-		String fullpath = "C:/upload/" + dd.searchfile(uploadFileName);
+		String fullpath = "C:/upload/" + dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno());
 		fs.fileDelete(fullpath);
 		dd.delfile(uploadFileName);
 		return "success";
@@ -283,29 +283,29 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ArrayList<ArrayList> receive = new ArrayList<ArrayList>();
 		if(arr.equals("문서")){
 		for (int i = 0; i < array.length; i++) {
-			k += ex.number(dd.searchfile(array[i]), 8, 4);
+			k += ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8, 4);
 		}
 		hob.add(k);
 
 		for (int i = 1; i < array.length; i++) {
 			for (int q = 0; q < 23; q++) {
-				if (ex.word(dd.searchfile(array[i]), 11 + q, 2).equals("")) {
+				if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2).equals("")) {
 					break;
 				}
-				goods.add(ex.word(dd.searchfile(array[i]), 11 + q, 2));
-				size.add(ex.word(dd.searchfile(array[i]), 11 + q, 13));
-				month.add(ex.number(dd.searchfile(array[i]), 11 + q, 0));
-				day.add(ex.number(dd.searchfile(array[i]), 11 + q, 1));
-				kazu.add(ex.number(dd.searchfile(array[i]), 11 + q, 16));
-				cost.add(ex.number(dd.searchfile(array[i]), 11 + q, 19));
-				all.add(ex.number(dd.searchfile(array[i]), 11 + q, 25));
+				goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2));
+				size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 13));
+				month.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 0));
+				day.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 1));
+				kazu.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 16));
+				cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 19));
+				all.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 25));
 
 			}
 
 		}
 
 		
-		date.add(ex.word(dd.searchfile(array[0]), 1, 0) + "~" + ex.word(dd.searchfile(array[array.length - 1]), 1, 0));
+		date.add(ex.word(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()), 1, 0) + "~" + ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 1, 0));
 
 		
 		receive.add(date);
@@ -317,19 +317,19 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		result.add(kazu);
 		result.add(cost);
 		result.add(all);
-		integrate = em.paste(ex.copy(dd.searchfile(array[0])), result, receive,"문서");
+		integrate = em.paste((ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()))), result, receive,"문서");
 		return "success";
 		}else{
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 23; q++) {
-					if (ex.word(dd.searchfile(array[i]), 5 + q, 2).equals("")) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 2).equals("")) {
 						break;
 					}
-					date.add(ex.word(dd.searchfile(array[i]), 5+q, 2));
-					goods.add(ex.word(dd.searchfile(array[i]), 5 + q, 3));
-					kazu.add(ex.number(dd.searchfile(array[i]), 5 + q, 4));
-					cost.add(ex.number(dd.searchfile(array[i]), 5 + q, 5));
-					size.add(ex.word(dd.searchfile(array[i]), 5+q, 6));
+					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 2));
+					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 3));
+					kazu.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 4));
+					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 5));
+					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 6));
 				}
 			}
 			System.out.println(date.get(0));
@@ -338,7 +338,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			receive.add(size);
 			result.add(kazu);
 			result.add(cost);
-			integrate = em.paste(ex.copy(dd.searchfile(array[0])), result, receive,"가계부");
+			integrate = em.paste(ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno())), result, receive,"가계부");
 			return "success";
 		}
 	
@@ -350,7 +350,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		System.out.println(array);
 
 		DocumentDAO dd = new DocumentDAO();
-		String save_filename = dd.searchfile(array[0]);
+		String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
 
 		System.out.println(save_filename);
 
@@ -359,7 +359,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 		ArrayList<String[]> room = new ArrayList<>();
 
-		room = rw.readWord(dd.searchfile(array[0]));
+		room = rw.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
 
 		ExcelReadWrite erw = new ExcelReadWrite();
 
