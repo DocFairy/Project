@@ -27,7 +27,7 @@ public class ExcelMain {
 	            File xlsxFile = new File("C:/upload/integrate.xlsx");
 	            FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 	            System.out.println("1");
-	            if(type.equals("문서")){
+	            if(type.equals("거래명세서")){
 	            input(xw,8,4).setCellValue((double)db.get(0).get(0));
 	            input(xw,35,25).setCellValue((double)db.get(0).get(0));
 	            input(xw,36,24).setCellValue((double)db.get(0).get(0));
@@ -58,7 +58,7 @@ public class ExcelMain {
 	
 	            xw.write(fileOut);
 	            fileOut.close();
-	            }else{
+	            }else if(type.equals("가계부")){
 	            	XSSFSheet sheet = xw.getSheetAt(0);
 		            int h=0;
 		            System.out.println("3");

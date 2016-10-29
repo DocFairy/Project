@@ -380,8 +380,8 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		if(dd.calltype(save_filename).equals("y")){
 			msg="가계부";
 			return "success";
-		}else{
-			msg="문서";
+		}else if(dd.calltype(save_filename).equals("cost")){
+			msg="거래명세서";
 			
 		}
 		return "success";
