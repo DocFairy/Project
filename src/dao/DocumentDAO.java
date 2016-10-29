@@ -52,4 +52,16 @@ public class DocumentDAO {
 	 public String calltype(String save_filename){
 		return sqlSession.selectOne("mapper.DocumentMapper.calltype", save_filename); 
 	 }
+	public List<Files> docFormSearch(String searchKeyword) {
+		List<Files> returner = null;
+		SqlSession session = sessionFactory.openSession();
+		returner = session.selectList("mapper.DocumentMapper.DocFormSearch", searchKeyword);
+		for(int i = 0; i<returner.size(); i++){
+			System.out.println("dao.docFormSearch():result----"+returner.get(i));
+		}
+		if(session!=null){
+			session.close();
+		}
+		return returner;
+	}
 }
