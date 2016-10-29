@@ -9,11 +9,13 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import org.apache.poi.hslf.record.ExMCIMovie;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -279,9 +281,16 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ArrayList<Double> cost = new ArrayList<Double>();
 		ArrayList<Double> all = new ArrayList<Double>();
 		ArrayList<String> date = new ArrayList<String>();
+		ArrayList<String> uno = new ArrayList<String>();
+		ArrayList<String> expire = new ArrayList<String>();
+		ArrayList<String> yotei = new ArrayList<String>();
+		ArrayList<String> sanko = new ArrayList<String>();
 		ArrayList<ArrayList> result= new ArrayList<ArrayList>();
 		ArrayList<ArrayList> receive = new ArrayList<ArrayList>();
-		if(arr.equals("문서")){
+		ArrayList<Double> cost2 = new ArrayList<Double>();
+		ArrayList<Double> cost3 = new ArrayList<Double>();
+		ArrayList<Double> cost4 = new ArrayList<Double>();
+		if(arr.equals("거래명세서")){
 		for (int i = 0; i < array.length; i++) {
 			k += ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8, 4);
 		}
@@ -318,8 +327,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		result.add(cost);
 		result.add(all);
 		integrate = em.paste((ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()))), result, receive,"문서");
-		return "success";
-		}else{
+		}else if(arr.equals("가계부")){
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 23; q++) {
 					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 2).equals("")) {
@@ -339,9 +347,51 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			result.add(kazu);
 			result.add(cost);
 			integrate = em.paste(ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno())), result, receive,"가계부");
-			return "success";
+		}else if(arr.equals("지급어음명세서")){
+			System.out.println(ex.word(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()), 8, 1));
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 41; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8 + q, 1).equals("")) {
+						break;
+					}
+					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 1));
+					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),8+q, 2));
+					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 3));
+					uno.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 4));
+					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 5));
+					expire.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 6));
+					yotei.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 7));
+					sanko.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 8));
+				}
+			}
+			receive.add(date); receive.add(goods); receive.add(size); receive.add(uno); receive.add(expire); receive.add(yotei); receive.add(sanko);
+			result.add(cost);
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "지급어음명세서");
+			
+		}else if(arr.equals("거래관리대장")){
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 35; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6 + q, 1).equals("")) {
+						break;
+					}
+					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 1));
+					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),6+q, 2));
+					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 3));
+					hob.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 4));
+					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 5));
+					all.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 7));
+					cost2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 8));
+					cost3.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 10));
+					cost4.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 11));
+					sanko.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 13));
+					
+				}
+			}
+			receive.add(date); receive.add(goods); receive.add(size); receive.add(sanko);
+			result.add(hob); result.add(cost); result.add(all); result.add(cost2); result.add(cost3); result.add(cost4);
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "거래관리대장");
 		}
-	
+		return "success";
 	}
 
 	public String changefile() throws Exception {
@@ -382,7 +432,10 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			return "success";
 		}else if(dd.calltype(save_filename).equals("cost")){
 			msg="거래명세서";
-			
+		}else if(dd.calltype(save_filename).equals("uum")){
+			msg="지급어음명세서";
+		}else if(dd.calltype(save_filename).equals("left")){
+			msg="거래관리대장";
 		}
 		return "success";
 	}

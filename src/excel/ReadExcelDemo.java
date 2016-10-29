@@ -3,6 +3,7 @@ package excel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -18,6 +19,7 @@ public class ReadExcelDemo {
 	String b;
 	XSSFWorkbook c;
 	XSSFCell cell2;
+	Date d;
 	public double number(String save_file,int r, int c){
 		try
       {
@@ -79,6 +81,27 @@ public class ReadExcelDemo {
 
       }
 		return b;
+    }
+	
+	public Date date(String save_file,int r, int c){
+		try
+      {
+          FileInputStream file = new FileInputStream(new File("C:/upload/"+save_file));
+          //Create Workbook instance holding reference to .xlsx file
+          XSSFWorkbook workbook = new XSSFWorkbook(file);
+          //Get first/desired sheet from the workbook
+          XSSFSheet sheet = workbook.getSheetAt(0);
+          XSSFRow row = sheet.getRow(r);
+          XSSFCell cell=row.getCell(c);
+          d=cell.getDateCellValue();
+          file.close();
+      } 
+      catch (Exception e) 
+      {
+    	  e.printStackTrace();
+
+      }
+		return d;
     }
 	public XSSFWorkbook copy(String save_file){
 		FileInputStream file;

@@ -82,6 +82,60 @@ public class ExcelMain {
 		            xw.setForceFormulaRecalculation(true);
 		            xw.write(fileOut);
 		            fileOut.close();
+	            }else if(type.equals("지급어음명세서")){
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            System.out.println("3");
+		            for(int i=8;i<41;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(1);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,1).setCellValue((String)st.get(0).get(i-h));//월
+		            	input(xw,i,2).setCellValue((String)st.get(1).get(i-h));//품목
+		            	input(xw,i,3).setCellValue((String)st.get(2).get(i-h));//수량
+		            	input(xw,i,4).setCellValue((String)st.get(3).get(i-h));//단가
+		            	input(xw,i,5).setCellValue((double)db.get(0).get(i-h));//규격
+		            	input(xw,i,6).setCellValue((String)st.get(4).get(i-h));
+		            	input(xw,i,7).setCellValue((String)st.get(5).get(i-h));
+		            	input(xw,i,8).setCellValue((String)st.get(6).get(i-h));
+		            }
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }else if(type.equals("거래관리대장")){
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            System.out.println("3");
+		            for(int i=6;i<35;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(1);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,1).setCellValue((String)st.get(0).get(i-h));//월
+		            	input(xw,i,2).setCellValue((String)st.get(1).get(i-h));//품목
+		            	input(xw,i,3).setCellValue((String)st.get(2).get(i-h));//수량
+		            	input(xw,i,4).setCellValue((double)db.get(0).get(i-h));//단가
+		            	input(xw,i,5).setCellValue((double)db.get(1).get(i-h));//규격
+		            	input(xw,i,7).setCellValue((double)db.get(2).get(i-h));
+		            	input(xw,i,8).setCellValue((double)db.get(3).get(i-h));
+		            	input(xw,i,10).setCellValue((double)db.get(4).get(i-h));
+		            	input(xw,i,11).setCellValue((double)db.get(5).get(i-h));
+		            	input(xw,i,13).setCellValue((String)st.get(3).get(i-h));
+		            }
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
 	            }
 	        } catch (FileNotFoundException e) {
 	            e.printStackTrace();

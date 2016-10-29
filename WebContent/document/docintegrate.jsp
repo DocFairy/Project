@@ -124,7 +124,11 @@ $(function(){
 	margin: auto;
 	margin-right:100px;
 }
-
+.pagination{
+padding-top:130px;
+position:absolute;
+margin-left:100px;
+}
 
 /* th{ */
 /* 	background-color: skyblue; */
@@ -155,7 +159,7 @@ $(function(){
 	<div class="container">
 		<div class="row">
 			<aside class="col-md-3 sidebar">
-				<div class="block">
+				<div class="block" style="1px solid black;">
 					<h3>
 						<span>문서 메뉴</span>
 					</h3>
@@ -195,18 +199,34 @@ $(function(){
 						</table>
 					</div>
 				</div>
+				<%-- <ul class="pagination">
+
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li class="disabled"><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>  --%>
 			</div>
 			<div class="col-md-4">
 			<h1 id="stitle1" align="center">선택된 파일 리스트</h1>
 				<table id="checktable" border="1" class="table">
 					<tr>
 						<th class="filename" width="500">선택된 파일명</th>
-						<th class="filename" width="200">파일 유형</th>
+						<th class="filename" width="300">파일 유형</th>
 					</tr>
 				</table>
-
 			</div>
+			
+			
+			
 			<div class="row">
+			
 			<div id="buttons">
 
 				<input type="hidden" name="msg" value="${msg}" id="msg" />
@@ -220,8 +240,8 @@ $(function(){
 								<select class="form-control" name="files.filetype" id="sel">
 									<option value="y">가계부</option>
 									<option value="cost">거래명세표</option>
-									<option value="mada">거래처별 미수현황표</option>
-									<option value="card">법인카드 사용내역서</option>
+									<option value="uum">지급어음명세서</option>
+									<option value="left">재고관리대장</option>
 								</select>
 							</div>
 							<input type="file" id="upfile" name="upload"> <input
@@ -249,19 +269,7 @@ $(function(){
 				</div>
 			</div>
 
-			<%-- <ul class="pagination">
-
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li class="disabled"><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul> --%>
+		 
 			<!-- 			</div> -->
 
 

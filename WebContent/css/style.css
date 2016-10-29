@@ -1213,7 +1213,6 @@ fieldset[disabled] .btn-link.focus {
 }
 .pagination {
   display: inline-block;
-  margin-left:250px;
   float:left;
 }
 .pagination .active a {

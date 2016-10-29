@@ -17,8 +17,17 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<style>
+	/* ul{
+	background-color: #EEEEEE;
+    color: #3C4858;
+	} */
+	.dropdown{
+	background-color: #EEEEEE;
+	}
+	</style>
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
-	
+
 	
 </head>
 <body class="home-page">
