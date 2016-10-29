@@ -56,6 +56,9 @@ div#buttons {
 		background-repeat:no-repeat; */
 	
 }
+.col-md-3 sidebar{
+	border:1px solid black;
+}
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript"

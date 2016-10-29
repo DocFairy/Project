@@ -25,8 +25,12 @@
 	width:600px;
 	margin-left:600px;
 	}
-	
-	
+	.gg{
+	margin-right:300px;
+	}
+	#pp{
+	margin-left:530px;
+	}
 	</style>
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
@@ -86,10 +90,11 @@
 			<div id="add"></div>
 			</s:if>
 			<s:else>
-			<center>
+			
 			<s:property value="groupname"/>
-			<h2><b>그룹명:<s:property value="membergroup.groupname"/></b></h2><br>
-			그룹 멤버 목록
+			<div class="gg"><h2><b>그룹명:<s:property value="membergroup.groupname"/></b></h2><br></div>
+			<div id="pp">그룹 멤버 목록</div><br>
+			<center>
 			<table border="1"> 
 			<tr>
 			<th width="150">그룹 멤버 아이디</th>
