@@ -20,6 +20,9 @@ select save_file from files where save_filename=#{save_filename} and memberno=#{
 <select id="primaryDocList" resultType="Files">
 	select * from files where filetype='f'
 </select>
+<select id="DocFormSearch" parameterType="String" resultType="Files">
+select * from files where save_filename like '%' || #{searchKeyword} || '%' and filetype='f'
+</select>
 <select id="calltype" resultType="String" parameterType="String">
 	select filetype from files where save_filename=#{save_filename}
 </select>

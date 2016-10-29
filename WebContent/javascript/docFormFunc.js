@@ -73,9 +73,9 @@ function cleanInput(){
 	$('#fax').val("");
 }
 $(function(){
-		$('#searchPage').on("click",".searchBtn",function(){
-			alert($("#searchKeyword").val());
-		});
+	    $('#searchPage').on("click",".searchBtn",function(){
+	        alert($("#searchKeyword").val());
+	     });
 		
 		$("#createPage").on("click",".createBtn",function(){
 			if(!(createObject()===false)){
@@ -92,6 +92,7 @@ $(function(){
 				});
 			}
 		});
+		
 		
 		$("#docSearch").on("click",function(){
 			$("#createPage table").remove();

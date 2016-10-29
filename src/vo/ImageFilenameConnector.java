@@ -50,5 +50,12 @@ public class ImageFilenameConnector {
 	public void setSave_fileno(String save_fileno) {
 		this.save_fileno = save_fileno;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ImageFilenameConnector [save_fileno=" + save_fileno + ", imageFilename=" + imageFilename
+				+ ", save_filename=" + save_filename + ", imageFilenameWithoutType=" + imageFilenameWithoutType + "]";
+	}
 	
 }

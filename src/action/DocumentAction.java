@@ -55,6 +55,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private List<Files> createFiles;
 	private String arr;
 	private String[] createList;
+	private String searchKeyword;
 	// 파일 만들기만.
 
 	public String docCreate() throws Exception {
@@ -103,7 +104,33 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	      return "success";
 	}
-
+	
+	public String docFormSearch() throws Exception{
+		System.out.println("docFormSearch():"+searchKeyword);
+		DocumentDAO dao = new DocumentDAO();
+		docFormList = dao.docFormSearch(searchKeyword);
+		ArrayList<ImageFilenameConnector> imageListTemp = new ArrayList<ImageFilenameConnector>();
+		for(int i = 0; i<docFormList.size(); i++){
+			String imageFilenameWithoutType = ""; 
+			String imageName = docFormList.get(i).getSave_file();
+			int lastIndex = docFormList.get(i).getSave_file().lastIndexOf('.');
+	        if (lastIndex == -1){
+	        	imageName = "";
+	        	imageFilenameWithoutType = ""; 
+	        }else{ 
+	        	imageFilenameWithoutType = docFormList.get(i).getSave_file().substring(0, lastIndex); 
+	        	imageName = imageName.substring(0, lastIndex)+".png";
+			docFormList.get(i).getSave_file().substring(0, lastIndex);
+	        ImageFilenameConnector temp = new ImageFilenameConnector(docFormList.get(i).getSave_fileno(), imageName, docFormList.get(i).getSave_filename(), imageFilenameWithoutType);
+	        imageListTemp.add(temp);
+	        }
+		}
+		imageList = imageListTemp;
+		for(int i=0; i<imageList.size();i++){
+			System.out.println(imageList.get(i));
+		}
+		return SUCCESS;
+	}
 	public String fileShow() throws Exception {
 		System.out.println("DocumentAction:fileShow():save_fileno=" + save_fileno);
 		DocumentDAO dao = new DocumentDAO();
@@ -536,6 +563,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	public void setImageList(ArrayList<ImageFilenameConnector> imageList) {
 		this.imageList = imageList;
+	}
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 
 	

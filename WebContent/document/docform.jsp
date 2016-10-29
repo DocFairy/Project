@@ -7,14 +7,12 @@
 <head>
 <title>DocFairy-통합 문서 관리 시스템</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link
-	href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext'
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}bootstrap/css/bootstrap.min.css" />
@@ -84,23 +82,25 @@
 				<div class="tab-content" style="padding: 5px;">
 					<div id="searchPage" class="tab-pane in active">
 						<div class='col-md-9 text-center'>
+									<form action="docFormSearch" >
 							<table>
 								<tr>
-									<td style='padding: 5px'><input type='text'
-										placeholder='찾으시는 서식의 이름' id='searchKeyword' size='50'
-										style='font-size: 1.2em;' /></td>
-									<td>
-										<button class='searchBtn btn btn-primary btn-sm'
-											id='searchBtn'>search</button>
-									</td>
+										<td style='padding: 5px'><input type='text'
+											placeholder='찾으시는 서식의 이름' id='searchKeyword' name='searchKeyword' size='50'
+											style='font-size: 1.2em;' /></td>
+										<td>
+											<input type='submit' class='searchBtn btn btn-primary btn-sm'
+												id='searchBtn' value="Search">
+										</td>
 								</tr>
 							</table>
+									</form>
 						</div>
 					</div>
 				</div>
 				<br> <span id="imagelistspan">
 					<div id="imagelistdiv" class="panel row">
-						<s:iterator var="ImageFilenameConnector" value="imageList">
+						<s:iterator var="ImageFilenameConnector" value="imageList" >
 							<div style="float: left; width: 33%; padding: 5px;" class="row">
 								<a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
 									<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
@@ -197,7 +197,35 @@
 		src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
 	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/javascript/docFormFunc.js"></script>
+		src="${pageContext.request.contextPath}/javascript/docFormFunc.js">
+	</script>
+<%-- 	<script type="text/javascript">
+		$(function(){
+			$('#searchBtn').on("click",function(){
+				var searchKeyword = $("#searchKeyword").val();
+				$.ajax({
+					url: 'docFormSearch',
+					data:{"searchKeyword":searchKeyword},
+					success:function(response){
+						alert("docFormSearch success");
+						$("#imagelistdiv").children().remove();
+							alert($("#imageList").val());
+							var str = ""; 
+							str+='<s:iterator var="ImageFilenameConnector" value="imageList">';
+							str+='<div style="float: left; width: 33%; padding: 5px;" class="row">';
+							str+='<a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview">';
+							str+='<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"';
+							str+='class="imagePreview" /><br>';
+							str+='</a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property value="#ImageFilenameConnector.save_filename" />';
+							str+='</a><a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a></div></s:iterator>)';
+							alert(str);
+							$("#imagelistdiv").append(str);
+						cleanInput();
+					}//function
+				});//ajax
+			});//functionclick
+		});//function
+	</script> --%>
 </body>
 
 </html>
