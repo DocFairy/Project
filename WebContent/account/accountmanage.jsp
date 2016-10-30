@@ -70,6 +70,9 @@
 					alert(response.outdate);
 					var outdate = response.outdate;
 					var firstDay = response.firstDay;
+					var secondDay = response.secondDay;
+					alert(secondDay);
+				
 					var options = {
 							'legend':{
 								names: outdate,
@@ -77,7 +80,7 @@
 							},
 							'dataset':{
 								title:'Playing time per day',
-								values:[firstDay],
+								values: secondDay,
 								colorset: ['#DC143C','#FF8C00'],
 								fields:['수입', '지출']
 							},

@@ -36,7 +36,7 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	private int dateFrom;
 	private int dateTo;
 	private ArrayList<Double>firstDay;
-	private ArrayList<Double>secondDay;
+	private ArrayList<ArrayList>secondDay;
 	private ArrayList<String>outdate;
 	 int cloth = 0;
 	 int food = 0;
@@ -246,7 +246,7 @@ public class AccountAction extends ActionSupport implements SessionAware{
 
 			list = dao.fileListTerm(dateFrom, dateTo, memberno);		
 			ReadExcelDemo re = new ReadExcelDemo();			
-			firstDay=new ArrayList<>();
+		System.out.println("gogoChart:"+list);	
 	        secondDay=new ArrayList<>();
 			outdate = new ArrayList<>();
 	        /* ArrayList<String> input = new ArrayList<>();
@@ -254,6 +254,7 @@ public class AccountAction extends ActionSupport implements SessionAware{
 			 XSSFRow row = null; 
 			 XSSFCell cell = null;
 			 for(int i = 0; i < list.size() ; i++){
+				firstDay=new ArrayList<>();
 				String save_file = list.get(i).getSave_file();
 				
 				XSSFWorkbook workbook = re.copyChart(save_file);
@@ -272,7 +273,16 @@ public class AccountAction extends ActionSupport implements SessionAware{
 				row = sheet.getRow(5);
 				cell = row.getCell(2);
 				outdate.add(cell.getStringCellValue());
+				 secondDay.add(firstDay);
 			}
+			
+			 
+			 
+			 
+			 System.out.println(secondDay.get(0).get(0));
+			 System.out.println(secondDay.get(0).get(1));
+			 System.out.println(secondDay.get(1).get(0));
+			 System.out.println(secondDay.get(1).get(1));
 			 
 			System.out.println("gogoChart end : " + list);
 		return SUCCESS;
@@ -407,16 +417,17 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	public void setFirstDay(ArrayList<Double> firstDay) {
 		this.firstDay = firstDay;
 	}
-	public ArrayList<Double> getSecondDay() {
-		return secondDay;
-	}
-	public void setSecondDay(ArrayList<Double> secondDay) {
-		this.secondDay = secondDay;
-	}
+	
 
 
 
 	
+	public ArrayList<ArrayList> getSecondDay() {
+		return secondDay;
+	}
+	public void setSecondDay(ArrayList<ArrayList> secondDay) {
+		this.secondDay = secondDay;
+	}
 	public ArrayList<String> getOutdate() {
 		return outdate;
 	}
