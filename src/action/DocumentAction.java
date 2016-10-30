@@ -357,7 +357,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		result.add(kazu);
 		result.add(cost);
 		result.add(all);
-		integrate = em.paste((ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()))), result, receive,"문서");
+		integrate = em.paste((ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()))), result, receive,"거래명세서");
 		}else if(arr.equals("가계부")){
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 23; q++) {
