@@ -67,25 +67,26 @@
 				},
 				success : function(response){
 					alert("success");
-					
+					alert(response.outdate);
+					var outdate = response.outdate;
+					var firstDay = response.firstDay;
 					var options = {
 							'legend':{
-								names: ['08-12', '08-19', '08-26', '09-02', '09-09', '09-16'],
+								names: outdate,
 								hrefs: []
 							},
 							'dataset':{
 								title:'Playing time per day',
-								values: [[61,7, 66], [76,33, 66], [49,22, 45], [58,26, 76],
-										[48, 15, 76], [56, 18,83]],
-								colorset: ['#DC143C','#FF8C00', '#30a1ce'],
-								fields:['Error', 'Warning', 'Pass']
+								values:[firstDay],
+								colorset: ['#DC143C','#FF8C00'],
+								fields:['수입', '지출']
 							},
 							'chartDiv' : 'chart_d',
 							'chartType' : 'line',
 							'chartSize' : {width:700, height:300},
-							'minValue' : 40,
-							'maxValue' : 100,
-							'increment' : 10,
+							'minValue' : 0,
+							'maxValue' : 500000,
+							'increment' : 50000,
 							'isGuideLineNeeded' : true  //default set to false
 						};
 						Nwagon.chart(options);
@@ -95,9 +96,9 @@
 			});
 		});
 		
-		$(".chart_d").on('click','.delGraph',function(){
+		$("#chart_d").on('click','.delGraph',function(){
 			$(this).parent().remove();
-			$(".row").append('<div id="chart_d" class="chart_d"></div>');
+			$("#chart_d").append('<div id="chart_d_a"></div>');
 		});
 		
 		$("#getdata").on('click',function(){
@@ -113,8 +114,8 @@
 					
 				if(response.cloth != null){
 					
-					$("#chart_d").append('<h3>'+response.date+'의 가계부</h3>');
-					$("#chart_d").append(
+					$("#chart_d_a").append('<h3>'+response.date+'의 가계부</h3>');
+					$("#chart_d_a").append(
 						'<input type="button" value="그래프지우기" class="delGraph btn btn-custom">'
 						);
 					var options = {
@@ -126,7 +127,7 @@
 							},
 							'donut_width' : 50, 
 							'core_circle_radius':50,
-							'chartDiv': 'chart_d',
+							'chartDiv': 'chart_d_a',
 							'chartType': 'donut',
 							'chartSize': {width:500, height:300}
 						};
@@ -220,7 +221,10 @@ h3{
 			<input type="text" readonly="readonly" id="datepicker">
 			<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />
 		</div>	
-	<div id="chart_d" class="chart_d"></div>
+	<div id="chart_d">
+		<div id="chart_d_a" class="chart_d_a">
+		</div>
+	</div>
 			
 			
 		<div id="dateC">

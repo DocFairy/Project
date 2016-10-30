@@ -128,6 +128,20 @@ public class ReadExcelDemo {
         //Create Workbook instance holding reference to .xlsx file
         return c;
 	}
+	
+	public XSSFWorkbook copyChart(String save_file){
+		FileInputStream file;
+		try {
+			file = new FileInputStream(new File("C:/upload/"+save_file));
+			c = new XSSFWorkbook(file);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        //Create Workbook instance holding reference to .xlsx file
+        return c;
+	}
+	
 
 //		try
 //        {

@@ -45,8 +45,8 @@
 			<result type="json"></result>
 		</action>
 		
-		<action name="gogoChart" method="gogoChart" class="action.AccountAction">
-			<result type="json"/>
+		<action name="gogoChart"  class="action.AccountAction" method="gogoChart">
+			<result type="json"></result>
 		</action>
 		
 		<action name="accountDownload" class="action.FileDownloadAction">
