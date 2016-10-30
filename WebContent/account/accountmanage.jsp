@@ -66,13 +66,18 @@
 					"dateTo"   : dateTo
 				},
 				success : function(response){
-					alert("success");
-					alert(response.outdate);
+					
+					if(response.outdate != null){
+					
+						
 					var outdate = response.outdate;
 					var firstDay = response.firstDay;
 					var secondDay = response.secondDay;
-					alert(secondDay);
 				
+					$("#chart_c_a").append(
+							'<input type="button" value="차트지우기" class="delChart btn btn-custom">'
+							);
+					
 					var options = {
 							'legend':{
 								names: outdate,
@@ -84,16 +89,20 @@
 								colorset: ['#DC143C','#FF8C00'],
 								fields:['수입', '지출']
 							},
-							'chartDiv' : 'chart_d',
+							'chartDiv' : 'chart_c_a',
 							'chartType' : 'line',
 							'chartSize' : {width:700, height:300},
 							'minValue' : 0,
-							'maxValue' : 500000,
+							'maxValue' : 300000,
 							'increment' : 50000,
 							'isGuideLineNeeded' : true  //default set to false
 						};
 						Nwagon.chart(options);
 					
+					
+					} else {
+						alert('가계부 파일이 없습니다');
+					}
 				}
 				
 			});
@@ -102,6 +111,11 @@
 		$("#chart_d").on('click','.delGraph',function(){
 			$(this).parent().remove();
 			$("#chart_d").append('<div id="chart_d_a"></div>');
+		});
+		
+		$("#chart_c").on('click','.delChart',function(){
+			$(this).parent().remove();
+			$("#chart_c").append('<div id="chart_c_a"></div>');
 		});
 		
 		$("#getdata").on('click',function(){
@@ -132,7 +146,7 @@
 							'core_circle_radius':50,
 							'chartDiv': 'chart_d_a',
 							'chartType': 'donut',
-							'chartSize': {width:500, height:300}
+							'chartSize': {width:700, height:300}
 						};
 
 						Nwagon.chart(options);
@@ -169,27 +183,37 @@ th{
 #chart_d{
 	padding : 5px;
 	float : left;
-	width : 40%;
+	width : 100%;
+	border-bottom-style: groove;
+	border-bottom-color: navy;
+	border-bottom-width: medium;
 } 
+
 h3{
 	border-top-style: double;
 	border-top-color: purple;
 	border-bottom-style: double;
 	border-bottom-color : purple;
+	width : 100%;
 }
 #dateP{
 	padding : 5px;
-	width : 30%;
+	width : 100%;
 	float : left;
 	
 }
 #dateC{
 	padding : 5px;
-	widht : 50%;
+	widht : 100%;
 	float : left;
 }
 .block{
 	height : 100%;
+}
+p{
+	padding : 5px;
+	width : 100%;
+	float : left;
 }
 </style>
 </head>
@@ -235,18 +259,16 @@ h3{
 			<input type="text" readonly="readonly" id="datepickerFrom">~
 			<input type="text" readonly="readonly" id="datepickerTo">
 			<input type="button" id="dateFromTo" value="확인" class="btn btn-primary btn-xs" />
+			<br>
 		</div>
-		
-		
-		
-	<div id="chart_c"></div>	
+	<div id="chart_c">
+		<div id="chart_c_a" class="chart_c_a">
+		</div>
 	</div>	
-
 		
-	
-	
-	
-	
+		
+		
+	</div>	
 	
 	
 	</div>

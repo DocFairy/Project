@@ -243,7 +243,6 @@ public class AccountAction extends ActionSupport implements SessionAware{
 			System.out.println("gogoChart : " + dateFrom);
 			System.out.println("gogoChart : " + dateTo);
 			String memberno = (((Members)session.get("members")).getMemberno());
-
 			list = dao.fileListTerm(dateFrom, dateTo, memberno);		
 			ReadExcelDemo re = new ReadExcelDemo();			
 		System.out.println("gogoChart:"+list);	
