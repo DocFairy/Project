@@ -71,7 +71,7 @@
 
 
 			</aside>
-			문서양식
+			<p class="lead h3"> 문서 양식</p>
 			<div class="col-md-9 " style="padding: 5px;">
 				<ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" id="docSearch"
@@ -82,7 +82,6 @@
 				<div class="tab-content" style="padding: 5px;">
 					<div id="searchPage" class="tab-pane in active">
 						<div class='col-md-9 text-center'>
-									<form action="docFormSearch" >
 							<table>
 								<tr>
 										<td style='padding: 5px'><input type='text'
@@ -94,7 +93,6 @@
 										</td>
 								</tr>
 							</table>
-									</form>
 						</div>
 					</div>
 					<span id="imagelistspan">
@@ -141,7 +139,8 @@
 						</div>
 	
 	
-					<div id="createPage" class="tab-pane"></div>
+					</div>
+					<div id="createPage" class="tab-pane">
 					</div>
 				</div>
 
