@@ -33,9 +33,11 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	private String out;
 	private String note;
 	private Map<String, Object> session;
-	private String dateFrom;
-	private String dateTo;
-	
+	private int dateFrom;
+	private int dateTo;
+	private ArrayList<Double>firstDay;
+	private ArrayList<ArrayList>secondDay;
+	private ArrayList<String>outdate;
 	 int cloth = 0;
 	 int food = 0;
 	 int health = 0;
@@ -242,8 +244,47 @@ public class AccountAction extends ActionSupport implements SessionAware{
 			System.out.println("gogoChart : " + dateTo);
 			String memberno = (((Members)session.get("members")).getMemberno());
 
-			list = dao.fileListTerm(dateFrom, dateTo, memberno);
-			list = dao.fileList(date, memberno);
+			list = dao.fileListTerm(dateFrom, dateTo, memberno);		
+			ReadExcelDemo re = new ReadExcelDemo();			
+		System.out.println("gogoChart:"+list);	
+	        secondDay=new ArrayList<>();
+			outdate = new ArrayList<>();
+	        /* ArrayList<String> input = new ArrayList<>();
+	         ArrayList<String> out = new ArrayList<>();*/
+			 XSSFRow row = null; 
+			 XSSFCell cell = null;
+			 for(int i = 0; i < list.size() ; i++){
+				firstDay=new ArrayList<>();
+				String save_file = list.get(i).getSave_file();
+				
+				XSSFWorkbook workbook = re.copyChart(save_file);
+				XSSFSheet sheet = workbook.getSheetAt(0);
+				double p=0;
+				double e=0;
+				for(int t=5; t<54; t++){
+					row = sheet.getRow(t);
+					cell = row.getCell(4);
+					p+=cell.getNumericCellValue();
+					cell=row.getCell(5);
+					e+=cell.getNumericCellValue();	
+				}
+				firstDay.add(p);
+				firstDay.add(e);
+				row = sheet.getRow(5);
+				cell = row.getCell(2);
+				outdate.add(cell.getStringCellValue());
+				 secondDay.add(firstDay);
+			}
+			
+			 
+			 
+			 
+			 System.out.println(secondDay.get(0).get(0));
+			 System.out.println(secondDay.get(0).get(1));
+			 System.out.println(secondDay.get(1).get(0));
+			 System.out.println(secondDay.get(1).get(1));
+			 
+			System.out.println("gogoChart end : " + list);
 		return SUCCESS;
 	}
 	
@@ -355,18 +396,45 @@ public class AccountAction extends ActionSupport implements SessionAware{
 	public void setEx(int ex) {
 		this.ex = ex;
 	}
-	public String getDateFrom() {
+	public int getDateFrom() {
 		return dateFrom;
 	}
-	public void setDateFrom(String dateFrom) {
+	public void setDateFrom(int dateFrom) {
 		this.dateFrom = dateFrom;
 	}
-	public String getDateTo() {
+	public int getDateTo() {
 		return dateTo;
 	}
-	public void setDateTo(String dateTo) {
+	public void setDateTo(int dateTo) {
 		this.dateTo = dateTo;
 	}
+	
+
+
+	public ArrayList<Double> getFirstDay() {
+		return firstDay;
+	}
+	public void setFirstDay(ArrayList<Double> firstDay) {
+		this.firstDay = firstDay;
+	}
+	
+
+
+
+	
+	public ArrayList<ArrayList> getSecondDay() {
+		return secondDay;
+	}
+	public void setSecondDay(ArrayList<ArrayList> secondDay) {
+		this.secondDay = secondDay;
+	}
+	public ArrayList<String> getOutdate() {
+		return outdate;
+	}
+	public void setOutdate(ArrayList<String> outdate) {
+		this.outdate = outdate;
+	}
+	
 	
 	
 	

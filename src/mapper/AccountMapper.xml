@@ -6,6 +6,13 @@
 		select * from (select * from Files where FILETYPE = 'y') where save_file like #{date} || '%'
 	</select>
 	
+	<select id="fileListTerm" parameterType="Map" resultType="Files">
+		select * from (select * from files where save_fileno in(select save_fileno from 
+		(select to_number(SUBSTR(save_filename, 7, 8)) 
+		savedata,files.SAVE_FILENO save_fileno from files) 
+		where savedata between #{dateFrom} and #{dateTo})) where memberno = #{memberno} order by save_filename
+	</select>
+	
 	<delete id="fileDelete" parameterType="String">
 		delete from files where save_filename = #{file}
 	</delete>

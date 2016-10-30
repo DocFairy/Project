@@ -21,7 +21,7 @@ public class AccountDAO {
 		return result;
 	}
 	
-	public List<Files> fileListTerm(String dateFrom, String dateTo, String memberno){
+	public List<Files> fileListTerm(int dateFrom,int dateTo, String memberno){
 		List<Files> result = null;
 			Map<String,Object> map = new HashMap<String, Object>();
 			map.put("dateFrom", dateFrom);
