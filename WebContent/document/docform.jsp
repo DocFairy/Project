@@ -97,65 +97,53 @@
 									</form>
 						</div>
 					</div>
-				</div>
-				<br> <span id="imagelistspan">
-					<div id="imagelistdiv" class="panel row">
-						<s:iterator var="ImageFilenameConnector" value="imageList" >
-							<div style="float: left; width: 33%; padding: 5px;" class="row">
-								<a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
-									<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
-										class="imagePreview" /><br>
-								</a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
-										value="#ImageFilenameConnector.save_filename" />
-								</a>
-								<a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
-							</div>
-						</s:iterator>
-					</div>
-				</span>
-
-				<div class="col-md-6">
-					<%-- 		<table id="doctable">
-			<tr>
-				<th>번호</th><th>제목</th><th>글쓴이</th>
-				<s:iterator value="docFormList">
-					<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
-				</s:iterator>
-			</tr>
-			<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
-			</table> --%>
-					<br>
-					<div class="row" id="regularFormUpload">
-				<s:if test="#session.members.id!=null">
-					<s:if test="#session.members.id.equals('admin')">
-						<form action="insertfile_docform" method="post"
-							enctype="multipart/form-data">
-							<input type="hidden" name="files.filetype" value="f">
-							<!-- 문서타입: f(문서양식) -->
-							<input type="hidden" name="files.memberno"
-								value="${session.members.memberno}"> <label><input
-								id="buttons2" type="file" class="btn btn-custom" name="upload"
-								id="upfile"></label> <input type="submit"
-								class="update btn btn-custom" value="올리기">
-						</form>
+					<span id="imagelistspan">
+						<div id="imagelistdiv" class="panel row">
+							<s:iterator var="ImageFilenameConnector" value="imageList" >
+								<div style="float: left; width: 33%; padding: 5px;" class="row">
+									<a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
+										<img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
+											class="imagePreview" /><br>
+									</a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
+											value="#ImageFilenameConnector.save_filename" />
+									</a>
+									<a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
+								</div>
+							</s:iterator>
+						</div>
+					</span>
+					<div >
+						<%-- 		<table id="doctable">
+				<tr>
+					<th>번호</th><th>제목</th><th>글쓴이</th>
+					<s:iterator value="docFormList">
+						<tr><td><s:property value="save_fileno"/></td><td><s:a namespace="/document" action="fileshow?save_fileno=%{save_fileno}"><s:property value="save_filename"/></s:a></td><td><s:property value="memberno"/></td>
+					</s:iterator>
+				</tr>
+				<!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
+				</table> --%>
+						<br>
+						<div class="row" id="regularFormUpload">
+					<s:if test="#session.members.id!=null">
+						<s:if test="#session.members.id.equals('admin')">
+							<form action="insertfile_docform" method="post"
+								enctype="multipart/form-data">
+								<input type="hidden" name="files.filetype" value="f">
+								<!-- 문서타입: f(문서양식) -->
+								<input type="hidden" name="files.memberno"
+									value="${session.members.memberno}"> <label><input
+									id="buttons2" type="file" class="btn btn-custom" name="upload"
+									id="upfile"></label> <input type="submit"
+									class="update btn btn-custom" value="올리기">
+							</form>
+						</s:if>
 					</s:if>
-				</s:if>
+						</div>
+	
+	
+					<div id="createPage" class="tab-pane"></div>
 					</div>
-
-
-				<div id="createPage" class="tab-pane"></div>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 				<%-- <nav class="text-center">
