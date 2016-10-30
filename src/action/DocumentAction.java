@@ -54,7 +54,8 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private String msg;
 	private String filename_pdf;
 	private DocCustomizing aNewCreate;
-	private List<Files> createFiles;
+	private List<File> createFiles;
+	private ArrayList<String> createFileNames;
 	private String arr;
 	private String[] createList;
 	private String searchKeyword;
@@ -64,7 +65,13 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		System.out.println("length : " + arr);
 		System.out.println(aNewCreate.toString());
 		
-		new OpenExcelFile().createExcelDoc(aNewCreate, arr); //
+		createFiles = new OpenExcelFile().createExcelDoc(aNewCreate, arr); //
+//		System.out.println(createFiles.get(0).getName());
+//		System.out.println("size = " + createFiles.size());
+		createFileNames = new ArrayList<>();
+		for (int i = 0; i < createFiles.size(); i++) {
+			createFileNames.add(createFiles.get(i).getName());
+		}
 		return SUCCESS;
 	} // 공유시 데이터베이스에 업로드. public String docShare(){ return SUCCESS; }
 
@@ -586,11 +593,11 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public void setaNewCreate(DocCustomizing aNewCreate) { this.aNewCreate = aNewCreate;
 	  }
 	 
-	public List<Files> getCreateFiles() {
+	public List<File> getCreateFiles() {
 		return createFiles;
 	}
 
-	public void setCreateFiles(List<Files> createFiles) {
+	public void setCreateFiles(List<File> createFiles) {
 		this.createFiles = createFiles;
 	}
 
@@ -608,6 +615,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	public void setCreateList(String[] createList) {
 		this.createList = createList;
+	}
+
+	public ArrayList<String> getCreateFileNames() {
+		return createFileNames;
+	}
+
+	public void setCreateFileNames(ArrayList<String> createFileNames) {
+		this.createFileNames = createFileNames;
 	}
 
 	public ArrayList<ImageFilenameConnector> getImageList() {

@@ -25,8 +25,8 @@ import vo.Files;
 
 
 public class OpenExcelFile {
-	List<Files> files;
-	public List<Files> createExcelDoc(DocCustomizing object, String arr) throws Exception{
+	List<File> files;
+	public List<File> createExcelDoc(DocCustomizing object, String arr) throws Exception{
 		files = new ArrayList<>();
 		File xlsxFile = null;
 		FileInputStream fis = null;
@@ -93,13 +93,16 @@ public class OpenExcelFile {
 				}
 				 FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 				 workbook1.write(fileOut);
+				 files.add(new File("C:/Users/lg/Desktop/기본파일/거래명세서.xlsx"));
 				System.out.println("거래명세서 Done");
 			}else if(DocCustomizing.CORPORATE_CARD == number){
 				//딱히 바꿀 부분이 없음...
 				System.out.println("법인카드사용내역서");
+				 files.add(new File("C:/Users/lg/Desktop/기본파일/법인카드사용내역서.xlsx"));
+				
 			}else if(DocCustomizing.TAX_INVOICE == number){
 //				System.out.println("세금계산서 바꾸기");
-				xlsxFile = new File("C:/Users/lg/Desktop/account/세금계산서.xlsx");
+				xlsxFile = new File("C:/Users/lg/Desktop/기본파일/세금계산서.xlsx");
 				fis = new FileInputStream(xlsxFile);
 				workbook1 = new XSSFWorkbook(fis);
 				sheet = new ArrayList<>();
@@ -116,13 +119,17 @@ public class OpenExcelFile {
 				
 				FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 				workbook1.write(fileOut);
+				files.add(new File("C:/Users/lg/Desktop/기본파일/세금계산서.xlsx"));
 				System.out.println("세금계산서 Done");
 			}else if(DocCustomizing.BUYER_MANAGEMENT == number){
-				
+				files.add(new File("C:/Users/lg/Desktop/기본파일/거래처관리대장.xlsx"));
+				System.out.println("거래처관리대장");
 			}else if(DocCustomizing.UNPAYMENT_STATUS == number){
-				
+				files.add(new File("C:/Users/lg/Desktop/기본파일/거래처별미수현황표.xlsx"));
+				System.out.println("거래처별미수현황표");
 			}else if(DocCustomizing.EXPENSE_ACCOUNT == number){
-				
+				files.add(new File("C:/Users/lg/Desktop/기본파일/일반경비내역서.xlsx"));
+				System.out.println("일반경비내역서");
 			}
 		}
 		return files;

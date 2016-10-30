@@ -52,7 +52,7 @@ function createObject(){
 		address.select();
 		return false;
 	}
-	if(phoneNumber.val().trim().length < 1 || isNaN(phoneNumber.val())){
+	if(phoneNumber.val().trim().length < 1){
 		alert("전화번호 확인!");
 		phoneNumber.focus();
 		phoneNumber.select();
@@ -91,7 +91,15 @@ $(function(){
 					dataType : 'json',
 					success : function(response){
 						alert('success');
-						cleanInput();
+						$.each(response, function(i, data){
+							if(i=='createFileNames'){
+								$.each(data, function(i, item){
+									str += '<li>' + item + '</li>';
+								});
+								$("#nameList").append(str);
+							}
+						});
+//						cleanInput();
 					}, error : function(){
 						alert('error');
 					}
@@ -143,7 +151,7 @@ $(function(){
 							str += "</table>";
 						}
 					});
-				$("#createPage").append(str);
+					$("#createPage").append(str);
 				},
 				error : function(){
 					alert('error');
