@@ -82,6 +82,7 @@
             <div class="tab-content" style="padding: 5px;">
                <div id="searchPage" class="tab-pane in active">
                   <div class='col-md-9 text-center'  id="searchPageSearchText">
+                  	<form action="docFormSearch">
                      <table>
                         <tr>
                               <td style='padding: 5px'><input type='text'
@@ -93,6 +94,7 @@
                               </td>
                         </tr>
                      </table>
+                  	</form>
                   </div>
                   <span id="imagelistspan">
                   <div id="imagelistdiv" class="panel row">

@@ -83,7 +83,7 @@ $(function(){
       //$("#createModal").modal({backdrop:"static"});
    });
        $('#searchPage').on("click",".searchBtn",function(){
-           alert($("#searchKeyword").val());
+        
         });
       
       $("#createPage").on("click",".createBtn",function(){
