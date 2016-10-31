@@ -71,4 +71,8 @@ public class DocumentDAO {
 		}
 		return returner;
 	}
+	public List<Files> selectword(String memberno) {
+		
+		return sqlSession.selectList("mapper.DocumentMapper.selectword", memberno);
+	}
 }

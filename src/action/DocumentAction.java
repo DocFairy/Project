@@ -279,6 +279,13 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	public String insertword() throws Exception {
 
+		if(uploadFileName.contains(".docx") == false){
+	
+			msg = "docx형식의 문서를 올려주셔야 됩니다";
+			return "error";
+			
+		}
+		
 		if (upload != null) {
 			FileService fs = new FileService();
 			String basePath = "C:/upload"; // user.properties에 지정된 파일 저장 경로
@@ -444,8 +451,6 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 public String changefile() throws Exception {
 		
-		System.out.println(uploadFileName);
-		
 		if(uploadFileName.equals("1.docx,")){ 		//거래처별 현황 처리하는 메소드
 			
 		String[] array = uploadFileName.split(",");
@@ -530,7 +535,7 @@ public String changefile() throws Exception {
 
 	public String doctransform() throws Exception {
 		DocumentDAO dd = new DocumentDAO();
-		list = dd.selectfile(((Members) session.get("members")).getMemberno());
+		list = dd.selectword(((Members) session.get("members")).getMemberno());
 		return "success";
 
 	}

@@ -230,10 +230,9 @@ div#buttons {
 
 						<div class="form-group">
 							<select class="form-control" name="files.filetype" id="sel">
-								<option value="tax">세금계산서</option>
-								<option value="cost">거래명세표</option>
-								<option value="mada">거래처별 미수현황표</option>
-								<option value="card">법인카드 사용내역서</option>
+								<option value="docx">거래처별 현황</option>
+								<option value="docx">거래처별 미수현황표</option>
+								<option value="docx">경비사용내역</option>
 							</select>
 						</div>
 					 <input type="file" id="upfile" name="upload">
@@ -287,21 +286,7 @@ div#buttons {
 <!-- 				</tr> -->
 <!-- 			</table> -->
 			
-			<div class="row">
-				<div class="col-sm-12 col-md-6 section-content animatedParent animateOnce">
-					<img src="${pageContext.request.contextPath}/images/fairy.jpg" class="img-responsive  animated fadeIn" alt="">
-				</div>
-				<div class="col-sm-12 col-md-6 section-content">
-					<h3><strong>문서변환을 제공합니다 !</strong> </h3>
-					<p><strong>DocFairy</strong>는 <strong>Word</strong>를 <strong>Excel</strong>로 변환해주는 기능을 가지고 있습니다</p>
-					<p><strong>DocFairy</strong>가 제공하는 <strong>Word</strong> 양식에 데이터를 입력해주시면</p>
-					<p><strong>Word</strong>를 <strong>Excel</strong>로 변환해드립니다</p>
-					<p><strong>DocFairy</strong>와 함께 문서변환의 정수를 느껴보십시오 ! </p>
-					<p>&nbsp;</p>
-					<button type="button" class="btn btn-primary btn-lg btn-block">더 읽기</button>
-				</div>
-			</div>
-
+			
 <!-- 			<ul class="pagination"> -->
 
 <%-- 				<li><a href="#" aria-label="Previous"> <span --%>
