@@ -81,7 +81,7 @@
             </ul>
             <div class="tab-content" style="padding: 5px;">
                <div id="searchPage" class="tab-pane in active">
-                  <div class='col-md-9 text-center'>
+                  <div class='col-md-9 text-center'  id="searchPageSearchText">
                      <table>
                         <tr>
                               <td style='padding: 5px'><input type='text'
