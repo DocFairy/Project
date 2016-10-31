@@ -173,7 +173,7 @@ goMakeAccount{
 <input type="hidden" name="date" id="date">
 			<table border="1" id="entire">
 				<tr>
-				<th class="filename">옮기기</th>
+				<th class="filename">다운로드</th>
 				<th class="filename" width="200">파일명</th>
 				<th class="filename" width="70">삭제</th>
 				</tr>
