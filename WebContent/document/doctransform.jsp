@@ -192,9 +192,7 @@ div#buttons {
 				</div>
 			</div>
 			
-			
-			
-			<div class="col-md-4">
+			<div class="col-md-4" >
 			<h1 id="stitle1" align="center">선택된 워드</h1>
 				<table id="check" border="1" class="table">
 					<tr>
@@ -202,12 +200,8 @@ div#buttons {
 					</tr>
 				</table>
 			</div>
-			
-			
-			
-			
-
-			<div id="buttons">
+	
+			<div id="buttons" >
 				<input type="hidden" name="msg" value="${msg}" id="msg">
 
 				<!-- 				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()"> -->
@@ -223,10 +217,8 @@ div#buttons {
 				<!-- 				</form> -->
 				<form action="insertword" method="post"
 					enctype="multipart/form-data" onsubmit="return formcheck()">
-					
-					<section>
 						<div id="container">
-						<h1 id="stitle3">문서변환</h1>
+						<h1>문서변환</h1>
 
 						<div class="form-group">
 							<select class="form-control" name="files.filetype" id="sel">
@@ -240,14 +232,7 @@ div#buttons {
 					 <input type="submit" value="올리기" class="btn btn-primary">
 					 <input id="change" type="button" value="변환" class="btn btn-primary">
 					 </div>
-					</section>
 					
-					
-					
-					
-					
-					
-
 <%-- 					<select name="files.filetype" id="sel"> --%>
 <!-- 						<option value="tax">세금계산서</option> -->
 <!-- 						<option value="cost">거래명세표</option> -->
