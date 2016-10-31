@@ -107,11 +107,34 @@
 </script>
 
 <style type="text/css">
+div#buttons {
+	
+	margin-top:200px;
+}
 
-#container{
-	  width:500px;
-	  margin:auto;
-	}
+.arang {
+	float: left;
+}
+
+.arang input {
+	display: inline-block;
+	height: 50px;
+}
+
+.row .row {
+	/* background-image: url('${pageContext.request.contextPath}/images/images.png');
+		background-repeat:no-repeat; */
+	
+}
+.col-md-3 sidebar{
+	border:1px solid black;
+}
+
+#container {
+	width: 300px;
+	margin: auto;
+	margin-right:100px;
+}
 
 </style>
 </head>
@@ -137,6 +160,50 @@
 					</nav>
 				</div>
 			</aside>
+			
+			<div class="col-md-4">
+				<div class="card">
+
+					<div class="card-content table-responsive">
+						<h1 id="stitle1" align="center">문서 리스트</h1>
+						<table border="1" id="entire" class="table">
+						
+							<tr>
+
+								<th class="filename" width="70">옮기기</th>
+								<th class="filename" width="200">파일명</th>
+								<th class="filename" width="70">삭제</th>
+							</tr>
+
+							<s:iterator value="list">
+								<tr>
+									<td class="filename"><input type="button"
+										class="checked btn btn-primary" value="선택"></td>
+									<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+												value="save_filename" /></a></td>
+									<td class="filename"><input type="button"
+										class="del btn btn-primary" value="삭제"></td>
+								</tr>
+							</s:iterator>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			<div class="col-md-4">
+			<h1 id="stitle1" align="center">선택된 워드</h1>
+				<table id="check" border="1" class="table">
+					<tr>
+						<th class="filename" width="500">선택된 워드명</th>
+					</tr>
+				</table>
+			</div>
+			
+			
+			
+			
 
 			<div id="buttons">
 				<input type="hidden" name="msg" value="${msg}" id="msg">
@@ -189,34 +256,34 @@
 					
 				</form>
 			</div>
-			<br>
-			<br><br>
-			<table border="1" id="entire">
-			<h1 id="stitle1" align="center">문서리스트</h1>
-				<tr>
-					<th>옮기기</th>
-					<th class="filename" width="200">파일명</th>
-					<th class="filename" width="70">삭제</th>
-				</tr>
-				<s:iterator value="list">
-					<tr>
-						<td class="filename"><input type="button" class="checked btn btn-primary"
-							value="선택"></td>
-						<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
-									value="save_filename" /></a></td>
-						<td class="filename"><input type="button" class="del btn btn-primary"
-							value="삭제" ></td>
-					</tr>
-				</s:iterator>
-			</table>
+			
+			
+<!-- 			<table border="1" id="entire"> -->
+<!-- 			<h1 id="stitle1" align="center">문서리스트</h1> -->
+<!-- 				<tr> -->
+<!-- 					<th>옮기기</th> -->
+<!-- 					<th class="filename" width="200">파일명</th> -->
+<!-- 					<th class="filename" width="70">삭제</th> -->
+<!-- 				</tr> -->
+<%-- 				<s:iterator value="list"> --%>
+<!-- 					<tr> -->
+<!-- 						<td class="filename"><input type="button" class="checked btn btn-primary" -->
+<!-- 							value="선택"></td> -->
+<%-- 						<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property --%>
+<%-- 									value="save_filename" /></a></td> --%>
+<!-- 						<td class="filename"><input type="button" class="del btn btn-primary" -->
+<!-- 							value="삭제" ></td> -->
+<!-- 					</tr> -->
+<%-- 				</s:iterator> --%>
+<!-- 			</table> -->
 			
 			<!-- 여기서 -->
 			
-			<table id="check" border="1" align="center">
-				<tr>
-					<th class="filename" width="85" >선택된파일</th>
-				</tr>
-			</table>
+<!-- 			<table id="check" border="1" align="center"> -->
+<!-- 				<tr> -->
+<!-- 					<th class="filename" width="85" >선택된파일</th> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
 			
 			<div class="row">
 				<div class="col-sm-12 col-md-6 section-content animatedParent animateOnce">

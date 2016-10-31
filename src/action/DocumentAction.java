@@ -30,6 +30,10 @@ import excel.OpenExcelFile;
 import excel.PathSaver;
 import excel.ReadExcelDemo;
 import excel.ReadWord;
+import excel.TorihikiWordRead;
+import excel.TorihikiWordWrite;
+import excel.UchiwakeWordRead;
+import excel.UchiwakeWordWrite;
 import vo.DocCustomizing;
 import vo.Files;
 import vo.ImageFilenameConnector;
@@ -432,19 +436,23 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		return "success";
 	}
 
-	public String changefile() throws Exception {
-		System.out.println("찍히는건가");
+public String changefile() throws Exception {
+		
+		System.out.println(uploadFileName);
+		
+		if(uploadFileName.equals("1.docx,")){ 		//거래처별 현황 처리하는 메소드
+			
 		String[] array = uploadFileName.split(",");
-		System.out.println(array);
-
+		
 		DocumentDAO dd = new DocumentDAO();
+		
 		String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
-
+		
 		System.out.println(save_filename);
-
+		
 		ReadWord rw = new ReadWord();
 		// ReadWord.readDocFile(save_filename);
-
+		
 		ArrayList<String[]> room = new ArrayList<>();
 
 		room = rw.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
@@ -452,10 +460,59 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ExcelReadWrite erw = new ExcelReadWrite();
 
 		erw.write(room);
+		
+		
+		}else if(uploadFileName.equals("2.docx,")){		//거래처별 미수현황표 처리하는 메소드
+			
+			System.out.println("들어오나?");
+			
+			String[] array = uploadFileName.split(",");
+			
+			DocumentDAO dd = new DocumentDAO();
+			
+			String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
+			
+			System.out.println(save_filename);
+			
+			TorihikiWordRead twr = new TorihikiWordRead();
+			
+			ArrayList<String[]> room = new ArrayList<>();
+			
+			room = twr.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
+			
+			TorihikiWordWrite tww = new TorihikiWordWrite();
+			
+			tww.write(room);
+			
+			
+		}else if(uploadFileName.equals("3.docx,")){		//경비사용내역 처리하는 메소드
+			
+			System.out.println("3.docx, 들어오나?");
+			
+			String[] array = uploadFileName.split(",");
+			
+			DocumentDAO dd = new DocumentDAO();
+			
+			String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
+			
+			System.out.println(save_filename);
+			
+			UchiwakeWordRead uwr = new UchiwakeWordRead();
+			
+			ArrayList<String[]> room = new ArrayList<>();
+			
+			room = uwr.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
+			
+			UchiwakeWordWrite uww = new UchiwakeWordWrite();
+			
+			uww.write(room);
+			
+		}
 
 		return "success";
 
 	}
+
 
 	public String doctransform() throws Exception {
 		DocumentDAO dd = new DocumentDAO();
