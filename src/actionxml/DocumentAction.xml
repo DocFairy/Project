@@ -17,6 +17,9 @@
 		</action>
 		<action name="doctransform" class="action.DocumentAction"
 			method="doctransform">
+			<interceptor-ref name="LoginIntercepterStack" />
+			<result name="success">/document/docintegrate.jsp</result>
+			<result name="login">/login.jsp</result>
 			<result>/document/doctransform.jsp</result>
 		</action>
 
