@@ -56,7 +56,7 @@
 						$("#entire").append('<tr><td>'
 								+ '<center><a href="accountDownload?save_fileno=' +item.save_fileno+ '">다운로드</a></center>'
 								+ '</td><td><center>' + item.save_filename +'</center>' 
-								+ '</td><td>' + '<center><input type="button" value="삭제" class="delt btn btn-custom"></center>'
+								+ '</td><td>' + '<center><input type="button" value="삭제" class="delt btn btn-primary"></center>'
 								+'</td></tr>'
 							);
 					});
@@ -64,7 +64,7 @@
 						$("#entire tr:not(:first)").remove();
 						alert('가계부 파일이 없습니다');
 						$("#entire").append(
-							' <tr> <td> </td> <td> <center><input type="button" class="goMakeAccount btn btn-success" value="가계부만들기"></center> </td> ' 
+							' <tr> <td> </td> <td> <center><input type="button" class="goMakeAccount btn btn-primary" value="가계부만들기"></center> </td> ' 
 						+ ' <td> </td> </tr></form>'	
 						);
 					}
@@ -130,8 +130,9 @@ th{
 	magin-right : 0;
 	padding : 5px;
 	width : 500px;
-	background-color : violet;
-	color : "red";
+	height : 50px;
+	background-color : #af2045;
+	color : white;
 	text-align: center;
 }
 goMakeAccount{
