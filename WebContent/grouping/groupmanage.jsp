@@ -85,7 +85,7 @@
 			<h1 id="stitle">그룹관리</h1>
 			<s:if test="#session.members.groupno==null">
 			<center>나만의 그룹을 만들어보세요!<br><br>
-			<input type="button" value="그룹 만들기" id="create" class="btn btn-success">
+			<input type="button" value="그룹 만들기" id="create" class="btn btn-custom">
 			</center>
 			<div id="add"></div>
 			</s:if>

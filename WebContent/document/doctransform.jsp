@@ -104,12 +104,22 @@
 
 		// url = changefile
 
-		// 
+		//
+		
+		$("#help").on('click',function(){
+			alert('1. 올릴 파일의 유형을 선택하고 파일을 업로드하세요. 파일이 문서 리스트에 업로드됩니다. \n\r2. 문서 리스트에서 변환할 파일이 있는 줄의 왼쪽 "옮기기"버튼을 누르세요. 파일이 선택된 선택된 워드로 복사됩니다. \n\r3. 선택된 워드에 변환할 파일이 올라가면, 변환 버튼을 클릭하세요.\n\r ※ 본 홈페이지에서 받은 문서 양식을 사용해주세요!');
+		});
 
 	});
 </script>
 
 <style type="text/css">
+
+th{
+color:white;
+background-color:#af2045;
+}
+
 div#buttons {
 	
 	margin-top:200px;
@@ -139,6 +149,15 @@ div#buttons {
 	margin-right:100px;
 }
 
+.pagination{
+padding-top:130px;
+position:absolute;
+margin-left:100px;
+}
+
+#help{
+float:left;
+}
 </style>
 </head>
 
@@ -164,9 +183,11 @@ div#buttons {
 				</div>
 			</aside>
 			
+			<h1 id="stitle">문서 변환</h1><a id="help">도움말</a><br>
+			
 			<div class="col-md-4">
 				<div class="card">
-
+					
 					<div class="card-content table-responsive">
 						<h1 id="stitle1" align="center">문서 리스트</h1>
 						<table border="1" id="entire" class="table">
@@ -194,7 +215,7 @@ div#buttons {
 			
 			
 			
-			<div class="col-md-4">
+			<div class="col-md-4" >
 			<h1 id="stitle1" align="center">선택된 워드</h1>
 				<table id="check" border="1" class="table">
 					<tr>
@@ -202,12 +223,8 @@ div#buttons {
 					</tr>
 				</table>
 			</div>
-			
-			
-			
-			
-
-			<div id="buttons">
+	
+			<div id="buttons" >
 				<input type="hidden" name="msg" value="${msg}" id="msg">
 
 				<!-- 				<form action="insertfile" method="post" enctype="multipart/form-data" onsubmit="return formcheck()"> -->
@@ -223,32 +240,23 @@ div#buttons {
 				<!-- 				</form> -->
 				<form action="insertword" method="post"
 					enctype="multipart/form-data" onsubmit="return formcheck()">
-					
-					<section>
 						<div id="container">
-						<h1 id="stitle3">문서변환</h1>
+						<h1 align="left">워드 파일 업로드 / 변환</h1>
 
 						<div class="form-group">
-							<select class="form-control" name="files.filetype" id="sel">
-								<option value="tax">세금계산서</option>
-								<option value="cost">거래명세표</option>
-								<option value="mada">거래처별 미수현황표</option>
-								<option value="card">법인카드 사용내역서</option>
+							<select name="files.filetype" id="sel">
+								<option value="docx">거래처별 현황</option>
+								<option value="docx">거래처별 미수현황표</option>
+								<option value="docx">경비사용내역</option>
 							</select>
 						</div>
 					 <input type="file" id="upfile" name="upload">
 					 <input type="hidden" name="files.memberno" value="${session.members.memberno}">
+					 <br>
 					 <input type="submit" value="올리기" class="btn btn-primary">
 					 <input id="change" type="button" value="변환" class="btn btn-primary">
 					 </div>
-					</section>
 					
-					
-					
-					
-					
-					
-
 <%-- 					<select name="files.filetype" id="sel"> --%>
 <!-- 						<option value="tax">세금계산서</option> -->
 <!-- 						<option value="cost">거래명세표</option> -->
@@ -287,21 +295,7 @@ div#buttons {
 <!-- 				</tr> -->
 <!-- 			</table> -->
 			
-			<div class="row">
-				<div class="col-sm-12 col-md-6 section-content animatedParent animateOnce">
-					<img src="${pageContext.request.contextPath}/images/fairy.jpg" class="img-responsive  animated fadeIn" alt="">
-				</div>
-				<div class="col-sm-12 col-md-6 section-content">
-					<h3><strong>문서변환을 제공합니다 !</strong> </h3>
-					<p><strong>DocFairy</strong>는 <strong>Word</strong>를 <strong>Excel</strong>로 변환해주는 기능을 가지고 있습니다</p>
-					<p><strong>DocFairy</strong>가 제공하는 <strong>Word</strong> 양식에 데이터를 입력해주시면</p>
-					<p><strong>Word</strong>를 <strong>Excel</strong>로 변환해드립니다</p>
-					<p><strong>DocFairy</strong>와 함께 문서변환의 정수를 느껴보십시오 ! </p>
-					<p>&nbsp;</p>
-					<button type="button" class="btn btn-primary btn-lg btn-block">더 읽기</button>
-				</div>
-			</div>
-
+			
 <!-- 			<ul class="pagination"> -->
 
 <%-- 				<li><a href="#" aria-label="Previous"> <span --%>

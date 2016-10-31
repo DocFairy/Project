@@ -55,7 +55,7 @@
 						<div class="title" data-swiper-parallax="-100" data-animation="fadeInDownBig">통합 문서 관리</div>
 						<div class="subtitle" data-swiper-parallax="-200" data-animation="fadeIn">Doc Fairy는 매일매일의 결산 기록을 입력하시면 그것을 통합 문서로 제공합니다.</div>
 						<div class="text" data-swiper-parallax="-300" data-animation="fadeInUpBig">
-							<a href="card.html" class="btn btn-custom btn-lg">기능 더 알아보기</a>
+							<a href="${pageContext.request.contextPath}/document/docintegrate" class="btn btn-custom btn-lg">바로 가기</a>
 						</div>
 					</div>
 				</div>
@@ -64,16 +64,16 @@
 						<div class="title" data-swiper-parallax="-100" data-animation="fadeInDownBig">그룹핑 제공</div>
 						<div class="subtitle" data-swiper-parallax="-200" data-animation="fadeIn">사원들끼리 회사에 맞는 문서의 양식을 공유하세요!</div>
 						<div class="text" data-swiper-parallax="-300" data-animation="fadeInUpBig">
-							<a href="card.html" class="btn btn-custom btn-lg">기능 더 알아보기</a>
+							<a href="${pageContext.request.contextPath}/grouping/groupmanage" class="btn btn-custom btn-lg">바로 가기</a>
 						</div>
 					</div>
 				</div>
 				<div class="swiper-slide">
 					<div class="swiper-caption">
 						<div class="title" data-swiper-parallax="-100" data-animation="fadeInDownBig">가계부를 한눈에</div>
-						<div class="subtitle" data-swiper-parallax="-200" data-animation="fadeIn">거래내역이 들어있는 가계부를 올리시면 표와 그래프로 한눈에 보기 쉽게 정리해드립니다.</div>
+						<div class="subtitle" data-swiper-parallax="-200" data-animation="fadeIn">웹 상에서 간단하게 가계부를 작성하고, 수입/지출 내역을 그래프로 확인하세요!</div>
 						<div class="text" data-swiper-parallax="-300" data-animation="fadeInUpBig">
-							<a href="card.html" class="btn btn-custom btn-lg">기능 더 알아보기</a>
+							<a href="${pageContext.request.contextPath}/account/calendar" class="btn btn-custom btn-lg">바로 가기</a>
 						</div>
 					</div>
 				</div>
