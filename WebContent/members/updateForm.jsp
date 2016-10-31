@@ -11,14 +11,14 @@
 	<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-	<link rel="shortcut icon" href="images/favicon.ico" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/animate.css" />
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<script src="javascript/pace.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/animate.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
+	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript">
 		function goHancok(){
 			var password = document.getElementById('password').value;
@@ -57,8 +57,8 @@
 			</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="javascript/script.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 </body>
 
 </html>
