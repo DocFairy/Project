@@ -6,7 +6,7 @@
 insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename},#{memberno},#{filetype},null)
 </insert>
 <select id="selectfile" resultType="Files" parameterType="String">
-select * from files where memberno=#{memberno} order by save_fileno
+select * from files where memberno=#{memberno} and filetype != 'docx' order by save_fileno
 </select>
 <select id="selectfileone" resultType="Files" parameterType="String">
 select * from files where save_fileno=#{save_fileno}
