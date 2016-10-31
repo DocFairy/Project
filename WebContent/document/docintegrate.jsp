@@ -239,7 +239,7 @@ margin-left:100px;
 
 								<select class="form-control" name="files.filetype" id="sel">
 									<option value="y">가계부</option>
-									<option value="cost">거래명세표</option>
+									<option value="cost">거래명세서</option>
 									<option value="uum">지급어음명세서</option>
 									<option value="left">재고관리대장</option>
 								</select>
