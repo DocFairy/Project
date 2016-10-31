@@ -130,6 +130,8 @@ position:absolute;
 margin-left:100px;
 }
 
+
+
 /* th{ */
 /* 	background-color: skyblue; */
 /* 	border: 1px solid black; */
@@ -176,7 +178,7 @@ margin-left:100px;
 				<div class="card">
 
 					<div class="card-content table-responsive">
-						<h1 id="stitle1" align="center">문서 리스트</h1>
+						<h3 id="stitle1" align="center">문서 리스트</h3>
 						<table border="1" id="entire" class="table">
 						
 							<tr>
@@ -214,7 +216,7 @@ margin-left:100px;
 			</ul>  --%>
 			</div>
 			<div class="col-md-4">
-			<h1 id="stitle1" align="center">선택된 파일 리스트</h1>
+			<h3 id="stitle1" align="center">선택된 파일 리스트</h3>
 				<table id="checktable" border="1" class="table">
 					<tr>
 						<th class="filename" width="500">선택된 파일명</th>
@@ -234,7 +236,7 @@ margin-left:100px;
 					enctype="multipart/form-data" onsubmit="return formcheck()">
 					<section>
 						<div id="container">
-							<h1 id="stitle3">통합문서 만들기</h1>
+							<h3>통합문서 만들기</h3>
 							<div class="form-group">
 
 								<select class="form-control" name="files.filetype" id="sel">
