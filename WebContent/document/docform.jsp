@@ -105,6 +105,12 @@
                                  value="#ImageFilenameConnector.save_filename" />
                            </a>
                            <a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
+                           <s:if test="#session.members.id!=null">
+									<s:if test="#session.members.id.equals('admin')">
+									
+									<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
+								</s:if>
+							</s:if>
                         </div>
                      </s:iterator>
                   </div>

@@ -42,7 +42,14 @@ public class DocumentDAO {
 		 List<Files> returner = session.selectList("mapper.DocumentMapper.primaryDocList",null);
 		 return returner;
 	 }
-
+	public void docFormDeleteF(String save_fileno) {
+		SqlSession session = sessionFactory.openSession();
+		session.delete("mapper.DocumentMapper.docFormDeleteF", save_fileno);
+		session.commit();
+		if(session!=null){
+			session.close();
+		}
+	}
 	 public Files fileshow(String save_fileno) { //fileshow.jsp로 페이지이동하면서, 해당파일정보를 가져옴
 		SqlSession session = sessionFactory.openSession();
 		 Files returner = session.selectOne("mapper.DocumentMapper.selectfileone",save_fileno);

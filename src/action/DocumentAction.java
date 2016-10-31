@@ -117,7 +117,13 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	      return "success";
 	}
-	
+	public String docFormDeleteF() throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		System.out.println("docFormDeleteF(): "+save_fileno);
+		dd.docFormDeleteF(save_fileno);
+		
+		return "success";
+	}
 	public String docFormSearch() throws Exception{
 		System.out.println("docFormSearch():"+searchKeyword);
 		DocumentDAO dao = new DocumentDAO();

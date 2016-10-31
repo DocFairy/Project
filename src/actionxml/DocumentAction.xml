@@ -90,5 +90,9 @@
 		<action name="docFormSearch" class="action.DocumentAction" method="docFormSearch">
 			<result>/document/docformsearch.jsp</result>
 		</action>
+		<action name="docFormDeleteF" class="action.DocumentAction" method="docFormDeleteF">
+			<result>/document/docform.jsp</result>
+		</action>
+		
 	</package>
 </struts>

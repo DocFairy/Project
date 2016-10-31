@@ -26,5 +26,8 @@ select * from files where save_filename like '%' || #{searchKeyword} || '%' and 
 <select id="calltype" resultType="String" parameterType="String">
 	select filetype from files where save_filename=#{save_filename}
 </select>
+<delete id="docFormDeleteF" parameterType="String">
+	delete from files where save_fileno=#{save_fileno} and filetype='f'
+</delete>
 
 </mapper>
