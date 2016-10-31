@@ -185,7 +185,7 @@ float:left;
 			<h1 id="stitle">문서 통합</h1><a id="help">도움말</a>
 			<div class="col-md-4">
 				<div class="card">
-
+					
 					<div class="card-content table-responsive">
 						<h3 id="stitle1" align="center">문서 리스트</h3>
 						<table border="1" id="entire" class="table">
@@ -196,7 +196,7 @@ float:left;
 								<th class="filename" width="200">파일명</th>
 								<th class="filename" width="70">삭제</th>
 							</tr>
-
+							
 							<s:iterator value="list">
 								<tr>
 									<td class="filename"><input type="button"
