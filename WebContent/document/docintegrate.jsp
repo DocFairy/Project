@@ -59,6 +59,10 @@ div#buttons {
 .col-md-3 sidebar{
 	border:1px solid black;
 }
+th{
+color:white;
+background-color:#af2045;
+}
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript"
