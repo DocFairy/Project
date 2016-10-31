@@ -464,8 +464,10 @@ public String changefile() throws Exception {
 		room = rw.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
 
 		ExcelReadWrite erw = new ExcelReadWrite();
-
-		erw.write(room);
+		
+		integrate = erw.write(room);
+		
+		System.out.println(integrate);
 		
 		
 		}else if(uploadFileName.equals("2.docx,")){		//거래처별 미수현황표 처리하는 메소드
@@ -488,7 +490,10 @@ public String changefile() throws Exception {
 			
 			TorihikiWordWrite tww = new TorihikiWordWrite();
 			
-			tww.write(room);
+			integrate = tww.write(room);
+			
+			System.out.println(integrate);
+
 			
 			
 		}else if(uploadFileName.equals("3.docx,")){		//경비사용내역 처리하는 메소드
@@ -511,7 +516,10 @@ public String changefile() throws Exception {
 			
 			UchiwakeWordWrite uww = new UchiwakeWordWrite();
 			
-			uww.write(room);
+			integrate = uww.write(room);
+			
+			System.out.println(integrate);
+
 			
 		}
 

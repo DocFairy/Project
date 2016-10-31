@@ -18,7 +18,7 @@ public class FileDownloadAction extends ActionSupport {
 	private InputStream inputStream;
 	private long contentLength;
 	private String integrate;
-	
+	private String fname;
 	public String execute() {
 		try {
 			String savedfile = null;
@@ -28,7 +28,11 @@ public class FileDownloadAction extends ActionSupport {
 			Files files=new DocumentDAO().selectfileone(save_fileno);//해당 번호의 Board객체
 		    savedfile = files.getSave_file();					//서버에 저장된 파일명
 			originalfile = files.getSave_filename();
-			}else{
+			}else if(fname!=null){
+				savedfile=integrate;//원래 파일명
+				originalfile=fname+".xlsx";
+			}
+			else{
 				savedfile=integrate;//원래 파일명
 				originalfile="integrate.xlsx";
 			}
@@ -46,6 +50,7 @@ public class FileDownloadAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+	
 
 
 
@@ -97,6 +102,20 @@ public class FileDownloadAction extends ActionSupport {
 
 	public void setIntegrate(String integrate) {
 		this.integrate = integrate;
+	}
+
+
+
+
+	public String getFname() {
+		return fname;
+	}
+
+
+
+
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
 	
 }

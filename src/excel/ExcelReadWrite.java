@@ -128,7 +128,7 @@ public class ExcelReadWrite {
 	//
 	// }
 
-	public void write(ArrayList<String[]> room) {
+	public String write(ArrayList<String[]> room) {
 		
 			System.out.println("왜 안들어오징");
 		
@@ -690,13 +690,13 @@ public class ExcelReadWrite {
 
 			FileOutputStream fileOut = new FileOutputStream(file);
 			wb.write(fileOut);
-
+			return "1.xlsx";
 		} catch (FileNotFoundException fe) {
 			System.out.println("FileNotFoundException >> " + fe.toString());
 		} catch (IOException ie) {
 			System.out.println("IOException >> " + ie.toString());
 		}
-
+		return null;
 	}
 
 }

@@ -70,6 +70,9 @@
 				.on(
 						'click',
 						function() {
+							var fname = $("#check .add").eq(0).children().first()
+							.text();
+							alert(fname);
 							var alist = "";
 							if ($("#check .add").eq(0).children().first()
 									.text() == "") {
@@ -91,7 +94,7 @@
 									$("#buttons").append(
 											'<a href="fileDownload?integrate='
 													+ response.integrate
-													+ '">다운로드</a>');
+													+ '&fname='+fname+'">다운로드</a>');
 									$("#change").off();
 								}
 							});
@@ -169,7 +172,6 @@ div#buttons {
 						<table border="1" id="entire" class="table">
 						
 							<tr>
-
 								<th class="filename" width="70">옮기기</th>
 								<th class="filename" width="200">파일명</th>
 								<th class="filename" width="70">삭제</th>

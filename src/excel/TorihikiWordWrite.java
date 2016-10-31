@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class TorihikiWordWrite {
 
-	public void write(ArrayList<String[]> room) {
+	public String write(ArrayList<String[]> room) {
 		
 		
 		
@@ -709,12 +709,13 @@ public class TorihikiWordWrite {
 
 			FileOutputStream fileOut = new FileOutputStream(file);
 			wb.write(fileOut);
-
+			return "2.xlsx";
 		} catch (FileNotFoundException fe) {
 			System.out.println("FileNotFoundException >> " + fe.toString());
 		} catch (IOException ie) {
 			System.out.println("IOException >> " + ie.toString());
 		}
+		return null;
 
 	}
 
