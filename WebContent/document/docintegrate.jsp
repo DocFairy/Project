@@ -38,7 +38,7 @@
 <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 <style>
 div#buttons {
-	margin-right:50px;
+	
 	margin-top:200px;
 }
 
@@ -119,7 +119,9 @@ $(function(){
 			}
 		});
 	});
-	
+	$("#help").on('click',function(){
+		alert('1. 올릴 파일의 유형을 선택하고 파일을 업로드하세요. 파일이 문서 리스트에 업로드됩니다. \n\r2. 문서 리스트에서 통합할 파일이 있는 줄의 왼쪽 "옮기기"버튼을 누르세요. 파일이 선택된 파일 리스트로 복사됩니다. \n\r3. 선택된 파일 리스트에 통합할 문서 파일이 모두 올라가면, 통합문서 만들기를 누르세요.\n\r ※ 본 홈페이지에서 받은 문서 양식을 사용해주세요! 또한 상호명이나 사업자번호 등은 통합 리스트의 첫 번째 파일을 따릅니다.');
+	});
 });
 	</script>
 <style type="text/css">
@@ -133,7 +135,9 @@ padding-top:130px;
 position:absolute;
 margin-left:100px;
 }
-
+#help{
+float:left;
+}
 
 
 /* th{ */
@@ -178,7 +182,7 @@ margin-left:100px;
 					</nav>
 				</div>
 			</aside>
-			<h1 id="stitle">문서 통합</h1>
+			<h1 id="stitle">문서 통합</h1><a id="help">도움말</a>
 			<div class="col-md-4">
 				<div class="card">
 
@@ -253,7 +257,7 @@ margin-left:100px;
 							</div>
 							<input type="file" id="upfile" name="upload"> <input
 								type="hidden" name="files.memberno"
-								value="${session.members.memberno}" /> <input type="submit"
+								value="${session.members.memberno}" /><br> <input type="submit"
 								class="btn btn-primary" value="올리기"> <input id="inter"
 								type="button" value="통합문서 생성" class="btn btn-primary">
 						</div>

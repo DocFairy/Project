@@ -369,7 +369,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		}
 
 		
-		date.add(ex.word(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()), 1, 0) + "~" + ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 1, 0));
+		date.add(ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 1, 0));
 
 		
 		receive.add(date);
