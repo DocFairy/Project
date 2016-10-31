@@ -52,7 +52,7 @@ function createObject(){
       address.select();
       return false;
    }
-   if(phoneNumber.val().trim().length < 1){
+   if(phoneNumber.val().trim().length < 1 || !isNaN(phoneNumber.val().trim())){
       alert("전화번호 확인!");
       phoneNumber.focus();
       phoneNumber.select();
@@ -79,6 +79,9 @@ function cleanInput(){
    $('#fax').val("");
 }
 $(function(){
+   $("#mBtn").on("click",function(){
+      //$("#createModal").modal({backdrop:"static"});
+   });
        $('#searchPage').on("click",".searchBtn",function(){
            alert($("#searchKeyword").val());
         });
@@ -91,15 +94,17 @@ $(function(){
                dataType : 'json',
                success : function(response){
                   alert('success');
+                  var lists = "";
+                  //$("#nameList").child().remove();
                   $.each(response, function(i, data){
                      if(i=='createFileNames'){
                         $.each(data, function(i, item){
-                           str += '<li>' + item + '</li>';
+                           lists += '<li>' + item + '</li>';
                         });
-                        $("#nameList").append(str);
+                        $("#nameList").append(lists);
                      }
                   });
-//                  cleanInput();
+                  $("#mBtn").click();
                }, error : function(){
                   alert('error');
                }
@@ -120,7 +125,7 @@ $(function(){
          $("#searchPage").append(str);
       });
       $("#docCreate").on("click",function(){
-         $("#searchPage table").remove();
+         $("#searchPage div table").remove();
          $("#imagelistdiv").hide();
          $("#regularFormUpload").hide();
          var str = "";

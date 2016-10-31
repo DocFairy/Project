@@ -43,7 +43,7 @@ public class OpenExcelFile {
 			//업로드 시켜놓은 파일을 불러와서 데이터 셋팅
 			if(DocCustomizing.STATEMENT_OF_ACCOUNT == number){
 				//파일 경로는 디비에 업로드 되어었는 파일임.
-				xlsxFile = new File("C:/Users/lg/Desktop/account/auto_account.xlsx");
+				xlsxFile = new File("C:/upload/거래명세서.xlsx");
 				fis = new FileInputStream(xlsxFile);
 				workbook1 = new XSSFWorkbook(fis);
 				//데이터를 넣을 인덱스 정보를 저장 시켜서 각 파일을 처리.. 
@@ -93,16 +93,16 @@ public class OpenExcelFile {
 				}
 				 FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 				 workbook1.write(fileOut);
-				 files.add(new File("C:/Users/lg/Desktop/기본파일/거래명세서.xlsx"));
+				 files.add(new File("C:/upload/거래명세서.xlsx"));
 				System.out.println("거래명세서 Done");
 			}else if(DocCustomizing.CORPORATE_CARD == number){
 				//딱히 바꿀 부분이 없음...
 				System.out.println("법인카드사용내역서");
-				 files.add(new File("C:/Users/lg/Desktop/기본파일/법인카드사용내역서.xlsx"));
+				 files.add(new File("C:/upload/법인카드사용내역서.xlsx"));
 				
 			}else if(DocCustomizing.TAX_INVOICE == number){
 //				System.out.println("세금계산서 바꾸기");
-				xlsxFile = new File("C:/Users/lg/Desktop/기본파일/세금계산서.xlsx");
+				xlsxFile = new File("C:/upload/세금계산서.xlsx");
 				fis = new FileInputStream(xlsxFile);
 				workbook1 = new XSSFWorkbook(fis);
 				sheet = new ArrayList<>();
@@ -119,16 +119,16 @@ public class OpenExcelFile {
 				
 				FileOutputStream fileOut = new FileOutputStream(xlsxFile);
 				workbook1.write(fileOut);
-				files.add(new File("C:/Users/lg/Desktop/기본파일/세금계산서.xlsx"));
+				files.add(new File("C:/upload/세금계산서.xlsx"));
 				System.out.println("세금계산서 Done");
 			}else if(DocCustomizing.BUYER_MANAGEMENT == number){
-				files.add(new File("C:/Users/lg/Desktop/기본파일/거래처관리대장.xlsx"));
+				files.add(new File("C:/upload/거래처관리대장.xlsx"));
 				System.out.println("거래처관리대장");
 			}else if(DocCustomizing.UNPAYMENT_STATUS == number){
-				files.add(new File("C:/Users/lg/Desktop/기본파일/거래처별미수현황표.xlsx"));
+				files.add(new File("C:/upload/거래처별미수현황표.xlsx"));
 				System.out.println("거래처별미수현황표");
 			}else if(DocCustomizing.EXPENSE_ACCOUNT == number){
-				files.add(new File("C:/Users/lg/Desktop/기본파일/일반경비내역서.xlsx"));
+				files.add(new File("C:/upload/일반경비내역서.xlsx"));
 				System.out.println("일반경비내역서");
 			}
 		}

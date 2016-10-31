@@ -94,8 +94,7 @@
                         </tr>
                      </table>
                   </div>
-               </div>
-               <span id="imagelistspan">
+                  <span id="imagelistspan">
                   <div id="imagelistdiv" class="panel row">
                      <s:iterator var="ImageFilenameConnector" value="imageList" >
                         <div style="float: left; width: 33%; padding: 5px;" class="row">
@@ -137,14 +136,58 @@
                   </s:if>
                </s:if>
                   </div>
-   
-   
                </div>
+               </div>
+               
                <div id="createPage" class="tab-pane">
                </div>
             </div>
 
-
+            <%-- <nav class="text-center">
+               <ul class="pagination">
+                  <li>
+                     <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                     </a>
+                  </li>
+                  <li class="active"><a href="#">1</a>
+                  </li>
+                  <li><a href="#">2</a>
+                  </li>
+                  <li><a href="#">3</a>
+                  </li>
+                  <li class="disabled"><a href="#">4</a>
+                  </li>
+                  <li><a href="#">5</a>
+                  </li>
+                  <li>
+                     <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                     </a>
+                  </li>
+               </ul>
+            </nav> --%>
+         </div>
+      </div>
+   <!--    <button id="mBtn" data-toggle="modal" data-target="#createModal"></button> -->
+   <a  id="mBtn" data-toggle="modal" href="#createModal"> d </a>
+   <div class="modal fade" id="createModal" role="dialog">
+    <div class="modal-dialog">
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <h4 class="modal-title">create Files</h4>
+      </div>
+      <div class="modal-body">
+         <ul id="nameList">
+         </ul>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default">Save Files</button>
+         <button type="button" class="btn btn-default">Share Files</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+      </div>
+   </div>
             <%-- <nav class="text-center">
                <ul class="pagination">
                   <li>
