@@ -38,7 +38,7 @@
 <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 <style>
 div#buttons {
-	
+	margin-right:50px;
 	margin-top:200px;
 }
 
@@ -178,6 +178,7 @@ margin-left:100px;
 					</nav>
 				</div>
 			</aside>
+			<h1 id="stitle">문서 통합</h1>
 			<div class="col-md-4">
 				<div class="card">
 
@@ -240,10 +241,10 @@ margin-left:100px;
 					enctype="multipart/form-data" onsubmit="return formcheck()">
 					<section>
 						<div id="container">
-							<h3>통합문서 만들기</h3>
+							<h3>파일 업로드/통합문서 생성</h3>
 							<div class="form-group">
-
-								<select class="form-control" name="files.filetype" id="sel">
+								업로드할 파일 유형을 선택하세요:
+								<select name="files.filetype" id="sel">
 									<option value="y">가계부</option>
 									<option value="cost">거래명세서</option>
 									<option value="uum">지급어음명세서</option>
@@ -254,7 +255,7 @@ margin-left:100px;
 								type="hidden" name="files.memberno"
 								value="${session.members.memberno}" /> <input type="submit"
 								class="btn btn-primary" value="올리기"> <input id="inter"
-								type="button" value="통합문서 만들기" class="btn btn-primary">
+								type="button" value="통합문서 생성" class="btn btn-primary">
 						</div>
 					</section>
 
