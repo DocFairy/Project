@@ -121,7 +121,25 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		DocumentDAO dd = new DocumentDAO();
 		System.out.println("docFormDeleteF(): "+save_fileno);
 		dd.docFormDeleteF(save_fileno);
-		
+		docFormList = dd.primaryFormList();
+	      imageList = new ArrayList<ImageFilenameConnector>();
+	      for(int i = 0; i<docFormList.size();i++){
+	         String imageName = "";
+	         String save_fileno2 = docFormList.get(i).getSave_fileno();
+	         imageName= docFormList.get(i).getSave_file();
+	         String imageFilenameWithoutType = ""; 
+	         int lastIndex = imageName.lastIndexOf('.');
+	          if (lastIndex == -1){
+	             imageName = "";
+		         imageFilenameWithoutType = ""; 
+	          }else{ 
+	        	 imageFilenameWithoutType = imageName.substring(0, lastIndex); 
+	             imageName = imageName.substring(0, lastIndex)+".png";
+	          }
+	          ImageFilenameConnector temp = new ImageFilenameConnector(save_fileno2, imageName, docFormList.get(i).getSave_filename(), imageFilenameWithoutType);
+	          imageList.add(temp);
+	      }//for
+
 		return "success";
 	}
 	public String docFormSearch() throws Exception{

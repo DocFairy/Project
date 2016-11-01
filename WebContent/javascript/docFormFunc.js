@@ -83,7 +83,7 @@ $(function(){
       //$("#createModal").modal({backdrop:"static"});
    });
        $('#searchPage').on("click",".searchBtn",function(){
-           alert($("#searchKeyword").val());
+        
         });
       
       $("#createPage").on("click",".createBtn",function(){
@@ -128,7 +128,7 @@ $(function(){
          $("#regularFormUpload").show();
       });
       $("#docCreate").on("click",function(){
-    	  
+    	  $("#createPage").html("");
          $("#searchPage div table").remove();
          $("#imagelistdiv").hide();
          $("#regularFormUpload").hide();

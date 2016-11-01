@@ -45,6 +45,12 @@
 
 
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+<script type="text/javascript">
+	if(("#upfile").val()==""){
+		alert('파일을 선택하지 않았습니다.');
+		return false;
+	}
+</script>
 
 </head>
 
@@ -82,6 +88,7 @@
             <div class="tab-content" style="padding: 5px;">
                <div id="searchPage" class="tab-pane in active">
                   <div class='col-md-9 text-center'  id="searchPageSearchText">
+                  	<form action="docFormSearch">
                      <table>
                         <tr>
                               <td style='padding: 5px'><input type='text'
@@ -93,11 +100,12 @@
                               </td>
                         </tr>
                      </table>
+                  	</form>
                   </div>
                   <span id="imagelistspan">
                   <div id="imagelistdiv" class="panel row">
                      <s:iterator var="ImageFilenameConnector" value="imageList" >
-                        <div style="float: left; width: 33%; padding: 5px;" class="row">
+                        <div style="float: left; width: 33%; padding: 10px;" class="row">
                            <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
                               <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
                                  class="imagePreview" /><br>
@@ -130,7 +138,7 @@
                <s:if test="#session.members.id!=null">
                   <s:if test="#session.members.id.equals('admin')">
                      <form action="insertfile_docform" method="post"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" onsubmit="return formcheck();">
                         <input type="hidden" name="files.filetype" value="f">
                         <!-- 문서타입: f(문서양식) -->
                         <input type="hidden" name="files.memberno"
