@@ -166,7 +166,7 @@ goMakeAccount{
 			
 			<div class="col-md-9">
 			
-			<h1 id="stitle">가계부 달력</h1><br><br>
+			<h2 id="stitle" >가계부 달력</h2><br><br>
 			
 		<input type="text" id="picker" placeholder="클릭하세용~♡" />
 		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />	

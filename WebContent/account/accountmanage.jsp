@@ -241,7 +241,7 @@ p{
 			</aside>
 			
 	<div class="col-md-9">
-			<h1 id="stitle">가계부 관리</h1><br><br>
+			<h1 id="stitle">가계부 관리</h2><br><br>
 	
 		<div id="dateP">	
 				<p>그래프 </p>
