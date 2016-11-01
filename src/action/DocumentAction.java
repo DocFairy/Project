@@ -423,7 +423,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			result.add(cost);
 			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "지급어음명세서");
 			
-		}else if(arr.equals("거래관리대장")){
+		}else if(arr.equals("재고관리대장")){
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 35; q++) {
 					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6 + q, 1).equals("")) {
@@ -444,14 +444,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			}
 			receive.add(date); receive.add(goods); receive.add(size); receive.add(sanko);
 			result.add(hob); result.add(cost); result.add(all); result.add(cost2); result.add(cost3); result.add(cost4);
-			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "거래관리대장");
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "재고관리대장");
 		}
 		return "success";
 	}
 
 public String changefile() throws Exception {
 		
-		if(uploadFileName.equals("currentStatus.docx,")){ 		//거래처별 현황 처리하는 메소드
+		if(uploadFileName.equals("1.docx,")){ 		//거래처별 현황 처리하는 메소드
 			
 		String[] array = uploadFileName.split(",");
 		
@@ -475,7 +475,7 @@ public String changefile() throws Exception {
 		System.out.println(integrate);
 		
 		
-		}else if(uploadFileName.equals("unpaymentStatus.docx,")){		//거래처별 미수현황표 처리하는 메소드
+		}else if(uploadFileName.equals("2.docx,")){		//거래처별 미수현황표 처리하는 메소드
 			
 			System.out.println("들어오나?");
 			
@@ -501,7 +501,7 @@ public String changefile() throws Exception {
 
 			
 			
-		}else if(uploadFileName.equals("expensesStatus.docx,")){		//경비사용내역 처리하는 메소드
+		}else if(uploadFileName.equals("3.docx,")){		//경비사용내역 처리하는 메소드
 			
 			System.out.println("3.docx, 들어오나?");
 			
@@ -549,7 +549,7 @@ public String changefile() throws Exception {
 		}else if(dd.calltype(save_filename).equals("uum")){
 			msg="지급어음명세서";
 		}else if(dd.calltype(save_filename).equals("left")){
-			msg="거래관리대장";
+			msg="재고관리대장";
 		}
 		return "success";
 	}

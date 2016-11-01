@@ -61,7 +61,7 @@ public class ExcelMain {
 	            }else if(type.equals("가계부")){
 	            	XSSFSheet sheet = xw.getSheetAt(0);
 		            int h=0;
-		            System.out.println("3");
+		            System.out.println("4");
 		            for(int i=5;i<29;i++){
 		            	 XSSFRow row = sheet.getRow(i);
 		            	 XSSFCell cell=row.getCell(2);
@@ -85,7 +85,7 @@ public class ExcelMain {
 	            }else if(type.equals("지급어음명세서")){
 	            	XSSFSheet sheet = xw.getSheetAt(0);
 		            int h=0;
-		            System.out.println("3");
+		            System.out.println("5");
 		            for(int i=8;i<41;i++){
 		            	 XSSFRow row = sheet.getRow(i);
 		            	 XSSFCell cell=row.getCell(1);
@@ -108,10 +108,10 @@ public class ExcelMain {
 		            xw.setForceFormulaRecalculation(true);
 		            xw.write(fileOut);
 		            fileOut.close();
-	            }else if(type.equals("거래관리대장")){
+	            }else if(type.equals("재고관리대장")){
 	            	XSSFSheet sheet = xw.getSheetAt(0);
 		            int h=0;
-		            System.out.println("3");
+		            System.out.println("6");
 		            for(int i=6;i<35;i++){
 		            	 XSSFRow row = sheet.getRow(i);
 		            	 XSSFCell cell=row.getCell(1);
