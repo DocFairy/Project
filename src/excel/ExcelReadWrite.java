@@ -135,7 +135,7 @@ public class ExcelReadWrite {
 		try {
 			System.out.println("1");
 			// 엑셀파일
-			File file = new File("C:/upload/1.xlsx");
+			File file = new File("C:/upload/currentStatus.xlsx");
 			System.out.println("2");
 			// 엑셀 파일 오픈
 			XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
@@ -690,7 +690,7 @@ public class ExcelReadWrite {
 
 			FileOutputStream fileOut = new FileOutputStream(file);
 			wb.write(fileOut);
-			return "1.xlsx";
+			return "currentStatus.xlsx";
 		} catch (FileNotFoundException fe) {
 			System.out.println("FileNotFoundException >> " + fe.toString());
 		} catch (IOException ie) {
