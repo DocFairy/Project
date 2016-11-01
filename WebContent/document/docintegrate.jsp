@@ -37,10 +37,7 @@
 	src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
 <style>
-div#buttons {
-	
-	margin-top:200px;
-}
+
 
 .arang {
 	float: left;
@@ -62,6 +59,26 @@ div#buttons {
 th{
 color:white;
 background-color:#af2045;
+}
+#container {
+	width: 300px;
+	margin: auto;
+	margin-right:100px;
+}
+.pagination{
+padding-top:130px;
+position:absolute;
+margin-left:100px;
+}
+#help{
+float:left;
+}
+#scroll{
+height:400px;
+overflow:auto;
+}
+.col-md-4{
+width:400px;
 }
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
@@ -122,42 +139,9 @@ $(function(){
 	$("#help").on('click',function(){
 		alert('1. 올릴 파일의 유형을 선택하고 파일을 업로드하세요. 파일이 문서 리스트에 업로드됩니다. \n\r2. 문서 리스트에서 통합할 파일이 있는 줄의 왼쪽 "옮기기"버튼을 누르세요. 파일이 선택된 파일 리스트로 복사됩니다. \n\r3. 선택된 파일 리스트에 통합할 문서 파일이 모두 올라가면, 통합문서 만들기를 누르세요.\n\r ※ 본 홈페이지에서 받은 문서 양식을 사용해주세요! 또한 상호명이나 사업자번호 등은 통합 리스트의 첫 번째 파일을 따릅니다.');
 	});
+	$("#scroll")
 });
 	</script>
-<style type="text/css">
-#container {
-	width: 300px;
-	margin: auto;
-	margin-right:100px;
-}
-.pagination{
-padding-top:130px;
-position:absolute;
-margin-left:100px;
-}
-#help{
-float:left;
-}
-
-
-/* th{ */
-/* 	background-color: skyblue; */
-/* 	border: 1px solid black; */
-
-/* } */
-/* #inter{ */
-/* 	float: right; */
-/* 	margin-right: 34px; */
-/* } */
-/* #integratedList1{ */
-/* 	padding : 5px; */
-/* 	margin-left : auto; */
-/* 	width : 40%; */
-/* 	float : left; */
-/* 	background-color: violet; */
-
-/* } */
-</style>
 
 </head>
 
@@ -224,7 +208,8 @@ float:left;
 				</a></li>
 			</ul>  --%>
 			</div>
-			<div class="col-md-4">
+			<div id="scroll">
+			<div class="col-md-11">
 			<h3 id="stitle1" align="center">선택된 파일 리스트</h3>
 				<table id="checktable" border="1" class="table">
 					<tr>
@@ -232,11 +217,12 @@ float:left;
 						<th class="filename" width="300">파일 유형</th>
 					</tr>
 				</table>
+				</div>
 			</div>
 			
 			
 			
-			<div class="row">
+			
 			
 			<div id="buttons">
 
@@ -278,7 +264,7 @@ float:left;
 				<div class="col-md-4 section-content">
 					
 				</div>
-			</div>
+			
 
 		 
 			<!-- 			</div> -->
