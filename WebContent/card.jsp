@@ -32,10 +32,11 @@
 </head>
 
 <body>
-	<div id="row">
+<div class="container">
+	<div class="row">
 	<jsp:include page="header.jsp"></jsp:include>
 	<h1 id="stitle">소개</h1>
-	<img src="images/docfairy3.png" id="img" width="600" height="300">
+	<img src="images/docfairy3.png" id="img" width="550" height="300">
 	<div id="intro">
 	DocFairy는 유저의 편의를 위해 여러 가지 문서 관련 기능을 제공하는<br> 웹사이트입니다.
 	다음과 같은 강력한 기능을 무료로 제공합니다:<br><br>
@@ -47,7 +48,7 @@
 	<p>수입/지출 내역을 입력하시면 표/그래프로 한눈에 정리해드립니다.<br>
 	</div>
 	</div>
-	
+	</div>
 
 	
 <jsp:include page="footer.jsp"></jsp:include>
