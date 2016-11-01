@@ -74,9 +74,7 @@
 						<ul class="nav">
 							<li class="active"><a href="groupmanage">그룹관리</a>
 							</li>
-							<li><a href="docmanage">서식문서관리</a>
-							</li>
-							<li><a href="groupdocdownload">서식문서다운</a>
+							<li><a href="groupdocdownload">서식 관리</a>
 							</li>
 						</ul>
 					</nav>
