@@ -469,7 +469,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 public String changefile() throws Exception {
 		
-		if(uploadFileName.equals("1.docx,")){ 		//거래처별 현황 처리하는 메소드
+		if(uploadFileName.equals("currentStatus.docx,")){ 		//거래처별 현황 처리하는 메소드
 			
 		String[] array = uploadFileName.split(",");
 		
@@ -493,7 +493,7 @@ public String changefile() throws Exception {
 		System.out.println(integrate);
 		
 		
-		}else if(uploadFileName.equals("2.docx,")){		//거래처별 미수현황표 처리하는 메소드
+		}else if(uploadFileName.equals("unpaymentStatus.docx,")){		//거래처별 미수현황표 처리하는 메소드
 			
 			System.out.println("들어오나?");
 			
@@ -519,7 +519,7 @@ public String changefile() throws Exception {
 
 			
 			
-		}else if(uploadFileName.equals("3.docx,")){		//경비사용내역 처리하는 메소드
+		}else if(uploadFileName.equals("expensesStatus.docx,")){		//경비사용내역 처리하는 메소드
 			
 			System.out.println("3.docx, 들어오나?");
 			

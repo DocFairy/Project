@@ -28,11 +28,9 @@ public class FileDownloadAction extends ActionSupport {
 			Files files=new DocumentDAO().selectfileone(save_fileno);//해당 번호의 Board객체
 		    savedfile = files.getSave_file();					//서버에 저장된 파일명
 			originalfile = files.getSave_filename();
-			}else if(fname!=null){
-				
+			}else if(fname!=null){	
 				savedfile=integrate;//원래 파일명				
 				originalfile=fname+".xlsx";
-				
 			}
 			else{
 				savedfile=integrate;//원래 파일명
