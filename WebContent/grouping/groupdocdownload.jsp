@@ -31,14 +31,14 @@
                   <ul class="nav">
                      <li><a href="groupmanage"> 그룹 관리 </a>
                      </li>
-                     <li><a href="docmanage"> 서식 문서 </a>
+                     <li class="active"><a href="docmanage"> 서식 문서 </a>
                      </li>
                   </ul>
                </nav>
             </div>
             
          </aside>
-         그룹핑-서식문서다운
+         <h1 id="stitle">서식 문서</h1>
 
             <nav>
                <div class="col-md-9">

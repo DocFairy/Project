@@ -92,7 +92,7 @@
 							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">그룹핑</a>
 								<ul class="dropdown-menu text-center">
 									<li><a href="${pageContext.request.contextPath}/grouping/groupmanage.action">그룹 관리</a></li>
-									<li><a href="${pageContext.request.contextPath}/grouping/groupdocdownload">서식 관리</a></li>
+									<li><a href="${pageContext.request.contextPath}/grouping/groupdocdownload">서식 문서</a></li>
                        			 </ul>
 								
 								<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">가계부</a>

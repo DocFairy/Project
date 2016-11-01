@@ -72,15 +72,15 @@
 					<h3><span>그룹핑 메뉴</span></h3>
 					<nav>
 						<ul class="nav">
-							<li class="active"><a href="groupmanage">그룹관리</a>
+							<li class="active"><a href="groupmanage">그룹 관리</a>
 							</li>
-							<li><a href="groupdocdownload">서식 관리</a>
+							<li><a href="groupdocdownload">서식 문서</a>
 							</li>
 						</ul>
 					</nav>
 				</div>
 				</aside>
-			<h1 id="stitle">그룹관리</h1>
+			<h1 id="stitle">그룹 관리</h1>
 			<s:if test="#session.members.groupno==null">
 			<center>나만의 그룹을 만들어보세요!<br><br>
 			<input type="button" value="그룹 만들기" id="create" class="btn btn-custom">
