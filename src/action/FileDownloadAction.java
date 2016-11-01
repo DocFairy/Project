@@ -29,7 +29,8 @@ public class FileDownloadAction extends ActionSupport {
 		    savedfile = files.getSave_file();					//서버에 저장된 파일명
 			originalfile = files.getSave_filename();
 			}else if(fname!=null){
-				savedfile=integrate;//원래 파일명
+				
+				savedfile=integrate;//원래 파일명				
 				originalfile=fname+".xlsx";
 				
 			}
