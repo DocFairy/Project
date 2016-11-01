@@ -162,13 +162,16 @@ goMakeAccount{
 				</div>
 				
 			</aside>
-			<div id="centerMain">
-			<h1>가계부 달력</h1><br><br>
-	
-	
+			
+			
+			<div class="col-md-9">
+			
+			<h1 id="stitle">가계부 달력</h1><br><br>
+			
 		<input type="text" id="picker" placeholder="클릭하세용~♡" />
 		<input type="button" id="getdata" value="확인!!" class="btn btn-primary btn-xs" />	
-			</div>	
+		
+			
 <form action="goMakeAccount" method="post" id="gogoAccount" >
 <input type="hidden" name="date" id="date">
 			<table border="1" id="entire">
@@ -192,9 +195,9 @@ goMakeAccount{
 				</tr>
 				</table>	 -->
 </form>				
-				
-		
-
+		</div>		
+	</div>
+</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 
