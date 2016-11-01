@@ -45,6 +45,12 @@
 
 
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
+<script type="text/javascript">
+	if(("#upfile").val()==""){
+		alert('파일을 선택하지 않았습니다.');
+		return false;
+	}
+</script>
 
 </head>
 
@@ -99,7 +105,7 @@
                   <span id="imagelistspan">
                   <div id="imagelistdiv" class="panel row">
                      <s:iterator var="ImageFilenameConnector" value="imageList" >
-                        <div style="float: left; width: 33%; padding: 20px;" class="row">
+                        <div style="float: left; width: 33%; padding: 10px;" class="row">
                            <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
                               <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
                                  class="imagePreview" /><br>
@@ -132,7 +138,7 @@
                <s:if test="#session.members.id!=null">
                   <s:if test="#session.members.id.equals('admin')">
                      <form action="insertfile_docform" method="post"
-                        enctype="multipart/form-data">
+                        enctype="multipart/form-data" onsubmit="return formcheck();">
                         <input type="hidden" name="files.filetype" value="f">
                         <!-- 문서타입: f(문서양식) -->
                         <input type="hidden" name="files.memberno"
