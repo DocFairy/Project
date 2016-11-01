@@ -22,7 +22,7 @@
 <div class="popwrap">
 
 <h2>ID중복확인</h2>
-	<div >
+	<div>
 		<s:if test="duplicated == false">
 	
 		[<span>${id }</span>] 아이디는 사용가능합니다.
@@ -34,7 +34,7 @@
 	</div>
 	
 	
-	<div >
+	<div>
 		
 		<s:if test="duplicated == true">
 		[<span>${id }</span>] 아이디는 이미 사용중입니다.

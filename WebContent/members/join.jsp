@@ -24,8 +24,8 @@
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<h1 id="stitle2">회원가입</h1>
 	<div class="login_area">
+	<h1 id="stitle" >회원가입</h1>
 				<s:form action="/members/join_ok" method="post" onsubmit="return formcheck();" theme="simple">
 					<ul><!-- 회원가입 -->
 						<li class="grp_area"><s:label for="">회원구분</s:label><s:radio name="members.division"
@@ -37,7 +37,7 @@
 						<li><s:textfield placeholder="이름" class="login_write" name="members.name" id="name"/></li>
 						<li><s:textfield placeholder="전화번호" class="login_write" name="members.phonenum" /></li>
 						<li><s:textfield placeholder="주소" class="login_write" name="members.address"/></li>
-						<li><s:submit class="btn_join" value="회원가입"/></li>
+						<li><s:submit class="btn_join btn btn-primary" value="회원가입"/></li>
 					</ul>											
 				</s:form>
 			</div>

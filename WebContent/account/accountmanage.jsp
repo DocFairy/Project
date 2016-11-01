@@ -74,6 +74,8 @@
 					var firstDay = response.firstDay;
 					var secondDay = response.secondDay;
 				
+					alert(secondDay);
+					
 					$("#chart_c_a").append(
 							'<input type="button" value="차트지우기" class="delChart btn btn-custom">'
 							);
@@ -241,7 +243,7 @@ p{
 			</aside>
 			
 	<div class="col-md-9">
-			<h1 id="stitle">가계부 관리</h2><br><br>
+			<h1 id="stitle">가계부 관리</h1><br><br>
 	
 		<div id="dateP">	
 				<p>그래프 </p>
