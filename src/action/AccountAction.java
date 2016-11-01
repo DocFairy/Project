@@ -274,14 +274,6 @@ public class AccountAction extends ActionSupport implements SessionAware{
 				outdate.add(cell.getStringCellValue());
 				 secondDay.add(firstDay);
 			}
-			
-			 
-			 
-			 
-			 System.out.println(secondDay.get(0).get(0));
-			 System.out.println(secondDay.get(0).get(1));
-			 System.out.println(secondDay.get(1).get(0));
-			 System.out.println(secondDay.get(1).get(1));
 			 
 			System.out.println("gogoChart end : " + list);
 		return SUCCESS;
