@@ -128,7 +128,7 @@ $(function(){
          $("#regularFormUpload").show();
       });
       $("#docCreate").on("click",function(){
-    	  
+    	  $("#createPage").html("");
          $("#searchPage div table").remove();
          $("#imagelistdiv").hide();
          $("#regularFormUpload").hide();

@@ -99,7 +99,7 @@
                   <span id="imagelistspan">
                   <div id="imagelistdiv" class="panel row">
                      <s:iterator var="ImageFilenameConnector" value="imageList" >
-                        <div style="float: left; width: 33%; padding: 5px;" class="row">
+                        <div style="float: left; width: 33%; padding: 20px;" class="row">
                            <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
                               <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
                                  class="imagePreview" /><br>
