@@ -7,8 +7,12 @@
 insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename},#{memberno},#{filetype},null)
 </insert>
 
-<select id="selectfile" resultType="Files" parameterType="String">
-select * from files where memberno=#{memberno} and filetype != 'docx' order by save_fileno
+<select id="selectfile" resultType="Files" parameterType="Map">
+select * from files where memberno=#{memberno} and filetype != 'docx' 
+<if test="searchText != null">
+and save_filename like '%' || #{searchText} || '%'
+</if>
+order by save_fileno
 </select>
 
 <select id="selectword" resultType="Files" parameterType="String">
@@ -48,5 +52,4 @@ select count(*)from files
 where save_filename like '%' || #{searchText} || '%'
 </if>
 </select>
-
 </mapper>

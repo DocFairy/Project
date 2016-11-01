@@ -209,10 +209,10 @@ $(function(){
 				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage + 1})">&gt;</a>
 	
 			</p>
-			<s:form name="pagingForm" method="post" action="listBoard" theme="simple">
+			<s:form name="pagingForm" method="post" action="docintegrate" theme="simple">
 			<p class="board_search">
 	<s:hidden name="currentPage" value="%{pagenavi.currentPage}" />
-	<s:textfield  name="searchText" />
+	<s:textfield name="searchText" />
 	<a href="javascript:pagingFormSubmit(1)">검색</a>
 			</p>
 </s:form>
