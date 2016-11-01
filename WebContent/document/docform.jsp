@@ -71,7 +71,7 @@
 
 
          </aside>
-         <p class="lead h3"> 문서 양식</p>
+         <h1 id="stitle"> 문서 양식</h1>
          <div class="col-md-9 " style="padding: 5px;">
             <ul class="nav nav-tabs">
                <li class="active"><a data-toggle="tab" id="docSearch"
