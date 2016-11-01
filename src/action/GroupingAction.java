@@ -41,6 +41,9 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 		if(membergroup.getGroupname().equals("")){
 			fri="그룹 이름을 입력하세요.";
 			return "error";
+		}else if(membergroup.getGroupname().length()>50){
+			fri="그룹 이름이 너무 깁니다.";
+			return "error";
 		}
 		gd.creategroup(membergroup);
 		String mno=((Members)session.get("members")).getMemberno();

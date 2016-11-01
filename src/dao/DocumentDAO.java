@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -19,8 +20,15 @@ public class DocumentDAO {
 		
 		return result;
 	}
-	public List<Files> selectfile(String memberno){
-		return sqlSession.selectList("mapper.DocumentMapper.selectfile", memberno);
+	public List<Files> selectfile(String memberno, int startRecord, int countPerPage, String searchText){
+		
+		//쿼리로 전달할 Parameter들
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("memberno", memberno);
+		map.put("searchText", searchText);
+		RowBounds bound = new RowBounds(startRecord, countPerPage);	
+		return sqlSession.selectList("mapper.DocumentMapper.selectfile", map,bound);	
+		
 	}
 	public Files selectfileone(String save_fileno){
 		return sqlSession.selectOne("mapper.DocumentMapper.selectfileone", save_fileno);
@@ -74,5 +82,10 @@ public class DocumentDAO {
 	public List<Files> selectword(String memberno) {
 		
 		return sqlSession.selectList("mapper.DocumentMapper.selectword", memberno);
+	}
+	
+	public int getTotal(String searchText) {
+		return sqlSession.selectOne("mapper.DocumentMapper.gettotal", searchText);
+		
 	}
 }

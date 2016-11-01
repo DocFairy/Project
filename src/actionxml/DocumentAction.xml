@@ -78,8 +78,7 @@
 			<result type="json" />
 
 		</action>
-		
-
+	
 		<action name="customizingDoc" class="action.DocumentAction" method="customizingList"> 
 			<result type="json"></result> 
 		</action>

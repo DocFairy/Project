@@ -80,12 +80,19 @@ overflow:auto;
 .col-md-4{
 width:400px;
 }
+span{
+font-size:15px;
+}
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
 
 <script>
+function pagingFormSubmit(currentPage) {
+	document.pagingForm.currentPage.value = currentPage;
+	document.pagingForm.submit();
+}
 function formcheck(){
 	if($("#upfile").val()==""){
 		alert('파일을 선택하지 않았습니다!');
@@ -185,13 +192,31 @@ $(function(){
 								<tr>
 									<td class="filename"><input type="button"
 										class="checked btn btn-primary" value="선택"></td>
-									<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
-												value="save_filename" /></a></td>
+									<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+												value="save_filename" /></a></span></td>
 									<td class="filename"><input type="button"
 										class="del btn btn-primary" value="삭제"></td>
 								</tr>
 							</s:iterator>
 						</table>
+						<p class="paging">
+				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage - 1})">&lt;</a>
+				
+	<s:iterator var="counter" begin="pagenavi.startPageGroup" end="pagenavi.endPageGroup" > 
+			<a href="javascript:pagingFormSubmit(<s:property value="#counter"/>)" <s:if test="#counter == pagenavi.currentPage"> class="select"</s:if>><s:property value="#counter"/></a>&nbsp;
+	</s:iterator>
+
+				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage + 1})">&gt;</a>
+	
+			</p>
+			<s:form name="pagingForm" method="post" action="listBoard" theme="simple">
+			<p class="board_search">
+	<s:hidden name="currentPage" value="%{pagenavi.currentPage}" />
+	<s:textfield  name="searchText" />
+	<a href="javascript:pagingFormSubmit(1)">검색</a>
+			</p>
+</s:form>
+			
 					</div>
 				</div>
 				<%-- <ul class="pagination">

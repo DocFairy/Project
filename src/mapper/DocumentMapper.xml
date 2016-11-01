@@ -42,5 +42,11 @@ select * from files where save_filename like '%' || #{searchKeyword} || '%' and 
 <delete id="docFormDeleteF" parameterType="String">
 	delete from files where save_fileno=#{save_fileno} and filetype='f'
 </delete>
+<select id="gettotal" parameterType="String" resultType="int">
+select count(*)from files 
+<if test="searchText != null">
+where save_filename like '%' || #{searchText} || '%'
+</if>
+</select>
 
 </mapper>
