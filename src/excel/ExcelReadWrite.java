@@ -135,14 +135,14 @@ public class ExcelReadWrite {
 		try {
 			System.out.println("1");
 			// 엑셀파일
-			File file = new File("C:/upload/1.xlsx");
+			File file = new File("C:/upload/currentStatus.xlsx");
 			System.out.println("2");
 			// 엑셀 파일 오픈
 			XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream(file));
 			System.out.println("3");
 			XSSFSheet sheet1 = wb.getSheetAt(0);
 			System.out.println("4");
-
+			
 			// for (int i = 0; i < 11; i++) {
 			//
 			// XSSFCell cell = row.getCell(i + 1);
@@ -690,7 +690,7 @@ public class ExcelReadWrite {
 
 			FileOutputStream fileOut = new FileOutputStream(file);
 			wb.write(fileOut);
-			return "1.xlsx";
+			return "currentStatus.xlsx";
 		} catch (FileNotFoundException fe) {
 			System.out.println("FileNotFoundException >> " + fe.toString());
 		} catch (IOException ie) {

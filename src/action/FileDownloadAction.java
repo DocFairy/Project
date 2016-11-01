@@ -31,6 +31,7 @@ public class FileDownloadAction extends ActionSupport {
 			}else if(fname!=null){
 				savedfile=integrate;//원래 파일명
 				originalfile=fname+".xlsx";
+				
 			}
 			else{
 				savedfile=integrate;//원래 파일명
