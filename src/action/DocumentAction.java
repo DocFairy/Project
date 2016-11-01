@@ -64,7 +64,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private String[] createList;
 	private String searchKeyword;
 	private String searchText;
-	int currentPage = 1;
+	private int currentPage = 1;
 	// 파일 만들기만.
 	private PageNavigator pagenavi;
 
@@ -92,11 +92,19 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 	public String docIntegrate() throws Exception {
+		System.out.println("1");
+		System.out.println(searchText);
+		System.out.println("2");
 		DocumentDAO dd = new DocumentDAO();
 		int countPerPage = 5;		//페이지당 글목록 수
 		int pagePerGroup = 5;		//그룹당 페이지 수
 		//전체 글수 구하기
-		int total = dd.getTotal(searchText);	
+		int total=0;
+		if(searchText!=null){
+			total = dd.getTotal(null);
+		}else{
+			total = dd.getTotal(searchText);
+		}	
 		//PageNavigator 객체 생성 (페이지당 글수, 그룹당 페이지 수, 현재 페이지, 전체 글수)
 		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);		
 		//현재 페이지에 해당하는 글 목록 읽기 (전체 레코드 중 보여줄 첫번째 글의 위치, 페이지당 글 수 )

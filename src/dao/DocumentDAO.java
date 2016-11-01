@@ -23,7 +23,7 @@ public class DocumentDAO {
 	public List<Files> selectfile(String memberno, int startRecord, int countPerPage, String searchText){
 		
 		//쿼리로 전달할 Parameter들
-		HashMap<String, String> map = new HashMap<String, String>();
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("memberno", memberno);
 		map.put("searchText", searchText);
 		RowBounds bound = new RowBounds(startRecord, countPerPage);	
@@ -85,6 +85,7 @@ public class DocumentDAO {
 	}
 	
 	public int getTotal(String searchText) {
+		
 		return sqlSession.selectOne("mapper.DocumentMapper.gettotal", searchText);
 		
 	}

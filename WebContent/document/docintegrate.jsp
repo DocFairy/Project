@@ -205,9 +205,7 @@ $(function(){
 	<s:iterator var="counter" begin="pagenavi.startPageGroup" end="pagenavi.endPageGroup" > 
 			<a href="javascript:pagingFormSubmit(<s:property value="#counter"/>)" <s:if test="#counter == pagenavi.currentPage"> class="select"</s:if>><s:property value="#counter"/></a>&nbsp;
 	</s:iterator>
-
 				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage + 1})">&gt;</a>
-	
 			</p>
 			<s:form name="pagingForm" method="post" action="docintegrate" theme="simple">
 			<p class="board_search">
