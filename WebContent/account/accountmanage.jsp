@@ -240,9 +240,9 @@ p{
 				</div>
 			</aside>
 			
-			<h1>가계부 관리</h1><br><br>
-	
 	<div class="col-md-9">
+			<h1 id="stitle">가계부 관리</h2><br><br>
+	
 		<div id="dateP">	
 				<p>그래프 </p>
 			<input type="text" readonly="readonly" id="datepicker">
