@@ -90,7 +90,7 @@
 									'uploadFileName' : fname,'arr':type
 								},
 								success : function(response) {
-									$("#button").append(
+									$("#buttons").append(
 											'<a href="fileDownload?integrate='
 													+ response.integrate
 													+ '&fname='+fname+'">다운로드</a>');
