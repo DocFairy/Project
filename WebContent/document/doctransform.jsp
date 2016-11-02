@@ -128,11 +128,6 @@ color:white;
 background-color:#af2045;
 }
 
-div#buttons {
-	
-	margin-top:200px;
-}
-
 .arang {
 	float: left;
 }
