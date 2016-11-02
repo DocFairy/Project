@@ -1,8 +1,25 @@
 /**
  * 
  */
+//var fileData;
+//function filesData(data){
+//   fileData = data;
+//}
+////function filesData(){
+////   fileData = $("#docfiles").val();
+////   alert(fileData);
+////   return fileData;
+////}
+//function getFiles(){
+//   var data = JSON.stringify(fileData);
+//   alert(data);
+//   var jsonData = JSON.parse(data);
+//   
+//   return  {"createFiles" : jsonData};
+//}
+var chkArr = "";
 function createObject(){
-   
+   chkArr = "";
    var companyName = $('#companyName');
    var companyNo = $('#companyNo');
    var ownerName = $('#ownerName');
@@ -10,7 +27,6 @@ function createObject(){
    var phoneNumber = $('#phoneNumber');
    var fax = $('#fax');
    var createList = $("input:checkbox:checked");
-   var chkArr = "";
    if(createList.size()!=0){
       $.each(createList, function(i, data){
          chkArr += data.value;
@@ -19,7 +35,7 @@ function createObject(){
          }
       });
    }else{
-      alert("서식 파일의 종류 선택 요망!");
+      alert("서식 파일의 종류를 선택하세요!");
       return false;
    }
    if(companyName.val().trim().length < 1){
@@ -35,25 +51,25 @@ function createObject(){
       return false;
    }
    if(isNaN(companyNo.val().trim())){
-      alert("사업자 등록번호는 숫자만 기입하세요!");
+      alert("사업자 등록번호는 숫자만 기입!");
       companyNo.focus();
       companyNo.select();
       return false;
    }
    if(ownerName.val().trim().length < 1){
-      alert("대표자 성명 입력 요망!");
+      alert("대표자 성명 입력!");
       ownerName.focus();
       ownerName.select();
       return false;
    }
    if(address.val().trim().length < 1){
-      alert("주소 입력 요망!");
+      alert("주소 입력!");
       address.focus();
       address.select();
       return false;
    }
    if(phoneNumber.val().trim().length < 1 || !isNaN(phoneNumber.val().trim())){
-      alert("전화번호 확인!");
+      alert("전화번호 확인!'-'포함하여 입력!");
       phoneNumber.focus();
       phoneNumber.select();
       return false;
@@ -79,14 +95,43 @@ function cleanInput(){
    $('#fax').val("");
 }
 $(function(){
-   $("#mBtn").on("click",function(){
-      //$("#createModal").modal({backdrop:"static"});
+   $("#saveBtn").on("click",function(){
+      alert("save");
+//      var formData = new FormData();
+//      var dd = getFiles();
+//      formData.append('createFiles',dd);
+      //alert(dd);
+//      
+//      var files = getFiles();
+//
+//      for(var k in files) {
+//         console.log(files[k]);
+//      }
+      
+      $.ajax({
+         url : 'docSave',
+         data : { "arr" : chkArr},
+//         dataType: 'json',
+         method: 'post',
+//         enctype: "multipart/form-data",
+//         processData: false,  // file전송시 필수
+         success : function(){
+            alert("save success!");
+         },error : function(){
+            alert("save error!");
+         }
+      });
    });
+   $("#shareBtn").on("click",function(){
+      alert("share");
+      });
+   
        $('#searchPage').on("click",".searchBtn",function(){
-        
+           alert($("#searchKeyword").val());
         });
       
       $("#createPage").on("click",".createBtn",function(){
+//         $(".createBtn").button("loding");
          if(!(createObject()===false)){
             $.ajax({
                url : 'docCreate',
@@ -95,15 +140,20 @@ $(function(){
                success : function(response){
                   alert('success');
                   var lists = "";
-                  //$("#nameList").child().remove();
+//                  $("#nameList").child().remove();
                   $.each(response, function(i, data){
+                    /* if(i=='createFiles'){
+                        alert("createFiles[i] : " + i + ", data : " + data);
+                        filesData(data);
+                     }*/
                      if(i=='createFileNames'){
                         $.each(data, function(i, item){
-                           lists += '<li>' + item + '</li>';
+                           lists += '<li>' +  item + '</li>';
                         });
                         $("#nameList").append(lists);
                      }
                   });
+//                  $(".createBtn").button("reset");
                   $("#mBtn").click();
                }, error : function(){
                   alert('error');
@@ -116,19 +166,15 @@ $(function(){
       
       $("#docSearch").on("click",function(){
          $("#createPage table").remove();
-      
-         $("#searchPageSearchText").html("");
+         $("#imagelistdiv").show();
+         $("#regularFormUpload").show();
          var str = "";
          str += "<div class='col-md-9 text-center'> <table><tr>";
          str += "<td style='padding: 5px'><input type='text' id='searchKeyword' placeholder='찾으시는 서식의 이름' size='50' style='font-size:1.2em;'/></td><td><button class='searchBtn btn btn-primary btn-sm'> search </button></td>";
          str += "</tr></table><div>";
-         $("#searchPageSearchText").append(str);
-       
-         $("#imagelistdiv").show();
-         $("#regularFormUpload").show();
+         $("#searchPage").append(str);
       });
       $("#docCreate").on("click",function(){
-    	 $("#createPage").html("");
          $("#searchPage div table").remove();
          $("#imagelistdiv").hide();
          $("#regularFormUpload").hide();

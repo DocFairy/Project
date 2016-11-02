@@ -184,7 +184,7 @@
          </div>
       </div>
    <!--    <button id="mBtn" data-toggle="modal" data-target="#createModal"></button> -->
-   <a  id="mBtn" data-toggle="modal" href="#createModal"> d </a>
+  <a  id="mBtn" data-toggle="modal" href="#createModal"> d </a>
    <div class="modal fade" id="createModal" role="dialog">
     <div class="modal-dialog">
    <div class="modal-content">
@@ -195,10 +195,12 @@
       <div class="modal-body">
          <ul id="nameList">
          </ul>
+         <div class="btn-block text-center" style="width:800px">
+         <button type="button" id="saveBtn" class="btn btn-info" >Save Files</button>
+         <button type="button" id="shareBtn" class="btn btn-info">Share Files</button>
+         </div>
       </div>
       <div class="modal-footer">
-         <button type="button" class="btn btn-default">Save Files</button>
-         <button type="button" class="btn btn-default">Share Files</button>
          <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
       </div>
    </div>

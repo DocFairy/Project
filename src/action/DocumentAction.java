@@ -69,9 +69,11 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private PageNavigator pagenavi;
 
 	public String docCreate() throws Exception {
-		System.out.println("length : " + arr);
-		System.out.println(aNewCreate.toString());
-		
+		/*System.out.println("length : " + arr);
+		System.out.println(aNewCreate.toString());*/
+		String temp = aNewCreate.getCompanyNo();
+	      temp = temp.substring(0, 3) + "-" + temp.substring(3, 5) + "-" + temp.substring(5);
+	      aNewCreate.setCompanyNo(temp);
 		createFiles = new OpenExcelFile().createExcelDoc(aNewCreate, arr); //
 //		System.out.println(createFiles.get(0).getName());
 //		System.out.println("size = " + createFiles.size());
