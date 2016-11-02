@@ -8,15 +8,15 @@ insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename
 </insert>
 
 <select id="selectfile" resultType="Files" parameterType="Map">
-select * from files where memberno=#{memberno} and filetype != 'docx' 
+select * from files where memberno=#{memberno} and filetype != 'ima' and filetype!='genjou' and filetype!='keibi' 
 <if test="searchText != null">
 and save_filename like '%' || #{searchText} || '%'
 </if>
-order by save_fileno
+order by save_fileno desc
 </select>
 
 <select id="selectword" resultType="Files" parameterType="String">
-select * from files where memberno=#{memberno} and filetype = 'docx' order by save_fileno
+select * from files where memberno=#{memberno} and filetype = 'ima' or filetype='genjou' or filetype='keibi' order by save_fileno
 </select>
 
 <select id="selectfileone" resultType="Files" parameterType="String">
@@ -40,7 +40,7 @@ select * from files where save_filename like '%' || #{searchKeyword} || '%' and 
 </select>
 
 <select id="calltype" resultType="String" parameterType="String">
-	select filetype from files where save_filename=#{save_filename}
+select filetype from files where save_filename=#{save_filename}
 </select>
 
 <delete id="docFormDeleteF" parameterType="String">

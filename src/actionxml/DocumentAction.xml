@@ -88,6 +88,9 @@
 		<action name="move" class="action.DocumentAction" method="move">
 			<result type="json"></result>
 		</action>
+		<action name="move2" class="action.DocumentAction" method="move2">
+			<result type="json"></result>
+		</action>
 		
 		<action name="docFormSearch" class="action.DocumentAction" method="docFormSearch">
 			<result>/document/docformsearch.jsp</result>

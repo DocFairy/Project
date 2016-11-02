@@ -43,15 +43,16 @@
 		if (msg != "") {
 			alert(msg);
 		}
-		$("#entire").on(
-				'click',
-				'.checked',
-				function() {
-					var filename = $(this).parent().next().text();
-					$("#check").append(
-							'<tr class="add"><td>' + filename + '</td><tr>');
-
-				});
+		$("#entire").on('click','.checked',function(){
+			var filename=$(this).parent().next().text();
+			$.ajax({
+				url:'move2',
+				data:{'save_filename':filename},
+				success:function(response){
+					$("#checktable").append('<tr class="add"><td>'+filename+'</td><td>'+response.msg+'</td></tr>');
+				}
+			});
+		});
 		$(".del").on(
 				'click',
 				function() {
@@ -65,33 +66,31 @@
 						}
 					});
 				});
-
+		
+		
+		
 		$("#change")
 				.on(
 						'click',
 						function() {
-							var fname = $("#check .add").eq(0).children().first()
-							.text();
-							alert(fname);
-							var alist = "";
-							if ($("#check .add").eq(0).children().first()
+							var type=$("#checktable .add").eq(0).children().first().next().text();
+							
+							if ($("#checktable .add").eq(0).children().first()
 									.text() == "") {
 								alert('먼저 파일을 선택하세요!')
 								return false;
 							}
-							$("#check .add").each(
-									function(index, item) {
-										alist += $("#check .add").eq(index)
-												.children().first().text()
-												+ ",";
-									});
+							var fname = $("#checktable .add").eq(0).children().first()
+							.text();
+							alert(fname);
+			
 							$.ajax({
 								url : 'changefile',
 								data : {
-									'uploadFileName' : alist
+									'uploadFileName' : fname,'arr':type
 								},
 								success : function(response) {
-									$("#buttons").append(
+									$("#button").append(
 											'<a href="fileDownload?integrate='
 													+ response.integrate
 													+ '&fname='+fname+'">다운로드</a>');
@@ -114,7 +113,16 @@
 </script>
 
 <style type="text/css">
-
+#scroll{
+height:400px;
+overflow:auto;
+}
+.col-md-4{
+width:400px;
+}
+span{
+font-size:15px;
+}
 th{
 color:white;
 background-color:#af2045;
@@ -202,8 +210,8 @@ float:left;
 								<tr>
 									<td class="filename"><input type="button"
 										class="checked btn btn-primary" value="선택"></td>
-									<td><a href="fileDownload?save_fileno=${save_fileno}"><s:property
-												value="save_filename" /></a></td>
+									<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+												value="save_filename" /></a></span></td>
 									<td class="filename"><input type="button"
 										class="del btn btn-primary" value="삭제"></td>
 								</tr>
@@ -215,13 +223,16 @@ float:left;
 			
 			
 			
-			<div class="col-md-4" >
-			<h1 id="stitle1" align="center">선택된 워드</h1>
-				<table id="check" border="1" class="table">
+			<div id="scroll">
+			<div class="col-md-11">
+			<h3 id="stitle1" align="center">선택된 워드 리스트</h3>
+				<table id="checktable" border="1" class="table">
 					<tr>
-						<th class="filename" width="500">선택된 워드명</th>
+						<th class="filename" width="500">선택된 파일명</th>
+						<th class="filename" width="300">파일 유형</th>
 					</tr>
 				</table>
+				</div>
 			</div>
 	
 			<div id="buttons" >
@@ -245,9 +256,9 @@ float:left;
 
 						<div class="form-group">
 							<select name="files.filetype" id="sel">
-								<option value="docx">거래처별 현황</option>
-								<option value="docx">거래처별 미수현황표</option>
-								<option value="docx">경비사용내역</option>
+								<option value="ima">거래처별 현황</option>
+								<option value="genjou">거래처별 미수현황표</option>
+								<option value="keibi">경비사용내역</option>
 							</select>
 						</div>
 					 <input type="file" id="upfile" name="upload">

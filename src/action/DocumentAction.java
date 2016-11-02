@@ -101,7 +101,8 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		//전체 글수 구하기
 		int total=0;
 		if(searchText!=null){
-			total = dd.getTotal(null);
+			total=dd.getTotal(null);
+			
 		}else{
 			total = dd.getTotal(searchText);
 		}	
@@ -486,14 +487,15 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 public String changefile() throws Exception {
+	System.out.println(arr);
 		
-		if(uploadFileName.equals("currentStatus.docx,")){ 		//거래처별 현황 처리하는 메소드
+		if(arr.equals("거래처별 현황")){ 		//거래처별 현황 처리하는 메소드
 			
-		String[] array = uploadFileName.split(",");
+		
 		
 		DocumentDAO dd = new DocumentDAO();
 		
-		String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
+		String save_filename = dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno());
 		
 		System.out.println(save_filename);
 		
@@ -502,7 +504,7 @@ public String changefile() throws Exception {
 		
 		ArrayList<String[]> room = new ArrayList<>();
 
-		room = rw.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
+		room = rw.readWord(dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno()));
 
 		ExcelReadWrite erw = new ExcelReadWrite();
 		
@@ -511,15 +513,15 @@ public String changefile() throws Exception {
 		System.out.println(integrate);
 		
 		
-		}else if(uploadFileName.equals("unpaymentStatus.docx,")){		//거래처별 미수현황표 처리하는 메소드
+		}else if(arr.equals("거래처별 미수현황표")){		//거래처별 미수현황표 처리하는 메소드
 			
 			System.out.println("들어오나?");
 			
-			String[] array = uploadFileName.split(",");
+			
 			
 			DocumentDAO dd = new DocumentDAO();
 			
-			String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
+			String save_filename = dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno());
 			
 			System.out.println(save_filename);
 			
@@ -527,7 +529,7 @@ public String changefile() throws Exception {
 			
 			ArrayList<String[]> room = new ArrayList<>();
 			
-			room = twr.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
+			room = twr.readWord(dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno()));
 			
 			TorihikiWordWrite tww = new TorihikiWordWrite();
 			
@@ -537,15 +539,15 @@ public String changefile() throws Exception {
 
 			
 			
-		}else if(uploadFileName.equals("expensesStatus.docx,")){		//경비사용내역 처리하는 메소드
+		}else if(arr.equals("경비사용내역")){		//경비사용내역 처리하는 메소드
 			
 			System.out.println("3.docx, 들어오나?");
 			
-			String[] array = uploadFileName.split(",");
+		
 			
 			DocumentDAO dd = new DocumentDAO();
 			
-			String save_filename = dd.searchfile(array[0],((Members)session.get("members")).getMemberno());
+			String save_filename = dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno());
 			
 			System.out.println(save_filename);
 			
@@ -553,7 +555,7 @@ public String changefile() throws Exception {
 			
 			ArrayList<String[]> room = new ArrayList<>();
 			
-			room = uwr.readWord(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()));
+			room = uwr.readWord(dd.searchfile(uploadFileName,((Members)session.get("members")).getMemberno()));
 			
 			UchiwakeWordWrite uww = new UchiwakeWordWrite();
 			
@@ -579,13 +581,24 @@ public String changefile() throws Exception {
 		DocumentDAO dd = new DocumentDAO();
 		if(dd.calltype(save_filename).equals("y")){
 			msg="가계부";
-			return "success";
 		}else if(dd.calltype(save_filename).equals("cost")){
 			msg="거래명세서";
 		}else if(dd.calltype(save_filename).equals("uum")){
 			msg="지급어음명세서";
 		}else if(dd.calltype(save_filename).equals("left")){
 			msg="재고관리대장";
+		}
+		return "success";
+	}
+	public String move2()throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		System.out.println(save_filename);
+		if(dd.calltype(save_filename).equals("ima")){
+			msg="거래처별 현황";
+		}else if(dd.calltype(save_filename).equals("genjou")){
+			msg="거래처별 미수현황표";
+		}else if(dd.calltype(save_filename).equals("keibi")){
+			msg="경비사용내역";
 		}
 		return "success";
 	}
