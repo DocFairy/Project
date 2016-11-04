@@ -181,8 +181,8 @@ th{
 	magin-right : 0;
 	padding : 5px;
 	width : 500px;
-	background-color : violet;
-	color : "red";
+	background-color : #af2045;
+	color : white;
 	text-align: center;
 }
 #chart_d{
