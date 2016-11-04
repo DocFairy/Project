@@ -46,7 +46,7 @@
 <script type="text/javascript">
 				
 	$(document).ready(function(){
-		
+		$("#entirePage").slideUp(500).slideToggle().fadeTo(100, 0.8);
 	
 		$("#datepicker, #datepickerFrom, #datepickerTo").datepicker({
 			dateFormat : "yymmdd"
@@ -245,7 +245,7 @@ p{
 				</div>
 			</aside>
 			
-	<div class="col-md-9">
+	<div id="entirePage" class="col-md-9">
 			<h1 id="stitle">가계부 관리</h1><br><br>
 	
 		<div id="dateP">	
