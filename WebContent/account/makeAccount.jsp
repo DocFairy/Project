@@ -32,7 +32,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#table").hide(500).show(500);
+		$("#table").hide(300).show(300);
 		
 		$(this).on('click', '.add',function(){
 			$("#table").append(
@@ -89,12 +89,13 @@
 </script>
 <style type="text/css">
 th{
-	text-align: center;
 	magin-right : 5px;
 	padding : 5px;
+	width : auto;
 	height : 30px;
 	background-color : #af2045;
 	color : white;
+	text-align :center;
 }
 h1{
 	padding : 5px;
@@ -144,10 +145,10 @@ input[type=text]{
 	
 	<s:form id="form-data" action="account/saveAccount" method="post">
 	
-	<table  id="table">
+	<table   id="table" class="text-center">
 		<tr>
-			<th>날짜</th><th>내용</th><th>수입</th>
-			<th>지출</th><th>비고</th><th>추가</th><th>삭제</th>
+			<th class="text-center">날짜</th><th class="text-center">내용</th><th class="text-center">수입</th>
+			<th class="text-center">지출</th><th class="text-center">비고</th><th>추가</th><th>삭제</th>
 		<tr>
 		<tr>
 			<td><input type="text" name="date" id="date" readonly="readonly" value="<s:property value='date'/>" ></td>

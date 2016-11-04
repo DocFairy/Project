@@ -120,6 +120,11 @@
 		
 		$("#getdata").on('click',function(){
 			var date = $("#datepicker").val();
+			if(date == ""){
+				alert("날짜를 입력하세요");
+				return false;
+			}
+			
 			$.ajax({
 				
 				url : 'gogoGraph' ,
