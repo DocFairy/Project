@@ -49,8 +49,8 @@
 				+'<option value="주거/통신">주거/통신</option>'
 			   +'<option value="기타">기타</option>'
 			   +'</select></td>'
-			   +'<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="  +  "></td>'
-			   +'<td class="delt"><input type="button" class="del btn btn-primary btn-sm" value="  -  "></td>'
+			   +'<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="   +   "></td>'
+			   +'<td class="delt"><input type="button" class="del btn btn-primary btn-sm" value="   -   "></td>'
 			);
 		});
 	
@@ -163,8 +163,8 @@ input[type=text]{
 					<option value="주거/통신">주거/통신</option>
 					<option value="기타">기타</option>
 				</select></td>
-			<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="  +  "></td>
-			<td><input type="button" id="del" class="del btn btn-primary btn-sm" value="  -  "></td>
+			<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="   +   "></td>
+			<td><input type="button" id="del" class="del btn btn-primary btn-sm" value="   -   "></td>
 	</table>
 	<label><s:submit class="btn btn-danger" value="저장" /></label>
 	<label><s:reset class="btn btn-primary" value="취소"/></label>
