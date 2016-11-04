@@ -103,9 +103,13 @@
                   	</form>
                   </div>
                   <span id="imagelistspan">
+                  <br>
+                  <br>
                   <div id="imagelistdiv" class="panel row">
-                     <s:iterator var="ImageFilenameConnector" value="imageList" >
-                        <div style="float: left; width: 33%; padding: 10px;" class="row">
+                     <s:iterator var="ImageFilenameConnector" value="imageList" status="status" >
+                       <s:set name="idx" value="#status.index"/>
+                       	<div style="float: left; width: 33%; padding: 10px; margin: 5px;" class="row">
+                       	<div style="float: left;" >
                            <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
                               <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
                                  class="imagePreview" /><br>
@@ -114,15 +118,19 @@
                            </a>
                            <br>
                            <a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
-                           <s:if test="#session.members.id!=null">&nbsp; &nbsp;
-									<s:if test="#session.members.id.equals('admin')">
-									
-									<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
-								</s:if>
+                          <s:if test="#session.members.id!=null">&nbsp; &nbsp;
+							<s:if test="#session.members.id.equals('admin')">
+								<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
 							</s:if>
-                        </div>
+						</s:if>
+                       	</div>
+							</div>
+							<s:if test="#idx%3==2">
+							<br><br><br><br><br><br>
+							</s:if>
+							
                      </s:iterator>
-                  </div>
+                      </div>
                </span>
                <div >
                   <%--       <table id="doctable">
