@@ -183,7 +183,7 @@ $(function(){
 					
 					<div class="card-content table-responsive">
 						<h3 id="stitle1" align="center">문서 리스트</h3>
-						<table border="1" id="entire" class="table">
+						<table border="0" id="entire" class="table">
 						
 							<tr>
 
@@ -195,11 +195,11 @@ $(function(){
 							<s:iterator value="list">
 								<tr>
 									<td class="filename"><input type="button"
-										class="checked btn btn-primary" value="선택"></td>
+										class="checked btn btn-link" value="선택"></td>
 									<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
 												value="save_filename" /></a></span></td>
 									<td class="filename"><input type="button"
-										class="del btn btn-primary" value="삭제"></td>
+										class="del btn btn-link" value="삭제"></td>
 								</tr>
 							</s:iterator>
 						</table>

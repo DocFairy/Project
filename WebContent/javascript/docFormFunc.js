@@ -165,6 +165,7 @@ $(function(){
       
       
       $("#docSearch").on("click",function(){
+    	 $("#createPage").html("");
          $("#createPage table").remove();
          $("#imagelistdiv").show();
          $("#regularFormUpload").show();

@@ -47,7 +47,7 @@ CREATE TABLE BOARD /* 모든 게시판의 글을 담는 Table */
 	MEMBERNO varchar2(20) references members, /*글쓴이, 외부키*/
 	CONSTRAINT SYS_C0010350 PRIMARY KEY (BOARDNO)
 );
-
+alter table membergroup modify (groupname varchar(100));
 create sequence files_seq;
 create sequence memberno_seq;
 create sequence membergroup_seq;

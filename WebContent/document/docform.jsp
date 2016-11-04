@@ -112,8 +112,9 @@
                            </a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
                                  value="#ImageFilenameConnector.save_filename" />
                            </a>
+                           <br>
                            <a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
-                           <s:if test="#session.members.id!=null">
+                           <s:if test="#session.members.id!=null">&nbsp; &nbsp;
 									<s:if test="#session.members.id.equals('admin')">
 									
 									<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
@@ -140,10 +141,10 @@
                      <form action="insertfile_docform" method="post"
                         enctype="multipart/form-data" onsubmit="return formcheck();">
                         <input type="hidden" name="files.filetype" value="f">
-                        <!-- 문서타입: f(문서양식) -->
+                        
                         <input type="hidden" name="files.memberno"
                            value="${session.members.memberno}"> <label><input
-                           id="buttons2" type="file" class="btn btn-custom" name="upload"
+                           id="buttons2" type="file" name="upload" class="btn btn-custom"
                            id="upfile"></label> <input type="submit"
                            class="update btn btn-custom" value="올리기">
                      </form>

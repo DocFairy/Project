@@ -15,6 +15,6 @@ public class PathSaver {
 	}
 	
 	public static String librePath(){ //libreOffice가 저장된 주소
-		return "C:/Program Files/LibreOffice 5";
+		return "C:/Program Files (x86)/LibreOffice 5";
 	}
 }

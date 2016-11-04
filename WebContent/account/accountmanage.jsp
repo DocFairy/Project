@@ -74,8 +74,6 @@
 					var firstDay = response.firstDay;
 					var secondDay = response.secondDay;
 				
-					alert(secondDay);
-					
 					$("#chart_c_a").append(
 							'<input type="button" value="차트지우기" class="delChart btn btn-custom">'
 							);
