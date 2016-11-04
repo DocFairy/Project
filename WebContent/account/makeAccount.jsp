@@ -32,7 +32,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		$("#table").hide(500).show(500);
 		
 		$(this).on('click', '.add',function(){
 			$("#table").append(
@@ -40,7 +40,7 @@
 			   +'<td><input type="text" name="content" id="content"></td>'
 			   +'<td><input type="text" name="input"  id="in"></td>'
 			   +'<td><input type="text" name="out" id="out"></td>'
-			   +'<td><select name="note">'
+			   +'<td><select name="note" class="form-control">'
 			   +'<option value="의류비">의류비</option>'
 			   +'<option value="식비">식비</option>'
 			   +'<option value="건강/문화">건강/문화</option>'
@@ -49,8 +49,8 @@
 				+'<option value="주거/통신">주거/통신</option>'
 			   +'<option value="기타">기타</option>'
 			   +'</select></td>'
-			   +'<td><input type="button" id="add" class="add btn btn-info" value="  +  "></td>'
-			   +'<td class="delt"><input type="button" class="del btn btn-info" value="  -  "></td>'
+			   +'<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="  +  "></td>'
+			   +'<td class="delt"><input type="button" class="del btn btn-primary btn-sm" value="  -  "></td>'
 			);
 		});
 	
@@ -89,15 +89,12 @@
 </script>
 <style type="text/css">
 th{
-	border : 1px solid black;
 	text-align: center;
 	magin-right : 5px;
 	padding : 5px;
-	width : 10px;
-	height : 40px;
-	background-color : violet;
-	color : "red";
-	
+	height : 30px;
+	background-color : #af2045;
+	color : white;
 }
 h1{
 	padding : 5px;
@@ -105,17 +102,15 @@ h1{
 	color:#fff ;
 }
 .table{
-	border : 1px solid black;
 	margin-right : 5px;
 	padding : 5px;
 	width : 50px;
-	text-align: center;
+	height : 30px;
 	text-align: center;
 }
 input[type=text]{
-	height : 40px;
+	height : 30px;
 	width : 160px;
-	text-align: center;
 }
 </style>
 </head>
@@ -149,7 +144,7 @@ input[type=text]{
 	
 	<s:form id="form-data" action="account/saveAccount" method="post">
 	
-	<table border="1"  id="table">
+	<table  id="table">
 		<tr>
 			<th>날짜</th><th>내용</th><th>수입</th>
 			<th>지출</th><th>비고</th><th>추가</th><th>삭제</th>
@@ -159,7 +154,7 @@ input[type=text]{
 			<td><input type="text" name="content" id="content"></td>
 			<td><input type="text" name="input" id="in"></td>
 			<td><input type="text" name="out" id="out"></td>
-			<td><select name="note">
+			<td><select name="note" class="form-control">
 					<option value="의류비">의류비</option>
 					<option value="식비">식비</option>
 					<option value="건강/문화">건강/문화</option>
@@ -168,8 +163,8 @@ input[type=text]{
 					<option value="주거/통신">주거/통신</option>
 					<option value="기타">기타</option>
 				</select></td>
-			<td><input type="button" id="add" class="add btn btn-info" value="  +  "></td>
-			<td><input type="button" id="del" class="del btn btn-info" value="  -  "></td>
+			<td><input type="button" id="add" class="add btn btn-primary btn-sm" value="  +  "></td>
+			<td><input type="button" id="del" class="del btn btn-primary btn-sm" value="  -  "></td>
 	</table>
 	<label><s:submit class="btn btn-danger" value="저장" /></label>
 	<label><s:reset class="btn btn-primary" value="취소"/></label>

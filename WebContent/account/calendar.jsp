@@ -31,6 +31,8 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
+		$("#entire").hide(500).show(500);
+		
 		$("#picker").datepicker({
 				dateFormat : "yymmdd",
 				showAnim : "slide"	
@@ -126,11 +128,10 @@ h1{
 	color:#fff ;
 }		
 th{
-	border : 1px solid black;
 	magin-right : 0;
 	padding : 5px;
 	width : 500px;
-	height : 50px;
+	height : 30px;
 	background-color : #af2045;
 	color : white;
 	text-align: center;
@@ -174,7 +175,7 @@ goMakeAccount{
 			
 <form action="goMakeAccount" method="post" id="gogoAccount" >
 <input type="hidden" name="date" id="date">
-			<table border="1" id="entire">
+			<table class="table table-hover text-center" id="entire">
 				<tr>
 				<th class="filename">다운로드</th>
 				<th class="filename" width="200">파일명</th>
