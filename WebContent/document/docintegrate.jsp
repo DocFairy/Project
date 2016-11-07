@@ -79,10 +79,17 @@ overflow:auto;
 }
 .col-md-4{
 width:400px;
+overflow:auto;
 }
 span{
 font-size:15px;
 }
+#scroll2{
+height:700px;
+overflow:auto;
+width:400px;
+}
+
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript"
@@ -105,7 +112,7 @@ $(function(){
 		alert(msg);	
 	}
 	$("#entire").on('click','.checked',function(){
-		var filename=$(this).parent().next().text();
+		var filename=$(this).parent().prev().text();
 		$.ajax({
 			url:'move',
 			data:{'save_filename':filename},
@@ -118,7 +125,7 @@ $(function(){
 	});
 	$(".del").on('click',function(){
 		$(this).parent().parent().remove();
-		var save_filename=$(this).parent().parent().children().first().next().children().text();
+		var save_filename=$(this).parent().parent().children().first().children().text();
 		$.ajax({
 			url:'delfile',
 			data:{'uploadFileName':save_filename}
@@ -178,46 +185,30 @@ $(function(){
 				</div>
 			</aside>
 			<h1 id="stitle">문서 통합</h1><a id="help">도움말</a>
-			<div class="col-md-4">
+			
+			<div class="col-md-4" style=height:700px>
 				<div class="card">
 					
 					<div class="card-content table-responsive">
 						<h3 id="stitle1" align="center">문서 리스트</h3>
-						<table border="0" id="entire" class="table">
+						<table id="entire" class="table">
 						
-							<tr>
-
-								<th class="filename" width="70">옮기기</th>
+							<tr>						
 								<th class="filename" width="200">파일명</th>
+								<th class="filename" width="70">옮기기</th>
 								<th class="filename" width="70">삭제</th>
 							</tr>
 							
 							<s:iterator value="list">
-								<tr>
-									<td class="filename"><input type="button"
-										class="checked btn btn-link" value="선택"></td>
-									<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+								<tr><td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
 												value="save_filename" /></a></span></td>
+									<td class="filename"><input type="button"
+										class="checked btn btn-link" value="선택"></td>	
 									<td class="filename"><input type="button"
 										class="del btn btn-link" value="삭제"></td>
 								</tr>
 							</s:iterator>
 						</table>
-						<p class="paging">
-				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage - 1})">&lt;</a>
-				
-	<s:iterator var="counter" begin="pagenavi.startPageGroup" end="pagenavi.endPageGroup" > 
-			<a href="javascript:pagingFormSubmit(<s:property value="#counter"/>)" <s:if test="#counter == pagenavi.currentPage"> class="select"</s:if>><s:property value="#counter"/></a>&nbsp;
-	</s:iterator>
-				<a href="javascript:pagingFormSubmit(${pagenavi.currentPage + 1})">&gt;</a>
-			</p>
-			<s:form name="pagingForm" method="post" action="docintegrate" theme="simple">
-			<center><p class="board_search">
-	<s:hidden name="currentPage" value="%{pagenavi.currentPage}" />
-	<s:textfield name="searchText" />
-	<a href="javascript:pagingFormSubmit(1)">검색</a>
-			</p></center>
-</s:form>
 			
 					</div>
 				</div>
@@ -234,6 +225,7 @@ $(function(){
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>  --%>
+			
 			</div>
 			<div id="scroll">
 			<div class="col-md-11">
@@ -246,11 +238,7 @@ $(function(){
 				</table>
 				</div>
 			</div>
-			
-			
-			
-			
-			
+		
 			<div id="buttons">
 
 				<input type="hidden" name="msg" value="${msg}" id="msg" />
@@ -284,27 +272,11 @@ $(function(){
 			<br>
 
 			<!-- 		<div id="integratedList1"> -->
-
-
-
-
 			
-				
 				<div class="col-md-4 section-content">
 					
-				</div>
-			
-
-		 
+				</div>		 
 			<!-- 			</div> -->
-
-
-
-
-
-
-
-
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>

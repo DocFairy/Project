@@ -20,14 +20,10 @@ public class DocumentDAO {
 		
 		return result;
 	}
-	public List<Files> selectfile(String memberno, int startRecord, int countPerPage, String searchText){
+	public List<Files> selectfile(String memberno){
 		
 		//쿼리로 전달할 Parameter들
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("memberno", memberno);
-		map.put("searchText", searchText);
-		RowBounds bound = new RowBounds(startRecord, countPerPage);	
-		return sqlSession.selectList("mapper.DocumentMapper.selectfile", map,bound);	
+		return sqlSession.selectList("mapper.DocumentMapper.selectfile", memberno);	
 		
 	}
 	public Files selectfileone(String save_fileno){
@@ -82,11 +78,5 @@ public class DocumentDAO {
 	public List<Files> selectword(String memberno) {
 		
 		return sqlSession.selectList("mapper.DocumentMapper.selectword", memberno);
-	}
-	
-	public int getTotal(String searchText) {
-		
-		return sqlSession.selectOne("mapper.DocumentMapper.gettotal", searchText);
-		
 	}
 }

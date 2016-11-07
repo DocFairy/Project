@@ -7,12 +7,8 @@
 insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename},#{memberno},#{filetype},null)
 </insert>
 
-<select id="selectfile" resultType="Files" parameterType="Map">
-select * from files where memberno=#{memberno} and filetype != 'ima' and filetype!='genjou' and filetype!='keibi' 
-<if test="searchText != null">
-and save_filename like '%' || #{searchText} || '%'
-</if>
-order by save_fileno desc
+<select id="selectfile" resultType="Files" parameterType="String">
+select * from files where memberno=#{memberno} and filetype != 'ima' and filetype!='genjou' and filetype!='keibi' order by save_fileno desc
 </select>
 
 <select id="selectword" resultType="Files" parameterType="String">
