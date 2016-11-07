@@ -21,14 +21,21 @@
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript">
 		function goHancok(){
-			var password = document.getElementById('password').value;
-			var passwordre = document.getElementById('passwordre').value;
-			
-			if(password == "" || password.length == 0){
-				document.getElementById('password').value = ${members.password};
-			}
-			
-			
+			var id = $("#id").val();
+			var password = $("#password").val();
+			var passwordre = $("#passwordre").val();
+			var name = $("#name").val();
+			var phone = $("#phone").val();
+			var address = $("#address").val();
+			if(password != passwordre){
+				alert('비밀번호와 비밀번호 확인이 일치하지 않아요');
+				return false;
+			}	
+			if(id == ""){alert('아이디 입력하세요');return false;}
+			if(password == ""){alert('패스워드를 입력하세요'); return false;}
+			if(name == ""){alert('이름을 입력하세요');return false;}
+			if(phone == ""){alert('전화번호 입력하세요');return false;}
+			if(address == ""){alert('주소를 입력하세요');return false;}
 			
 		}
 	
@@ -41,7 +48,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	<h1 id="stitle2">회원정보 수정</h1>
 	<div class="login_area">
-				<s:form action="members/update" onsubmit="goHancok()" method="post"  theme="simple">
+				<s:form action="members/update" onsubmit="return goHancok()" method="post"  theme="simple">
 					<ul><!-- 회원가입 -->
 						<li class="grp_area"><s:label for="">회원구분</s:label><s:radio name="members.division"
 						list="#{1:'관리자',2:'일반회원'}" value="#{2}"></s:radio> </li>
@@ -49,8 +56,8 @@
 						<li><s:password placeholder="비밀번호" class="login_write" name="members.password"  id="password"/></li>
 						<li><s:password placeholder="비밀번호 확인" class="login_write" id="passwordre"/></li>
 						<li><s:textfield placeholder="이름" class="login_write" name="members.name" readonly="true" id="name"/></li>
-						<li><s:textfield placeholder="전화번호" class="login_write" name="members.phonenum" /></li>
-						<li><s:textfield placeholder="주소" class="login_write" name="members.address"/></li>
+						<li><s:textfield placeholder="전화번호" class="login_write" name="members.phonenum" id="phone"/></li>
+						<li><s:textfield placeholder="주소" class="login_write" name="members.address" id="address"/></li>
 						<li><s:submit class="btn_join" value="수정" /></li>
 					</ul>											
 				</s:form>

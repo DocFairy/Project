@@ -31,7 +31,8 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$("#entire").hide(500).show(500);
+		/* $("#entire").hide(500).show(500); */
+		$("#entirePage").slideUp(500).slideToggle().fadeTo(100, 0.8);
 		
 		$("#picker").datepicker({
 				dateFormat : "yymmdd",
@@ -165,7 +166,7 @@ goMakeAccount{
 			</aside>
 			
 			
-			<div class="col-md-9">
+			<div id="entirePage" class="col-md-9">
 			
 			<h2 id="stitle" >가계부 달력</h2><br><br>
 			

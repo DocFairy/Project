@@ -20,13 +20,35 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<script src="javascript/pace.min.js"></script>
 	
+	<script type="text/javascript">
+	function formcheck(){
+		var id = $("#id").val();
+		var password = $("#password").val();
+		var passwordre = $("#passwordre").val();
+		var name = $("#name").val();
+		var phone = $("#phone").val();
+		var address = $("#address").val();
+		
+		if(password != passwordre){
+			alert('비밀번호와 비밀번호확인이 일치하지 않습니다.');
+			return false;
+		} 
+		if(id == ""){alert('아이디 입력하세요');return false;}
+		if(password == ""){alert('패스워드를 입력하세요'); return false;}
+		if(name == ""){alert('이름을 입력하세요');return false;}
+		if(phone == ""){alert('전화번호 입력하세요');return false;}
+		if(address == ""){alert('주소를 입력하세요');return false;}
+	}
+	
+	</script>
+	
 </head>
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="login_area">
 	<h1 id="stitle" >회원가입</h1>
-				<s:form action="/members/join_ok" method="post" onsubmit="return formcheck();" theme="simple">
+				<s:form action="/members/join_ok" id="goJoin" method="post" onsubmit="return formcheck();" theme="simple">
 					<ul><!-- 회원가입 -->
 						<li class="grp_area"><s:label for="">회원구분</s:label><s:radio name="members.division"
 						list="#{1:'개인',2:'기업'}" value="#{1}"></s:radio> </li>
@@ -35,8 +57,8 @@
 						<li><s:password placeholder="비밀번호" class="login_write" name="members.password" id="password"/></li>
 						<li><s:password placeholder="비밀번호 확인" class="login_write" id="passwordre"/></li>
 						<li><s:textfield placeholder="이름" class="login_write" name="members.name" id="name"/></li>
-						<li><s:textfield placeholder="전화번호" class="login_write" name="members.phonenum" /></li>
-						<li><s:textfield placeholder="주소" class="login_write" name="members.address"/></li>
+						<li><s:textfield placeholder="전화번호" class="login_write" name="members.phonenum" id="phone"/></li>
+						<li><s:textfield placeholder="주소" class="login_write" name="members.address" id="address"/></li>
 						<li><s:submit class="btn_join btn btn-primary" value="회원가입"/></li>
 					</ul>											
 				</s:form>
