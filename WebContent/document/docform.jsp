@@ -46,11 +46,14 @@
 
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript">
-	if(("#upfile").val()==""){
-		alert('파일을 선택하지 않았습니다.');
+function formcheck(){
+	if($("#upfile").val()==""){
+		alert('파일을 선택하지 않았습니다!');
 		return false;
 	}
+}
 </script>
+<script type="text/ⓙavascript" src="./FileButton.js"></script> 
 
 </head>
 
@@ -105,31 +108,40 @@
                   <span id="imagelistspan">
                   <br>
                   <br>
-                  <div id="imagelistdiv" class="panel row">
+                  <div id="imagelistdiv" class="panel">
+                       	<ul  style="list-style: none; margin:0px; padding:0px;">
+
                      <s:iterator var="ImageFilenameConnector" value="imageList" status="status" >
+                       	<li>
                        <s:set name="idx" value="#status.index"/>
-                       	<div style="float: left; width: 33%; padding: 10px; margin: 5px;" class="row">
-                       	<div style="float: left;" >
-                           <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
-                              <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
-                                 class="imagePreview" /><br>
-                           </a> <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
-                                 value="#ImageFilenameConnector.save_filename" />
-                           </a>
-                           <br>
-                           <a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
-                          <s:if test="#session.members.id!=null">&nbsp; &nbsp;
-							<s:if test="#session.members.id.equals('admin')">
-								<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
+                       	<div style="float: left; width: 200px; padding: 10px; margin: 20px;" class="row">
+	                           <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> 
+	                              <img src="../pdf/<s:property value="#ImageFilenameConnector.imageFilename"/>"
+	                                 class="imagePreview" /><br>
+	                           </a> <center>
+	                           <a href="fileDownload?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>" class="preview"> <s:property
+	                                 value="#ImageFilenameConnector.save_filename" />
+	                           </a>
+	                           </center>
+	                           <br>
+	                           <center>
+	                           <a id="pdfshow" href="../pdf/<s:property value="imageFilenameWithoutType"/>.pdf"<s:property value="filename_pdf"/>>미리보기</a>
+	                          <s:if test="#session.members.id!=null">&nbsp; &nbsp;
+								<s:if test="#session.members.id.equals('admin')">
+									<a href="docFormDeleteF?save_fileno=<s:property value="#ImageFilenameConnector.save_fileno"/>">삭제</a>
+								</s:if>
 							</s:if>
-						</s:if>
-                       	</div>
-							</div>
+							 </center>	
+						</div>
+							</li>	
 							<s:if test="#idx%3==2">
-							<br><br><br><br><br><br>
+								<s:if test="#idx!=imageList.size()-1">
+									<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+								</s:if>
+								
 							</s:if>
-							
                      </s:iterator>
+                       	</ul>
                       </div>
                </span>
                <div >
@@ -142,7 +154,8 @@
             </tr>
             <!-- <tr><td><input type="text" id="docformSearch"/> <input type="button" id="docformSearchButton" value="검색"/></td></tr> -->
             </table> --%>
-                  <br>
+                  							<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+              
                   <div class="row" id="regularFormUpload">
                <s:if test="#session.members.id!=null">
                   <s:if test="#session.members.id.equals('admin')">
