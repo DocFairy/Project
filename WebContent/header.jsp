@@ -43,7 +43,6 @@
 				</form>
 				<ul style="list-style: none;padding: 5px;">
 					<li><a id="join" href="${pageContext.request.contextPath}/join">회원가입</a></li>
-					<li><a id="find" href="${pageContext.request.contextPath}/find">아이디/비밀번호 찾기</a></li>
 				</ul>
 			</s:if>
 				

@@ -38,15 +38,7 @@ CREATE TABLE FILES /*올라온 파일을 저장하는 Table*/
 	CONSTRAINT SYS_C0010345 PRIMARY KEY (SAVE_FILENO)
 );
 
-CREATE TABLE BOARD /* 모든 게시판의 글을 담는 Table */
-(
-	BOARDNO varchar2(20), /* 기본키, 게시판 글번호*/
-	SAVE_FILENO varchar2(20) references files, /*게시판에 올라간, 파일의 번호*/
-	TITLE varchar2(40) NOT NULL, /*글 제목*/
-	CONTENT varchar2(4000) NOT NULL, /*글 내용*/
-	MEMBERNO varchar2(20) references members, /*글쓴이, 외부키*/
-	CONSTRAINT SYS_C0010350 PRIMARY KEY (BOARDNO)
-);
+
 alter table membergroup modify (groupname varchar(100));
 create sequence files_seq;
 create sequence memberno_seq;
