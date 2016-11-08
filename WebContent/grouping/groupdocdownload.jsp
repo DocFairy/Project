@@ -58,7 +58,7 @@
                <!-- 리더라면 수정과 삭제 가능하도록 -->
              
                </table>
-               <ul class="pagination">
+              <!--  <ul class="pagination">
                   <li>
                      <a href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
@@ -79,7 +79,7 @@
                         <span aria-hidden="true">&raquo;</span>
                      </a>
                   </li>
-               </ul>
+               </ul> -->
                </div>
             </nav>
          </div>

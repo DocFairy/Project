@@ -44,7 +44,7 @@
 			alert(msg);
 		}
 		$("#entire").on('click','.checked',function(){
-			var filename=$(this).parent().next().text();
+			var filename=$(this).parent().prev().text();
 			$.ajax({
 				url:'move2',
 				data:{'save_filename':filename},
@@ -108,7 +108,11 @@
 		$("#help").on('click',function(){
 			alert('1. 올릴 파일의 유형을 선택하고 파일을 업로드하세요. 파일이 문서 리스트에 업로드됩니다. \n\r2. 문서 리스트에서 변환할 파일이 있는 줄의 왼쪽 "옮기기"버튼을 누르세요. 파일이 선택된 선택된 워드로 복사됩니다. \n\r3. 선택된 워드에 변환할 파일이 올라가면, 변환 버튼을 클릭하세요.\n\r ※ 본 홈페이지에서 받은 문서 양식을 사용해주세요!');
 		});
-
+		$("#remove").on('click',function(){
+			$("#checktable .add").each(function(index,item){
+				$("#checktable .add").eq(index).children().remove();
+			});
+		});
 	});
 </script>
 
@@ -188,27 +192,27 @@ float:left;
 			
 			<h1 id="stitle">문서 변환</h1><a id="help">도움말</a><br>
 			
-			<div class="col-md-4">
+			<div class="col-md-4" style=height:700px>
 				<div class="card">
 					
 					<div class="card-content table-responsive">
 						<h1 id="stitle1" align="center">문서 리스트</h1>
 						<table border="1" id="entire" class="table">
 						
-							<tr>
-								<th class="filename" width="70">옮기기</th>
+							<tr>			
 								<th class="filename" width="200">파일명</th>
+								<th class="filename" width="70">옮기기</th>
 								<th class="filename" width="70">삭제</th>
 							</tr>
 
 							<s:iterator value="list">
 								<tr>
-									<td class="filename"><input type="button"
-										class="checked btn btn-primary" value="선택"></td>
-									<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+								<td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
 												value="save_filename" /></a></span></td>
 									<td class="filename"><input type="button"
-										class="del btn btn-primary" value="삭제"></td>
+										class="checked btn btn-link" value="선택"></td>		
+									<td class="filename"><input type="button"
+										class="del btn btn-link" value="삭제"></td>
 								</tr>
 							</s:iterator>
 						</table>
@@ -220,7 +224,7 @@ float:left;
 			
 			<div id="scroll">
 			<div class="col-md-11">
-			<h3 id="stitle1" align="center">선택된 워드 리스트</h3>
+			<h3 id="stitle1" align="center">변환할 워드 파일</h3>
 				<table id="checktable" border="1" class="table">
 					<tr>
 						<th class="filename" width="500">선택된 파일명</th>
@@ -260,6 +264,7 @@ float:left;
 					 <input type="hidden" name="files.memberno" value="${session.members.memberno}">
 					 <br>
 					 <input type="submit" value="올리기" class="btn btn-primary">
+					 <input id="remove" type="button" value="리스트 삭제" class="btn btn-primary">
 					 <input id="change" type="button" value="변환" class="btn btn-primary">
 					 </div>
 					

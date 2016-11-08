@@ -31,6 +31,10 @@
 	#pp{
 	margin-left:530px;
 	}
+	th{
+	color:white;
+	background-color:#af2045;
+	}
 	</style>
 	<script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/javascript/jquery-3.1.0.min.js"></script>
