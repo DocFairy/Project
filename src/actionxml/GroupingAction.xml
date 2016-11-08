@@ -17,7 +17,9 @@
         
 		
 		<action name="groupdocdownload" class="action.GroupingAction" method="groupDocDownload">
+		 <interceptor-ref name="LoginIntercepterStack"/>
 			<result>/grouping/groupdocdownload.jsp</result>
+			 <result name="login">/login.jsp</result>
 		</action>
 		
 		<action name="creategroup" class="action.GroupingAction" method="creategroup">

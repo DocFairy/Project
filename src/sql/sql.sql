@@ -1,13 +1,12 @@
 
 drop table files cascade constraint;
-drop table board cascade constraint;
 drop table members cascade constraint;
 drop table membergroup cascade constraint;
 
 CREATE TABLE MEMBERGROUP /*그룹핑 Table*/
 (
 	GROUPNO varchar2(20) NOT NULL, /*기본키, 그룹번호*/
-	GROUPNAME varchar2(20) NOT NULL, /*사용자가 지은, 그룹의 이름*/
+	GROUPNAME varchar2(100) NOT NULL, /*사용자가 지은, 그룹의 이름*/
 	LEADERNO varchar2(20), /*리더 번호*/
 	CONSTRAINT SYS_C0010336 PRIMARY KEY (GROUPNO)
 );
@@ -39,11 +38,9 @@ CREATE TABLE FILES /*올라온 파일을 저장하는 Table*/
 );
 
 
-alter table membergroup modify (groupname varchar(100));
 create sequence files_seq;
 create sequence memberno_seq;
 create sequence membergroup_seq;
-create sequence board_seq;
 
 /* Create Foreign Keys */
 
