@@ -14,9 +14,7 @@
             <result name="login">/login.jsp</result>
         </action>
       
-        <action name="docmanage" class="action.GroupingAction" method="docManage">
-			<result>/grouping/docmanage.jsp</result>
-		</action>
+        
 		
 		<action name="groupdocdownload" class="action.GroupingAction" method="groupDocDownload">
 			<result>/grouping/groupdocdownload.jsp</result>
@@ -46,5 +44,10 @@
          <action name="leave" class="action.GroupingAction" method="leave">
          	<result type="chain">groupmanage</result>
          </action>
+         
+         <action name="groupDocs" class="action.GroupingAction" method="groupDocs">
+         <result type="json"></result>
+      </action>
+         
     </package>
 	</struts>

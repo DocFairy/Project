@@ -22,7 +22,7 @@
 			<result name="login">/login.jsp</result>
 			<result>/document/doctransform.jsp</result>
 		</action>
-
+		
 
 		<action name="docform" class="action.DocumentAction" method="docForm">
 			<result>/document/docform.jsp</result>
@@ -85,6 +85,12 @@
 		<action name="docCreate" class="action.DocumentAction" method="docCreate"> 
 			<result type="json"></result> 
 		</action>
+		<action name="delTempDoc" class="action.DocumentAction" method="delTempDoc"> 
+         <result type="json"></result> 
+      </action>
+      <action name="docShare" class="action.DocumentAction" method="docShare">
+         <result type="json"></result>
+      </action>
 		<action name="move" class="action.DocumentAction" method="move">
 			<result type="json"></result>
 		</action>
@@ -98,6 +104,8 @@
 		<action name="docFormDeleteF" class="action.DocumentAction" method="docFormDeleteF">
 			<result>/document/docform.jsp</result>
 		</action>
+		
+		
 		
 	</package>
 </struts>

@@ -31,7 +31,7 @@
                   <ul class="nav">
                      <li><a href="groupmanage"> 그룹 관리 </a>
                      </li>
-                     <li class="active"><a href="docmanage"> 서식 문서 </a>
+                     <li class="active"><a href="groupdocdownload"> 서식 문서 </a>
                      </li>
                   </ul>
                </nav>
@@ -50,13 +50,13 @@
                   <th class="text-center" style="width:130px;"> 비고 </th>
                </tr>
                </thead>
+               
+               <tbody id="groupBody">
+               </tbody>
+               
                <!-- 그룹 문서가져와서 반복문으로 뿌리기. -->
                <!-- 리더라면 수정과 삭제 가능하도록 -->
-               <tr>
-                  <td> 1 </td>
-                  <td> <a href="#">세금 계산서</a> </td>
-                  <td> <button type="button" class="btn btn-default btn-sm"> Download </button> </td>
-               </tr>
+             
                </table>
                <ul class="pagination">
                   <li>
@@ -90,6 +90,9 @@
    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
    <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
+   <script
+      src="${pageContext.request.contextPath}/javascript/groupDownloadFunc.js">
+   </script>
 </body>
 
 </html>

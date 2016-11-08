@@ -79,4 +79,42 @@ public class DocumentDAO {
 		
 		return sqlSession.selectList("mapper.DocumentMapper.selectword", memberno);
 	}
+	public String searchCreateFile(String tmpName) {
+	      System.out.println("DAO :" + tmpName);
+	      String result = sqlSession.selectOne("mapper.DocumentMapper.searchCreateFile", tmpName);
+	      System.out.println("result : " + result);
+	      return  result;
+	   }
+	   public boolean shareUpdate(String groupno, String memeberno, String[] fileType) {
+	      int result = 0;
+	      boolean chk = false;
+	      HashMap<String, String> map = new HashMap<>();
+	      map.put("groupno", groupno);
+	      map.put("memberno", memeberno);
+	      System.out.println("fileType length:"+ fileType.length);
+	      for (int i = 0; i < fileType.length; i++) {
+	         map.put("filetype", fileType[i]);
+	         if(sqlSession.update("mapper.DocumentMapper.shareCreateFile", map)>0){
+	            sqlSession.commit();
+	            result++;
+	            System.out.println("share dao result:"+result);
+	         }
+	      }
+	      if(result == fileType.length){
+	         return true;
+	      }else{
+	         return false;
+	      }
+	   }
+	   public List<Files> searchGroupFiles(String groupno) {
+	      List<Files> groupFiles = null;
+	      System.out.println("group 1");
+	      groupFiles = sqlSession.selectList("mapper.DocumentMapper.searchGroupFile", groupno);
+	      System.out.println("group 1");
+	      return groupFiles;
+	   }
+	   public void deleteTempFiles(String memberno) {
+	      sqlSession.delete("mapper.DocumentMapper.deleteTempFile",memberno);
+	      sqlSession.commit();
+	   }
 }

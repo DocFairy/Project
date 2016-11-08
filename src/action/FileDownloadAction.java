@@ -19,6 +19,8 @@ public class FileDownloadAction extends ActionSupport {
 	private long contentLength;
 	private String integrate;
 	private String fname;
+	private String tmpName;
+	
 	public String execute() {
 		try {
 			String savedfile = null;
@@ -31,8 +33,10 @@ public class FileDownloadAction extends ActionSupport {
 			}else if(fname!=null){	
 				savedfile=integrate;//원래 파일명				
 				originalfile=fname+".xlsx";
-			}
-			else{
+			}else if(tmpName != null){
+	            savedfile = tmpName;
+	            originalfile = new DocumentDAO().searchCreateFile(tmpName); 
+	        }else{
 				savedfile=integrate;//원래 파일명
 				originalfile="integrate.xlsx";
 			}
@@ -99,23 +103,25 @@ public class FileDownloadAction extends ActionSupport {
 		return integrate;
 	}
 
-
 	public void setIntegrate(String integrate) {
 		this.integrate = integrate;
 	}
-
-
-
 
 	public String getFname() {
 		return fname;
 	}
 
-
-
-
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
+	public String getTmpName() {
+		return tmpName;
+	}
+
+	public void setTmpName(String tmpName) {
+		this.tmpName = tmpName;
+	}
+	
 	
 }

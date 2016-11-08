@@ -23,6 +23,7 @@ import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 
 import dao.DocumentDAO;
+import dao.GroupingDAO;
 import excel.Converter2;
 import excel.ExcelMain;
 import excel.ExcelReadWrite;
@@ -59,31 +60,81 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private String filename_pdf;
 	private DocCustomizing aNewCreate;
 	private List<File> createFiles;
-	private ArrayList<String> createFileNames;
 	private String arr;
 	private String[] createList;
 	private String searchKeyword;
 	private String searchText;
 	private int currentPage = 1;
+	private ArrayList<Files> tmpList;
 	// 파일 만들기만.
 	private PageNavigator pagenavi;
 
-	public String docCreate() throws Exception {
-		/*System.out.println("length : " + arr);
-		System.out.println(aNewCreate.toString());*/
-		String temp = aNewCreate.getCompanyNo();
-	      temp = temp.substring(0, 3) + "-" + temp.substring(3, 5) + "-" + temp.substring(5);
-	      aNewCreate.setCompanyNo(temp);
-		createFiles = new OpenExcelFile().createExcelDoc(aNewCreate, arr); //
-//		System.out.println(createFiles.get(0).getName());
-//		System.out.println("size = " + createFiles.size());
-		createFileNames = new ArrayList<>();
-		for (int i = 0; i < createFiles.size(); i++) {
-			createFileNames.add(createFiles.get(i).getName());
-		}
-		return SUCCESS;
-	} // 공유시 데이터베이스에 업로드. public String docShare(){ return SUCCESS; }
-
+	   //DB에서 filetype이 't'인 데이터 지우기, 아이디검사도 함께.
+	   public String delTempDoc() {
+	      System.out.println("delTempDoc() start");
+	      new DocumentDAO().deleteTempFiles(((Members) session.get("members")).getMemberno());
+	      System.out.println("delTempDoc() end");
+	      return SUCCESS;
+	   }
+	   //Files객체 ArrayList로 넣어서 자바스크립트로 보내기.
+	   public String docCreate() throws Exception {
+	      /*System.out.println("length : " + arr);
+	      System.out.println(aNewCreate.toString());*/
+	      String temp = aNewCreate.getCompanyNo();
+	       temp = temp.substring(0, 3) + "-" + temp.substring(3, 5) + "-" + temp.substring(5);
+	       aNewCreate.setCompanyNo(temp);
+	      createFiles = new OpenExcelFile().createExcelDoc(aNewCreate, arr); 
+	      System.out.println("createFiles size:" + createFiles.size());
+	      DocumentDAO dd = new DocumentDAO();
+	      tmpList = new ArrayList<>();
+	      for (File fileInfo : createFiles) {
+	         Files temp_file = new Files();
+	         FileService fs = new FileService();
+	         String basePath = "C:/upload"; // user.properties에 지정된 파일 저장 경로
+	         String savedfile = fs.saveFile(fileInfo, basePath, fileInfo.getName());
+	         System.out.println("savedfile : "+savedfile);
+	         temp_file.setSave_file(savedfile);
+	         temp_file.setSave_filename(fileInfo.getName());
+	         temp_file.setMemberno(((Members) session.get("members")).getMemberno());
+	         temp_file.setFiletype("t");
+	         dd.insertfile(temp_file);
+	         System.out.println("temp : " + temp_file);
+	         tmpList.add(temp_file);
+	      }
+	      System.out.println("tmpList:"+tmpList);
+	      
+	      return SUCCESS;
+	   } 
+	   // 공유시 데이터베이스를 업데이트.
+	   public String docShare(){
+	      System.out.println("doc Share Method Call");
+	      boolean result = false;
+	      System.out.println("shared arr:" + arr);
+	      String[] access = new String[arr.split(",").length];
+	      for(int i=0; i<access.length; i++){
+	         access[i] = arr.split(",")[i];
+	      }
+	      String[] fileT = new String[access.length];
+	      for (int i = 0; i < access.length; i++) {
+	         int number = Integer.parseInt(access[i]);
+	         System.out.println("number is " + number);
+	         if(DocCustomizing.STATEMENT_OF_ACCOUNT == number){
+	            fileT[i] = "cost";
+	         }else{
+	            fileT[i] = "g";
+	         }
+	      }
+	      if(new GroupingDAO().selectgroupone(((Members) session.get("members")).getMemberno())!=null){
+	         result = new DocumentDAO().shareUpdate(((Members) session.get("members")).getGroupno()
+	                                    , ((Members) session.get("members")).getMemberno()
+	                                    , fileT);
+	      }
+	      if(result){
+	         return SUCCESS; 
+	      }else{
+	         return ERROR;
+	      }
+	   }
 	public String customizingList() {
 		createList = DocCustomizing.list;
 		return SUCCESS;
@@ -732,14 +783,6 @@ public String changefile() throws Exception {
 		this.createList = createList;
 	}
 
-	public ArrayList<String> getCreateFileNames() {
-		return createFileNames;
-	}
-
-	public void setCreateFileNames(ArrayList<String> createFileNames) {
-		this.createFileNames = createFileNames;
-	}
-
 	public ArrayList<ImageFilenameConnector> getImageList() {
 		return imageList;
 	}
@@ -778,6 +821,12 @@ public String changefile() throws Exception {
 
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+	}
+	public ArrayList<Files> getTmpList() {
+		return tmpList;
+	}
+	public void setTmpList(ArrayList<Files> tmpList) {
+		this.tmpList = tmpList;
 	}
 	
 	

@@ -94,44 +94,34 @@ function cleanInput(){
    $('#phoneNumber').val("");
    $('#fax').val("");
 }
+
+var urls=new Array();
+
 $(function(){
-   $("#saveBtn").on("click",function(){
-      alert("save");
-//      var formData = new FormData();
-//      var dd = getFiles();
-//      formData.append('createFiles',dd);
-      //alert(dd);
-//      
-//      var files = getFiles();
-//
-//      for(var k in files) {
-//         console.log(files[k]);
-//      }
-      
-      $.ajax({
-         url : 'docSave',
-         data : { "arr" : chkArr},
-//         dataType: 'json',
-         method: 'post',
-//         enctype: "multipart/form-data",
-//         processData: false,  // file전송시 필수
-         success : function(){
-            alert("save success!");
-         },error : function(){
-            alert("save error!");
-         }
+      $("#shareBtn").on("click",function(){
+         $.ajax({
+            url: 'docShare',
+            data: {"arr":chkArr},
+            success: function(){
+               alert("shared");
+            }, error: function(){
+               alert("share error");
+            }
+         });
       });
-   });
-   $("#shareBtn").on("click",function(){
-      alert("share");
+      $("#closeBtn").on("click",function(){
+         $.ajax({
+            url: 'delTempDoc',
+            success: function(){
+               alert("delete!!!!");
+            }
+         });
       });
-   
        $('#searchPage').on("click",".searchBtn",function(){
            alert($("#searchKeyword").val());
         });
       
       $("#createPage").on("click",".createBtn",function(){
-//         $(".createBtn").button("loding");
          if(!(createObject()===false)){
             $.ajax({
                url : 'docCreate',
@@ -140,20 +130,15 @@ $(function(){
                success : function(response){
                   alert('success');
                   var lists = "";
-//                  $("#nameList").child().remove();
                   $.each(response, function(i, data){
-                    /* if(i=='createFiles'){
-                        alert("createFiles[i] : " + i + ", data : " + data);
-                        filesData(data);
-                     }*/
-                     if(i=='createFileNames'){
-                        $.each(data, function(i, item){
-                           lists += '<li>' +  item + '</li>';
+                     if(i=='tmpList'){
+                        $("#nameList li").remove();
+                        $.each(data, function(i,item){
+                           lists += '<li>'+'<a href="fileDownload?tmpName=' +  item.save_file + '">'+item.save_filename+'</a></li>'
                         });
-                        $("#nameList").append(lists);
                      }
                   });
-//                  $(".createBtn").button("reset");
+                  $("#nameList").append(lists);
                   $("#mBtn").click();
                }, error : function(){
                   alert('error');
@@ -177,7 +162,7 @@ $(function(){
          $("#regularFormUpload").show();
       });
       $("#docCreate").on("click",function(){
-    	 $("#createPage").html("");
+        $("#createPage").html("");
          $("#searchPage div table").remove();
          $("#imagelistdiv").hide();
          $("#regularFormUpload").hide();

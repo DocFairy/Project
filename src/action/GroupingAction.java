@@ -7,8 +7,10 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.DocumentDAO;
 import dao.GroupingDAO;
 import dao.MembersDAO;
+import vo.Files;
 import vo.MemberGroup;
 import vo.Members;
 
@@ -20,6 +22,7 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	List<String>idlist;
 	String groupname;
 	String fri;
+	List<Files> groupFiles;
 	
 	public String groupManage()throws Exception{
 		GroupingDAO gd=new GroupingDAO();
@@ -29,6 +32,11 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 		}
 		return "success";
 	}
+	public String groupDocs(){
+	      System.out.println("groupNo:" + ((Members)session.get("members")).getGroupno());
+	      groupFiles = new DocumentDAO().searchGroupFiles(((Members)session.get("members")).getGroupno());
+	      return SUCCESS;
+	   }
 	public String docManage()throws Exception{
 		return "success";
 	}
@@ -129,5 +137,12 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	public void setFri(String fri) {
 		this.fri = fri;
 	}
+	public List<Files> getGroupFiles() {
+		return groupFiles;
+	}
+	public void setGroupFiles(List<Files> groupFiles) {
+		this.groupFiles = groupFiles;
+	}
+	
 	
 }

@@ -206,24 +206,24 @@ function formcheck(){
          </div>
       </div>
    <!--    <button id="mBtn" data-toggle="modal" data-target="#createModal"></button> -->
-  <a  id="mBtn" data-toggle="modal" href="#createModal"> d </a>
+ <a  id="mBtn" data-toggle="modal" href="#createModal">  </a>
    <div class="modal fade" id="createModal" role="dialog">
     <div class="modal-dialog">
    <div class="modal-content">
       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
+         <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
          <h4 class="modal-title">create Files</h4>
       </div>
       <div class="modal-body">
          <ul id="nameList">
          </ul>
          <div class="btn-block text-center" style="width:800px">
-         <button type="button" id="saveBtn" class="btn btn-info" >Save Files</button>
-         <button type="button" id="shareBtn" class="btn btn-info">Share Files</button>
+         <!-- <button type="button" id="saveBtn" class="btn btn-info" data-dismiss="modal">Save Files</button> -->
          </div>
       </div>
       <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+         <button type="button" id="shareBtn" class="btn btn-info" data-dismiss="modal">Share Files</button>
+         <button type="button" id="closeBtn" class="btn btn-default" data-dismiss="modal">close</button>
       </div>
    </div>
             <%-- <nav class="text-center">

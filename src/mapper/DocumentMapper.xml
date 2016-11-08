@@ -48,4 +48,22 @@ select count(*)from files
 where save_filename like '%' || #{searchText} || '%'
 </if>
 </select>
+
+<select id="searchCreateFile" parameterType="String" resultType="String">
+select save_filename 
+from files 
+where save_file=#{tmpName} and filetype like '%t%'
+</select>
+<update id="shareCreateFile" parameterType="hashmap" >
+update files
+set groupno=#{groupno}, filetype=#{filetype} 
+where filetype='t' and memberno=#{memberno}
+</update>
+<select id="searchGroupFile" parameterType="String" resultType="Files">
+select * from files where groupno=#{groupno}
+</select>
+<delete id="deleteTempFile" parameterType="String">
+delete from files where filetype='t' and memberno=#{memberno}
+</delete>
+
 </mapper>
