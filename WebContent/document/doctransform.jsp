@@ -58,7 +58,7 @@
 				function() {
 					$(this).parent().parent().remove();
 					var save_filename = $(this).parent().parent().children()
-							.first().next().children().text();
+							.first().children().text();
 					$.ajax({
 						url : 'delfile',
 						data : {
@@ -82,7 +82,6 @@
 							}
 							var fname = $("#checktable .add").eq(0).children().first()
 							.text();
-							alert(fname);
 			
 							$.ajax({
 								url : 'changefile',
