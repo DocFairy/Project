@@ -26,7 +26,6 @@ $(function(){
                }
             }
          });
-       alert("tableTr:" + tableTr);
          $("#groupBody").append(tableTr);
       }, error: function(){
          alert('load error');

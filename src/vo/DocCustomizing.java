@@ -8,7 +8,7 @@ public class DocCustomizing {
 	public static int BUYER_MANAGEMENT = 3;
 	public static int UNPAYMENT_STATUS = 4;
 	public static int EXPENSE_ACCOUNT = 5;
-	public static String[] list = {"거래명세표","법인카드사용내역서","세금계산서",
+	public static String[] list = {"거래명세서","법인카드사용내역서","세금계산서",
 									"거래처관리대장","거래처별미수현황표","일반경비내역서"};
 	
 	private String companyName;
