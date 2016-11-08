@@ -68,6 +68,12 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private ArrayList<Files> tmpList;
 	// 파일 만들기만.
 	private PageNavigator pagenavi;
+	  private String delFileName;
+	   
+	   public String delLeaderFile(){
+	      new DocumentDAO().delFile(delFileName);
+	      return SUCCESS;
+	   }
 
 	   //DB에서 filetype이 't'인 데이터 지우기, 아이디검사도 함께.
 	   public String delTempDoc() {
@@ -827,6 +833,14 @@ public String changefile() throws Exception {
 	}
 	public void setTmpList(ArrayList<Files> tmpList) {
 		this.tmpList = tmpList;
+	}
+
+	public String getDelFileName() {
+		return delFileName;
+	}
+
+	public void setDelFileName(String delFileName) {
+		this.delFileName = delFileName;
 	}
 	
 	

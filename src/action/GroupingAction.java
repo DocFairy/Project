@@ -23,6 +23,7 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	String groupname;
 	String fri;
 	List<Files> groupFiles;
+	String leader;
 	
 	public String groupManage()throws Exception{
 		GroupingDAO gd=new GroupingDAO();
@@ -34,6 +35,7 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	}
 	public String groupDocs(){
 	      System.out.println("groupNo:" + ((Members)session.get("members")).getGroupno());
+	      leader = new GroupingDAO().searchgroupone(((Members)session.get("members")).getGroupno()).getLeaderno();
 	      groupFiles = new DocumentDAO().searchGroupFiles(((Members)session.get("members")).getGroupno());
 	      return SUCCESS;
 	   }
@@ -142,6 +144,12 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	}
 	public void setGroupFiles(List<Files> groupFiles) {
 		this.groupFiles = groupFiles;
+	}
+	public String getLeader() {
+		return leader;
+	}
+	public void setLeader(String leader) {
+		this.leader = leader;
 	}
 	
 	

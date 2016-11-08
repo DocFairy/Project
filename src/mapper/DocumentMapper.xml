@@ -66,4 +66,9 @@ select * from files where groupno=#{groupno}
 delete from files where filetype='t' and memberno=#{memberno}
 </delete>
 
+<delete id="deleteFile" parameterType="String">
+delete from files where save_file=#{delFileName}
+</delete>
+
+
 </mapper>

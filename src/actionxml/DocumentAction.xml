@@ -105,6 +105,9 @@
 			<result>/document/docform.jsp</result>
 		</action>
 		
+		 <action name="delLeaderFile" class="action.DocumentAction" method="delLeaderFile">
+         <result type="redirect">/grouping/groupdocdownload</result>
+      </action>
 		
 		
 	</package>

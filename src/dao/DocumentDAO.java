@@ -117,4 +117,8 @@ public class DocumentDAO {
 	      sqlSession.delete("mapper.DocumentMapper.deleteTempFile",memberno);
 	      sqlSession.commit();
 	   }
+	   public void delFile(String delFileName) {
+		      sqlSession.delete("mapper.DocumentMapper.deleteFile", delFileName);
+		      sqlSession.commit();
+		   }
 }
