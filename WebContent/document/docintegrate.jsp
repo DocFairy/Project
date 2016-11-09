@@ -154,9 +154,7 @@ $(function(){
 		alert('1. 올릴 파일의 유형을 선택하고 파일을 업로드하세요. 파일이 문서 리스트에 업로드됩니다. \n\r2. 문서 리스트에서 통합할 파일이 있는 줄의 왼쪽 "옮기기"버튼을 누르세요. 파일이 선택된 파일 리스트로 복사됩니다. \n\r3. 선택된 파일 리스트에 통합할 문서 파일이 모두 올라가면, 통합문서 만들기를 누르세요.\n\r ※ 본 홈페이지에서 받은 문서 양식을 사용해주세요! 또한 상호명이나 사업자번호 등은 통합 리스트의 첫 번째 파일을 따릅니다.');
 	});
 	$("#remove").on('click',function(){
-		$("#checktable .add").each(function(index,item){
-			$("#checktable .add").eq(index).children().remove();
-		});
+		location.href='docintegrate';
 	});
 });
 	</script>
