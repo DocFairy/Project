@@ -56,7 +56,7 @@ where save_file=#{tmpName} and filetype like '%t%'
 </select>
 <update id="shareCreateFile" parameterType="hashmap" >
 update files
-set groupno=#{groupno}, filetype=#{filetype} 
+set groupno=#{groupno}, filetype=#{filetype} , memberno=''   
 where filetype='t' and memberno=#{memberno}
 </update>
 <select id="searchGroupFile" parameterType="String" resultType="Files">
@@ -69,6 +69,7 @@ delete from files where filetype='t' and memberno=#{memberno}
 <delete id="deleteFile" parameterType="String">
 delete from files where save_file=#{delFileName}
 </delete>
+
 
 
 </mapper>
