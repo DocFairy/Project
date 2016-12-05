@@ -158,6 +158,8 @@ goMakeAccount{
 							</li>
 							<li><a href="accountmanage">가계부 관리</a>
 							</li>
+							<li><a href="groupAccount">그룹별 관리</a>
+							</li>
 						</ul>
 					</nav>
 					</nav>

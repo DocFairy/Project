@@ -59,5 +59,9 @@
 			</result>
 		</action>
 		
+		<action name="groupAccount" class="action.AccountAction" method="groupAccount">
+			<result name="success">/account/groupAccount.jsp</result>
+		</action>
+		
 	</package>
 </struts>
