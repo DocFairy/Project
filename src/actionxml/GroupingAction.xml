@@ -36,7 +36,7 @@
 		</action>
 		
 		<action name="searchid" class="action.GroupingAction" method="searchid">
-			<result type="json"></result>
+			<result>/grouping/invite.jsp</result>
 		</action>
          
          <action name="msg" class="action.GroupingAction" method="msg">

@@ -31,18 +31,7 @@ $(function(){
 		});
 		alert('초대 메시지를 보냈습니다!');
 	});
-	$("#search").on("click",function(){
-		var id=$("#id").val();
-		$.ajax({
-			url:"searchid",
-			data:{"id":id},
-			success:function(response){
-				$.each(response.idlist,function(index,item){
-					$('#table').append('<tr><td>'+response.idlist[index]+'</td><td>'+"<input type='button' class='invite' value='초대'/>"+'</td></tr>');
-				});
-			}
-		});
-	}); 
+	
 });
 
 </script>
@@ -52,13 +41,21 @@ $(function(){
 
 <h2 id="stitle">아이디 검색</h2><br>
 현재 그룹이 없는 회원만 검색대상이 됩니다.
-<input type="text" id="id">
-<input type="button" id="search" value="검색">
+<form action="searchid">
+<input type="text" name="id">
+<input type="submit" value="검색">
+</form>
 		<table id="table">
 			<tr>
 				<th width="100">아이디</th>
 				<th width="40">초대</th>
 			</tr>
+			<s:iterator value="idlist">
+			<tr>
+				<td><s:property/></td>
+				<td><input type='button' class='invite' value='초대'/></td>
+			</tr>
+			</s:iterator>
 		</table>
 
 	

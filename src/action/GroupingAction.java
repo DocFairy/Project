@@ -79,6 +79,9 @@ public class GroupingAction extends ActionSupport implements SessionAware{
 	}
 	
 	public String searchid()throws Exception{
+		GroupingDAO gd=new GroupingDAO();
+		String mno=((Members)session.get("members")).getMemberno();
+		membergroup=gd.selectgroupone(mno);
 		MembersDAO md=new MembersDAO();
 		idlist=md.searchid(id);		
 		return "success";
