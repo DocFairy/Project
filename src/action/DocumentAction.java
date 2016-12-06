@@ -151,9 +151,6 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 	public String docIntegrate() throws Exception {
-		System.out.println("1");
-		System.out.println(searchText);
-		System.out.println("2");
 		DocumentDAO dd = new DocumentDAO()	;
 		//현재 페이지에 해당하는 글 목록 읽기 (전체 레코드 중 보여줄 첫번째 글의 위치, 페이지당 글 수 )
 		list = dd.selectfile(((Members) session.get("members")).getMemberno());
@@ -411,80 +408,79 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		ExcelMain em = new ExcelMain();
 		DocumentDAO dd = new DocumentDAO();
 		double k = 0;
-		ArrayList<String> goods = new ArrayList<String>();
-		ArrayList<String> size = new ArrayList<String>();
-		ArrayList<Double> hob = new ArrayList<Double>();
-		ArrayList<Double> month = new ArrayList<Double>();
-		ArrayList<Double> day = new ArrayList<Double>();
-		ArrayList<Double> kazu = new ArrayList<Double>();
-		ArrayList<Double> cost = new ArrayList<Double>();
-		ArrayList<Double> all = new ArrayList<Double>();
-		ArrayList<String> date = new ArrayList<String>();
-		ArrayList<String> uno = new ArrayList<String>();
-		ArrayList<String> expire = new ArrayList<String>();
-		ArrayList<String> yotei = new ArrayList<String>();
-		ArrayList<String> sanko = new ArrayList<String>();
+		ArrayList<String> st1 = new ArrayList<String>();
+		ArrayList<String> st2 = new ArrayList<String>();
+		ArrayList<String> st3 = new ArrayList<String>();
+		ArrayList<String> st4 = new ArrayList<String>();
+		ArrayList<String> st5 = new ArrayList<String>();
+		ArrayList<String> st6 = new ArrayList<String>();
+		ArrayList<String> st7 = new ArrayList<String>();	
+		ArrayList<Double> db1 = new ArrayList<Double>();
+		ArrayList<Double> db2 = new ArrayList<Double>();
+		ArrayList<Double> db3 = new ArrayList<Double>();
+		ArrayList<Double> db4 = new ArrayList<Double>();
+		ArrayList<Double> db5 = new ArrayList<Double>();
+		ArrayList<Double> db6 = new ArrayList<Double>();
+		ArrayList<Double> db7 = new ArrayList<Double>();
+		ArrayList<Double> db8 = new ArrayList<Double>();
+		ArrayList<Double> db9 = new ArrayList<Double>();
 		ArrayList<ArrayList> result= new ArrayList<ArrayList>();
 		ArrayList<ArrayList> receive = new ArrayList<ArrayList>();
-		ArrayList<Double> cost2 = new ArrayList<Double>();
-		ArrayList<Double> cost3 = new ArrayList<Double>();
-		ArrayList<Double> cost4 = new ArrayList<Double>();
 		if(arr.equals("거래명세서")){
+			System.out.println("^");
 		for (int i = 0; i < array.length; i++) {
 			k += ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8, 4);
 		}
-		hob.add(k);
+		db4.add(k);
 
 		for (int i = 1; i < array.length; i++) {
 			for (int q = 0; q < 23; q++) {
 				if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2).equals("")) {
 					break;
 				}
-				goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2));
-				size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 13));
-				month.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 0));
-				day.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 1));
-				kazu.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 16));
-				cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 19));
-				all.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 25));
+				st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2));
+				st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 13));
+				db5.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 0));
+				db6.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 1));
+				db7.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 16));
+				db8.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 19));
+				db9.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 25));
 
 			}
 
 		}
-
-		
-		date.add(ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 1, 0));
-
-		
-		receive.add(date);
-		receive.add(goods);
-		receive.add(size);
-		result.add(hob);
-		result.add(month);
-		result.add(day);
-		result.add(kazu);
-		result.add(cost);
-		result.add(all);
+	
+		st3.add(ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 1, 0));	
+		receive.add(st3);
+		receive.add(st1);
+		receive.add(st2);
+		result.add(db4);
+		result.add(db5);
+		result.add(db6);
+		result.add(db7);
+		result.add(db8);
+		result.add(db9);
 		integrate = em.paste((ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()))), result, receive,"거래명세서");
 		}else if(arr.equals("가계부")){
+			System.out.println("*");
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 23; q++) {
 					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 2).equals("")) {
 						break;
 					}
-					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 2));
-					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 3));
-					kazu.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 4));
-					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 5));
-					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 6));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 2));
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 3));
+					db7.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 4));
+					db8.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 5));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 6));
 				}
 			}
-			System.out.println(date.get(0));
-			receive.add(date);
-			receive.add(goods);
-			receive.add(size);
-			result.add(kazu);
-			result.add(cost);
+			System.out.println(st3.get(0));
+			receive.add(st3);
+			receive.add(st1);
+			receive.add(st2);
+			result.add(db7);
+			result.add(db8);
 			integrate = em.paste(ex.copy(dd.searchfile(array[0],((Members)session.get("members")).getMemberno())), result, receive,"가계부");
 		}else if(arr.equals("지급어음명세서")){
 			System.out.println(ex.word(dd.searchfile(array[0],((Members)session.get("members")).getMemberno()), 8, 1));
@@ -493,42 +489,132 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8 + q, 1).equals("")) {
 						break;
 					}
-					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 1));
-					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),8+q, 2));
-					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 3));
-					uno.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 4));
-					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 5));
-					expire.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 6));
-					yotei.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 7));
-					sanko.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 8));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 1));
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),8+q, 2));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 3));
+					st4.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 4));
+					db8.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 5));
+					st5.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 6));
+					st6.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 7));
+					st7.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 8+q, 8));
 				}
 			}
-			receive.add(date); receive.add(goods); receive.add(size); receive.add(uno); receive.add(expire); receive.add(yotei); receive.add(sanko);
-			result.add(cost);
+			receive.add(st3); receive.add(st1); receive.add(st2); receive.add(st4); receive.add(st5); receive.add(st6); receive.add(st7);
+			result.add(db8);
 			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "지급어음명세서");
 			
 		}else if(arr.equals("재고관리대장")){
+			System.out.println("(");
 			for (int i = 1; i < array.length; i++) {
 				for (int q = 0; q < 35; q++) {
 					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6 + q, 1).equals("")) {
 						break;
 					}
-					date.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 1));
-					goods.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),6+q, 2));
-					size.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 3));
-					hob.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 4));
-					cost.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 5));
-					all.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 7));
-					cost2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 8));
-					cost3.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 10));
-					cost4.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 11));
-					sanko.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 13));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 1));
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()),6+q, 2));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 3));
+					db4.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 4));
+					db8.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 5));
+					db9.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 7));
+					db1.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 8));
+					db2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 10));
+					db3.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 11));
+					st7.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 13));
 					
 				}
 			}
-			receive.add(date); receive.add(goods); receive.add(size); receive.add(sanko);
-			result.add(hob); result.add(cost); result.add(all); result.add(cost2); result.add(cost3); result.add(cost4);
+			receive.add(st3); receive.add(st1); receive.add(st2); receive.add(st7);
+			result.add(db4); result.add(db8); result.add(db9); result.add(db1); result.add(db2); result.add(db3);
 			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "재고관리대장");
+		}else if(arr.equals("월말경비정산표")){
+			System.out.println(")");
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 40; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11 + q, 2).equals("")) {
+						break;
+					}
+					
+					db1.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 0));
+					db2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 1));
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 2));
+					db3.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 3));
+					db4.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 4));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 6));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 7));
+					st4.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 11+q, 8));
+					
+				}
+			}
+			receive.add(st1);receive.add(st2); receive.add(st3); receive.add(st4);
+			result.add(db1); result.add(db2); result.add(db3); result.add(db4);
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "월말경비정산표");
+		}else if(arr.equals("외상매출내역")){
+			System.out.println("@@");
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 29; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6 + q, 3).equals("")) {
+						break;
+					}
+					
+					db1.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 1));
+					db2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 2));
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 3));
+					db3.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 4));
+					db4.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 7));
+					db5.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 9));
+					db6.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 10));
+					db7.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 11));
+					db8.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 6+q, 12));
+					
+				}
+			}
+			st2.add(ex.word(dd.searchfile(array[array.length - 1],((Members)session.get("members")).getMemberno()), 3, 4));
+			receive.add(st1);receive.add(st2);
+			result.add(db1); result.add(db2); result.add(db3); result.add(db4); result.add(db5); result.add(db6); result.add(db7); result.add(db8);
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "외상매출내역");
+		}else if(arr.equals("인쇄물발주서")){
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 22; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16 + q, 0).equals("")) {
+						break;
+					}
+					
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 0));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 3));
+					db1.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 4));
+					db2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 5));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 7));
+					st4.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 16+q, 8));
+					
+					
+				}
+			}
+
+			receive.add(st1);receive.add(st2); receive.add(st3); receive.add(st4);
+			result.add(db1); result.add(db2); 
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "인쇄물발주서");
+		}else if(arr.equals("미수금현황표")){
+			for (int i = 1; i < array.length; i++) {
+				for (int q = 0; q < 29; q++) {
+					if (ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5 + q, 1).equals("")) {
+						break;
+					}
+					
+					st1.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 0));
+					st2.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 1));
+					st3.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 2));
+					st4.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 3));
+					db1.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 4));
+					db2.add(ex.number(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 5));
+					st5.add(ex.word(dd.searchfile(array[i],((Members)session.get("members")).getMemberno()), 5+q, 7));
+					
+					
+				}
+			}
+
+			receive.add(st1);receive.add(st2); receive.add(st3); receive.add(st4);receive.add(st5);
+			result.add(db1); result.add(db2); 
+			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "미수금현황표");
 		}
 		return "success";
 	}
@@ -634,7 +720,16 @@ public String changefile() throws Exception {
 			msg="지급어음명세서";
 		}else if(dd.calltype(save_filename).equals("left")){
 			msg="재고관리대장";
+		}else if(dd.calltype(save_filename).equals("getu")){
+			msg="월말경비정산표";
+		}else if(dd.calltype(save_filename).equals("dept")){
+			msg="외상매출내역";
+		}else if(dd.calltype(save_filename).equals("print")){
+			msg="인쇄물발주서";
+		}else if(dd.calltype(save_filename).equals("misu")){
+			msg="미수금현황표";
 		}
+			
 		return "success";
 	}
 	public String move2()throws Exception{

@@ -111,7 +111,6 @@ public class ExcelMain {
 	            }else if(type.equals("재고관리대장")){
 	            	XSSFSheet sheet = xw.getSheetAt(0);
 		            int h=0;
-		            System.out.println("6");
 		            for(int i=6;i<35;i++){
 		            	 XSSFRow row = sheet.getRow(i);
 		            	 XSSFCell cell=row.getCell(1);
@@ -133,6 +132,115 @@ public class ExcelMain {
 		            	input(xw,i,11).setCellValue((double)db.get(5).get(i-h));
 		            	input(xw,i,13).setCellValue((String)st.get(3).get(i-h));
 		            }
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }else if(type.equals("월말경비정산표")){
+	            	System.out.println("!");
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            for(int i=11;i<40;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(2);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            System.out.println(st.get(0).get(0));
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,0).setCellValue((double)db.get(0).get(i-h));
+		            	input(xw,i,1).setCellValue((double)db.get(1).get(i-h));
+		            	input(xw,i,2).setCellValue((String)st.get(0).get(i-h));
+		            	input(xw,i,3).setCellValue((double)db.get(2).get(i-h));          	
+		            	input(xw,i,4).setCellValue((double)db.get(3).get(i-h));   
+		            	input(xw,i,6).setCellValue((String)st.get(1).get(i-h));
+		            	input(xw,i,7).setCellValue((String)st.get(2).get(i-h));
+		            	input(xw,i,8).setCellValue((String)st.get(3).get(i-h));
+		            }
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }else if(type.equals("외상매출내역")){
+	            	System.out.println("!");
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            for(int i=6;i<35;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(3);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            System.out.println(st.get(0).get(0));
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,1).setCellValue((double)db.get(0).get(i-h));
+		            	input(xw,i,2).setCellValue((double)db.get(1).get(i-h));
+		            	input(xw,i,3).setCellValue((String)st.get(0).get(i-h));
+		            	input(xw,i,4).setCellValue((double)db.get(2).get(i-h));          	
+		            	input(xw,i,7).setCellValue((double)db.get(3).get(i-h));   
+		            	input(xw,i,9).setCellValue((double)db.get(4).get(i-h));
+		            	input(xw,i,10).setCellValue((double)db.get(5).get(i-h));
+		            	input(xw,i,11).setCellValue((double)db.get(6).get(i-h));
+		            	input(xw,i,12).setCellValue((double)db.get(7).get(i-h));
+		            }
+		            input(xw,3,4).setCellValue((String)st.get(1).get(0));
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }else if(type.equals("인쇄물발주서")){
+	            	System.out.println("!");
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            for(int i=16;i<37;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(0);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            System.out.println(st.get(0).get(0));
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,0).setCellValue((String)st.get(0).get(i-h));
+		            	input(xw,i,3).setCellValue((String)st.get(1).get(i-h));
+		            	input(xw,i,4).setCellValue((double)db.get(0).get(i-h));	
+		            	input(xw,i,5).setCellValue((double)db.get(1).get(i-h));          	
+		            	input(xw,i,7).setCellValue((String)st.get(2).get(i-h));
+		            	input(xw,i,8).setCellValue((String)st.get(3).get(i-h));
+		            }
+		            
+		            xw.setForceFormulaRecalculation(true);
+		            xw.write(fileOut);
+		            fileOut.close();
+	            }else if(type.equals("미수금현황표")){
+	            	System.out.println("!");
+	            	XSSFSheet sheet = xw.getSheetAt(0);
+		            int h=0;
+		            for(int i=5;i<33;i++){
+		            	 XSSFRow row = sheet.getRow(i);
+		            	 XSSFCell cell=row.getCell(1);
+		            	 if(cell.getStringCellValue().equals("")){
+		            		 h=i;
+		            		 System.out.println(h);
+		            		 break;
+		            	 }
+		            }
+		            System.out.println(st.get(0).get(0));
+		            for(int i=h;i<db.get(0).size()+h;i++){
+		            	input(xw,i,0).setCellValue((String)st.get(0).get(i-h));
+		            	input(xw,i,1).setCellValue((String)st.get(1).get(i-h));
+		            	input(xw,i,2).setCellValue((String)st.get(2).get(i-h));
+		            	input(xw,i,3).setCellValue((String)st.get(3).get(i-h));
+		            	input(xw,i,4).setCellValue((double)db.get(0).get(i-h));	
+		            	input(xw,i,5).setCellValue((double)db.get(1).get(i-h));          	
+		            	input(xw,i,7).setCellValue((String)st.get(4).get(i-h));
+		            }
+		            
 		            xw.setForceFormulaRecalculation(true);
 		            xw.write(fileOut);
 		            fileOut.close();

@@ -252,6 +252,10 @@ $(function(){
 									<option value="cost">거래명세서</option>
 									<option value="uum">지급어음명세서</option>
 									<option value="left">재고관리대장</option>
+									<option value="getu">월말경비정산표</option>
+									<option value="dept">외상매출내역</option>
+									<option value="print">인쇄물발주서</option>
+									<option value="misu">미수금현황표</option>
 								</select>
 							</div>
 							<input type="file" id="upfile" name="upload"> <input
