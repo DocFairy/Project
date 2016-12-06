@@ -11,6 +11,10 @@ insert into files values ('file'||files_seq.nextval,#{save_file},#{save_filename
 select * from files where memberno=#{memberno} and filetype != 'ima' and filetype!='genjou' and filetype!='keibi' order by save_fileno desc
 </select>
 
+<select id="selectDocument" resultType="Files" parameterType="String">
+select * from files where memberno=#{memberno} and filetype = 'cost' order by save_fileno desc
+</select>
+
 <select id="selectword" resultType="Files" parameterType="String">
 select * from files where memberno=#{memberno} and filetype = 'ima' or filetype='genjou' or filetype='keibi' order by save_fileno
 </select>

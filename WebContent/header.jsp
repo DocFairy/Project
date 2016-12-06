@@ -94,13 +94,14 @@
 									<li><a href="${pageContext.request.contextPath}/grouping/groupdocdownload">서식 문서</a></li>
                        			 </ul>
 								
-								<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">가계부</a>
+								<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#">통계관리</a>
                         <ul class="dropdown-menu text-center">
                            <li><a href="${pageContext.request.contextPath}/account/calendar">달력</a>
                            </li>
-									<li><a href="${pageContext.request.contextPath}/account/accountmanage">가계부관리</a>
-									</li>
-								
+						   <li><a href="${pageContext.request.contextPath}/account/accountmanage">가계부 관리</a>
+						   </li>
+						   <li><a href="${pageContext.request.contextPath}/account/groupAccount">그룹별 관리</a>
+						   </li>	
 								</ul>
 							</li>
 							<li><a href="${pageContext.request.contextPath}/card">소개</a>

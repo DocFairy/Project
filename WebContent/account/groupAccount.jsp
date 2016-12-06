@@ -81,7 +81,7 @@ float:left;
 height:400px;
 overflow:auto;
 }
-.col-md-4{
+.col-md-3{
 width:400px;
 overflow:auto;
 }
@@ -95,6 +95,14 @@ width:400px;
 }
 #buttons{
 width : 300px;
+}
+
+.col-md-10{
+margin-top : 200px;
+}
+#writeLine{
+border-top : 2px blue solid;
+border-bottom: 2px blue solid;
 }
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
@@ -153,7 +161,7 @@ $(function(){
 			success:function(response){
 				alert("성공");
 			
-				$("#graph").append('<h3>기업별 매출 관리</h3>');
+				$("#graph").append('<h3 id="writeLine">기업별 매출 관리</h3>');
 				
 				var options = {
 						'dataset':{
@@ -294,7 +302,7 @@ $(function(){
 			<br>
 
 			<!-- 		<div id="integratedList1"> -->
-				<div class="col-md-9">
+				<div class="col-md-10">
 					<div id="graph"></div>
 					<div id="Nwagon"></div>
 				</div>	

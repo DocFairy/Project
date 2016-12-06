@@ -26,6 +26,11 @@ public class DocumentDAO {
 		return sqlSession.selectList("mapper.DocumentMapper.selectfile", memberno);	
 		
 	}
+	
+	public List<Files> selectDocument(String memberno){
+		return sqlSession.selectList("mapper.DocumentMapper.selectDocument", memberno);
+	}
+	
 	public Files selectfileone(String save_fileno){
 		return sqlSession.selectOne("mapper.DocumentMapper.selectfileone", save_fileno);
 	}

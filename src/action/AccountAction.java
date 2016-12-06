@@ -302,7 +302,7 @@ public class AccountAction extends ActionSupport implements SessionAware {
 	public String groupAccount() {
 		DocumentDAO dd = new DocumentDAO();
 		// 현재 페이지에 해당하는 글 목록 읽기 (전체 레코드 중 보여줄 첫번째 글의 위치, 페이지당 글 수 )
-		list = dd.selectfile(((Members) session.get("members")).getMemberno());
+		list = dd.selectDocument(((Members) session.get("members")).getMemberno());
 
 		return SUCCESS;
 	}
