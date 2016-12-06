@@ -350,13 +350,12 @@ public class AccountAction extends ActionSupport implements SessionAware {
 						double money = firstDay.get(j) + expense;
 						firstDay.add(j + 1, money);
 						firstDay.remove(j);
-					}else{
-						System.out.println("cell의 내용 : " + cell);
-						outdate.add(cell.getStringCellValue());
-						System.out.println("두번째 cell의 내용 : " + cell1.getNumericCellValue());
-						firstDay.add(cell1.getNumericCellValue());
 					}
 				}
+				System.out.println("cell의 내용 : " + cell);
+				outdate.add(cell.getStringCellValue());
+				System.out.println("두번째 cell의 내용 : " + cell1.getNumericCellValue());
+				firstDay.add(cell1.getNumericCellValue());
 				
 				
 
