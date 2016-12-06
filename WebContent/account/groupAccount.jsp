@@ -36,6 +36,10 @@
 <script
 	src="${pageContext.request.contextPath}/javascript/animate-on-scroll.js"></script>
 <script src="${pageContext.request.contextPath}/javascript/script.js"></script>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/Nwagon.css' type='text/css'>
+	<script src='${pageContext.request.contextPath}/Nwagon.js'></script>
+
+
 <style>
 
 
@@ -89,7 +93,9 @@ height:700px;
 overflow:auto;
 width:400px;
 }
-
+#buttons{
+width : 300px;
+}
 </style>
 <script src="${pageContext.request.contextPath}/javascript/pace.min.js"></script>
 <script type="text/javascript"
@@ -114,7 +120,7 @@ $(function(){
 	$("#entire").on('click','.checked',function(){
 		var filename=$(this).parent().prev().text();
 		$.ajax({
-			url:'move',
+			url:'../document/move',
 			data:{'save_filename':filename},
 			success:function(response){
 				$("#checktable").append('<tr class="add"><td>'+filename+'</td><td>'+response.msg+'</td></tr>');
@@ -142,11 +148,32 @@ $(function(){
 			alist+=$("#checktable .add").eq(index).children().first().text()+",";
 		});
 		$.ajax({
-			url:'makefile',
+			url:'goMakeMultiChart',
 			data:{'uploadFileName':alist,'arr':type},
 			success:function(response){
-				$("#buttons").append('<a href="fileDownload?integrate='+response.integrate+'">다운로드</a>');
-				$("#inter").off();
+				alert("성공");
+			
+				$("#graph").append('<h3>기업별 매출 관리</h3>');
+				
+				var options = {
+						'dataset':{
+							title: 'Web accessibility status',
+							values: response.firstDay ,
+							colorset: ['#2EB400', '#2BC8C9', "#666666", '#f09a93'],
+							fields: response.outdate,
+						},
+						'donut_width' : 85,
+						'core_circle_radius':0,
+						'chartDiv': 'Nwagon',
+						'chartType': 'pie',
+						'chartSize': {width:700, height:300}
+					};
+					Nwagon.chart(options);
+
+				
+				
+				
+				
 			}
 		});
 	});
@@ -159,6 +186,9 @@ $(function(){
 		});
 	});
 });
+
+
+
 	</script>
 
 </head>
@@ -187,9 +217,10 @@ $(function(){
 					</nav>
 				</div>
 			</aside>
-			<h1 id="stitle">문서 통합</h1><a id="help">도움말</a>
+		<div class="col-md-9">	
 			
-			<div class="col-md-4" style=height:700px>
+			
+			<div class="col-md-6" style=height:500px>
 				<div class="card">
 					
 					<div class="card-content table-responsive">
@@ -249,20 +280,8 @@ $(function(){
 					enctype="multipart/form-data" onsubmit="return formcheck()">
 					<section>
 						<div id="container">
-							<h3>파일 업로드/통합문서 생성</h3>
-							<div class="form-group">
-								업로드할 파일 유형을 선택하세요:
-								<select name="files.filetype" id="sel">
-									<option value="y">가계부</option>
-									<option value="cost">거래명세서</option>
-									<option value="uum">지급어음명세서</option>
-									<option value="left">재고관리대장</option>
-								</select>
-							</div>
-							<input type="file" id="upfile" name="upload"> <input
-								type="hidden" name="files.memberno"
-								value="${session.members.memberno}" /><br> <input type="submit"
-								class="btn btn-primary" value="올리기"> <input id="remove"
+							
+							 <input id="remove"
 								type="button" value="리스트 삭제" class="btn btn-primary">
 								<input id="inter"
 								type="button" value="그래프 생성" class="btn btn-primary">
@@ -275,12 +294,15 @@ $(function(){
 			<br>
 
 			<!-- 		<div id="integratedList1"> -->
-			
+				<div class="col-md-9">
+					<div id="graph"></div>
+					<div id="Nwagon"></div>
+				</div>	
 				<div class="col-md-4 section-content">
-					
 				</div>		 
 			<!-- 			</div> -->
 		</div>
+	</div>
 	</div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>

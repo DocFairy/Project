@@ -63,5 +63,9 @@
 			<result name="success">/account/groupAccount.jsp</result>
 		</action>
 		
+		<action name="goMakeMultiChart" class="action.AccountAction" method="goMakeMultiChart">
+			<result type="json"></result>
+		</action>
+		
 	</package>
 </struts>
