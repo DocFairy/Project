@@ -51,6 +51,10 @@ function formcheck(){
 		alert('파일을 선택하지 않았습니다!');
 		return false;
 	}
+	if($("#buttons2").val()==""){
+		alert('파일을 선택하지 않았습니다!');
+		return false;
+	}
 }
 </script>
 <script type="text/ⓙavascript" src="./FileButton.js"></script> 
