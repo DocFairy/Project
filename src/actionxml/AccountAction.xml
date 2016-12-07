@@ -60,7 +60,9 @@
 		</action>
 		
 		<action name="groupAccount" class="action.AccountAction" method="groupAccount">
+		<interceptor-ref name="LoginIntercepterStack" />
 			<result name="success">/account/groupAccount.jsp</result>
+			<result name="login">/login.jsp</result>
 		</action>
 		
 		<action name="goMakeMultiChart" class="action.AccountAction" method="goMakeMultiChart">
