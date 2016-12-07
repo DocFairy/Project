@@ -211,7 +211,7 @@ $(function(){
 			<aside class="col-md-3 sidebar">
 				<div class="block" style="1px solid black;">
 					<h3>
-						<span>문서 메뉴</span>
+						<span>통계관리 메뉴</span>
 					</h3>
 					<nav>
 						<ul class="nav">

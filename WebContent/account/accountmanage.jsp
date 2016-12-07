@@ -229,7 +229,7 @@ p{
 		<div class="row">
 			<aside class="col-md-3 sidebar">
 				<div class="block">
-					<h3><span>가계부 메뉴</span></h3>
+					<h3><span>통계관리 메뉴</span></h3>
 					<nav>
 						<ul class="nav">
 							<li><a href="calendar">달력</a>
