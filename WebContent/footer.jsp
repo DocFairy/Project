@@ -18,7 +18,7 @@
 					</div>
 				</div>
 			</div>		
-					<center>©DocFairy 2016<br>서울특별시 강남구 영동대로 513 코엑스 4층 무역아카데미 SCIT 교육센터 <br>대표자:김용이</center>
+					<center>©DocFairy 2016<br>서울특별시 강남구 영동대로 513 코엑스 4층 무역아카데미 SCIT 교육센터 <br>대표자:김용이(010-2768-6335)</center>
 			
 		</div>
 	</footer>

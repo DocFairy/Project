@@ -90,6 +90,7 @@ public class OpenExcelFile {
                   }
                }
             }
+            workbook1.setForceFormulaRecalculation(true);
              FileOutputStream fileOut = new FileOutputStream(xlsxFile);
              workbook1.write(fileOut);
              files.add(new File("C:/upload/거래명세서.xlsx"));
