@@ -69,5 +69,12 @@
 			<result type="json"></result>
 		</action>
 		
+		<action name="goMakeMultiChart2" class="action.AccountAction" method="goMakeMultiChart2">
+			<result type="json"></result>
+		</action>
+		
+		<action name="goMakeMultiChart3" class="action.AccountAction" method="goMakeMultiChart3">
+			<result type="json"></result>
+		</action>
 	</package>
 </struts>

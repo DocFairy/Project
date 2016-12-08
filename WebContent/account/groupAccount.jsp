@@ -176,12 +176,77 @@ $(function(){
 						'chartType': 'pie',
 						'chartSize': {width:700, height:300}
 					};
-					Nwagon.chart(options);
-
+					Nwagon.chart(options);		
+			}
+		});
+	});
+	$("#foom").on('click',function(){
+		var alist="";
+		var type=$("#checktable .add").eq(0).children().first().next().text();
+		if($("#checktable .add").eq(0).children().first().text()==""){
+			alert('먼저 파일을 선택하세요!')
+			return false;
+		}
+		$("#checktable .add").each(function(index,item){
+			alist+=$("#checktable .add").eq(index).children().first().text()+",";
+		});
+		$.ajax({
+			url:'goMakeMultiChart2',
+			data:{'uploadFileName':alist,'arr':type},
+			success:function(response){
+				alert("성공");
+			
+				$("#graph").append('<h3 id="writeLine">품목별 매출 관리</h3>');
 				
+				var options = {
+						'dataset':{
+							title: 'Web accessibility status',
+							values: response.firstDay ,
+							colorset: ['#2EB400', '#2BC8C9', "#666666", '#f09a93','blue'],
+							fields: response.outdate,
+						},
+						'donut_width' : 85,
+						'core_circle_radius':0,
+						'chartDiv': 'Nwagon',
+						'chartType': 'pie',
+						'chartSize': {width:700, height:300}
+					};
+					Nwagon.chart(options);		
+			}
+		});
+	});
+	$("#month").on('click',function(){
+		var alist="";
+		var type=$("#checktable .add").eq(0).children().first().next().text();
+		if($("#checktable .add").eq(0).children().first().text()==""){
+			alert('먼저 파일을 선택하세요!')
+			return false;
+		}
+		$("#checktable .add").each(function(index,item){
+			alist+=$("#checktable .add").eq(index).children().first().text()+",";
+		});
+		$.ajax({
+			url:'goMakeMultiChart3',
+			data:{'uploadFileName':alist,'arr':type},
+			success:function(response){
+				alert("성공");
+			
+				$("#graph").append('<h3 id="writeLine">월별 매출 관리</h3>');
 				
-				
-				
+				var options = {
+						'dataset':{
+							title: 'Web accessibility status',
+							values: response.firstDay ,
+							colorset: ['#2EB400', '#2BC8C9', "#666666", '#f09a93','blue'],
+							fields: response.outdate,
+						},
+						'donut_width' : 85,
+						'core_circle_radius':0,
+						'chartDiv': 'Nwagon',
+						'chartType': 'pie',
+						'chartSize': {width:700, height:300}
+					};
+					Nwagon.chart(options);		
 			}
 		});
 	});
@@ -292,7 +357,11 @@ $(function(){
 							 <input id="remove"
 								type="button" value="리스트 삭제" class="btn btn-primary">
 								<input id="inter"
-								type="button" value="그래프 생성" class="btn btn-primary">
+								type="button" value="기업별 그래프 생성" class="btn btn-primary">
+								<input id="foom"
+								type="button" value="품목별 그래프 생성" class="btn btn-primary">
+								<input id="month"
+								type="button" value="월별 그래프 생성" class="btn btn-primary">
 						</div>
 					</section>
 

@@ -362,8 +362,124 @@ public class AccountAction extends ActionSupport implements SessionAware {
 				}
 
 			}
+		
 		}
+		return SUCCESS;
+	}
+		public String goMakeMultiChart2() {
+			System.out.println("filename : " + uploadFileName);
+			System.out.println("arr : " + arr);
+			AccountDAO dao = new AccountDAO();
 
+			String[] nameList = uploadFileName.split(",");
+			ArrayList<String> fileName = new ArrayList<>();
+			for (int i = 0; i < nameList.length; i++) {
+				fileName.add(dao.fileFind(nameList[i]));
+			}
+			System.out.println(fileName);
+
+			outdate = new ArrayList<>();
+			firstDay = new ArrayList<>();
+			ReadExcelDemo re = new ReadExcelDemo();
+			XSSFRow row = null;
+			XSSFCell cell = null;
+			XSSFRow row1 = null;
+			XSSFCell cell1 = null;
+			System.out.println("for 위에서의 : " + fileName.get(0));
+			for (int i = 0; i < fileName.size(); i++) {
+				for(int k=11; k<34;k++){
+					XSSFWorkbook workbook = re.copy(fileName.get(i));
+					XSSFSheet sheet = workbook.getSheetAt(0);
+					row = sheet.getRow(k);
+					cell = row.getCell(2); // 품목명
+					row1 = sheet.getRow(k);
+					cell1 = row1.getCell(25); // 매출액
+					String company = cell.getStringCellValue();
+					double expense = cell1.getNumericCellValue();
+					boolean p=true;
+					if(company.equals("")){
+						break;
+					}
+					if(outdate.size()==0){
+						outdate.add(cell.getStringCellValue());
+						firstDay.add(cell1.getNumericCellValue());
+					}else {
+						for (int j = 0; j < outdate.size(); j++) {
+							if (company.equals(outdate.get(j))) {
+								double money = firstDay.get(j) + expense;
+								firstDay.add(j + 1, money);
+								firstDay.remove(j);
+								p=false;
+							}
+						}
+						if(p){
+						System.out.println("cell의 내용 : " + cell);
+						outdate.add(cell.getStringCellValue());
+						System.out.println("두번째 cell의 내용 : " + cell1.getNumericCellValue());
+						firstDay.add(cell1.getNumericCellValue());
+						}
+					}				
+				}
+			}
+			for(int q=0;q<outdate.size();q++)
+			System.out.println(outdate.get(q));
+		return SUCCESS;
+	}
+		public String goMakeMultiChart3() {
+			System.out.println("filename : " + uploadFileName);
+			System.out.println("arr : " + arr);
+			AccountDAO dao = new AccountDAO();
+
+			String[] nameList = uploadFileName.split(",");
+			ArrayList<String> fileName = new ArrayList<>();
+			for (int i = 0; i < nameList.length; i++) {
+				fileName.add(dao.fileFind(nameList[i]));
+			}
+			System.out.println(fileName);
+
+			outdate = new ArrayList<>();
+			firstDay = new ArrayList<>();
+			ReadExcelDemo re = new ReadExcelDemo();
+			XSSFRow row = null;
+			XSSFCell cell = null;
+			XSSFRow row1 = null;
+			XSSFCell cell1 = null;
+			System.out.println("for 위에서의 : " + fileName.get(0));
+			for (int i = 0; i < fileName.size(); i++) {
+				for(int k=11; k<34;k++){
+					XSSFWorkbook workbook = re.copy(fileName.get(i));
+					XSSFSheet sheet = workbook.getSheetAt(0);
+					row = sheet.getRow(k);
+					cell = row.getCell(0); // 월명
+					row1 = sheet.getRow(k);
+					cell1 = row1.getCell(25); // 매출액
+					String company = cell.getNumericCellValue()+"월";
+					double expense = cell1.getNumericCellValue();
+					boolean p=true;
+					if(cell.getNumericCellValue()==0){
+						break;
+					}
+					if(outdate.size()==0){
+						outdate.add(company);
+						firstDay.add(cell1.getNumericCellValue());
+					}else {
+						for (int j = 0; j < outdate.size(); j++) {
+							if (company.equals(outdate.get(j))) {
+								double money = firstDay.get(j) + expense;
+								firstDay.add(j + 1, money);
+								firstDay.remove(j);
+								p=false;
+							}
+						}
+						if(p){	
+						outdate.add(company);
+						firstDay.add(cell1.getNumericCellValue());
+						}
+					}				
+				}
+			}
+			for(int q=0;q<outdate.size();q++)
+			System.out.println(outdate.get(q));
 		return SUCCESS;
 	}
 
