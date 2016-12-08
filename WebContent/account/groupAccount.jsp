@@ -162,7 +162,8 @@ $(function(){
 				alert("성공");
 			
 				$("#graph").append('<h3 id="writeLine">기업별 매출 관리</h3>');
-				
+				$("#graph").append(
+				'<input type="button" value="차트지우기" class="delete btn btn-custom">');
 				var options = {
 						'dataset':{
 							title: 'Web accessibility status',
@@ -197,6 +198,8 @@ $(function(){
 				alert("성공");
 			
 				$("#graph").append('<h3 id="writeLine">품목별 매출 관리</h3>');
+				$("#graph").append(
+						'<input type="button" value="차트지우기" class="delete btn btn-custom">');
 				
 				var options = {
 						'dataset':{
@@ -232,7 +235,9 @@ $(function(){
 				alert("성공");
 			
 				$("#graph").append('<h3 id="writeLine">월별 매출 관리</h3>');
-				
+				$("#graph").append(
+						'<input type="button" value="차트지우기" class="delete btn btn-custom">'
+						);
 				var options = {
 						'dataset':{
 							title: 'Web accessibility status',
@@ -257,6 +262,13 @@ $(function(){
 		$("#checktable .add").each(function(index,item){
 			$("#checktable .add").eq(index).children().remove();
 		});
+	});
+	$(".col-md-10").on('click','.delete',function(){
+		$(this).parent().append('<div id="graph"></div>')
+		$(this).parent().append('<div id="Nwagon"></div>')
+		$(this).parent().next().remove();
+		$(this).parent().remove();
+	
 	});
 });
 
@@ -362,6 +374,7 @@ $(function(){
 								type="button" value="품목별 그래프 생성" class="btn btn-primary">
 								<input id="month"
 								type="button" value="월별 그래프 생성" class="btn btn-primary">
+								
 						</div>
 					</section>
 
@@ -371,9 +384,9 @@ $(function(){
 			<br>
 
 			<!-- 		<div id="integratedList1"> -->
-				<div class="col-md-10">
-					<div id="graph"></div>
-					<div id="Nwagon"></div>
+				<div class="col-md-10">	
+				<div id="graph"></div>
+				<div id="Nwagon"></div>
 				</div>	
 				<div class="col-md-4 section-content">
 				</div>		 
