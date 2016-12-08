@@ -223,7 +223,7 @@ public class ExcelMain {
 		            int h=0;
 		            for(int i=5;i<33;i++){
 		            	 XSSFRow row = sheet.getRow(i);
-		            	 XSSFCell cell=row.getCell(1);
+		            	 XSSFCell cell=row.getCell(3);
 		            	 if(cell.getStringCellValue().equals("")){
 		            		 h=i;
 		            		 System.out.println(h);
