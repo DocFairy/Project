@@ -1,8 +1,12 @@
 package action;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -20,13 +24,13 @@ public class MembersAction extends ActionSupport implements SessionAware {
 	MembersDAO dao = new MembersDAO();
 	private String friendid;
 	private String groupname;
-	
+	private String jObject1;
 
 
 	public String join() throws Exception {
 				
 		dao.insertMember(members);
-
+		
 		return SUCCESS;
 	}
 
@@ -38,7 +42,7 @@ public class MembersAction extends ActionSupport implements SessionAware {
 				if(((Members)session.get("members")).getInvite()!=null){
 				String[]ivt=((Members)session.get("members")).getInvite().split(",");
 				friendid=ivt[0];
-				groupname=ivt[1];
+				groupname=ivt[1];		
 				}
 				return SUCCESS;
 			} else {
@@ -49,6 +53,29 @@ public class MembersAction extends ActionSupport implements SessionAware {
 		}
 	}
 
+	public String mobilelogin() throws Exception{
+		members = dao.searchMember(id);
+		
+		if (members != null) {
+			if (id.equals(members.getId()) && password.equals(members.getPassword())) {
+				session.put("members", members);
+				if(((Members)session.get("members")).getInvite()!=null){
+				String[]ivt=((Members)session.get("members")).getInvite().split(",");
+				friendid=ivt[0];
+				groupname=ivt[1];	
+					
+				}
+				jObject1="t";
+				return SUCCESS;
+			} else {
+				jObject1="f";
+				return SUCCESS;
+			}
+		} else {
+			jObject1="f";
+			return SUCCESS;
+		}
+	}
 	public String logout() throws Exception {
 		session.clear();
 		return SUCCESS;
@@ -145,4 +172,14 @@ public class MembersAction extends ActionSupport implements SessionAware {
 		this.groupname = groupname;
 	}
 
+	public String getjObject1() {
+		return jObject1;
+	}
+
+	public void setjObject1(String jObject1) {
+		this.jObject1 = jObject1;
+	}
+
+	
+	
 }

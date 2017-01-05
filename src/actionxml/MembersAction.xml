@@ -42,5 +42,8 @@
 		<action name="reject" class="action.MembersAction" method="reject">
 			<result type="json"></result>
 		</action>
+		<action name="mobilelogin" class="action.MembersAction" method="mobilelogin">
+			<result type="json"></result>
+		</action>
 	</package>	
 	</struts>
