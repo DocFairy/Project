@@ -318,7 +318,7 @@ $(function(){
 							</tr>
 							
 							<s:iterator value="list">
-								<tr><td><span><a href="fileDownload?save_fileno=${save_fileno}"><s:property
+								<tr><td><span><a href="${pageContext.request.contextPath}/document/fileDownload?save_fileno=${save_fileno}"><s:property
 												value="save_filename" /></a></span></td>
 									<td class="filename"><input type="button"
 										class="checked btn btn-link" value="선택"></td>	
