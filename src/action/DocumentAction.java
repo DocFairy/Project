@@ -24,6 +24,7 @@ import com.sun.pdfview.PDFPage;
 
 import dao.DocumentDAO;
 import dao.GroupingDAO;
+import dao.MembersDAO;
 import excel.Converter2;
 import excel.ExcelMain;
 import excel.ExcelReadWrite;
@@ -66,9 +67,12 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private String searchText;
 	private int currentPage = 1;
 	private ArrayList<Files> tmpList;
+	private String id;
+	private ArrayList<String>mobileList;
 	// 파일 만들기만.
 	private PageNavigator pagenavi;
 	  private String delFileName;
+	  private String[] array;
 	   
 	   public String delLeaderFile(){
 	      new DocumentDAO().delFile(delFileName);
@@ -156,7 +160,14 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		list = dd.selectfile(((Members) session.get("members")).getMemberno());
 		return "success";
 	}
-
+	public String mobileIntegrate()throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		MembersDAO md=new MembersDAO();
+		list=dd.selectfile(((Members)md.searchMember(id)).getMemberno());
+		return "success";
+	}
+	
+	
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
 	      docFormList = dao.primaryFormList();
@@ -403,10 +414,15 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 	public String makefile() throws Exception {
-		String[] array = uploadFileName.split(",");
+		DocumentDAO dd = new DocumentDAO();
+		if(uploadFileName!=null){
+		array = uploadFileName.split(",");
+		}else{
+		array=(String[])mobileList.toArray();
+		arr=dd.calltype(array[0]);
+		}
 		ReadExcelDemo ex = new ReadExcelDemo();
 		ExcelMain em = new ExcelMain();
-		DocumentDAO dd = new DocumentDAO();
 		double k = 0;
 		ArrayList<String> st1 = new ArrayList<String>();
 		ArrayList<String> st2 = new ArrayList<String>();
@@ -936,6 +952,30 @@ public String changefile() throws Exception {
 
 	public void setDelFileName(String delFileName) {
 		this.delFileName = delFileName;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public ArrayList<String> getMobileList() {
+		return mobileList;
+	}
+
+	public void setMobileList(ArrayList<String> mobileList) {
+		this.mobileList = mobileList;
+	}
+
+	public String[] getArray() {
+		return array;
+	}
+
+	public void setArray(String[] array) {
+		this.array = array;
 	}
 	
 	

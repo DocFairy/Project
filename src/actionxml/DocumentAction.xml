@@ -108,6 +108,12 @@
 		 <action name="delLeaderFile" class="action.DocumentAction" method="delLeaderFile">
          <result type="redirect">/grouping/groupdocdownload</result>
       </action>
+      
+      <action name="mobileIntegrate" class="action.DocumentAction" method="mobileIntegrate">
+      	<result type="json"></result>
+      </action>
+  
+   
 		
 		
 	</package>
