@@ -14,9 +14,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.http.HttpRequest;
 import org.apache.poi.hslf.record.ExMCIMovie;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
+import org.bouncycastle.asn1.ocsp.Request;
+import org.json.JSONObject;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.pdfview.PDFFile;
@@ -68,7 +73,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	private int currentPage = 1;
 	private ArrayList<Files> tmpList;
 	private String id;
-	private ArrayList<String>mobileList;
+	private ArrayList<String> mobileList;
 	// 파일 만들기만.
 	private PageNavigator pagenavi;
 	  private String delFileName;
@@ -415,12 +420,23 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 
 	public String makefile() throws Exception {
 		DocumentDAO dd = new DocumentDAO();
+		boolean wh=false;
+		System.out.println("q");
 		if(uploadFileName!=null){
 		array = uploadFileName.split(",");
+		System.out.println("h");
+		wh=true;
 		}else{
+			System.out.println("y");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		JSONObject json=(JSONObject)request.getAttribute("jsonObject");
+		System.out.println(json.getString("searchText"));
 		array=(String[])mobileList.toArray();
 		arr=dd.calltype(array[0]);
+		System.out.println("j");
+		wh=true;
 		}
+		if(wh){
 		ReadExcelDemo ex = new ReadExcelDemo();
 		ExcelMain em = new ExcelMain();
 		double k = 0;
@@ -631,6 +647,7 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			receive.add(st1);receive.add(st2); receive.add(st3); receive.add(st4);receive.add(st5);
 			result.add(db1); result.add(db2); 
 			integrate=em.paste(ex.copy(dd.searchfile(array[0], ((Members)session.get("members")).getMemberno())), result, receive, "미수금현황표");
+		}
 		}
 		return "success";
 	}
