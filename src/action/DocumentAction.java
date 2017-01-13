@@ -176,6 +176,39 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 		return "success";
 	}
 	
+	public String mobileDocmanager() throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		MembersDAO md=new MembersDAO();
+		list=dd.selectfile(((Members)md.searchMember(id)).getMemberno());
+		return "success";
+		
+	}
+	
+	public String mobileDocmanager_delete() throws Exception{
+		DocumentDAO dd = new DocumentDAO();
+		MembersDAO md=new MembersDAO();
+		System.out.println("DocumentAction:mobileDocmanager_delete()");
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		Enumeration<String> names =  request.getParameterNames();
+		String data = names.nextElement();
+		JSONObject jo=new JSONObject(data);
+		array=new String[jo.length()-1];
+		StringBuffer delFileList = new StringBuffer("");
+		for(int i=0;i<jo.length()-1;i++){
+			array[i]=jo.getString("mobileList"+i);
+			System.out.println(array[i]);
+			delFileList.append(array[i]);
+			if(i!=jo.length()-2){
+				delFileList.append(",");
+			}
+		}
+		System.out.println("delFileList:"+delFileList);
+		String id = ((Members)session.get("members")).getId();
+		System.out.println("id"+id);
+		dd.mobileDocmanager_delete(delFileList.toString(), id);
+		return "success";
+	}
 	
 	public String docForm() throws Exception {
 		DocumentDAO dao = new DocumentDAO();
