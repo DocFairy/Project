@@ -5,11 +5,13 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +25,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.bouncycastle.asn1.ocsp.Request;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
@@ -419,21 +423,51 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	}
 
 	public String makefile() throws Exception {
+		MembersDAO md=new MembersDAO();
 		DocumentDAO dd = new DocumentDAO();
 		boolean wh=false;
-		System.out.println("q");
 		if(uploadFileName!=null){
 		array = uploadFileName.split(",");
-		System.out.println("h");
 		wh=true;
 		}else{
-			System.out.println("y");
+		System.out.println("y");
 		HttpServletRequest request = ServletActionContext.getRequest();
-		JSONObject json=(JSONObject)request.getAttribute("jsonObject");
-		System.out.println(json.getString("searchText"));
-		array=(String[])mobileList.toArray();
-		arr=dd.calltype(array[0]);
+		Enumeration<String> names =  request.getParameterNames();
+		String data = names.nextElement();
+		JSONObject jo=new JSONObject(data);
+		array=new String[jo.length()-1];
+		for(int i=0;i<jo.length()-1;i++){
+			array[i]=jo.getString("mobileList"+i);
+		}
+		session.put("members",md.searchMember(jo.getString("id")));
 		System.out.println("j");
+		switch(dd.calltype(array[0])){
+
+		case "y":
+			arr="가계부";
+			break;
+		case "cost":
+			arr="거래명세서";
+			break;
+		case "uum":
+			arr="지급어음명세서";
+			break;
+		case "left":
+			arr="재고관리대장";
+			break;
+		case "getu":
+			arr="월말경비정산표";
+			break;
+		case "dept":
+			arr="외상매출내역";
+			break;
+		case "print":
+			arr="인쇄물 발주서";
+			break;
+		case "misu":
+			arr="미수금 현황표";
+			break;
+		}
 		wh=true;
 		}
 		if(wh){
