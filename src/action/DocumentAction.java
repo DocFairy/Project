@@ -204,9 +204,9 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 			}
 		}
 		System.out.println("delFileList:"+delFileList);
-		String id = ((Members)session.get("members")).getId();
-		System.out.println("id"+id);
-		dd.mobileDocmanager_delete(delFileList.toString(), id);
+	/*	String id = ((Members)session.get("members")).getId();
+		System.out.println("id"+id);*/
+		dd.mobileDocmanager_delete(delFileList.toString());
 		return "success";
 	}
 	
