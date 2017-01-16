@@ -187,7 +187,8 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 	public String mobileDocmanager_delete() throws Exception{
 		DocumentDAO dd = new DocumentDAO();
 		MembersDAO md=new MembersDAO();
-		System.out.println("DocumentAction:mobileDocmanager_delete()");
+		
+		
 		
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Enumeration<String> names =  request.getParameterNames();
@@ -203,10 +204,12 @@ public class DocumentAction extends ActionSupport implements SessionAware {
 				delFileList.append(",");
 			}
 		}
-		System.out.println("delFileList:"+delFileList);
+		id = jo.getString("id");
+		System.out.println("DocumentAction:mobileDocmanager_delete():id"+id);
+		System.out.println("delFileList:"+delFileList+", id="+id);
 	/*	String id = ((Members)session.get("members")).getId();
 		System.out.println("id"+id);*/
-		dd.mobileDocmanager_delete(delFileList.toString());
+		dd.mobileDocmanager_delete(delFileList.toString(), id);
 		return "success";
 	}
 	
